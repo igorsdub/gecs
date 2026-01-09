@@ -11,50 +11,35 @@
     "href": "01_command_line_interface.html",
     "title": "1. Command Line Interface",
     "section": "",
-    "text": "The feared terminal ☠️",
-    "crumbs": [
-      "1. Command Line Interface"
-    ]
+    "text": "The feared terminal ☠️"
   },
   {
     "objectID": "00_setting_up.html",
     "href": "00_setting_up.html",
     "title": "0. Setting Up",
     "section": "",
-    "text": "An integrated development environment (IDE)",
-    "crumbs": [
-      "0. Setting Up"
-    ]
+    "text": "An integrated development environment (IDE)"
   },
   {
     "objectID": "00_setting_up.html#windows-subsystem-linux",
     "href": "00_setting_up.html#windows-subsystem-linux",
     "title": "0. Setting Up",
     "section": "Windows Subsystem Linux",
-    "text": "Windows Subsystem Linux\nInstallatino manual for WSL",
-    "crumbs": [
-      "0. Setting Up"
-    ]
+    "text": "Windows Subsystem Linux\nInstallatino manual for WSL"
   },
   {
     "objectID": "00_setting_up.html#profiles",
     "href": "00_setting_up.html#profiles",
     "title": "0. Setting Up",
     "section": "Profiles",
-    "text": "Profiles\n\nProfiles can be used to customize VS Code for students to ease the use in a classroom setting. Profiles allow educators to quickly share a customized VS Code setup with students.\nVS Code manual\n\nStored in settings.json file\nhttps://code.visualstudio.com/docs/configure/profiles\nhttps://code.visualstudio.com/docs/configure/profiles#_share-profiles\nhttps://code.visualstudio.com/docs/configure/profiles#_import",
-    "crumbs": [
-      "0. Setting Up"
-    ]
+    "text": "Profiles\n\nProfiles can be used to customize VS Code for students to ease the use in a classroom setting. Profiles allow educators to quickly share a customized VS Code setup with students.\nVS Code manual\n\nStored in settings.json file\nhttps://code.visualstudio.com/docs/configure/profiles\nhttps://code.visualstudio.com/docs/configure/profiles#_share-profiles\nhttps://code.visualstudio.com/docs/configure/profiles#_import"
   },
   {
     "objectID": "00_setting_up.html#workspaces",
     "href": "00_setting_up.html#workspaces",
     "title": "0. Setting Up",
     "section": "Workspaces",
-    "text": "Workspaces\nAny use? A workspace for GECS.",
-    "crumbs": [
-      "0. Setting Up"
-    ]
+    "text": "Workspaces\nAny use? A workspace for GECS."
   },
   {
     "objectID": "index.html",
