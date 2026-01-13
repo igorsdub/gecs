@@ -9,9 +9,8 @@ title: "Good Enough Computing in Science (GECS)<br><small>Mini Course at OIST</s
 #     roles: instructor
 #   - name: Pin Ju Chong
 #     affiliation: 
-#       - CNEU @OIST
-#   - name: Josiah Carberry
-#     affiliation: Brown University
+#       - CNEU (rotation) @OIST
+
 ---
 
 ```{mermaid}
@@ -75,7 +74,7 @@ Less time for programming, more time for science (and your other stuff).
 # Schedule
 
 **Time:** 10:00-12:00 (Fridays)  
-**Location:** L3B700 (near the GS counter)
+**Location:** L3B700 (near-ish the GS counter)
 
 | Part 1  |    |                      | Part 2 |    |                 |
 |---------|----|----------------------|--------|----|-----------------|
@@ -84,12 +83,17 @@ Less time for programming, more time for science (and your other stuff).
 |         | 30 | Project Structure    |        | 27 | Automation      |
 
 ## Setting up
-If you need help with configuring your computer for the course, a seession will be held on January 14 Wednesday at the Cafe Private Room during the lunchtime, 12:00-13:00. See [Setting up](00_setting-up.qmd) section.
+If you need help with configuring your computer for the course, a session will be held on January 14 Wednesday at the Cafe Private Room during the lunchtime, 12:00-13:00. See [Setting up](00_setting-up.qmd) section.
+
+# Registration
+[REGISTER HERE](https://forms.office.com/r/ZrwJrNN69y)  
+For official details, see [the Graduate School hosted website](https://groups.oist.jp/grad/event/good-enough-computing-science-gecs-mini-course) on TIDA.
 
 # People
 
 -   Igors Dubanevics Y4 \@ESBU
--   Pin Ju Chou Y1 \@CNEU
+-   Pin Ju Chou Y1 \@CNEU (rotation)
+-   Vitoria Yumi Uetuki Nicoleti Y1 \@NCU (rotation)
 
 # Target audience
 
