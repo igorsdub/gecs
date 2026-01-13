@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -68,6 +103,10 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<meta name="mermaid-theme" content="neutral">
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="styles.css">
@@ -82,9 +121,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
-      Good&lt;br&gt;Enough&lt;br&gt;Computing&lt;br&gt;in Science&lt;br&gt;👍⚖️🧑‍💻🧪
-      </li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./00_setting_up.html">0. Setting Up</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -115,6 +152,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Home</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00_setting_up.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">0. Setting Up</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -125,15 +168,41 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#ide-or-not-to-ide" id="toc-ide-or-not-to-ide" class="nav-link active" data-scroll-target="#ide-or-not-to-ide">IDE or not to IDE?</a></li>
+  <li><a href="#unix" id="toc-unix" class="nav-link active" data-scroll-target="#unix">UNIX</a>
+  <ul class="collapse">
+  <li><a href="#wsl-windows-users-only" id="toc-wsl-windows-users-only" class="nav-link" data-scroll-target="#wsl-windows-users-only">WSL (Windows users only)</a>
+  <ul class="collapse">
+  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation">Installation</a></li>
+  <li><a href="#from-the-powershell" id="toc-from-the-powershell" class="nav-link" data-scroll-target="#from-the-powershell">From the PowerShell</a></li>
+  <li><a href="#creating-a-default-unix-user-account" id="toc-creating-a-default-unix-user-account" class="nav-link" data-scroll-target="#creating-a-default-unix-user-account">Creating a Default UNIX User Account</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#package-manager" id="toc-package-manager" class="nav-link" data-scroll-target="#package-manager">Package Manager</a>
+  <ul class="collapse">
+  <li><a href="#pixi" id="toc-pixi" class="nav-link" data-scroll-target="#pixi">Pixi</a>
+  <ul class="collapse">
+  <li><a href="#course-virtual-environment" id="toc-course-virtual-environment" class="nav-link" data-scroll-target="#course-virtual-environment">Course Virtual Environment</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#developer-platform" id="toc-developer-platform" class="nav-link" data-scroll-target="#developer-platform">Developer Platform</a>
+  <ul class="collapse">
+  <li><a href="#sec-github" id="toc-sec-github" class="nav-link" data-scroll-target="#sec-github">GitHub</a></li>
+  </ul></li>
+  <li><a href="#ide-or-not-to-ide" id="toc-ide-or-not-to-ide" class="nav-link" data-scroll-target="#ide-or-not-to-ide">IDE or not to IDE?</a>
+  <ul class="collapse">
   <li><a href="#visual-studio-code" id="toc-visual-studio-code" class="nav-link" data-scroll-target="#visual-studio-code">Visual Studio Code</a>
   <ul class="collapse">
-  <li><a href="#windows-subsystem-linux" id="toc-windows-subsystem-linux" class="nav-link" data-scroll-target="#windows-subsystem-linux">Windows Subsystem Linux</a></li>
+  <li><a href="#installation-1" id="toc-installation-1" class="nav-link" data-scroll-target="#installation-1">Installation</a></li>
+  <li><a href="#extensions" id="toc-extensions" class="nav-link" data-scroll-target="#extensions">Extensions</a></li>
   <li><a href="#profiles" id="toc-profiles" class="nav-link" data-scroll-target="#profiles">Profiles</a></li>
   <li><a href="#workspaces" id="toc-workspaces" class="nav-link" data-scroll-target="#workspaces">Workspaces</a></li>
   </ul></li>
-  <li><a href="#pixi" id="toc-pixi" class="nav-link" data-scroll-target="#pixi">Pixi</a></li>
-  <li><a href="#why-python" id="toc-why-python" class="nav-link" data-scroll-target="#why-python">Why Python?</a></li>
+  </ul></li>
+  <li><a href="#shell-promt-optional" id="toc-shell-promt-optional" class="nav-link" data-scroll-target="#shell-promt-optional">Shell Promt (optional)</a>
+  <ul class="collapse">
+  <li><a href="#starship" id="toc-starship" class="nav-link" data-scroll-target="#starship">Starship</a></li>
+  </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
     </div>
@@ -159,19 +228,293 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>This section will equip your computer with all necessary tools for this course. The motivation behind each tool will be explained in the later sessions. For now, just follow the instructions and prepare to awe (and, at times, get frustrated) with power of computing.</p>
+<p>Although the course advertises itself as programming language agnostic, Python will be used to provide ‘meat’ for coding examples. See a Justin Bois’s note on “superiority” of one programming language over another below.</p>
+<div class="callout callout-style-simple callout-note callout-titled" title="Why Python?">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Why Python?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>There are plenty of programming languages that are widely used in data science and in scientific computing more generally. Some of these, in addition to Python, are Matlab/Octave, Mathematica, R, Julia, Java, JavaScript, Rust, and C++.</p>
+<p>I have chosen to use Python. I believe language wars are counterproductive and welcome anyone to port the code we use to any language of their choice, I nonetheless feel we should explain this choice.</p>
+<p>Python is a flexible programming language that is widely used in many applications. This is in contrast to more domain-specific languages like R and Julia. It is easily extendable, which is in many ways responsible for its breadth of use. We find that there is a decent Python-based tool for many applications we can dream up, certainly in data science. However, the Python-based tool is often not the very best for the particular task at hand, but it is almost always pretty good. Thus, knowing Python is like having a Swiss Army knife; you can wield it to effectively accomplish myriad tasks. Finally, we also find that it has a shallow learning curve with most students.</p>
+<p>by Justin Bois, <a href="https://justinbois.github.io/bootcamp/2025_wis/lessons/l00_configuring_your_computer.html#Why-Python?">bootcamp 2025</a></p>
+</div>
+</div>
+</div>
+<section id="unix" class="level1">
+<h1>UNIX</h1>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+
+OS --&gt; Family --&gt; Distribution --&gt; Derivative
+UNIX --&gt; Linux --&gt; Debian --&gt; Ubuntu
+
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>The motivation behind the use of terminal will be explained in <a href="./01_command_line_interface.html">the next session</a></p>
+<p>First, we need an efficient way interact with your computer. UNIX is by far the most well supported and used operating system (OS) to do so. It allows Apple Mac users can sigh in relief since their computers are based on UNIX and can skip to the next section. Windows, however, is another story.</p>
+<ul>
+<li>MulQuaBio</li>
+</ul>
+<section id="wsl-windows-users-only" class="level2">
+<h2 class="anchored" data-anchor-id="wsl-windows-users-only">WSL (Windows users only)</h2>
+<p>Being a popular operating system doesn’t make Windows easy to use for software development. Windows Subsystem for Linux (WSL) circumvents this problem by creating a separate environment on your computer to run Linux, a free UNIX-like OS.</p>
+<section id="installation" class="level3">
+<h3 class="anchored" data-anchor-id="installation">Installation</h3>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>If you experiencing some troubles if installation it is worth:</p>
+<ol type="1">
+<li>Updating your Windows version. Open Windows Settings, go to ‘Updates and Security’ and hit ‘Check for Updates’.</li>
+<li>Enable WSL on your Windows manually.
+<ul>
+<li><p>Click on the <strong>Start Menu</strong> and search for <strong>“Turn Windows features on or off”</strong>.</p></li>
+<li><p>Open the result. A new window will appear with a list of Windows features.</p></li>
+<li><p>Scroll down and check the following two boxes:</p>
+<ul>
+<li><p>‘Windows Subsystem for Linux’ ✅</p></li>
+<li><p>‘Virtual Machine Platform’ ✅</p></li>
+</ul></li>
+<li><p>Click <strong>OK</strong>. Windows will apply the changes and may ask you to restart your computer.</p></li>
+<li><p>After restarting, WSL will be enabled on your system.</p></li>
+</ul></li>
+</ol>
+</div>
+</div>
+</div>
+<section id="option-1-microsoft-store" class="level4">
+<h4 class="anchored" data-anchor-id="option-1-microsoft-store">Option 1: Microsoft Store</h4>
+<p><a href="https://www.virtualizationhowto.com/2022/11/windows-subsystem-for-linux-microsoft-store-ga-and-now-default-wsl/" class="uri">https://www.virtualizationhowto.com/2022/11/windows-subsystem-for-linux-microsoft-store-ga-and-now-default-wsl/</a></p>
+<ol type="1">
+<li>Search for “WSL” in the search bar of the Microsoft Store and click <strong>Install</strong>.</li>
+</ol>
+<p><img src="images/paste-5.png" class="img-fluid"></p>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>If WSL is not available from the Microsoft Store, proceed to Option 2 below. If it is available, you might need to restart your computer after installing WSL.</p>
+</div>
+</div>
+</div>
+<ol start="2" type="1">
+<li>After installing WSL from the Microsoft Store, click the <strong>Open</strong> option to open the app. It will finish the installation of Ubuntu and prompt you to set up your Linux user.</li>
+</ol>
+<p><img src="images/paste-6.png" class="img-fluid"></p>
+<p>Alternatively, you can search <a href="https://apps.microsoft.com/detail/9pdxgncfsczv?hl">“Ubuntu” in the Microsoft Store</a> and install it directly from there.</p>
+<p><strong>Video guide:</strong> <a href="https://www.youtube.com/watch?v=OqCPkcRoMF0" class="uri">https://www.youtube.com/watch?v=OqCPkcRoMF0</a></p>
+</section>
+</section>
+<section id="from-the-powershell" class="level3">
+<h3 class="anchored" data-anchor-id="from-the-powershell">From the PowerShell</h3>
+<ol type="1">
+<li><p>Open the <strong>Start Menu</strong>, and search for <strong>“PowerShell”</strong>.</p></li>
+<li><p><strong>Right-click</strong> and choose <strong>“Run as administrator”</strong>.</p></li>
+<li><p>Enter the following command to install WSL and hit <strong>Enter</strong>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">wsl</span> <span class="at">--install</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ol>
+<p><img src="images/paste-2.png" class="img-fluid"></p>
+<div class="callout callout-style-simple callout-important callout-empty-content callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>You might need to restart your computer after installing WSL.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+<p>By default, Ubuntu will be installed as the main Linux distribution. WSL will appear in your Start Menu and the Search Bar options.</p>
+</section>
+<section id="creating-a-default-unix-user-account" class="level3">
+<h3 class="anchored" data-anchor-id="creating-a-default-unix-user-account">Creating a Default UNIX User Account</h3>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Before you set a username on your computer, sign up for a GitHub account (see <a href="#sec-github" class="quarto-xref">Section&nbsp;3.1</a>) and check if that username is available.</p>
+<p><img src="images/paste-22.png" class="img-fluid"></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip callout-titled" title="Username and password suggestions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Username and password suggestions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>For a username: - Use only lower-case letters and numbers. - Start with a letter. - Be short and descriptive.</p>
+<p>If your name is John Derek Smith you can try: <code>jsmith</code>, <code>jdsmith</code>, or <code>johnsmith</code>. Any other imaginary name is permissible as long as it meets the criteria above. D&amp;D, MTG, LoL, and WoW nicknames, if that’s is publically appropriate.</p>
+<p>For a password, you can set the same one you have for your OIST account to make it easier to remember. It will be used for login and authentication but, more importantly, commands like <code>sudo</code> that grant administrative priviledges. If not sure what makes a strong password <a href="https://xkcd.com/936/">consult XKCD</a>.</p>
+</div>
+</div>
+</div>
+<ol type="1">
+<li>Launch Ubuntu terminal</li>
+</ol>
+<p><img src="images/paste-11.png" class="img-fluid"></p>
+<ol start="2" type="1">
+<li>You will be prompted to enter a username.</li>
+</ol>
+<p><img src="images/paste-12.png" class="img-fluid"></p>
+<p>Enter your chosen username and hit <strong>Enter</strong>. If you make a mistake in typing your username, you can close the window and open it again. In this example, <code>tunkert</code> is the username.</p>
+<p><img src="images/paste-13.png" class="img-fluid"></p>
+<ol start="3" type="1">
+<li>Choose a password. You will not see it as you type due to default UNIX security reasons. If not sure what you entered is correct, hold <strong>Backspace</strong> for a couple of seconds or hit <code>Ctrl+U</code>. That will erase everything you have written. After making sure you have entered the correct password, hit <strong>Enter</strong>. If unsure, write the password down.</li>
+</ol>
+<p><img src="images/paste-14.png" class="img-fluid"></p>
+<ol start="4" type="1">
+<li>Re-type the chosen password and hit <strong>Enter</strong>.</li>
+</ol>
+<p><img src="images/paste-15.png" class="img-fluid"></p>
+<ol start="5" type="1">
+<li>Once both username and password are entered, you will see a welcome message from Ubuntu.</li>
+</ol>
+<p><img src="images/paste-16.png" class="img-fluid"></p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>The typing line takes the new form of <code>tunkert@LAPTOP-JU9CGB60:~$</code>. Can you guess what the name after <code>@</code> means? We will talk about what each symbol means in the terminal section.</p>
+</div>
+</div>
+</div>
+<ol start="6" type="1">
+<li>To ensure that Ubuntu is up-to-date, type the following and press <strong>Enter</strong>:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update <span class="kw">&amp;&amp;</span> <span class="fu">sudo</span> apt upgrade <span class="at">-y</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>We will understand the logic behind this command later in the next section as well.</p>
+</div>
+</div>
+</div>
+<p><img src="images/paste-17.png" class="img-fluid"></p>
+<ol start="7" type="1">
+<li>You will be prompted to enter the password (Do you remember?). Enter the password—you will not see it—and press <strong>Enter</strong>.</li>
+</ol>
+<p><img src="images/paste-18.png" class="img-fluid"></p>
+<ol start="8" type="1">
+<li>The update will begin. In the end, you will have an empty typing line with the latest Ubuntu.</li>
+</ol>
+<p><img src="images/paste-21.png" class="img-fluid"></p>
+<p>You are now set and ready to install all the wonderful programming tools that have been developed over the past 50 or so years by the developer’s community. As you might guess, there are hundreds of thousands of programs out there, and ideally, we would like to keep track of what we install. That will be our next installation.</p>
+</section>
+</section>
+</section>
+<section id="package-manager" class="level1">
+<h1>Package Manager</h1>
+<p>An out-of-box UNIX-based OS has limited amount of tools. For this course we will use various open-source tools which need to be downloaded, installed, updated and keeping track of. Package manager is a tool to manage tools. We will use Pixi package manager in this course and will dive deep into it in <a href="./02_virtual_environments.html">the Virtual Environments session.</a></p>
+<section id="pixi" class="level2">
+<h2 class="anchored" data-anchor-id="pixi">Pixi</h2>
+<p><a href="https://pixi.prefix.dev/latest/">Pixi</a> is the latest package manager and unlike its competition (e.g.&nbsp;Conda, Mamba, uv) supports many programming languages besides Python and is gaining momentum among software developers and scientist.</p>
+<p>To install Pixi run the following command in your terminal:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-fsSL</span> https://pixi.sh/install.sh <span class="kw">|</span> <span class="fu">sh</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>To verify that Pixi got installed sucessufly type:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span> pixi</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>You will see something like <code>/Users/username/.pixi/bin/pixi</code> printed, where <code>username</code> is your chosen username.</p>
+<p><a href="https://pixi.prefix.dev/latest/installation/" class="uri">https://pixi.prefix.dev/latest/installation/</a></p>
+<section id="course-virtual-environment" class="level3">
+<h3 class="anchored" data-anchor-id="course-virtual-environment">Course Virtual Environment</h3>
+<p>Can we do it during the Virtual Environments session?</p>
+</section>
+</section>
+</section>
+<section id="developer-platform" class="level1">
+<h1>Developer Platform</h1>
+<p>Your code needs to live somewhere besides your computer. Otherwise, if you loose your computer will you be able to access your projects? For this purpouse, we will use GitHub which will take a central role alongside Git during <a href="./04_version_control.html">the session on version control</a>.</p>
+<section id="sec-github" class="level2">
+<h2 class="anchored" data-anchor-id="sec-github">GitHub</h2>
+<p>GitHub is a widely used platform to store, manage, share, and collaborate with others on software projects. Account is free and you can upgrade to Pro for free as a student (see the tip below). Sign up <a href="https://github.com/signup">here</a>.</p>
+<div class="callout callout-style-simple callout-tip callout-titled" title="GitHub Education">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>GitHub Education
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>As a student you can get a <strong>free</strong> GitHub Pro account as part of <a href="https://github.com/education/">GitHub Education</a> along side other perks. Once you have an basic account, follow this <a href="https://github.com/settings/education/benefits">link</a>.</p>
+<p>You can use a photo of your student ID card (both-sides) or other eligible documents listed on <a href="https://docs.github.com/en/education/about-github-education/github-education-for-students/apply-to-github-education-as-a-student">here</a>.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
 <section id="ide-or-not-to-ide" class="level1">
 <h1>IDE or not to IDE?</h1>
-<p>An <em>integrated development environment</em> (IDE)</p>
+<p>An <em>integrated development environment</em> (IDE) is a software application that provides a few tools to make coding easier. The most important of these is a way to write the code itself! IDEs are not the only way to program, but they are perhaps the most useful. Note that the language and the place you write the language (the IDE) are separate things: the language is a way of processing your instructions, the IDE is where you write those instructions. There are a lot of IDEs out there. This course will use Microsoft’s <em>Visual Studio Code</em>, which works on all major operating systems and is one of the most popular.</p>
+<p>Adapted from Arthur Turell, <a href="https://aeturrell.github.io/python4DS/prerequisites.html#integrated-development-environment-or-ide">P4DS</a>.</p>
+<section id="visual-studio-code" class="level2">
+<h2 class="anchored" data-anchor-id="visual-studio-code">Visual Studio Code</h2>
+<p><a href="https://code.visualstudio.com/">Visual Studio Code</a>, aka VS Code, has the following useful features:</p>
+<ul>
+<li><p>a way to run your code interactively (line-by-line) or all at once</p></li>
+<li><p>a way to debug (look for errors) in your code</p></li>
+<li><p>a quick way to access helpful information about commonly used software packages</p></li>
+<li><p>automatic code formatting, so that your code follows best practice guidelines</p></li>
+<li><p>auto-completion of your code when you hit TAB</p></li>
+<li><p>automatic code checking for basic errors</p></li>
+<li><p>coloring your brackets in pairs so you can keep track of the logical order of execution of your code!</p></li>
+</ul>
+<p><img src="images/paste-25.png" class="img-fluid"></p>
+<section id="installation-1" class="level3">
+<h3 class="anchored" data-anchor-id="installation-1">Installation</h3>
+<p>Install VS Code from <a href="https://code.visualstudio.com/">the official website</a> (it will determine which version of the installer to use) or download installer manually <a href="https://code.visualstudio.com/Download">here</a>.</p>
+<p><img src="images/paste-23.png" class="img-fluid"></p>
+<p>Now that you have a GitHub account, you can use to sign up into the VS Code (both are owned by Microsoft). Not only that will allow you to work smoothly with GitHub but all your VS Code settings will be backed up to a profile which can be accessed easily from other computers if you ever have this need. Speaking of VS Code profiles: we will use one tailored for this course.</p>
 </section>
-<section id="visual-studio-code" class="level1">
-<h1>Visual Studio Code</h1>
-<p>Everyone will use VS Code.</p>
-<section id="windows-subsystem-linux" class="level2">
-<h2 class="anchored" data-anchor-id="windows-subsystem-linux">Windows Subsystem Linux</h2>
-<p>Installatino manual for WSL</p>
+<section id="extensions" class="level3">
+<h3 class="anchored" data-anchor-id="extensions">Extensions</h3>
+<p>The biggest power of VS Code lies in its <a href="https://code.visualstudio.com/docs/configure/extensions/extension-marketplace">extensions</a>. They are ubiquitous allowing you to boost your IDE simply by installing what others have solved for you. You can browse them by clicking on the four cube icon on the side bar or by pressing <code>Cmd/Ctrl+Shift+X</code>.</p>
+<p><img src="images/paste-26.png" class="img-fluid"></p>
+<p>There are certain basic extensions that almost every VS Code user will have installed but it can be cumbersome to manually select all those one by one. That’s how VS Code Profiles have been created.</p>
 </section>
-<section id="profiles" class="level2">
-<h2 class="anchored" data-anchor-id="profiles">Profiles</h2>
+<section id="profiles" class="level3">
+<h3 class="anchored" data-anchor-id="profiles">Profiles</h3>
 <blockquote class="blockquote">
 <p>Profiles can be used to customize VS Code for students to ease the use in a classroom setting. Profiles allow educators to quickly share a customized VS Code setup with students.</p>
 <p><a href="https://code.visualstudio.com/docs/configure/profiles#_education">VS Code manual</a></p>
@@ -181,22 +524,67 @@ ul.task-list li input[type="checkbox"] {
 <p>https://code.visualstudio.com/docs/configure/profiles#_share-profiles</p>
 <p>https://code.visualstudio.com/docs/configure/profiles#_import</p>
 </section>
-<section id="workspaces" class="level2">
-<h2 class="anchored" data-anchor-id="workspaces">Workspaces</h2>
-<p>Any use? A workspace for GECS.</p>
+<section id="workspaces" class="level3">
+<h3 class="anchored" data-anchor-id="workspaces">Workspaces</h3>
+<p>Any use? A workspace for GECS?</p>
 </section>
 </section>
-<section id="pixi" class="level1">
-<h1>Pixi</h1>
-<ol type="1">
-<li><p>Intstall Pixi using the default suggestion with Curl.</p></li>
-<li><p>Create a virtual environment for this course.</p>
-<p><code>pixi init gecs</code></p></li>
-</ol>
 </section>
-<section id="why-python" class="level1">
-<h1>Why Python?</h1>
-<p>Although the course advertises itself as programming language agnostic, Python will be used to provide ‘meat’ for coding and project examples.</p>
+<section id="shell-promt-optional" class="level1">
+<h1>Shell Promt (optional)</h1>
+<section id="starship" class="level2">
+<h2 class="anchored" data-anchor-id="starship">Starship</h2>
+<p>Starship is by far the most widely used shell promt</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+
+CLI --&gt; Shell --&gt; Terminal
+Ubuntu --&gt; Bash --&gt; GNOME_Terminal
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip callout-titled" title="Computing vs Programming vs Coding">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Computing vs Programming vs Coding
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Coding is writing instructions in a language (syntax), programming is the broader process of designing, building, and testing software (logic &amp; problem-solving), and computing is the overarching field studying computers, algorithms, and computation, with programming and coding as key activities within it.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+
+Computing --&gt; Programming --&gt; Coding
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="references" class="level1">
+<h1>References</h1>
+<ul>
+<li><a href="https://dev.to/devsubha/how-to-install-ubuntu-on-windows-step-by-step-guide-for-beginners-2hjn">How to Install Ubuntu on Windows (Step-by-Step Guide for Beginners)</a> by Subha Mondal</li>
+<li><a href="">Install WSL on Windows 11 in 3 Minutes | Step-by-Step Guide</a> by Abstract programmer</li>
+</ul>
 
 
 </section>

@@ -18,28 +18,60 @@
     "href": "00_setting_up.html",
     "title": "0. Setting Up",
     "section": "",
-    "text": "An integrated development environment (IDE)"
+    "text": "This section will equip your computer with all necessary tools for this course. The motivation behind each tool will be explained in the later sessions. For now, just follow the instructions and prepare to awe (and, at times, get frustrated) with power of computing.\nAlthough the course advertises itself as programming language agnostic, Python will be used to provide ‘meat’ for coding examples. See a Justin Bois’s note on “superiority” of one programming language over another below.",
+    "crumbs": [
+      "0. Setting Up"
+    ]
   },
   {
-    "objectID": "00_setting_up.html#windows-subsystem-linux",
-    "href": "00_setting_up.html#windows-subsystem-linux",
+    "objectID": "00_setting_up.html#wsl-windows-users-only",
+    "href": "00_setting_up.html#wsl-windows-users-only",
     "title": "0. Setting Up",
-    "section": "Windows Subsystem Linux",
-    "text": "Windows Subsystem Linux\nInstallatino manual for WSL"
+    "section": "WSL (Windows users only)",
+    "text": "WSL (Windows users only)\nBeing a popular operating system doesn’t make Windows easy to use for software development. Windows Subsystem for Linux (WSL) circumvents this problem by creating a separate environment on your computer to run Linux, a free UNIX-like OS.\n\nInstallation\n\n\n\n\n\n\nIf you experiencing some troubles if installation it is worth:\n\nUpdating your Windows version. Open Windows Settings, go to ‘Updates and Security’ and hit ‘Check for Updates’.\nEnable WSL on your Windows manually.\n\nClick on the Start Menu and search for “Turn Windows features on or off”.\nOpen the result. A new window will appear with a list of Windows features.\nScroll down and check the following two boxes:\n\n‘Windows Subsystem for Linux’ ✅\n‘Virtual Machine Platform’ ✅\n\nClick OK. Windows will apply the changes and may ask you to restart your computer.\nAfter restarting, WSL will be enabled on your system.\n\n\n\n\n\n\nOption 1: Microsoft Store\nhttps://www.virtualizationhowto.com/2022/11/windows-subsystem-for-linux-microsoft-store-ga-and-now-default-wsl/\n\nSearch for “WSL” in the search bar of the Microsoft Store and click Install.\n\n\n\n\n\n\n\n\nIf WSL is not available from the Microsoft Store, proceed to Option 2 below. If it is available, you might need to restart your computer after installing WSL.\n\n\n\n\nAfter installing WSL from the Microsoft Store, click the Open option to open the app. It will finish the installation of Ubuntu and prompt you to set up your Linux user.\n\n\nAlternatively, you can search “Ubuntu” in the Microsoft Store and install it directly from there.\nVideo guide: https://www.youtube.com/watch?v=OqCPkcRoMF0\n\n\n\nFrom the PowerShell\n\nOpen the Start Menu, and search for “PowerShell”.\nRight-click and choose “Run as administrator”.\nEnter the following command to install WSL and hit Enter:\nwsl --install\n\n\n\n\n\n\n\n\nImportantYou might need to restart your computer after installing WSL.\n\n\n\n\n\n\nBy default, Ubuntu will be installed as the main Linux distribution. WSL will appear in your Start Menu and the Search Bar options.\n\n\nCreating a Default UNIX User Account\n\n\n\n\n\n\nBefore you set a username on your computer, sign up for a GitHub account (see Section 3.1) and check if that username is available.\n\n\n\n\n\n\n\n\n\n\nTipUsername and password suggestions\n\n\n\n\n\nFor a username: - Use only lower-case letters and numbers. - Start with a letter. - Be short and descriptive.\nIf your name is John Derek Smith you can try: jsmith, jdsmith, or johnsmith. Any other imaginary name is permissible as long as it meets the criteria above. D&D, MTG, LoL, and WoW nicknames, if that’s is publically appropriate.\nFor a password, you can set the same one you have for your OIST account to make it easier to remember. It will be used for login and authentication but, more importantly, commands like sudo that grant administrative priviledges. If not sure what makes a strong password consult XKCD.\n\n\n\n\nLaunch Ubuntu terminal\n\n\n\nYou will be prompted to enter a username.\n\n\nEnter your chosen username and hit Enter. If you make a mistake in typing your username, you can close the window and open it again. In this example, tunkert is the username.\n\n\nChoose a password. You will not see it as you type due to default UNIX security reasons. If not sure what you entered is correct, hold Backspace for a couple of seconds or hit Ctrl+U. That will erase everything you have written. After making sure you have entered the correct password, hit Enter. If unsure, write the password down.\n\n\n\nRe-type the chosen password and hit Enter.\n\n\n\nOnce both username and password are entered, you will see a welcome message from Ubuntu.\n\n\n\n\n\n\n\n\nThe typing line takes the new form of tunkert@LAPTOP-JU9CGB60:~$. Can you guess what the name after @ means? We will talk about what each symbol means in the terminal section.\n\n\n\n\nTo ensure that Ubuntu is up-to-date, type the following and press Enter:\n\nsudo apt update && sudo apt upgrade -y\n\n\n\n\n\n\nWe will understand the logic behind this command later in the next section as well.\n\n\n\n\n\nYou will be prompted to enter the password (Do you remember?). Enter the password—you will not see it—and press Enter.\n\n\n\nThe update will begin. In the end, you will have an empty typing line with the latest Ubuntu.\n\n\nYou are now set and ready to install all the wonderful programming tools that have been developed over the past 50 or so years by the developer’s community. As you might guess, there are hundreds of thousands of programs out there, and ideally, we would like to keep track of what we install. That will be our next installation.",
+    "crumbs": [
+      "0. Setting Up"
+    ]
   },
   {
-    "objectID": "00_setting_up.html#profiles",
-    "href": "00_setting_up.html#profiles",
+    "objectID": "00_setting_up.html#pixi",
+    "href": "00_setting_up.html#pixi",
     "title": "0. Setting Up",
-    "section": "Profiles",
-    "text": "Profiles\n\nProfiles can be used to customize VS Code for students to ease the use in a classroom setting. Profiles allow educators to quickly share a customized VS Code setup with students.\nVS Code manual\n\nStored in settings.json file\nhttps://code.visualstudio.com/docs/configure/profiles\nhttps://code.visualstudio.com/docs/configure/profiles#_share-profiles\nhttps://code.visualstudio.com/docs/configure/profiles#_import"
+    "section": "Pixi",
+    "text": "Pixi\nPixi is the latest package manager and unlike its competition (e.g. Conda, Mamba, uv) supports many programming languages besides Python and is gaining momentum among software developers and scientist.\nTo install Pixi run the following command in your terminal:\ncurl -fsSL https://pixi.sh/install.sh | sh\nTo verify that Pixi got installed sucessufly type:\nwhich pixi\nYou will see something like /Users/username/.pixi/bin/pixi printed, where username is your chosen username.\nhttps://pixi.prefix.dev/latest/installation/\n\nCourse Virtual Environment\nCan we do it during the Virtual Environments session?",
+    "crumbs": [
+      "0. Setting Up"
+    ]
   },
   {
-    "objectID": "00_setting_up.html#workspaces",
-    "href": "00_setting_up.html#workspaces",
+    "objectID": "00_setting_up.html#sec-github",
+    "href": "00_setting_up.html#sec-github",
     "title": "0. Setting Up",
-    "section": "Workspaces",
-    "text": "Workspaces\nAny use? A workspace for GECS."
+    "section": "GitHub",
+    "text": "GitHub\nGitHub is a widely used platform to store, manage, share, and collaborate with others on software projects. Account is free and you can upgrade to Pro for free as a student (see the tip below). Sign up here.\n\n\n\n\n\n\nTipGitHub Education\n\n\n\n\n\nAs a student you can get a free GitHub Pro account as part of GitHub Education along side other perks. Once you have an basic account, follow this link.\nYou can use a photo of your student ID card (both-sides) or other eligible documents listed on here.",
+    "crumbs": [
+      "0. Setting Up"
+    ]
+  },
+  {
+    "objectID": "00_setting_up.html#visual-studio-code",
+    "href": "00_setting_up.html#visual-studio-code",
+    "title": "0. Setting Up",
+    "section": "Visual Studio Code",
+    "text": "Visual Studio Code\nVisual Studio Code, aka VS Code, has the following useful features:\n\na way to run your code interactively (line-by-line) or all at once\na way to debug (look for errors) in your code\na quick way to access helpful information about commonly used software packages\nautomatic code formatting, so that your code follows best practice guidelines\nauto-completion of your code when you hit TAB\nautomatic code checking for basic errors\ncoloring your brackets in pairs so you can keep track of the logical order of execution of your code!\n\n\n\nInstallation\nInstall VS Code from the official website (it will determine which version of the installer to use) or download installer manually here.\n\nNow that you have a GitHub account, you can use to sign up into the VS Code (both are owned by Microsoft). Not only that will allow you to work smoothly with GitHub but all your VS Code settings will be backed up to a profile which can be accessed easily from other computers if you ever have this need. Speaking of VS Code profiles: we will use one tailored for this course.\n\n\nExtensions\nThe biggest power of VS Code lies in its extensions. They are ubiquitous allowing you to boost your IDE simply by installing what others have solved for you. You can browse them by clicking on the four cube icon on the side bar or by pressing Cmd/Ctrl+Shift+X.\n\nThere are certain basic extensions that almost every VS Code user will have installed but it can be cumbersome to manually select all those one by one. That’s how VS Code Profiles have been created.\n\n\nProfiles\n\nProfiles can be used to customize VS Code for students to ease the use in a classroom setting. Profiles allow educators to quickly share a customized VS Code setup with students.\nVS Code manual\n\nStored in settings.json file\nhttps://code.visualstudio.com/docs/configure/profiles\nhttps://code.visualstudio.com/docs/configure/profiles#_share-profiles\nhttps://code.visualstudio.com/docs/configure/profiles#_import\n\n\nWorkspaces\nAny use? A workspace for GECS?",
+    "crumbs": [
+      "0. Setting Up"
+    ]
+  },
+  {
+    "objectID": "00_setting_up.html#starship",
+    "href": "00_setting_up.html#starship",
+    "title": "0. Setting Up",
+    "section": "Starship",
+    "text": "Starship\nStarship is by far the most widely used shell promt\n\n\n\n\n\nflowchart LR\n\nCLI --&gt; Shell --&gt; Terminal\nUbuntu --&gt; Bash --&gt; GNOME_Terminal\n\n\n\n\n\n\n\n\n\n\n\n\nTipComputing vs Programming vs Coding\n\n\n\nCoding is writing instructions in a language (syntax), programming is the broader process of designing, building, and testing software (logic & problem-solving), and computing is the overarching field studying computers, algorithms, and computation, with programming and coding as key activities within it.\n\n\n\n\n\nflowchart LR\n\nComputing --&gt; Programming --&gt; Coding",
+    "crumbs": [
+      "0. Setting Up"
+    ]
   },
   {
     "objectID": "index.html",
