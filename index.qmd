@@ -84,7 +84,7 @@ Less time for programming, more time for science (and your other stuff).
 |         | 30 | Project Structure    |        | 27 | Automation      |
 
 ## Setting up
-If you need help with configuring your computer for the course, a seession will be held on January 14 Wednesday at the Cafe Private Room during the lunchtime, 12:00-13:00. See [Setting up](00_setting-up.qmd) section.
+If you need help with configuring your computer for the course, a seession will be held on January 14 Wednesday at the Cafe Private Room during the lunchtime, 12:00-13:00. See [Setting up](00_setting_up.qmd) section.
 
 # People
 
