@@ -2,4 +2,3 @@
 title: "2. Virtual Environments"
 format: html
 ---
-
