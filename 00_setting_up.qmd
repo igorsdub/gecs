@@ -149,7 +149,7 @@ I suggest you make Ubuntu your Default profile. **Command Promt** > **Settings**
 
 You are now set and ready to install all the wonderful programming tools that have been developed over the past 50 or so years by the developer's community. As you might guess, there are hundreds of thousands of programs out there, and ideally, we would like to keep track of what we install. That will be our next installation.
 
-# IDE or not to IDE?
+# To IDE or not to IDE?
 
 An *integrated development environment* (IDE) is a software application that provides a few tools to make coding easier. The most important of these is a way to write the code itself! IDEs are not the only way to program, but they are perhaps the most useful. Note that the language and the place you write the language (the IDE) are separate things: the language is a way of processing your instructions, the IDE is where you write those instructions. There are a lot of IDEs out there. 
 
