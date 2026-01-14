@@ -50,26 +50,6 @@ If you're experiencing some troubles with installation, it is worth:
     -   After restarting, WSL will be enabled on your system.
 :::
 
-#### From Microsoft Store
-
-1.  Search for "WSL" in the search bar of the Microsoft Store and click **Install**.
-
-![](images/paste-5.png)
-
-::: {.callout-important appearance="simple"}
-If WSL is not available from the Microsoft Store, proceed to @sec-wsl-installation-powershell below. If it is available, you might need to restart your computer after installing WSL.
-:::
-
-2.  After installing WSL from the Microsoft Store, click the **Open** option to open the app. It will finish the installation of Ubuntu and prompt you to set up your Linux user.
-
-![](images/paste-6.png)
-
-Alternatively, you can search ["Ubuntu" in the Microsoft Store](https://apps.microsoft.com/detail/9pdxgncfsczv?hl) and install it directly from there.
-
-**Video guide:** <https://www.youtube.com/watch?v=OqCPkcRoMF0>
-
-#### From the PowerShell {#sec-wsl-installation-powershell}
-
 1.  Open the **Start Menu**, and search for **"PowerShell"**.
 
 2.  **Right-click** and choose **"Run as administrator"**.
