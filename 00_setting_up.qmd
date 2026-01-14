@@ -26,7 +26,7 @@ UNIX --> Linux --> Debian --> Ubuntu
 
 ```
 
-The motivation behind the use of terminal will be explained in [the next session](01_command_line_interface.qmd)
+The motivation behind the use of terminal will be explained in [the next session](01_terminal.qmd)
 
 First, we need an efficient way interact with your computer. UNIX is by far the most well supported and used operating system (OS) to do so. It allows Apple Mac users can sigh in relief since their computers are based on UNIX and can skip to the next section. Windows, however, is another story.
 
