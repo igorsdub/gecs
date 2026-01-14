@@ -17,11 +17,21 @@
     ]
   },
   {
+    "objectID": "index.html#drop-in",
+    "href": "index.html#drop-in",
+    "title": "Good Enough Computing in Science (GECS)Mini Course at OIST",
+    "section": "Drop-in",
+    "text": "Drop-in\nAfter every session there will be a drop-in the following week. You can come with questions or problems reagrding the course.\nTime: 12:00-13:00 (Wednesdays)\nLocation: C102 (The Cafe Private Room)\nDates: Jan 21, Jan 28, Feb 4 for the Part 1; Mar 11, Mar 25, and Apr 1 for the Part 2.",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
     "objectID": "index.html#setting-up",
     "href": "index.html#setting-up",
     "title": "Good Enough Computing in Science (GECS)Mini Course at OIST",
-    "section": "Setting up",
-    "text": "Setting up\nIf you need help with configuring your computer for the course, a session will be held on January 14 Wednesday at the Cafe Private Room during the lunchtime, 12:00-13:00. See Setting up section.",
+    "section": "Setting Up",
+    "text": "Setting Up\nIf you need help with configuring your computer for the course, a session will be held on January 14 Wednesday at the Cafe Private Room during the lunchtime, 12:00-13:00. See Setting up section.",
     "crumbs": [
       "Home"
     ]
@@ -31,7 +41,7 @@
     "href": "index.html#acknowledgements",
     "title": "Good Enough Computing in Science (GECS)Mini Course at OIST",
     "section": "Acknowledgements",
-    "text": "Acknowledgements\nArthur Turrell, Greg Wilson and The Carpentries, Justin Bois, Richard McElreath.",
+    "text": "Acknowledgements\nArthur Turrell, Greg Wilson and The Carpentries, Justin Bois, Richard McElreath, and the MulQuaBio collective.",
     "crumbs": [
       "Home"
     ]
@@ -41,7 +51,7 @@
     "href": "index.html#references",
     "title": "Good Enough Computing in Science (GECS)Mini Course at OIST",
     "section": "References",
-    "text": "References\n\n“Good artists copy, great artists steal.”\n— Pablo Picasso\n\n\nCoding for Economists by Arthur Turrell\nPython for Data Science by Arthur Turrell\nbootcamp by Justin Bois\nResearch Software Engineering with Python by The Carpentries",
+    "text": "References\n\n“Good artists copy, great artists steal.”\n— Pablo Picasso\n\n\nCoding for Economists by Arthur Turrell\nPython for Data Science by Arthur Turrell\nbootcamp by Justin Bois\nResearch Software Engineering with Python by The Carpentries\nThe Multilingual Quantitative Biologist by the MulQuaBio collective",
     "crumbs": [
       "Home"
     ]
