@@ -218,7 +218,7 @@ You will see that the Default profile is in use. We will import the GECS profile
 
 However, you don't need to copy it, only need the link.
 
-```         
+```bash
 https://gist.github.com/igorsdub/04f6a1191dde8e09091a1099fe87d5be
 ```
 
