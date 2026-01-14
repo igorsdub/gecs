@@ -151,7 +151,9 @@ You are now set and ready to install all the wonderful programming tools that ha
 
 # IDE or not to IDE?
 
-An *integrated development environment* (IDE) is a software application that provides a few tools to make coding easier. The most important of these is a way to write the code itself! IDEs are not the only way to program, but they are perhaps the most useful. Note that the language and the place you write the language (the IDE) are separate things: the language is a way of processing your instructions, the IDE is where you write those instructions. There are a lot of IDEs out there. This course will use Microsoft’s *Visual Studio Code*, which works on all major operating systems and is one of the most popular.
+An *integrated development environment* (IDE) is a software application that provides a few tools to make coding easier. The most important of these is a way to write the code itself! IDEs are not the only way to program, but they are perhaps the most useful. Note that the language and the place you write the language (the IDE) are separate things: the language is a way of processing your instructions, the IDE is where you write those instructions. There are a lot of IDEs out there. 
+
+Nowadays, you can vibe code with Large Language Model (LLM) IDEs, like [Cursor](https://cursor.com/). LLMs are out of scope of this course. In this course we will use Microsoft’s *Visual Studio Code*, which works on all major operating systems and is one of the most popular IDEs. Just to note, Visual Studio Code does have an LLM coding feature support.
 
 Adapted from Arthur Turell, [P4DS](https://aeturrell.github.io/python4DS/prerequisites.html#integrated-development-environment-or-ide).
 
