@@ -2,38 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://igorsdub.github.io/gecs/06_automation.html</loc>
-    <lastmod>2026-01-13T09:26:38.191Z</lastmod>
+    <lastmod>2026-01-14T02:48:20.919Z</lastmod>
   </url>
   <url>
-    <loc>https://igorsdub.github.io/gecs/04_version_control.html</loc>
-    <lastmod>2026-01-13T09:26:38.191Z</lastmod>
-  </url>
-  <url>
-    <loc>https://igorsdub.github.io/gecs/about.html</loc>
-    <lastmod>2026-01-13T09:26:38.191Z</lastmod>
-  </url>
-  <url>
-    <loc>https://igorsdub.github.io/gecs/03_project_structure.html</loc>
-    <lastmod>2026-01-13T09:26:38.191Z</lastmod>
-  </url>
-  <url>
-    <loc>https://igorsdub.github.io/gecs/01_command_line_interface.html</loc>
-    <lastmod>2026-01-13T09:26:38.191Z</lastmod>
-  </url>
-  <url>
-    <loc>https://igorsdub.github.io/gecs/00_setting_up.html</loc>
-    <lastmod>2026-01-13T09:26:38.191Z</lastmod>
-  </url>
-  <url>
-    <loc>https://igorsdub.github.io/gecs/index.html</loc>
-    <lastmod>2026-01-13T09:26:38.323Z</lastmod>
+    <loc>https://igorsdub.github.io/gecs/01_terminal.html</loc>
+    <lastmod>2026-01-14T02:48:20.918Z</lastmod>
   </url>
   <url>
     <loc>https://igorsdub.github.io/gecs/05_testing.html</loc>
-    <lastmod>2026-01-13T09:26:38.191Z</lastmod>
+    <lastmod>2026-01-14T02:48:20.919Z</lastmod>
+  </url>
+  <url>
+    <loc>https://igorsdub.github.io/gecs/index.html</loc>
+    <lastmod>2026-01-14T02:48:21.064Z</lastmod>
+  </url>
+  <url>
+    <loc>https://igorsdub.github.io/gecs/00_setting_up.html</loc>
+    <lastmod>2026-01-14T02:48:20.918Z</lastmod>
+  </url>
+  <url>
+    <loc>https://igorsdub.github.io/gecs/03_project_structure.html</loc>
+    <lastmod>2026-01-14T02:48:20.919Z</lastmod>
+  </url>
+  <url>
+    <loc>https://igorsdub.github.io/gecs/about.html</loc>
+    <lastmod>2026-01-14T02:48:20.919Z</lastmod>
+  </url>
+  <url>
+    <loc>https://igorsdub.github.io/gecs/04_version_control.html</loc>
+    <lastmod>2026-01-14T02:48:20.919Z</lastmod>
   </url>
   <url>
     <loc>https://igorsdub.github.io/gecs/02_virtual_environments.html</loc>
-    <lastmod>2026-01-13T09:26:38.191Z</lastmod>
+    <lastmod>2026-01-14T02:48:20.919Z</lastmod>
   </url>
 </urlset>
