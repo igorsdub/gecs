@@ -291,31 +291,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<section id="from-microsoft-store" class="level4">
-<h4 class="anchored" data-anchor-id="from-microsoft-store">From Microsoft Store</h4>
-<ol type="1">
-<li>Search for “WSL” in the search bar of the Microsoft Store and click <strong>Install</strong>.</li>
-</ol>
-<p><img src="images/paste-5.png" class="img-fluid"></p>
-<div class="callout callout-style-simple callout-important">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>If WSL is not available from the Microsoft Store, proceed to <a href="#sec-wsl-installation-powershell" class="quarto-xref">Section&nbsp;1.1.1.2</a> below. If it is available, you might need to restart your computer after installing WSL.</p>
-</div>
-</div>
-</div>
-<ol start="2" type="1">
-<li>After installing WSL from the Microsoft Store, click the <strong>Open</strong> option to open the app. It will finish the installation of Ubuntu and prompt you to set up your Linux user.</li>
-</ol>
-<p><img src="images/paste-6.png" class="img-fluid"></p>
-<p>Alternatively, you can search <a href="https://apps.microsoft.com/detail/9pdxgncfsczv?hl">“Ubuntu” in the Microsoft Store</a> and install it directly from there.</p>
-<p><strong>Video guide:</strong> <a href="https://www.youtube.com/watch?v=OqCPkcRoMF0" class="uri">https://www.youtube.com/watch?v=OqCPkcRoMF0</a></p>
-</section>
-<section id="sec-wsl-installation-powershell" class="level4">
-<h4 class="anchored" data-anchor-id="sec-wsl-installation-powershell">From the PowerShell</h4>
 <ol type="1">
 <li><p>Open the <strong>Start Menu</strong>, and search for <strong>“PowerShell”</strong>.</p></li>
 <li><p><strong>Right-click</strong> and choose <strong>“Run as administrator”</strong>.</p></li>
@@ -334,7 +309,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>By default, Ubuntu will be installed as the main Linux distribution. WSL will appear in your Start Menu and the Search Bar options.</p>
-</section>
 </section>
 <section id="creating-a-default-unix-user-account" class="level3">
 <h3 class="anchored" data-anchor-id="creating-a-default-unix-user-account">Creating a Default UNIX User Account</h3>
@@ -529,8 +503,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="images/paste-36.png" class="img-fluid"></p>
 <p>To install Pixi run the following command in your terminal:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-fsSL</span> https://pixi.sh/install.sh <span class="kw">|</span> <span class="fu">sh</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>To verify that Pixi got installed successfully type:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span> pixi</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>To verify that Pixi got installed successfully restart the terminal. There are two ways to do so. Easy way is to kill it and open a new terminal window. Another way is to type the following for Ubuntu users:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~/.bashrc</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>macOS user need to type:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~/.zshrc</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>OK, now that the terminal is reset, type:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span> pixi</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>You will see something like <code>/Users/username/.pixi/bin/pixi</code> printed, where <code>username</code> is your chosen username.</p>
 </section>
 </section>
@@ -566,12 +544,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Starship is by far the most widely used shell prompt. It is a customizable prompt that controls how your terminal looks when you type a command. It is pretty and versatile.</p>
 <p><img src="images/paste-1.gif" class="img-fluid"></p>
 <p>To install Starship open VS Code terminal by selecting <strong>View</strong> &gt; <strong>Terminal</strong> from the menu bar, or by pressing the <code>Ctrl/Cmd+`</code> keyboard shortcut. A terminal window will open at the bottom. Then type:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-sS</span> https://starship.rs/install.sh <span class="kw">|</span> <span class="fu">sh</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-sS</span> https://starship.rs/install.sh <span class="kw">|</span> <span class="fu">sh</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Next, you will need to tell the terminal to start Starship every time you open a new terminal. This is similar to how Windows or macOS asks you if you want to run a program every time you start your computer.</p>
 <p>Windows/Ubuntu users must execute in their terminal the following:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">'eval "$(starship init bash)"'</span> <span class="op">&gt;&gt;</span> ~/.bashrc</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">'eval "$(starship init bash)"'</span> <span class="op">&gt;&gt;</span> ~/.bashrc</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>macOS users have a very similar command:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">'eval "$(starship init zsh)"'</span> <span class="op">&gt;&gt;</span> ~/.zshrc</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">'eval "$(starship init zsh)"'</span> <span class="op">&gt;&gt;</span> ~/.zshrc</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>After you restart the terminal, close it and open a new one, you should see the change in how it looks like. You can explore all the different looks you can access with Starship <a href="https://starship.rs/presets/">here</a>.</p>
 </section>
 </section>
