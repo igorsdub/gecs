@@ -28,18 +28,20 @@ UNIX --> Linux --> Debian --> Ubuntu
 
 The motivation behind the use of terminal will be explained in [the next session](01_terminal.qmd)
 
-First, we need an efficient way interact with your computer. UNIX is by far the most well supported and used operating system (OS) to do so. It allows Apple Mac users can sigh in relief since their computers are based on UNIX and can skip to the next section. Windows, however, is another story.
+First, we need an efficient way to interact with your computer. UNIX is by far the most well supported and used operating system (OS) to do so. It allows Apple Mac users to sigh in relief since their computers are based on UNIX and can skip to the next section. Windows, however, is another story.
 
 -   MulQuaBio
 
 ## WSL (Windows users only)
 
-Being a popular operating system doesn't make Windows easy to use for software development. Windows Subsystem for Linux (WSL) circumvents this problem by creating a separate environment on your computer to run Linux, a free UNIX-like OS.
+Being a popular operating system doesn't make Windows easy to use for software development. Windows Subsystem for Linux (WSL) circumvents this problem by creating a separate environment on your computer to run Linux, a free UNIX-like OS. We will install Linux with a particular flavour called Ubuntu. Right now, we will not go into details. All you need to know is that by the end of this installation you will be free to use a vast majority of scientific software available on the web.
 
 ### Installation
 
-::: {.callout-note appearance="simple" collapse="true"}
-If you experiencing some troubles if installation it is worth:
+There are two ways to install WSL with Ubuntu: graphical and terminal. The graphical method uses the Microsoft Store and should be straightforward. The terminal method uses PowerShell and is less user-friendly but more robust to errors. Choose whichever suits you best.
+
+::: {.callout-note title="Troubleshooting WSL" collapse="true"}
+If you're experiencing some troubles with installation, it is worth:
 
 1.  Updating your Windows version. Open Windows Settings, go to ‘Updates and Security’ and hit ‘Check for Updates’.
 2.  Enable WSL on your Windows manually.
@@ -58,19 +60,17 @@ If you experiencing some troubles if installation it is worth:
     -   After restarting, WSL will be enabled on your system.
 :::
 
-#### Option 1: Microsoft Store
+#### From Microsoft Store
 
-<https://www.virtualizationhowto.com/2022/11/windows-subsystem-for-linux-microsoft-store-ga-and-now-default-wsl/>
-
-1. Search for "WSL" in the search bar of the Microsoft Store and click **Install**.
+1.  Search for "WSL" in the search bar of the Microsoft Store and click **Install**.
 
 ![](images/paste-5.png)
 
 ::: {.callout-important appearance="simple"}
-If WSL is not available from the Microsoft Store, proceed to Option 2 below. If it is available, you might need to restart your computer after installing WSL.
+If WSL is not available from the Microsoft Store, proceed to @sec-wsl-installation-powershell below. If it is available, you might need to restart your computer after installing WSL.
 :::
 
-2. After installing WSL from the Microsoft Store, click the **Open** option to open the app. It will finish the installation of Ubuntu and prompt you to set up your Linux user.
+2.  After installing WSL from the Microsoft Store, click the **Open** option to open the app. It will finish the installation of Ubuntu and prompt you to set up your Linux user.
 
 ![](images/paste-6.png)
 
@@ -78,7 +78,7 @@ Alternatively, you can search ["Ubuntu" in the Microsoft Store](https://apps.mic
 
 **Video guide:** <https://www.youtube.com/watch?v=OqCPkcRoMF0>
 
-### From the PowerShell
+#### From the PowerShell {#sec-wsl-installation-powershell}
 
 1.  Open the **Start Menu**, and search for **"PowerShell"**.
 
@@ -93,35 +93,34 @@ Alternatively, you can search ["Ubuntu" in the Microsoft Store](https://apps.mic
 ![](images/paste-2.png)
 
 ::: {.callout-important appearance="simple"}
-## You might need to restart your computer after installing WSL.
+You might need to restart your computer after installing WSL.
 :::
 
 By default, Ubuntu will be installed as the main Linux distribution. WSL will appear in your Start Menu and the Search Bar options.
 
 ### Creating a Default UNIX User Account
 
+Now, that you have Ubuntu installed, you need to create an account in order to start using it. Generally it is called a "UNIX User Account" but a "Ubuntu account" would do as well.
+
 ::: {.callout-important appearance="simple"}
-Before you set a username on your computer, sign up for a GitHub account (see @sec-github) and check if that username is available.
+Before you set a username on your computer, sign up for a GitHub account (see @sec-github) and check if that username is available. This unity in names will make it easier for you to orient your files and folder,as well establish a virtual nickname that you can use consistently in the future projects.
 
 ![](images/paste-22.png)
 :::
 
 ::: {.callout-tip title="Username and password suggestions" collapse="true"}
-For a username: 
-- Use only lower-case letters and numbers. 
-- Start with a letter. 
-- Be short and descriptive.
+For a username: - Use only lower-case letters and numbers. - Start with a letter. - Be short and descriptive.
 
 If your name is John Derek Smith you can try: `jsmith`, `jdsmith`, or `johnsmith`. Any other imaginary name is permissible as long as it meets the criteria above. D&D, MTG, LoL, and WoW nicknames, if that's is publically appropriate.
 
 For a password, you can set the same one you have for your OIST account to make it easier to remember. It will be used for login and authentication but, more importantly, commands like `sudo` that grant administrative priviledges. If not sure what makes a strong password [consult XKCD](https://xkcd.com/936/).
 :::
 
-1. Launch Ubuntu terminal
+1.  Launch Ubuntu terminal
 
 ![](images/paste-11.png)
 
-2. You will be prompted to enter a username.
+2.  You will be prompted to enter a username.
 
 ![](images/paste-12.png)
 
@@ -129,15 +128,15 @@ Enter your chosen username and hit **Enter**. If you make a mistake in typing yo
 
 ![](images/paste-13.png)
 
-3. Choose a password. You will not see it as you type due to default UNIX security reasons. If not sure what you entered is correct, hold **Backspace** for a couple of seconds or hit `Ctrl+U`. That will erase everything you have written. After making sure you have entered the correct password, hit **Enter**. If unsure, write the password down.
+3.  Choose a password. You will not see it as you type due to default UNIX security reasons. If not sure what you entered is correct, hold **Backspace** for a couple of seconds or hit `Ctrl+U`. That will erase everything you have written. After making sure you have entered the correct password, hit **Enter**. If unsure, write the password down.
 
 ![](images/paste-14.png)
 
-4. Re-type the chosen password and hit **Enter**.
+4.  Re-type the chosen password and hit **Enter**.
 
 ![](images/paste-15.png)
 
-5. Once both username and password are entered, you will see a welcome message from Ubuntu.
+5.  Once both username and password are entered, you will see a welcome message from Ubuntu.
 
 ![](images/paste-16.png)
 
@@ -145,7 +144,7 @@ Enter your chosen username and hit **Enter**. If you make a mistake in typing yo
 The typing line takes the new form of `tunkert@LAPTOP-JU9CGB60:~$`. Can you guess what the name after `@` means? We will talk about what each symbol means in the terminal section.
 :::
 
-6. To ensure that Ubuntu is up-to-date, type the following and press **Enter**:
+6.  To ensure that Ubuntu is up-to-date, type the following and press **Enter**:
 
 ``` bash
 sudo apt update && sudo apt upgrade -y
@@ -157,57 +156,15 @@ We will understand the logic behind this command later in the next section as we
 
 ![](images/paste-17.png)
 
-7. You will be prompted to enter the password (Do you remember?). Enter the password—you will not see it—and press **Enter**.
+7.  You will be prompted to enter the password (Do you remember?). Enter the password—you will not see it—and press **Enter**.
 
 ![](images/paste-18.png)
 
-8. The update will begin. In the end, you will have an empty typing line with the latest Ubuntu.
+8.  The update will begin. In the end, you will have an empty typing line with the latest Ubuntu.
 
 ![](images/paste-21.png)
 
 You are now set and ready to install all the wonderful programming tools that have been developed over the past 50 or so years by the developer's community. As you might guess, there are hundreds of thousands of programs out there, and ideally, we would like to keep track of what we install. That will be our next installation.
-
-# Package Manager
-
-An out-of-box UNIX-based OS has limited amount of tools. For this course we will use various open-source tools which need to be downloaded, installed, updated and keeping track of. Package manager is a tool to manage tools. We will use Pixi package manager in this course and will dive deep into it in [the Virtual Environments session.](02_virtual_environments.qmd)
-
-## Pixi
-
-[Pixi](https://pixi.prefix.dev/latest/) is the latest package manager and unlike its competition (e.g. Conda, Mamba, uv) supports many programming languages besides Python and is gaining momentum among software developers and scientist.
-
-To install Pixi run the following command in your terminal:
-
-``` bash
-curl -fsSL https://pixi.sh/install.sh | sh
-```
-
-To verify that Pixi got installed sucessufly type:
-
-``` bash
-which pixi
-```
-
-You will see something like `/Users/username/.pixi/bin/pixi` printed, where `username` is your chosen username.
-
-<https://pixi.prefix.dev/latest/installation/>
-
-### Course Virtual Environment
-
-Can we do it during the Virtual Environments session?
-
-# Developer Platform
-
-Your code needs to live somewhere besides your computer. Otherwise, if you loose your computer will you be able to access your projects? For this purpouse, we will use GitHub which will take a central role alongside Git during [the session on version control](04_version_control.qmd).
-
-## GitHub {#sec-github}
-
-GitHub is a widely used platform to store, manage, share, and collaborate with others on software projects. Account is free and you can upgrade to Pro for free as a student (see the tip below). Sign up [here](https://github.com/signup).
-
-::: {.callout-tip title="GitHub Education" collapse="true"}
-As a student you can get a **free** GitHub Pro account as part of [GitHub Education](https://github.com/education/) along side other perks. Once you have an basic account, follow this [link](https://github.com/settings/education/benefits).
-
-You can use a photo of your student ID card (both-sides) or other eligible documents listed on [here](https://docs.github.com/en/education/about-github-education/github-education-for-students/apply-to-github-education-as-a-student).
-:::
 
 # IDE or not to IDE?
 
@@ -241,7 +198,9 @@ Install VS Code from [the official website](https://code.visualstudio.com/) (it 
 
 ![](images/paste-23.png)
 
-Now that you have a GitHub account, you can use to sign up into the VS Code (both are owned by Microsoft). Not only that will allow you to work smoothly with GitHub but all your VS Code settings will be backed up to a profile which can be accessed easily from other computers if you ever have this need. Speaking of VS Code profiles: we will use one tailored for this course.
+::: {.callout-note title="VS Code WSL extension" collapse="false"}
+Windows users will be promted to install the VS Code WSL extension. Agree and see @sec-vscode-wsl-extension.
+:::
 
 ### Extensions
 
@@ -251,48 +210,156 @@ The biggest power of VS Code lies in its [extensions](https://code.visualstudio.
 
 There are certain basic extensions that almost every VS Code user will have installed but it can be cumbersome to manually select all those one by one. That's how VS Code Profiles have been created.
 
+#### WSL Extenison (Windows users only) {#sec-vscode-wsl-extension}
+
+Windows user will need one more step before they can start using VS Code at its full potential. Right now, you open VS Code and all files and computation is done in Windows environment. We want VS Code to use Ubuntu that lives in WSL. Using the [Visual Studio Code WSL extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl) VS Code will integrate Ubuntu into its environment.
+
+Once the extension is installed you need to open VS Code with Ubuntu as the main environment. To do that, locate a button in the left-bottom corner of the VS Code window consisting of two stacked arrow symbols '\>' and '\<'. **Click** on it.
+
+![](images/paste-32.png)
+
+After clicking on this button, a promt line will appear on the top of the window. Select **WSL: New WSL Window** and press **Enter**.
+
+![](images/paste-34.png)
+
+A new window will open. This time, notice that the corner button has changed. Now, we are running on Ubuntu.
+
+![](images/paste-35.png)
+
+Windows users will use this environment for the course.
+
 ### Profiles
 
 > Profiles can be used to customize VS Code for students to ease the use in a classroom setting. Profiles allow educators to quickly share a customized VS Code setup with students.
 >
 > [VS Code manual](https://code.visualstudio.com/docs/configure/profiles#_education)
 
-Stored in `settings.json` file
+-   You can access the Profiles editor in either of the following ways: - From the **Code** \> **Settings** \> **Profiles** menu item\
+    ![](images/paste-27.png)
 
-https://code.visualstudio.com/docs/configure/profiles
+-   From the **Manage** gear button in the bottom of the Activity Bar.\
+    ![](images/paste-28.png)
 
-https://code.visualstudio.com/docs/configure/profiles#\_share-profiles
+You will see that the Default profile is in use. We will import the GECS profile for this course. The profile file is stored on GitHub (one of its nice features). That code is shown below.
 
-https://code.visualstudio.com/docs/configure/profiles#\_import
+```{=html}
+<script src="https://gist.github.com/igorsdub/04f6a1191dde8e09091a1099fe87d5be.js"></script>
+```
 
-### Workspaces
+However, you don't need to copy it, only need the link.
 
-Any use? A workspace for GECS?
+```         
+https://gist.github.com/igorsdub/04f6a1191dde8e09091a1099fe87d5be.js
+```
 
-# Shell Promt (optional)
+Import the GECS profile from the **Profiles editor** by selecting the **Import Profile...** button in the dropdown actions of the **New Profile** button.
+
+![](images/paste-29.png)
+
+When you select **Import Profile...**, you are prompted for the URL of a GitHub gist or the file location of a profile via an **Import Profile** dialog. Paste the link above and click **Create** button below.
+
+### ![](images/paste-31.png)
+
+Accept any installations or suggestions offered by extensions. Now, you are ready to go!
+
+# Package Manager
+
+An out-of-box UNIX-based OS has limited amount of tools. For this course we will use various open-source tools which need to be downloaded, installed, updated and keeping track of. Package manager is a tool to manage tools. We will use Pixi package manager in this course and will dive deep into it in [the Virtual Environments session.](02_virtual_environments.qmd)
+
+## Pixi
+
+[Pixi](https://pixi.prefix.dev/latest/) is the latest package manager and unlike its competition (e.g. Conda, Mamba, uv) supports many programming languages besides Python and is gaining momentum among software developers and scientist.
+
+Here we will have to use a terminal since Pixi can not be installed using a visual application, say by downloading an `.exe` file for Windows or `.dmg` for macOS.
+
+::: {.callout-note appearance="simple"}
+That's the reason we went to such lengths to install Ubuntu on Windows. Now, you are able to access a much larger range of applications which are inaccessible to graphical user interface (GUI) users.
+:::
+
+We will use the VS Code's terminal to do the installation. To open the terminal select **View** \> **Terminal** from the menu bar, or by pressing the `` Ctrl/Cmd+` `` keyboard shortcut. A terminal window will open at the bottom.
+
+![](images/paste-36.png)
+
+To install Pixi run the following command in your terminal:
+
+``` bash
+curl -fsSL https://pixi.sh/install.sh | sh
+```
+
+To verify that Pixi got installed successfully type:
+
+``` bash
+which pixi
+```
+
+You will see something like `/Users/username/.pixi/bin/pixi` printed, where `username` is your chosen username.
+
+# Developer Platform
+
+Your code needs to live somewhere besides your computer. Otherwise, if you lose your computer, will you be able to access your projects? For this purpose, we will use GitHub which will take a central role alongside Git during [the session on version control](04_version_control.qmd).
+
+## GitHub {#sec-github}
+
+GitHub is a widely used platform to store, manage, share, and collaborate with others on software projects. An account is free and you can upgrade to Pro for free as a student (see the tip below). Sign up [here](https://github.com/signup).
+
+::: {.callout-tip title="GitHub Education" collapse="true"}
+As a student, you can get a **free** GitHub Pro account as part of [GitHub Education](https://github.com/education/) alongside other perks. Once you have a basic account, follow this [link](https://github.com/settings/education/benefits).
+
+You can use a photo of your student ID card (both-sides) or other eligible documents listed on [here](https://docs.github.com/en/education/about-github-education/github-education-for-students/apply-to-github-education-as-a-student).
+:::
+
+# Shell Prompt (Optional)
 
 ## Starship
 
-Starship is by far the most widely used shell promt
+Starship is by far the most widely used shell prompt. It is a customizable prompt that controls how your terminal looks when you type a command. It is pretty and versatile.
 
-```{mermaid}
-flowchart LR
+![](images/paste-1.gif)
 
-CLI --> Shell --> Terminal
-Ubuntu --> Bash --> GNOME_Terminal
+To install Starship open VS Code terminal by selecting **View** \> **Terminal** from the menu bar, or by pressing the `` Ctrl/Cmd+` `` keyboard shortcut. A terminal window will open at the bottom. Then type:
+
+``` bash
+curl -sS https://starship.rs/install.sh | sh
 ```
 
-::: {.callout-tip title="Computing vs Programming vs Coding"}
-Coding is writing instructions in a language (syntax), programming is the broader process of designing, building, and testing software (logic & problem-solving), and computing is the overarching field studying computers, algorithms, and computation, with programming and coding as key activities within it.
+Next, you will need to tell the terminal to start Starship every time you open a new terminal. This is similar to how Windows or macOS asks you if you want to run a program every time you start your computer.
 
-```{mermaid}
-flowchart LR
+Windows/Ubuntu users must execute in their terminal the following:
 
-Computing --> Programming --> Coding
+``` bash
+echo 'eval "$(starship init bash)"' >> ~/.bashrc
 ```
-:::
+
+macOS users have a very similar command:
+
+``` zsh
+echo 'eval "$(starship init zsh)"' >> ~/.zshrc
+```
+
+After you restart the terminal, close it and open a new one, you should see the change in how it looks like. You can explore all the different looks you can access with Starship [here](https://starship.rs/presets/).
 
 # References
 
+## Setup and Installation Guides
+
 -   [How to Install Ubuntu on Windows (Step-by-Step Guide for Beginners)](https://dev.to/devsubha/how-to-install-ubuntu-on-windows-step-by-step-guide-for-beginners-2hjn) by Subha Mondal
--   [Install WSL on Windows 11 in 3 Minutes \| Step-by-Step Guide]() by Abstract programmer
+-   [Windows Subsystem for Linux Documentation](https://www.virtualizationhowto.com/2022/11/windows-subsystem-for-linux-microsoft-store-ga-and-now-default-wsl/)
+
+## Tools and Platforms
+
+### Visual Studio Code
+
+-   [Visual Studio Code Official Website](https://code.visualstudio.com/)
+-   [VS Code WSL Extension Guide](https://code.visualstudio.com/docs/remote/wsl-tutorial)
+-   [VS Code Remote WSL Documentation](https://code.visualstudio.com/docs/remote/wsl)
+-   [VS Code Terminal Getting Started](https://code.visualstudio.com/docs/terminal/getting-started)
+
+### Package Managers
+
+-   [Pixi Official Documentation](https://pixi.prefix.dev/latest/)
+-   [Pixi Installation Guide](https://pixi.prefix.dev/latest/installation/)
+
+### Shell Customization
+
+-   [Starship Shell Prompt](https://starship.rs/)
+-   [Starship Presets](https://starship.rs/presets/)
