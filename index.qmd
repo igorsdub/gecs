@@ -111,7 +111,7 @@ As cheesy as it sounds, we are learning from you (probably more at this point) t
 
 ## Acknowledgements
 
-Arthur Turrell, Greg Wilson and The Carpentries, Justin Bois, Richard McElreath.
+Arthur Turrell, Greg Wilson and The Carpentries, Justin Bois, Richard McElreath, and the MulQuaBio collective.
 
 ## References
 
@@ -122,4 +122,5 @@ Arthur Turrell, Greg Wilson and The Carpentries, Justin Bois, Richard McElreath.
 -   [Coding for Economists](https://aeturrell.github.io/coding-for-economists) by Arthur Turrell
 -   [Python for Data Science](https://aeturrell.github.io/python4DS) by Arthur Turrell
 -   [bootcamp](https://justinbois.github.io/bootcamp) by Justin Bois
--   [Research Software Engineering with Python](https://third-bit.com/py-rse) by The Carpentries <!-- - [BE/Bi 103](https://bebi103a.github.io/) by Justin Bois -->
+-   [Research Software Engineering with Python](https://third-bit.com/py-rse) by The Carpentries 
+-   [The Multilingual Quantitative Biologist](https://mulquabio.github.io/MQB) by the MulQuaBio collective
