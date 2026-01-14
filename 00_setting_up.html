@@ -103,10 +103,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<meta name="mermaid-theme" content="neutral">
-<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
-<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="styles.css">
@@ -256,27 +252,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="unix" class="level1">
 <h1>UNIX</h1>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-
-OS --&gt; Family --&gt; Distribution --&gt; Derivative
-UNIX --&gt; Linux --&gt; Debian --&gt; Ubuntu
-
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
 <p>The motivation behind the use of terminal will be explained in <a href="./01_terminal.html">the next session</a></p>
 <p>First, we need an efficient way to interact with your computer. UNIX is by far the most well supported and used operating system (OS) to do so. It allows Apple Mac users to sigh in relief since their computers are based on UNIX and can skip to the next section. Windows, however, is another story.</p>
-<ul>
-<li>MulQuaBio</li>
-</ul>
 <section id="wsl-windows-users-only" class="level2">
 <h2 class="anchored" data-anchor-id="wsl-windows-users-only">WSL (Windows users only)</h2>
 <p>Being a popular operating system doesn’t make Windows easy to use for software development. Windows Subsystem for Linux (WSL) circumvents this problem by creating a separate environment on your computer to run Linux, a free UNIX-like OS. We will install Linux with a particular flavour called Ubuntu. Right now, we will not go into details. All you need to know is that by the end of this installation you will be free to use a vast majority of scientific software available on the web.</p>
