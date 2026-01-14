@@ -239,7 +239,7 @@ You will see that the Default profile is in use. We will import the GECS profile
 However, you don't need to copy it, only need the link.
 
 ```         
-https://gist.github.com/igorsdub/04f6a1191dde8e09091a1099fe87d5be.js
+https://gist.github.com/igorsdub/04f6a1191dde8e09091a1099fe87d5be
 ```
 
 Import the GECS profile from the **Profiles editor** by selecting the **Import Profile...** button in the dropdown actions of the **New Profile** button.
