@@ -525,9 +525,9 @@ As you can see, the ability to pipe data from one command to another, building u
 Most Linux command line tools include a man page. Try taking a brief look at the pages for some of the commands you've already encountered: `man ls`, `man cp`, `man rmdir` and so on. There's even a man page for the `man` program itself, which is accessed using `man man`, of course.
 :::
 
-# The Command Line and the Superuser
+# The Superuser
 
-Some commands require elevated privileges to run. On Linux systems like Ubuntu, the `sudo` command allows you to run a command with superuser (administrator) privileges. When you use `sudo`, you'll be prompted for your password. For example:
+We want encouter this command too much in this course, but some commands require elevated privileges to run. On Linux systems like Ubuntu, the `sudo` command allows you to run a command with superuser (administrator) privileges. When you use `sudo`, you'll be prompted for your password. For example:
 
 ``` bash
 sudo apt install tree
@@ -550,6 +550,26 @@ When using `sudo`—always understand what a command does before running it with
 :::
 
 # Hidden Files
+
+In Unix-like systems, any file or directory whose name starts with a dot (`.`) is considered hidden. These files don't appear in normal `ls` listings—you have to specifically ask for them using the `-a` option:
+
+``` bash
+ls -a
+```
+
+The `-a` stands for "all", and will show you every file and directory, including the hidden ones. You'll typically see files like `.bashrc`, `.zshrc`, `.ssh/`, `.config/`, and many others.
+
+Hidden files are commonly used for storing configuration settings. For example:
+
+- `.bashrc` - Configuration file for the Bash shell. Contains settings, aliases, and functions that customize your Bash environment.
+- `.zshrc` - Configuration file for the Zsh shell. Similar to `.bashrc`, but for Zsh.
+
+These files are executed everytime you start a terminal. For those of you who installed Starship, the very last command you did was to add a new line to your `.rc` file. If you remove that line, your terminal will go back to the looks it had before.
+
+
+As you progress through more advanced topics, you'll encounter many more hidden files and directories. Configuration files, cache directories, and version control metadata (like `.git/`) all use the dot-prefix convention. This naming strategy keeps your file system organized and separates system/application configuration from your regular working files. In future lessons, we'll explore how these hidden files and directories make it very convenient to manage complex configurations without cluttering your workspace.
+
+To see all files including hidden ones, use `ls -a`.
 
 # Terminology
 
