@@ -11,7 +11,7 @@ If there is one software skill you had to learn, it would be working with a term
 
 # Integrated Terminal
 
-Opening a terminal varies depending on your operating system. On macOS, you can find the Terminal application in Applications → Utilities. On Linux, you might find it in your applications menu, or you can press `Ctrl+Alt+T` on many systems. On Windows, you'll want to use Ubuntu as part of the Windows Subsystem for Linux (WSL).
+Opening a terminal varies depending on your operating system. On macOS, you can find the Terminal application in `Applications/` → `Utilities/`. On Linux, you might find it in your applications menu, or you can press `Ctrl+Alt+T` on many systems. On Windows, you'll want to use Ubuntu as part of the Windows Subsystem for Linux (WSL).
 
 We will be interacting with a terminal inside VS Code. Start VS Code and open a folder or workspace. Open the terminal by selecting **View** \> **Terminal** from the menu bar, or by pressing the `` Ctrl/Cmd+` `` keyboard shortcut. Based on your operating system configuration, the terminal opens with a default shell like Bash, PowerShell, or Zsh. The shell's working directory starts at the root of the workspace folder.
 
@@ -218,21 +218,21 @@ Kind of boring here. There is nothing inside. Let's make some more directories i
 mkdir lab1 lab2 lab3 lab4 lab5
 ```
 
-There’s something a little different about that command. So far we’ve only seen commands that work on their own (cd, pwd) or that have a single item afterwards (cd /, cd \~/Desktop). But this time we’ve added three things after the mkdir command. Those things are referred to as parameters or arguments, and different commands can accept different numbers of arguments. The mkdir command expects at least one argument, whereas the cd command can work with zero or one, but no more. See what happens when you try to pass the wrong number of parameters to a command:
+There's something a little different about that command. So far we've only seen commands that work on their own (`cd`, `pwd`) or that have a single item afterwards (`cd -`, `cd ~/Desktop/`). But this time we've added three things after the mkdir command. Those things are referred to as parameters or arguments, and different commands can accept different numbers of arguments. The mkdir command expects at least one argument, whereas the cd command can work with zero or one, but no more. See what happens when you try to pass the wrong number of parameters to a command:
 
 ``` bash
 mkdir
-cd /etc ~/Desktop
+cd /etc/ ~/Desktop/
 ```
 
-Notice that mkdir created all the folders in one directory. It didn’t create `lab3` inside `lab2` inside `lab1`, or any other nested structure. But sometimes it’s handy to be able to do exactly that, and `mkdir` does have a way:
+Notice that mkdir created all the folders in one directory. It didn’t create `lab3/` inside `lab2/` inside `lab1/`, or any other nested structure. But sometimes it’s handy to be able to do exactly that, and `mkdir` does have a way:
 
 ``` bash
 mkdir -p lab4/levelE/48
 ls
 ```
 
-You can try to run wihtout `-p` and see wich error message you get.
+You can try to run without `-p` and see which error message you get.
 
 ``` bash
 mkdir lab5/levelD/23
@@ -268,7 +268,7 @@ Suppose we wanted to capture the output of that command as a text file that we c
 ls > lab.log
 ```
 
-This time there’s nothing printed to the screen, because the output is being redirected to our file instead. If you just run ls on its own you should see that the `lab.log` file has been created. We can use the cat command to look at its content:
+This time there’s nothing printed to the screen, because the output is being redirected to our file instead. If you just run ls on its own you should see that the `lab.log` file has been created. We can use the `cat` command to look at its content:
 
 ``` bash
 cat lab.log
@@ -282,7 +282,7 @@ Let’s look at another command, `echo`:
 echo "VISION, CHALLENGES, INNOVATION"
 ```
 
-Yes, echo just prints its arguments back out again (hence the name). But combine it with a redirect, and you’ve got a way to easily create small files. Let's redirect these words into a file that will represent the [Prof. Syndey Brenner](https://en.wikipedia.org/wiki/Sydney_Brenner) statue located at the Center Court.
+Yes, echo just prints its arguments back out again (hence the name). But combine it with a redirect, and you’ve got a way to easily create small files. Let's redirect these words into a file that will represent the [Prof. Sydney Brenner](https://en.wikipedia.org/wiki/Sydney_Brenner) statue located at the Center Court.
 
 ![Dr. Brenner's statue presented by Okinawa Prefecture and the Council for Promotion of OIST https://www.oist.jp/image/dr-sydney-brenners-statue](images/paste-39.png)
 
@@ -292,14 +292,14 @@ cat sydney_brenner.statue
 ```
 
 ::: {.callout-important title="File extension"}
-Linux-type systems do not care about file extensions. Files can have no extensions at all and be absolutely fine. Try redirecting the words output to file named `sydeny_brenner` and see if you can inspect it.
+Linux-type systems do not care about file extensions. Files can have no extensions at all and be absolutely fine. Try redirecting the words output to file named `sydney_brenner` and see if you can inspect it.
 :::
 
 We have one statue but why stop here? It is not improbable that [Prof. Svante Pääbo](http://en.wikipedia.org/wiki/Svante_P%C3%A4%C3%A4bo) will get his statute at OIST in the future. For his statue engraving we will choose something more personal.
 
 ``` bash
 echo "I really wanted to discover mummies, like Indiana Jones." > svante_paabo.statue
-cat svante_paabo.statue
+cat `svante_paabo.statue`
 ```
 
 However, `cat` is more than just a file viewer - its name comes from ‘con**cat**enate’, meaning “to link together”. If you pass more than one filename to `cat` it will output each of them, one after the other, as a single block of text:
@@ -341,12 +341,12 @@ What do you think will happen if we run those two commands a second time? Will t
 As you can see, the file looks the same. That’s not because it’s been left untouched, but because the shell clears out all the content of the file before it writes the output of your `cat` command into it. Because of this, you should be extra careful when using redirection to make sure that you don’t accidentally overwrite a file you need. If you do want to append to, rather than replace, the content of the files, double up on the greater-than character "\>\>":
 
 ``` bash
-cat *.statue > nobel_motivation.txt
+cat *.statue >> nobel_motivation.txt
 echo "I want my statue too!" >> nobel_motivation.txt
 cat nobel_motivation.txt
 ```
 
-Repeat the `echo` a few more times, using the **Up Arrow** for convenience until your text document is so large that it won’t all fit in the terminal at once when you use `cat` to display it. In order to see the whole file we now need to use a different program, called a *pager* (because it displays your file one “page” at a time). The standard pager of old was called `more`, because it puts a line of text at the bottom of each page that says “–More–” to indicate that you haven’t read everything yet. These days there’s a far better pager that you should use instead: because it replaces `more`, the programmers decided to call it `less`.
+Repeat the first `cat` and the `echo` a few more times, using the **Up Arrow** for convenience until your text document is so large that it won’t all fit in the terminal at once when you use `cat` to display it. In order to see the whole file we now need to use a different program, called a *pager* (because it displays your file one “page” at a time). The standard pager of old was called `more`, because it puts a line of text at the bottom of each page that says “–More–” to indicate that you haven’t read everything yet. These days there’s a far better pager that you should use instead: because it replaces `more`, the programmers decided to call it `less`.
 
 ``` bash
 less nobel_motivation.txt
@@ -364,25 +364,25 @@ If we want to move Sydney to show him the latest lab, Lab 5, how do we do that? 
 
 Now that we’ve got a few files, let’s look at the sort of day-to-day tasks you might need to perform on them. In practice you’ll still most likely use a graphical program when you want to move, rename or delete one or two files, but knowing how to do this using the command line can be useful for bulk changes, or when the files are spread amongst different folders. Plus, you’ll learn a few more things about the command line along the way.
 
-Let’s begin by putting our *svante_paabo.statue* file into our *lab1* directory, using the `mv` (**m**o**v**e) command:
+Let's begin by putting our `svante_paabo.statue` file into our `lab1/` directory, using the `mv` (**m**o**v**e) command:
 
 ``` bash
 mv svante_paabo.statue lab1
 ```
 
-You can confirm that the job has been done by using `ls` to see that it's missing from the working directory, then `cd lab1` to change into *lab1*, `ls` to see that it's in there, then `cd ..` to move the working directory back again. Or you could save a lot of typing by passing a path directly to the `ls` command to get straight to the confirmation you're looking for:
+You can confirm that the job has been done by using `ls` to see that it's missing from the working directory, then `cd lab1/` to change into `lab1/`, `ls` to see that it's in there, then `cd ..` to move the working directory back again. Or you could save a lot of typing by passing a path directly to the `ls` command to get straight to the confirmation you're looking for:
 
 ``` bash
 ls lab1
 ```
 
-Now suppose it turns out that file shouldn’t be in *lab1* after all. Let’s move it back to the working directory. We could `cd` into *lab1*then use `mv svante_paabo.statue ..` to say “move svante_paabo.statueinto the parent directory”. But we can use another path shortcut to avoid changing directory at all. In the same way that two dots (`..`) represents the parent directory, so a single dot (`.`) can be used to represent the current working directory. Because we know there’s only one file in *lab1* we can also just use “\*” to match any filename in that directory, saving ourselves a few more keystrokes. Our command to move the file back into the working directory therefore becomes this (note the space before the dot, there are *two* parameters being passed to `mv`):
+Now suppose it turns out that file shouldn't be in `lab1/` after all. Let's move it back to the working directory. We could `cd` into `lab1/` then use `mv svante_paabo.statue ..` to say "move svante_paabo.statue into the parent directory". But we can use another path shortcut to avoid changing directory at all. In the same way that two dots (`..`) represents the parent directory, so a single dot (`.`) can be used to represent the current working directory. Because we know there's only one file in `lab1/` we can also just use `*` to match any filename in that directory, saving ourselves a few more keystrokes. Our command to move the file back into the working directory therefore becomes this (note the space before the dot, there are **two** parameters being passed to `mv`):
 
 ``` bash
 mv lab1/* .
 ```
 
-The `mv` command also lets us move more than one file at a time. If you pass more than two arguments, the last one is taken to be the destination directory and the others are considered to be files (or directories) to move. Let’s use a single command to move *lab.log*, all our *\*.statue* files and *lab2* into *lab3* (now, it's getting trippy). There’s a bit more going on here, but if you look at each argument at a time you should be able to work out what’s happening: \*\*\*\*
+The `mv` command also lets us move more than one file at a time. If you pass more than two arguments, the last one is taken to be the destination directory and the others are considered to be files (or directories) to move. Let's use a single command to move `lab.log`, all our `*.statue` files and `lab2/` into `lab3/` (now, it's getting trippy). There's a bit more going on here, but if you look at each argument at a time you should be able to work out what's happening:
 
 ``` bash
 mv lab.log *.statue lab2 lab3
@@ -390,10 +390,10 @@ ls
 ls lab3
 ```
 
-Let's keep *lab.log* in *lab3* but everyhting else out:
+Let's keep `lab.log` in `lab3/` but everything else out:
 
 ``` bash
-mv lab3/lab? lab3/*.statue .
+mv lab3/nobel_motivation.txt lab3/lab? lab3/*.statue .
 ```
 
 ## Renaming Files
@@ -403,7 +403,6 @@ The `mv` command doesn't just move files between directories—it's also used to
 For example, let's rename one of our statue files:
 
 ``` bash
-
 mv sydney_brenner.statue brenner_sydney.statue
 cat brenner_sydney.statue
 ```
@@ -422,11 +421,11 @@ ls *.statue
 You now have two files: the original and the last-name-first copy. The `cp` command can also work with directories, but you need to use an option to do so. To copy an entire directory and all its contents, use the `-r` option (which stands for "recursive"):
 
 ``` bash
-cp -r lab4 lab6
+cp -r lab4 lab0
 ls
 ```
 
-This creates a complete copy of `lab1` and all the files inside it, called `lab6`.
+This creates a complete copy of `lab4/` and all the files inside it, called `lab6/`.
 
 ## Deleting Files and Directories
 
@@ -437,10 +436,10 @@ rm brenner_sydney.statue
 ls *.statue
 ```
 
-The backup is gone. We have enough labs for now. To remove a directory, add the `-r` option:
+To be honest, there is only one Lab0. To remove a directory, add the `-r` option:
 
 ``` bash
-rm -r lab6
+rm -r lab0
 ls
 ```
 
@@ -455,21 +454,23 @@ Today's computers and phones have the sort of graphical and audio capabilities t
 Let's start with a simple question. How many lines are there in your `combined.txt` file? The `wc` (word count) command can tell us that, using the `-l` switch to tell it we only want the line count (it can also do character counts and, as the name suggests, word counts):
 
 ``` bash
-wc -l combined.txt
+wc -l nobel_motivation.txt
 ```
+
 Similarly, if you wanted to know how many files and folders are in your home directory, and then tidy up after yourself, you could do this:
 
 ``` bash
-ls ~ > file_list.txt
-wc -l file_list.txt
-rm file_list.txt
+ls ~ > home_file_list.txt
+wc -l home_file_list.txt
+rm home_file_list.txt
 ```
 
-That method works, but creating a temporary file to hold the output from `ls` only to delete it two lines later seems a little excessive. Fortunately the Unix command line provides a shortcut that avoids you having to create a temporary file, by taking the output from one command (referred to as standard output or STDOUT) and feeding it directly in as the input to another command (standard input or STDIN). It's as though you've connected a pipe between one command's output and the next command's input, so much so that this process is actually referred to as piping the data from one command to another. Here's how to pipe the output of our `ls` command into `wc`:
+That method works, but creating a temporary file to hold the output from `ls` only to delete it two lines later seems a little excessive. Fortunately the Unix command line provides a shortcut that avoids you having to create a temporary file, by taking the output from one command (referred to as standard output or **STDOUT**) and feeding it directly in as the input to another command (standard input or **STDIN**). It's as though you've connected a *pipe* between one command's output and the next command's input, so much so that this process is actually referred to as piping the data from one command to another. Here's how to pipe the output of our `ls` command into `wc`:
 
 ``` bash
 ls ~ | wc -l
 ```
+
 Notice that there's no temporary file created, and no file name needed. Pipes operate entirely in memory, and most Unix command line tools will expect to receive input from a pipe if you don't specify a file for them to work on. Looking at the line above, you can see that it's two commands, `ls ~` (list the contents of the home directory) and `wc -l` (count the lines), separated by a vertical bar character (`|`). This process of piping one command into another is so commonly used that the character itself is often referred to as the pipe character, so if you see that term you now know it just means the vertical bar.
 
 Note that the spaces around the pipe character aren't important, we've used them for clarity, but the following command works just as well, this time for telling us how many items are in the `/etc` directory:
@@ -477,6 +478,7 @@ Note that the spaces around the pipe character aren't important, we've used them
 ``` bash
 ls /etc | wc -l
 ```
+
 Phew! That's quite a few files. If we wanted to list them all it would clearly fill up more than a single screen. As we discovered earlier, when a command produces a lot of output, it's better to use `less` to view it, and that advice still applies when using a pipe (remember, press `q` to quit):
 
 ``` bash
@@ -486,43 +488,68 @@ ls /etc | less
 Going back to our own files, we know how to get the number of lines in `combined.txt`, but given that it was created by concatenating the same files multiple times, I wonder how many unique lines there are? Unix has a command, `uniq`, that will only output unique lines in the file. So we need to `cat` the file out and pipe it through `uniq`. But all we want is a line count, so we need to use `wc` as well. Fortunately the command line doesn't limit you to a single pipe at a time, so we can continue to chain as many commands as we need:
 
 ``` bash
-cat combined.txt | uniq | wc -l
+cat nobel_motivation.txt | uniq | wc -l
 ```
+
 That line probably resulted in a count that's pretty close to the total number of lines in the file, if not exactly the same. Surely that can't be right? Lop off the last pipe to see the output of the command for a better idea of what's happening. If your file is very long, you might want to pipe it through `less` to make it easier to inspect:
 
 ``` bash
-cat combined.txt | uniq | less
+cat nobel_motivation.txt | uniq | less
 ```
-It appears that very few, if any, of our duplicate lines are being removed. To understand why, we need to look at the documentation for the uniq command. Most command line tools come with a brief (and sometimes not-so-brief) instruction manual, accessed through the man (manual) command. The output is automatically piped through your pager, which will typically be less, so you can move back and forth through the output, then press q when you’re finished:
 
+It appears that very few, if any, of our duplicate lines are being removed. To understand why, we need to look at the documentation for the `uniq` command. Most command line tools come with a brief (and sometimes not-so-brief) instruction manual, accessed through the `man` (manual) command. The output is automatically piped through your pager, which will typically be `less`, so you can move back and forth through the output, then press `q` when you're finished:
+
+``` bash
 man uniq
 ```
 
 Because this type of documentation is accessed via the `man` command, you’ll hear it referred to as a “man page”, as in “check the man page for more details”. The format of man pages is often terse, think of them more as a quick overview of a command than a full tutorial. They’re often highly technical, but you can usually skip most of the content and just look for the details of the option or argument you’re using.
 
-The uniq man page is a typical example in that it starts with a brief one-line description of the command, moves on to a synopsis of how to use it, then has a detailed description of each option or parameter. But whilst man pages are invaluable, they can also be inpenetrable. They’re best used when you need a reminder of a particular switch or parameter, rather than as a general resource for learning how to use the command line. Nevertheless, the first line of the DESCRIPTION section for man uniq does answer the question as to why duplicate lines haven’t been removed: it only works on adjacent matching lines.
+The `uniq` man page is a typical example in that it starts with a brief one-line description of the command, moves on to a synopsis of how to use it, then has a detailed description of each option or parameter. But whilst man pages are invaluable, they can also be impenetrable. They're best used when you need a reminder of a particular switch or parameter, rather than as a general resource for learning how to use the command line. Nevertheless, the first line of the **DESCRIPTION** section for `man uniq` does answer the question as to why duplicate lines haven't been removed: it only works on adjacent matching lines.
 
 The question, then, is how to rearrange the lines in our file so that duplicate entries are on adjacent lines. If we were to sort the contents of the file alphabetically, that would do the trick. Unix offers a `sort` command to do exactly that. A quick check of `man sort` shows that we can pass a file name directly to the command, so let's see what it does to our file:
 
 ``` bash
-sort combined.txt | less
+sort nobel_motivation.txt | less
 ```
+
 You should be able to see that the lines have been reordered, and it's now suitable for piping straight into `uniq`. We can finally complete our task of counting the unique lines in the file:
 
 ``` bash
-sort combined.txt | uniq | wc -l
+sort nobel_motivation.txt | uniq | wc -l
 ```
+
 As you can see, the ability to pipe data from one command to another, building up long chains to manipulate your data, is a powerful tool, as well as reducing the need for temporary files, and saving you a lot of typing. For this reason you’ll see it used quite often in command lines. A long chain of commands might look intimidating at first, but remember that you can break even the longest chain down into individual commands (and look at their man pages) to get a better understanding of what it’s doing.
 
-::: {.callout-note}
+::: callout-note
 Most Linux command line tools include a man page. Try taking a brief look at the pages for some of the commands you've already encountered: `man ls`, `man cp`, `man rmdir` and so on. There's even a man page for the `man` program itself, which is accessed using `man man`, of course.
 :::
 
-
 # The Command Line and the Superuser
 
-# Hidden Files
+Some commands require elevated privileges to run. On Linux systems like Ubuntu, the `sudo` command allows you to run a command with superuser (administrator) privileges. When you use `sudo`, you'll be prompted for your password. For example:
 
+``` bash
+sudo apt install tree
+```
+
+This would install the `tree` program from your system's software repositories. macOS user can use Homebrew package manager, `brew` command, to install `tree`.
+
+```zsh
+sudo brew install tree
+```
+
+Investigate `oist/` directory structure that we ahve built with:
+
+```bash
+tree .
+```
+
+::: {.callout-caution}
+When using `sudo`—always understand what a command does before running it with elevated privileges. Never run commands from untrusted sources with `sudo`, as they could potentially damage your system.
+:::
+
+# Hidden Files
 
 # Terminology
 
@@ -570,7 +597,6 @@ flowchart LR
 When you look at most operating systems, you see that most of them stem from UNIX. Then they branch into derivatives like Linux, which is the most prominent "child". Windows, on the other hand, is isolated from UNIX and only the recent introduction of WSL allowed it to use UNIX-based tools with ease.
 
 ![Evolution of operating systems, its kernels, and distributions. <https://www.reddit.com/r/coolguides/comments/k1lopj/os_family_tree/>](images/paste-37.png)
-
 
 # References
 
