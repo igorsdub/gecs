@@ -229,14 +229,13 @@ Notice that mkdir created all the folders in one directory. It didn’t create `
 
 ``` bash
 mkdir -p lab4/levelE/48
-```
-
 ls
+```
 
 You can try to run wihtout `-p` and see wich error message you get.
 
 ``` bash
-mkdir lab4/levelE/48
+mkdir lab5/levelD/23
 ```
 
 I find this behaviour annoying. THe same goes for creating files in non-exicsting subdirectories but I am sure there is a good rason behind such restriction.
@@ -347,7 +346,7 @@ echo "I want my statue too!" >> nobel_motivation.txt
 cat nobel_motivation.txt
 ```
 
-Repeat the `echo` a few more times, using the **Up Arrow** for convenience until your text document is so large that it won’t all fit in the terminal at once when you use `cat` to display it. In order to see the whole file we now need to use a different program, called a ***pager*** (because it displays your file one “page” at a time). The standard pager of old was called `more`, because it puts a line of text at the bottom of each page that says “–More–” to indicate that you haven’t read everything yet. These days there’s a far better pager that you should use instead: because it replaces `more`, the programmers decided to call it `less`.
+Repeat the `echo` a few more times, using the **Up Arrow** for convenience until your text document is so large that it won’t all fit in the terminal at once when you use `cat` to display it. In order to see the whole file we now need to use a different program, called a *pager* (because it displays your file one “page” at a time). The standard pager of old was called `more`, because it puts a line of text at the bottom of each page that says “–More–” to indicate that you haven’t read everything yet. These days there’s a far better pager that you should use instead: because it replaces `more`, the programmers decided to call it `less`.
 
 ``` bash
 less nobel_motivation.txt
@@ -365,25 +364,25 @@ If we want to move Sydney to show him the latest lab, Lab 5, how do we do that? 
 
 Now that we’ve got a few files, let’s look at the sort of day-to-day tasks you might need to perform on them. In practice you’ll still most likely use a graphical program when you want to move, rename or delete one or two files, but knowing how to do this using the command line can be useful for bulk changes, or when the files are spread amongst different folders. Plus, you’ll learn a few more things about the command line along the way.
 
-Let’s begin by putting our ***svante_paabo.statue*** file into our ***lab1*** directory, using the `mv` (**m**o**v**e) command:
+Let’s begin by putting our *svante_paabo.statue* file into our *lab1* directory, using the `mv` (**m**o**v**e) command:
 
 ``` bash
 mv svante_paabo.statue lab1
 ```
 
-You can confirm that the job has been done by using `ls` to see that it's missing from the working directory, then `cd lab1` to change into ***lab1***, `ls` to see that it's in there, then `cd ..` to move the working directory back again. Or you could save a lot of typing by passing a path directly to the `ls` command to get straight to the confirmation you're looking for:
+You can confirm that the job has been done by using `ls` to see that it's missing from the working directory, then `cd lab1` to change into *lab1*, `ls` to see that it's in there, then `cd ..` to move the working directory back again. Or you could save a lot of typing by passing a path directly to the `ls` command to get straight to the confirmation you're looking for:
 
 ``` bash
 ls lab1
 ```
 
-Now suppose it turns out that file shouldn’t be in ***lab1*** after all. Let’s move it back to the working directory. We could `cd` into ***lab1***then use `mv svante_paabo.statue ..` to say “move svante_paabo.statueinto the parent directory”. But we can use another path shortcut to avoid changing directory at all. In the same way that two dots (`..`) represents the parent directory, so a single dot (`.`) can be used to represent the current working directory. Because we know there’s only one file in ***lab1*** we can also just use “\*” to match any filename in that directory, saving ourselves a few more keystrokes. Our command to move the file back into the working directory therefore becomes this (note the space before the dot, there are ***two*** parameters being passed to `mv`):
+Now suppose it turns out that file shouldn’t be in *lab1* after all. Let’s move it back to the working directory. We could `cd` into *lab1*then use `mv svante_paabo.statue ..` to say “move svante_paabo.statueinto the parent directory”. But we can use another path shortcut to avoid changing directory at all. In the same way that two dots (`..`) represents the parent directory, so a single dot (`.`) can be used to represent the current working directory. Because we know there’s only one file in *lab1* we can also just use “\*” to match any filename in that directory, saving ourselves a few more keystrokes. Our command to move the file back into the working directory therefore becomes this (note the space before the dot, there are *two* parameters being passed to `mv`):
 
 ``` bash
 mv lab1/* .
 ```
 
-The `mv` command also lets us move more than one file at a time. If you pass more than two arguments, the last one is taken to be the destination directory and the others are considered to be files (or directories) to move. Let’s use a single command to move ***lab.log***, all our ***\*.statue*** files and ***lab2*** into ***lab3*** (now, it's getting trippy). There’s a bit more going on here, but if you look at each argument at a time you should be able to work out what’s happening: \*\*\*\*
+The `mv` command also lets us move more than one file at a time. If you pass more than two arguments, the last one is taken to be the destination directory and the others are considered to be files (or directories) to move. Let’s use a single command to move *lab.log*, all our *\*.statue* files and *lab2* into *lab3* (now, it's getting trippy). There’s a bit more going on here, but if you look at each argument at a time you should be able to work out what’s happening: \*\*\*\*
 
 ``` bash
 mv lab.log *.statue lab2 lab3
@@ -391,7 +390,7 @@ ls
 ls lab3
 ```
 
-Let's keep ***lab.log*** in ***lab3*** but everyhting else out:
+Let's keep *lab.log* in *lab3* but everyhting else out:
 
 ``` bash
 mv lab3/lab? lab3/*.statue .
@@ -515,9 +514,10 @@ sort combined.txt | uniq | wc -l
 ```
 As you can see, the ability to pipe data from one command to another, building up long chains to manipulate your data, is a powerful tool, as well as reducing the need for temporary files, and saving you a lot of typing. For this reason you’ll see it used quite often in command lines. A long chain of commands might look intimidating at first, but remember that you can break even the longest chain down into individual commands (and look at their man pages) to get a better understanding of what it’s doing.
 
-## Many Manuals
-
+::: {.callout-note}
 Most Linux command line tools include a man page. Try taking a brief look at the pages for some of the commands you've already encountered: `man ls`, `man cp`, `man rmdir` and so on. There's even a man page for the `man` program itself, which is accessed using `man man`, of course.
+:::
+
 
 # The Command Line and the Superuser
 
