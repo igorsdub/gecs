@@ -21,36 +21,177 @@ Terminal, Console, Shell, Command Line Interface, Command Line Interpreter, Kern
 
 ![https://www.reddit.com/r/compsci/comments/kposlx/i_made_a_simple_diagram_on_history_of_os_feel/](images/paste-38.png)
 
-# Opening a Terminal
+# Integrated Terminal
 
-First, try tyoing gibberish. date uptime df whoami time fo an existensieal question exit
+Opening a terminal varies depending on your operating system. On macOS, you can find the Terminal application in Applications → Utilities. On Linux, you might find it in your applications menu, or you can press `Ctrl+Alt+T` on many systems. On Windows, you'll want to use Ubuntu as part of the Windows Subsystem for Linux (WSL).
+
+We will be interacting with a terminal inside VS Code. Start VS Code and open a folder or workspace. Open the terminal by selecting **View** > **Terminal** from the menu bar, or by pressing the `` Ctrl/Cmd+` `` keyboard shortcut. Based on your operating system configuration, the terminal opens with a default shell like Bash, PowerShell, or Zsh. The shell's working directory starts at the root of the workspace folder.
+
+Once you have your terminal open, you'll see a prompt—usually something like `user@computer:~$` or just `$` in Ubuntu or `%` on macOS. This is where you type your commands.
+
+Let's start with some basic exploration. Try typing a few simple commands to get a feel for how the terminal responds. Don't worry about what they do yet—we'll explain them shortly.
+
+First, try typing gibberish to see what happens:
+
+``` bash
+sfkagifvnbasd
+```
+
+You should see an error message saying the command was not found. Good! The terminal is working.
+
+Now try some real commands:
+
+``` bash
+date
+```
+
+This shows you the current date and time. Next:
+
+``` bash
+uptime
+```
+
+This tells you how long your computer has been running. Try:
+
+``` bash
+df
+```
+
+This shows you disk space usage. Another useful one:
+
+``` bash
+whoami
+```
+
+This tells you which user account you're logged in as. And finally:
+
+``` bash
+exit
+```
+
+This closes your terminal session.
+
+Don't worry if you don't understand what these commands do in detail—the important thing is that you've confirmed the terminal is working and ready for the next steps.
 
 # Navigation
 
+Now that you know the terminal is working, let's learn how to navigate around the file system. Every time you open a terminal, you start in a particular location called your **working directory**. To find out where you are, use the `pwd` (**p**rint **w**orking **d**irectory) command:
+
+``` bash
 pwd
+```
+
+This will print the full path to your current location. Usually, when you first open a terminal, you'll be in your home directory, which is represented by a tilde (`~`).
 
 ::: callout-note
-Note that the directory separator is a forward slash `/`, not the backslash `\` that you may be used to from Windows or DOS systems.
+Note that the directory separator is a forward slash `/`, not the backslash `\` that you may be used to from Windows or DOS systems. This is important when navigating or specifying file paths.
 :::
 
-cd relative(Shortcuts: ., .., -, \~) vs absolute paths
+## Moving Between Directories
 
+To move to a different directory, use the `cd` (**c**hange **d**irectory) command:
+
+``` bash
+cd /usr
+pwd
+```
+
+You're now in the `/usr` directory. Notice how `pwd` shows a different path. You can use both **absolute paths** (starting from the root `/`) and **relative paths** (starting from your current location).
+
+Some useful shortcuts for relative paths:
+
+- `cd .` - stay in the current directory
+- `cd ..` - go up one level to the parent directory
+- `cd -` - go back to the previous directory
+- `cd ~` - go to your home directory
+- `cd` (with no arguments) - also goes to your home directory
+
+Try these out:
+
+``` bash
+cd ..
+pwd
+cd -
+pwd
+cd ~
+pwd
+```
+
+## Listing Directory Contents
+
+To see what's in your current directory, use the `ls` (**l**i**s**t) command:
+
+``` bash
 ls
+```
+
+This shows the files and directories in your current location. You can also list the contents of a specific directory without changing to it:
+
+``` bash
+ls /usr
+ls ~
+```
 
 # Exploring Files
 
-ls file less
+Now that you can navigate around, let's learn how to explore and examine files. There are several useful commands for working with files.
 
-Options and Arguments `command -optioins arguments` ls -lt
+## Viewing File Contents
+
+To see the contents of a file, you can use the `cat` (**con**ca**t**enate) command:
+
+``` bash
+cat /etc/hostname
+```
+
+This displays the contents of the file directly in the terminal.
+
+For larger files, you might want to use a **pager** to view them one screen at a time. The `less` command is perfect for this:
+
+``` bash
+less /etc/profile
+```
+
+Inside `less`, you can use arrow keys to scroll, Page Up/Page Down for larger jumps, and `q` to quit.
+
+## Options and Arguments
+
+Most commands accept **options** (also called flags or switches) and **arguments**. The general format is:
+
+``` bash
+command -options arguments
+```
+
+Options typically start with a hyphen (`-`) or double hyphen (`--`). Let's see this in action:
+
+``` bash
+ls -l
+```
+
+The `-l` option shows a "long" listing with more details. Try:
+
+``` bash
+ls -t
+```
+
+The `-t` option sorts files by modification time. You can combine multiple options:
+
+``` bash
+ls -lt
+```
+
+This combines `-l` and `-t` to show details sorted by time.
+
+## Important Rules
 
 ::: callout-caution
-Try to avoid any spaces in your directory and file names. Shell interprets space as separator betwenn options or arguments. Space in names will most likely break program producing an error.
+Try to avoid any spaces in your directory and file names. Shell interprets space as separator between options or arguments. Space in names will most likely break programs, producing errors.
 
-You can use spaces by including names in paratheisi or quotes but that is unnecery complication.
+You can use spaces by including names in parentheses or quotes, but that's an unnecessary complication.
 :::
 
 ::: callout-important
-Commands are case sensetive. `ls` is not the same as `LS`, `Ls` or `lS`. Try it!
+Commands are case sensitive. `ls` is not the same as `LS`, `Ls`, or `lS`. Try it yourself!
 :::
 
 # Creating Directories and Files
@@ -331,4 +472,5 @@ Unlike moving files to a trash or recycle bin on a graphical interface, `rm` per
 
 -   [Chapter 2 The Basics of the Unix Shell, Research Software Engineering with Python](https://third-bit.com/py-rse/bash-basics.html) by Wilson et al.
 -   https://code.visualstudio.com/docs/terminal/basics
+-   https://code.visualstudio.com/docs/terminal/getting-started
 -   https://ubuntu.com/tutorials/command-line-for-beginners
