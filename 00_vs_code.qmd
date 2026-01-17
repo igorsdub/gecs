@@ -1,0 +1,38 @@
+---
+title: "VS Code"
+format: html
+---
+
+In this tutorila you will get familiar wiht the functionality of VS Code. A powerful IDE as it is, VS Code has a lot of features. However, even if you know the basics it will get you a long way.
+
+# Start Up
+
+- Visual Open Folder
+- Terminal `code .`, especially for WSL users to start a WSL remote session
+
+# Interface and Layout
+
+- Bars
+- Code editor
+- Terminal
+
+# Settings
+
+- Autosave is a big one. Word wrap 
+- Theme can be changed
+- The basics are configured with the GECS profile
+
+# Searching and Replacing
+
+- In a file
+- Across files
+
+# Workspace
+
+# Shortcuts
+
+Shortcuts for the above sections materrial. For example:
+- Layout: `Cmd+B` for the Side Bar, `` Ctrl+` `` for the Terminal
+- Code editor: `Cmd+D` for selecting the expression, `Opt+Arrow Up+Down` to move a line, `Opt+Shift+F` to format a document
+- `Cmd+Shift+P` for the Command Pallete, `Cmd+P` the File and Open Editors search bar
+ 
