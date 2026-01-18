@@ -190,7 +190,7 @@ Commands are case sensitive. `ls` is not the same as `LS`, `Ls`, or `lS`. Try it
 
 # Creating Directories and Files
 
-Principles to create files and directories are very similar but, as usual, have their onw terminiology and quirks. We will first look at directories since they are conceptually easier to compehed.
+Principles to create files and directories are very similar but, as usual, have their own terminiology and quirks. We will first look at directories since they are conceptually easier to compehed.
 
 ::: {.callout-note title="Folder vs directory"}
 Another terminology difference from Windows. Funilly, file is a file.
@@ -224,7 +224,7 @@ Kind of boring here. There is nothing inside. Let's make some more directories i
 mkdir lab1 lab2 lab3 lab4 lab5
 ```
 
-There's something a little different about that command. So far we've only seen commands that work on their own (`cd`, `pwd`) or that have a single item afterwards (`cd -`, `cd ~/Desktop/`). But this time we've added three things after the mkdir command. Those things are referred to as parameters or arguments, and different commands can accept different numbers of arguments. The mkdir command expects at least one argument, whereas the cd command can work with zero or one, but no more. See what happens when you try to pass the wrong number of parameters to a command:
+There's something a little different about that command. So far we've only seen commands that work on their own (`cd`, `pwd`) or that have a single item afterwards (`cd -`, `cd ~/Desktop/`). But this time we've added five things after the mkdir command. Those things are referred to as parameters or arguments, and different commands can accept different numbers of arguments. The mkdir command expects at least one argument, whereas the cd command can work with zero or one, but no more. See what happens when you try to pass the wrong number of parameters to a command:
 
 ``` bash
 mkdir
@@ -244,7 +244,7 @@ You can try to run without `-p` and see which error message you get.
 mkdir lab5/levelD/23
 ```
 
-I find this behaviour annoying. THe same goes for creating files in non-exicsting subdirectories but I am sure there is a good rason behind such restriction.
+I find this behaviour annoying. The same goes for creating files in non-existent subdirectories but I am sure there is a good reason behind such restriction.
 
 ``` bash
 cd lab4
@@ -305,7 +305,7 @@ We have one statue but why stop here? It is not improbable that [Prof. Svante P�
 
 ``` bash
 echo "I really wanted to discover mummies, like Indiana Jones." > svante_paabo.statue
-cat `svante_paabo.statue`
+cat svante_paabo.statue
 ```
 
 However, `cat` is more than just a file viewer - its name comes from ‘con**cat**enate’, meaning “to link together”. If you pass more than one filename to `cat` it will output each of them, one after the other, as a single block of text:
@@ -348,7 +348,7 @@ As you can see, the file looks the same. That’s not because it’s been left u
 
 ``` bash
 cat *.statue >> nobel_motivation.txt
-echo "I want my statue too!" >> nobel_motivation.txt
+echo 'I want my statue too!' >> nobel_motivation.txt
 cat nobel_motivation.txt
 ```
 
@@ -399,7 +399,7 @@ ls lab3
 Let's keep `lab.log` in `lab3/` but everything else out:
 
 ``` bash
-mv lab3/nobel_motivation.txt lab3/lab? lab3/*.statue .
+mv lab3/lab? lab3/*.statue .
 ```
 
 ## Renaming Files
@@ -431,7 +431,7 @@ cp -r lab4 lab0
 ls
 ```
 
-This creates a complete copy of `lab4/` and all the files inside it, called `lab6/`.
+This creates a complete copy of `lab4/` and all the files inside it, called `lab0/`.
 
 ## Deleting Files and Directories
 
