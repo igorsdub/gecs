@@ -305,7 +305,7 @@ We have one statue but why stop here? It is not improbable that [Prof. Svante P�
 
 ``` bash
 echo "I really wanted to discover mummies, like Indiana Jones." > svante_paabo.statue
-cat `svante_paabo.statue`
+cat svante_paabo.statue
 ```
 
 However, `cat` is more than just a file viewer - its name comes from ‘con**cat**enate’, meaning “to link together”. If you pass more than one filename to `cat` it will output each of them, one after the other, as a single block of text:
@@ -348,7 +348,7 @@ As you can see, the file looks the same. That’s not because it’s been left u
 
 ``` bash
 cat *.statue >> nobel_motivation.txt
-echo "I want my statue too!" >> nobel_motivation.txt
+echo 'I want my statue too!' >> nobel_motivation.txt
 cat nobel_motivation.txt
 ```
 
@@ -399,7 +399,7 @@ ls lab3
 Let's keep `lab.log` in `lab3/` but everything else out:
 
 ``` bash
-mv lab3/nobel_motivation.txt lab3/lab? lab3/*.statue .
+mv lab3/lab? lab3/*.statue .
 ```
 
 ## Renaming Files
