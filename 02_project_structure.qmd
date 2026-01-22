@@ -11,7 +11,7 @@ Software projects can be messy. Imagine you join a lab and your supervisor hands
 
 ![https://datacarpentry.github.io/rr-organization1/fig/files_messy_tidy.png](images/paste-44.png)
 
-OK, probably not as extreme. Still, it is common for a new comer to data science to put everything into a single folder: data, scripts, figures, tables. That can work if you only need to do analysis once and no one else will ever do it again, including yourself. That is far from truth in research be it academia or industry. In this tutorial we will see quick fixes you can do to help others and the future you to understand what does a project do. Let's get organized.
+OK, probably not as extreme. Still, it is common for a newcomer to data science to put everything into a single folder: data, scripts, figures, tables. That can work if you only need to do analysis once and no one else will ever do it again, including yourself. That is far from truth in research be it academia or industry. In this tutorial we will see quick fixes you can do to help others and the future you to understand what does a project do. Let's get organized.
 
 # Lost Book Project
 
@@ -60,7 +60,7 @@ Once unzipped, open the directory with VS Code (`Cmd+O`).
 │   └── time_machine.txt
 ├── counts                          <-- Word count .tsv data
 ├── figures                         <-- Bar plots of word counts
-├── README.md
+├── README.md                       <-- README for the project
 └── scripts                         <-- Scripts directory
     ├── count_words.sh              <-- Counts occurences of word in a books
     ├── get_summary.sh              <-- Gets a book summary
@@ -77,7 +77,7 @@ Once downloaded and unzipped, open the directory with VS Code.
 
 ## Directory Structure
 
-Here is a minimal directory structure adapted from [bvreede on GitHub](https://github.com/bvreede/good-enough-project). There are larger
+Here is a minimal directory structure adapted from [bvreede on GitHub](https://github.com/bvreede/good-enough-project). There are larger.
 
 The directory structure distinguishes three kinds of folders:
 
