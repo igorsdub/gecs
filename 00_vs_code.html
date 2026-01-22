@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3. Project Structure – Good Enough Computing in Science 👍⚖️🧑‍💻🧪</title>
+<title>VS Code – Good Enough Computing in Science 👍⚖️🧑‍💻🧪</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -138,15 +173,26 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#start-up" id="toc-start-up" class="nav-link active" data-scroll-target="#start-up">Start Up</a></li>
+  <li><a href="#interface-and-layout" id="toc-interface-and-layout" class="nav-link" data-scroll-target="#interface-and-layout">Interface and Layout</a></li>
+  <li><a href="#settings" id="toc-settings" class="nav-link" data-scroll-target="#settings">Settings</a></li>
+  <li><a href="#searching-and-replacing" id="toc-searching-and-replacing" class="nav-link" data-scroll-target="#searching-and-replacing">Searching and Replacing</a></li>
+  <li><a href="#shortcuts" id="toc-shortcuts" class="nav-link" data-scroll-target="#shortcuts">Shortcuts</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">3. Project Structure</h1>
+<h1 class="title">VS Code</h1>
 </div>
 
 
@@ -163,8 +209,100 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>In this tutorial you will get familiar with the functionality of VS Code. A powerful IDE as it is, VS Code has a lot of features. However, even if you know the basics it will get you a long way. This tutorial is heavily based on the official <a href="https://code.visualstudio.com/docs/getstarted/getting-started">Tutorial: Get started with Visual Studio Code</a>.</p>
+<section id="start-up" class="level1">
+<h1>Start Up</h1>
+<ol type="1">
+<li><p>Open Visual Studio Code. Then open a folder with <strong>File</strong> &gt; <strong>Open Folder…</strong> or <code>Cmd+O</code>. On Linux/WSL users, you will first have to start a remote WSL session. With the WSL extension installed, you will see a new Status bar item at the far left.</p>
+<p><img src="images/paste-41.png" class="img-fluid"></p>
+<p>The Remote Status bar item can quickly show you in which context VS Code is running (local or remote) and clicking on the item will bring up the WSL extension commands.</p>
+<p><img src="images/paste-42.png" class="img-fluid"></p>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Alternatively, WSL users can open their Linux terminal, create a directory in their Linux distribution file system, change their directory and open it in VS Code WSL remote with <code>code .</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> vscode101</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> vscode101</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">code</span> .</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Note the <code>.</code> in front of <code>code</code>. You need to tell VS Code what you are opening. Later, we will see that you can open any file or directory with this command.</p>
+</div>
+</div>
+</div></li>
+<li><p>Select <strong>New Folder</strong> and create a new folder named <code>vscode101</code>. Then select <strong>Select Folder (Open on macOS)</strong> to open the folder in VS Code.</p></li>
+<li><p>On the Workspace Trust dialog, select <strong>Yes, I trust the authors</strong> to enable all features in the workspace. If you do not see this dialog, then you probably have already opened this area before.</p>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Workspace Trust lets you decide whether code in your project folder can be executed by VS Code. When you download code from the internet, you should first review it to make sure it’s safe to run. Get more info about <a href="https://code.visualstudio.com/docs/editing/workspaces/workspace-trust">Workspace Trust</a>.</p>
+</div>
+</div>
+</div></li>
+</ol>
+<p><img src="images/paste-40.png" class="img-fluid"></p>
+<ol start="4" type="1">
+<li><p>You should now see the <strong>Explorer</strong> view on the left, showing the name of the folder. Alongside terminal commands like <code>ls</code>, <code>tree</code>, and other commands, you can use the <strong>Explorer</strong> view to view and manage the files and folders in your workspace.</p>
+<p><img src="images/paste-43.png" class="img-fluid"></p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>When you open a folder in VS Code, VS Code can restore the UI state for that folder, such as the open files, the active view, and the layout of the editor. You can also configure settings that only apply to that folder, or define debug configurations. Get more info about <a href="https://code.visualstudio.com/docs/getstarted/getting-started">workspaces</a>.</p>
+</div>
+</div>
+</div></li>
+</ol>
+<p>VS Code now considers the folder you’ve opened a workspace. You can also use <code>code .</code> in your terminal, especially for WSL users, to start a WSL remote session.</p>
+</section>
+<section id="interface-and-layout" class="level1">
+<h1>Interface and Layout</h1>
+<ul>
+<li>Sidebar</li>
+<li>Code editor</li>
+<li>Terminal</li>
+</ul>
+</section>
+<section id="settings" class="level1">
+<h1>Settings</h1>
+<ul>
+<li>Autosave</li>
+<li>Word wrap</li>
+<li>Theme customization</li>
+<li>GECS profile configuration</li>
+</ul>
+</section>
+<section id="searching-and-replacing" class="level1">
+<h1>Searching and Replacing</h1>
+<ul>
+<li>Search in a file</li>
+<li>Search across files</li>
+</ul>
+</section>
+<section id="shortcuts" class="level1">
+<h1>Shortcuts</h1>
+<ul>
+<li><strong>Layout</strong>: <code>Cmd+B</code> for the Sidebar, <code>Ctrl+`</code> for the Terminal</li>
+<li><strong>Code editor</strong>: <code>Cmd+D</code> for selecting the expression, <code>Opt+Up/Down</code> to move a line, <code>Opt+Shift+F</code> to format a document</li>
+<li><strong>General</strong>: <code>Cmd+Shift+P</code> for the Command Palette, <code>Cmd+P</code> for the File and Open Editors search bar</li>
+</ul>
+</section>
+<section id="references" class="level1">
+<h1>References</h1>
+<ul>
+<li>https://code.visualstudio.com/docs/getstarted/getting-started</li>
+<li><a href="https://code.visualstudio.com/docs/remote/wsl-tutorial" class="uri">https://code.visualstudio.com/docs/remote/wsl-tutorial</a></li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
