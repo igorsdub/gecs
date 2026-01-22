@@ -17,7 +17,7 @@ OK, probably not as extreme. Still, it is common for a new comer to data science
 
 We will look at two project structures: messy and structured - to see what works and what does not in short and long term projects.
 
-### Messy Project
+## Messy Project
 
 ``` bash
 .
@@ -45,7 +45,7 @@ unzip gecs-02-project_structure-2025-02_messy-dir
 
 Once unzipped, open the directory with VS Code (`Cmd+O`).
 
-### Structured Project
+## Structured Project
 
 ``` bash
 .
@@ -125,7 +125,7 @@ Jenny Bryan from The Carpentiries has shared [an online slides](https://speakerd
 
 You can use a variation of the above as long as you are consistent within a project.
 
-### README
+## README
 
 `README`, or `README.md` since [Markdown](https://en.wikipedia.org/wiki/Markdown) language is the standard now, is the most important file in your project. It grants the power to the new users to execute your project and, remember, your future self. Without it, almost no one will get through your project without a considerable struggle (again, including future you).
 
