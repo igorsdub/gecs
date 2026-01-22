@@ -74,5 +74,5 @@ VS Code now considers the folder you've opened a workspace. You can also use `co
 
 # References
 
--   https://code.visualstudio.com/docs/getstarted/getting-started
+-   <https://code.visualstudio.com/docs/getstarted/getting-started>
 -   <https://code.visualstudio.com/docs/remote/wsl-tutorial>
