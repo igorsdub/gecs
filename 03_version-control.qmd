@@ -2359,104 +2359,48 @@ Conflicts can also be minimized with project management strategies:
 - Discuss what order tasks should be carried out in with your collaborators so that tasks expected to change the same lines won't be worked on simultaneously
 - If the conflicts are stylistic churn (e.g. tabs vs. spaces), establish a project convention that is governing and use code style tools (e.g. `htmltidy`, `perltidy`, `rubocop`, etc.) to enforce, if necessary
 
-# Licensing and Citation
+# Licensing, Citation, and Hosting
 
 ## Licensing
 
-As an open source project, Software Carpentry relies on volunteers to create our lessons and includes a file named `LICENSE` or `LICENSE.txt` file in all public lesson repositories. This file is used to specify that all materials are freely available under the Creative Commons Attribution license. Without a file that clearly states under which license any public source code, manuscript or other creative works is being made available, the default copyright laws apply. To learn more about licensing and open source, you can read more about [Github's description of licenses](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository) and the [legal grounds for open source licensing](https://opensource.guide/legal/#are-public-github-projects-open-source).
+A `LICENSE` or `LICENSE.txt` file specifies how others can use your code and data. Without one, default copyright laws apply. Choose a license from the start—even for private repositories—since adding one later requires approval from all contributors who hold copyright.
 
-A license solves this problem by granting rights to others (the licensees) that they would otherwise not have. What rights are being granted under which conditions differs, often only slightly, from one license to another. In practice, a few licenses are by far the most popular, and [choosealicense.com](https://choosealicense.com/) will help you find a common license that suits your needs. Important considerations include:
+Use [choosealicense.com](https://choosealicense.com/) to find a license. Key considerations:
+- Patent rights protection
+- Whether derivative works must share source code
+- Whether you're licensing source code
 
-- Whether you want to address patent rights.
-- Whether you require people distributing derivative works to also distribute their source code.
-- Whether the content you are licensing is source code.
-- Whether you want to license the code at all.
-
-Choosing a license that is in common use makes life easier for contributors and users, because they are more likely to already be familiar with the license and don't have to wade through a bunch of jargon to decide if they're ok with it. The [Open Source Initiative](https://opensource.org/licenses) and [Free Software Foundation](https://www.gnu.org/licenses/license-list.html) both maintain lists of licenses which are good choices.
-
-[This article](https://doi.org/10.1371/journal.pcbi.1002598) provides an excellent overview of licensing and licensing options from the perspective of scientists who also write code.
-
-At the end of the day what matters is that there is a clear statement as to what the license is. Also, the license is best chosen from the get-go, even if for a repository that is not public. Pushing off the decision only makes it more complicated later, because each time a new collaborator starts contributing, they, too, hold copyright and will thus need to be asked for approval once a license is chosen.
+The [Open Source Initiative](https://opensource.org/licenses) and [Free Software Foundation](https://www.gnu.org/licenses/license-list.html) maintain lists of popular licenses.
 
 ### Can I Use Open License?
 
-Find out whether you are allowed to apply an open license to your software. Can you do this unilaterally, or do you need permission from someone in your institution? If so, who?
+Find out if you can apply an open license to your software. Do you need permission from your institution?
 
 ### What licenses have I already accepted?
 
-Many of the software tools we use on a daily basis (including in this workshop) are released as open-source software. Pick a project on GitHub from the list below, or one of your own choosing. Find its license (usually in a file called `LICENSE` or `COPYING`) and talk about how it restricts your use of the software. Is it one of the licenses discussed in this session? How is it different?
-
-- [Git](https://github.com/git/git), the source-code management tool
-- [CPython](https://github.com/python/cpython), the standard implementation of the Python language
-- [Jupyter](https://github.com/jupyter), the project behind the web-based Python notebooks we'll be using
-- [EtherPad](https://github.com/ether/etherpad-lite), a real-time collaborative editor
+Find the license for a project on GitHub (usually in `LICENSE` or `COPYING`). How does it restrict your use? Consider:
+- [Git](https://github.com/git/git)
+- [CPython](https://github.com/python/cpython)
+- [Jupyter](https://github.com/jupyter)
+- [EtherPad](https://github.com/ether/etherpad-lite)
 
 ## Citation
 
-You may want to include a file called `CITATION` or `CITATION.txt` that describes how to reference your project. For example, the [one for Software Carpentry](https://github.com/swcarpentry/website/blob/gh-pages/CITATION) states:
+Include a `CITATION` or `CITATION.txt` file to explain how to cite your project:
 
 ```
-To reference Software Carpentry in publications, please cite:
+To reference this project, cite:
 
-Greg Wilson: "Software Carpentry: Lessons Learned". F1000Research,
-2016, 3:62 (doi: 10.12688/f1000research.3-62.v2).
+Author Name: "Project Title". Publisher, Year.
 
-@online{wilson-software-carpentry-2016,
-  author      = {Greg Wilson},
-  title       = {Software Carpentry: Lessons Learned},
-  version     = {2},
-  date        = {2016-01-28},
-  url         = {http://f1000research.com/articles/3-62/v2},
-  doi         = {10.12688/f1000research.3-62.v2}
+@online{project-year,
+  author = {Author Name},
+  title = {Project Title},
+  year = {Year}
 }
 ```
 
-More detailed advice, and other ways to make your code citable can be found [at the Software Sustainability Institute blog](https://www.software.ac.uk/publication/how-cite-and-describe-software) and in:
-
-```
-Smith AM, Katz DS, Niemeyer KE, FORCE11 Software Citation Working Group. (2016) Software citation
-principles. PeerJ Computer Science 2:e86.
-https://doi.org/10.7717/peerj-cs.86
-```
-
-There is also an `@software{...}` [BibTeX](https://www.ctan.org/pkg/bibtex) entry type in case no "umbrella" citation like a paper or book exists for the project you want to make citable.
-
-Finally, you may wish to include citation information in a [Citation File Format (`CITATION.cff`)](https://citation-file-format.github.io/). CFF files are standardized human and machine readable citation information files for software and datasets. If you host your repository on GitHub, this information is automatically linked and rendered on the repository page and a BibTeX snippet is provided, which users can copy and paste, making it easy for your project to be cited. Further, integration with both Zenodo and Zotero is supported.
-
-[A chapter of The Turing Way](https://the-turing-way.netlify.app/communication/citable/citable-cite#citing-software) provides more detail on how you can use CFF files to make your software citable.
-
-You can use the [cff-init](https://citation-file-format.github.io/cff-initializer-javascript/#/) website to easily create and update a `CITATION.cff` file.
-
-# Hosting
-
-After choosing a license, another big question is where to host your code and data.
-
-**University or Lab Servers**: Your institution can provide a server to manage accounts and backups. The main benefit is clarifying who owns what—important for sensitive data or patent applications. Drawbacks include costs and uncertainty about long-term availability.
-
-**Personal Domain and ISP**: You can purchase a domain and use an Internet service provider to host it. This gives more control but requires more setup time and effort.
-
-**Public Hosting Services**: Services like [GitHub](https://github.com), [GitLab](https://gitlab.com), or [BitBucket](https://bitbucket.org) offer web interfaces for creating and editing repositories. They also provide:
-- Issue tracking and wiki pages
-- Email notifications and code reviews
-- Economies of scale—easier to run one large service well
-- Network effects—easier collaboration with communities using the same service
-
-GitHub repositories can be assigned DOIs by [connecting releases to Zenodo](https://guides.github.com/activities/citable-code/). For example, [`10.5281/zenodo.7908089`](https://zenodo.org/record/7908089) is a DOI for this introduction to Git.
-
-Large hosting services also enable **continuous integration (CI)**, which automatically runs software builds and tests when code is committed or pull requests are submitted. CI is free for open source projects.
-
-::: {.callout-note title="Institutional Barriers"}
-Sharing is ideal for science, but institutions may restrict sharing to protect intellectual property or sensitive data. If you encounter restrictions, inquire about the motivations and request exceptions or push for institutional reform to support open science.
-:::
-
-### Can My Work Be Public?
-
-Find out whether you're allowed to host your work openly in a public repository. Do you need permission from your institution?
-
-### Where Can I Share My Work?
-
-Does your institution have repositories for sharing papers, data, and software? How do institutional repositories differ from services like [arXiV](https://arxiv.org/), [figshare](https://figshare.com/), [GitHub](https://github.com/) or [GitLab](https://about.gitlab.com/)?
-
+Use [Citation File Format (`CITATION.cff`)](https://citation-file-format.github.io/) for automated citation information. GitHub automatically renders CFF files on your repository page. Create one at [cff-init](https://citation-file-format.github.io/cff-initializer-javascript/#/).
 
 
 
