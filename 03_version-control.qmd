@@ -1,5 +1,200 @@
 ---
-title: "4. Version Control"
+title: "3. Version Control"
 format: html
 ---
+
+> If I could turn back time
+>
+> Cher, *If I Could Turn Back Time* 1989
+
+The biggest concern that every reseracher using software faces is to rememer how to run a program, fix broken parts wihout affecting the working ones, and experiment by adding new features. Version control can do that! Although, the learning curve is steep your future self will think: "How no one has taught me this before?!"
+
+::: callout-important
+This tutorial was "stolen" from the [Version Control with Git by The Software Carpentries](https://swcarpentry.github.io/git-novice). They have good educational resources on different topics for software practices in science res
+:::
+
+# Summary
+
+![Version control, in contrast to ambiguously named files, enables easy picking between successive document versions. The Turing Way project illustration by Scriberia. Used under a CC-BY 4.0 licence. DOI: The Turing Way Community & Scriberia (2024).](https://book.the-turing-way.org/build/project-history-32b4416c7750af16823b2a0d09d980d3.svg){alt="An illustration with two examples of project history management. The left shows a stack of ambiguously named files, shown as book-like objects. A hand carefully tries to pull out one of the files without making the stack crumble.  In contrast, the right shows a dial with options ranging from V1 to V6. On top of the dial the six corresponding files are represented as ordered documents. A hand moves the dial to V3, which highlights the third document on top in blue."}
+
+Jimmy and Alfredo have been hired by Ratatouille restaurant to investigate if it is possible to make the best recipes archive ever. They want to be able to work on indexing the prices at the same time, but they have run into problems doing this in the past. If they take turns, each one will spend a lot of time waiting for the other to finish, but if they work on their own copies and email changes back and forth things will be lost, overwritten, or duplicated.
+
+Version control is better than mailing files back and forth:
+
+-   Nothing that is committed to version control is ever lost, unless you work really, really hard at losing it. Since all old versions of files are saved, it's always possible to go back in time to see exactly who wrote what on a particular day, or what version of a program was used to generate a particular set of results.
+
+-   As we have this record of who made what changes when, we know who to ask if we have questions later on, and, if needed, revert to a previous version, much like the "undo" feature in an editor.
+
+-   When several people collaborate in the same project, it's possible to accidentally overlook or overwrite someone's changes. The version control system automatically notifies users whenever there's a conflict between one person's work and another's.
+
+Teams are not the only ones to benefit from version control: lone researchers can benefit immensely. Keeping a record of what was changed, when, and why is extremely useful for all researchers if they ever need to come back to the project later on (e.g., a year later, when memory has faded).
+
+**Version control is the lab notebook of the digital world**: it's what professionals use to keep track of what they've done and to collaborate with other people. Every large software development project relies on it, and most programmers use it for their small jobs as well. And it isn't just for software: books, papers, small data sets, and anything that changes over time or needs to be shared can and should be stored in a version control system.
+
+## Installing Git
+
+You should have Git already installed in your distribution. Check it out by typing in your terminal:
+
+``` bash
+git --version
+```
+
+If you get an error, please see [this webpage](https://carpentries.github.io/workshop-template/install_instructions/#git) from The Software Carpentries for instructions on installing Git for various operating systems.
+
+## Creating GitHub Account
+
+If you don't already have a GitHub account, check the [Setting Up](00_setting-up.qmd) section.
+
+## Preparing Your Working Directory
+
+You can choose which directory you want to work in. If you have no preference, move to your home directory:
+
+``` bash
+cd
+```
+
+# Automated Version Control
+
+We'll start by exploring how version control can be used to keep track of what one person did and when. Even if you aren't collaborating with other people, automated version control is much better than this situation:
+
+![Comic: a PhD student sends "FINAL.doc" to their supervisor, but after several increasingly intense and frustrating rounds of comments and revisions they end up with a file named "FINAL_rev.22.comments49.corrections.10.#\@\$%WHYDIDCOMETOGRADSCHOOL????.doc"](images/03_version-control__phd101212s.png)
+
+We've all been in this situation before: it seems unnecessary to have multiple nearly-identical versions of the same document. Some word processors let us deal with this a little better, such as Microsoft Word's [Track Changes](https://support.office.com/en-us/article/Track-changes-in-Word-197ba630-0f5f-4a8e-9a77-3712475e806a), Google Docs' [version history](https://support.google.com/docs/answer/190843?hl=en), or LibreOffice's [Recording and Displaying Changes](https://help.libreoffice.org/Common/Recording_and_Displaying_Changes).
+
+Version control systems start with a base version of the document and then record changes you make each step of the way. You can think of it as a recording of your progress: you can rewind to start at the base document and play back each change you made, eventually arriving at your more recent version.
+
+![](images/03_version-control__play-changes.svg){alt="A diagram demonstrating how a single document grows as the result of sequential changes"}
+
+Once you think of changes as separate from the document itself, you can then think about "playing back" different sets of changes on the base document, ultimately resulting in different versions of that document. For example, two users can make independent sets of changes on the same document.
+
+![](images/03_version-control__versions.svg){alt="A diagram with one source document that has been modified in two different ways to produce two different versions of the document"}
+
+Unless multiple users make changes to the same section of the document - a conflict - you can incorporate two sets of changes into the same base document.
+
+![](images/03_version-control__merge.svg){alt="A diagram that shows the merging of two different document versions into one document that contains all of the changes from both versions"}
+
+A version control system is a tool that keeps track of these changes for us, effectively creating different versions of our files. It allows us to decide which changes will be made to the next version (each record of these changes is called a commit), and keeps useful metadata about them, such as who made the change. The complete history of commits for a particular project and their metadata make up a repository. Repositories can be kept in sync across different computers, facilitating collaboration among different people.
+
+::: {.callout-note collapse="true" appearance="minimal" title="The Long History of Version Control Systems"}
+Automated version control systems are nothing new. Tools like [RCS](https://en.wikipedia.org/wiki/Revision_Control_System), [CVS](https://en.wikipedia.org/wiki/Concurrent_Versions_System), or [Subversion](https://en.wikipedia.org/wiki/Apache_Subversion) have been around since the early 1980s and are used by many large companies. However, many of these are now considered legacy systems (i.e., outdated) due to various limitations in their capabilities. More modern systems, such as [Git](https://en.wikipedia.org/wiki/Git) and [Mercurial](https://en.wikipedia.org/wiki/Mercurial), are *distributed*, meaning that they do not need a centralized server to host the repository. These modern systems also include powerful merging tools that make it possible for multiple authors to work on the same files concurrently.
+
+Git was created by Linus Torvalds in 2005 as an alternative to BitKeeper, one of the first distributed version control systems, to track changes in the Linux kernel. Torvalds provided several explanations of the name, of varying degrees of politeness, which are enumerated in the [project's README](https://github.com/git/git/blob/master/README.md?plain=1#L55), including "Global Information Tacker" for when "you're in a good mood".
+
+For those interested, The Carpentries has a [Version Control with Mercurial](https://swcarpentry.github.io/hg-novice/) lesson (2013-2018), which provides additional context and historical perspective.
+:::
+
+# Setting Up Git
+
+When we use Git on a new computer for the first time, we need to configure a few things. Below are a few examples of configurations we will set as we get started with Git:
+
+-   our name and email address,
+-   what our preferred text editor is,
+-   and that we want to use these settings globally (i.e. for every project).
+
+On a command line, Git commands are written as `git verb options`, where `verb` is what we actually want to do and `options` is additional optional information which may be needed for the `verb`. So here is how Alfredo sets up his new laptop:
+
+``` bash
+git config --global user.name "Alfredo Linguini"
+git config --global user.email "a.linguini@ratatouille.fr"
+```
+
+Please use your own name and email address instead of Alfredo's. This user name and email will be associated with your subsequent Git activity, which means that any changes pushed to [GitHub](https://github.com/), [BitBucket](https://bitbucket.org/), [GitLab](https://gitlab.com/) or another Git host server after this lesson will include this information.
+
+For this lesson, we will be interacting with [GitHub](https://github.com/) and so the email address used should be the same as the one used when setting up your GitHub account. If you are concerned about privacy, please review [GitHub's instructions for keeping your email address private](https://help.github.com/articles/keeping-your-email-address-private/).
+
+::: {.callout-note title="Keeping your email private"}
+If you elect to use a private email address with GitHub, then use GitHub's no-reply email address for the `user.email` value. It looks like `ID+username@users.noreply.github.com`. You can look up your own address in your GitHub [email settings](https://github.com/settings/emails).
+:::
+
+::: {.callout-note title="Line Endings"}
+As with other keys, when you press Enter on your keyboard, your computer encodes this input as a character. Different operating systems use different character(s) to represent the end of a line. (You may also hear these referred to as newlines or line breaks.) Because Git uses these characters to compare files, it may cause unexpected issues when editing a file on different machines. Though it is beyond the scope of this lesson, you can read more about this issue [in the Pro Git book](https://www.git-scm.com/book/en/v2/Customizing-Git-Git-Configuration#_core_autocrlf).
+
+You can change the way Git recognizes and encodes line endings using the `core.autocrlf` command to `git config`. The following settings are recommended:
+
+On macOS and Linux:
+
+``` bash
+git config --global core.autocrlf input
+```
+
+And on Windows:
+
+``` bash
+git config --global core.autocrlf true
+```
+:::
+
+Alfredo also has to set his favorite text editor, following this table:
+
+```bash
+git config --global core.editor "code --wait"
+```
+It is possible to reconfigure the text editor for Git whenever you want to change it.
+
+::: {.callout-note title="Exiting Vim"}
+Note that Vim is the default editor for many programs. If you haven't used Vim before and wish to exit a session without saving your changes, press Esc then type `:q!` and press Enter. If you want to save your changes and quit, press Esc then type `:wq` and press Enter.
+:::
+
+Git (2.28+) allows configuration of the name of the branch created when you initialize any new repository. Alfredo decides to use that feature to set it to `main` so it matches the cloud service he will eventually use.
+
+``` bash
+git config --global init.defaultBranch main
+```
+
+::: {.callout-note title="Default Git branch naming"}
+Source file changes are associated with a "branch." For new learners in this lesson, it's enough to know that branches exist, and this lesson uses one branch. By default, Git will create a branch called `master` when you create a new repository with `git init` (as explained in the next episode). This term evokes the racist practice of human slavery and the [software development community](https://github.com/github/renaming) has moved to adopt more inclusive language.
+
+In 2020, most Git code hosting services transitioned to using `main` as the default branch. As an example, any new repository that is opened in GitHub and GitLab default to `main`. However, Git has not yet made the same change. As a result, local repositories must be manually configured have the same main branch name as most cloud services.
+
+For versions of Git prior to 2.28, the change can be made on an individual repository level. The command for this is in the next episode. Note that if this value is unset in your local Git configuration, the `init.defaultBranch` value defaults to `master`.
+:::
+
+The five commands we just ran above only need to be run once: the flag `--global` tells Git to use the settings for every project, in your user account, on this computer.
+
+Let's review those settings and test our `core.editor` right away:
+
+``` bash
+git config --global --edit
+```
+
+Let's close the file without making any additional changes. Remember, since typos in the config file will cause issues, it's safer to view the configuration with:
+
+``` bash
+git config --list --global
+```
+
+And if necessary, change your configuration using the same commands to choose another editor or update your email address. This can be done as many times as you want.
+
+::: {.callout-note title="Proxy"}
+In some networks you need to use a [proxy](https://en.wikipedia.org/wiki/Proxy_server). If this is the case, you may also need to tell Git about the proxy:
+
+``` bash
+git config --global http.proxy proxy-url
+git config --global https.proxy proxy-url
+```
+
+To disable the proxy, use
+
+``` bash
+git config --global --unset http.proxy
+git config --global --unset https.proxy
+```
+:::
+
+::: {.callout-note title="Git Help and Manual"}
+Always remember that if you forget the subcommands or options of a `git` command, you can access the relevant list of options typing `git <command> -h` or access the corresponding Git manual by typing `git <command> --help`, e.g.:
+
+``` bash
+git config -h
+git config --help
+```
+
+While viewing the manual, remember the `:` is a prompt waiting for commands and you can press Q to exit the manual.
+
+More generally, you can get the list of available `git` commands and further resources of the Git manual typing:
+
+``` bash
+git help
+```
+:::
 
