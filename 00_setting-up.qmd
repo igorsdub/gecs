@@ -305,6 +305,22 @@ As a student, you can get a **free** GitHub Pro account as part of [GitHub Educa
 You can use a photo of your student ID card (both-sides) or other eligible documents listed on [here](https://docs.github.com/en/education/about-github-education/github-education-for-students/apply-to-github-education-as-a-student).
 :::
 
+### Multi-factor Authentication
+
+Since 2023, GitHub requires all accounts to have [multi-factor authentication (2FA)](https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/about-two-factor-authentication) for extra security. Here are the recommended options:
+
+**Recommended: Passkeys**
+
+[Passkeys](https://docs.github.com/en/authentication/authenticating-with-a-passkey/signing-in-with-a-passkey) are the most secure and convenient option. They work on most devices and browsers without requiring a separate app.
+
+**Other 2FA Options:**
+
+1. **Authenticator App** (e.g., Google Authenticator, Duo Mobile) - Install on your smartphone and add GitHub
+2. **Text Message (SMS)** - Receive authentication codes via text ([check if your country is supported](https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/countries-where-sms-authentication-is-supported))
+3. **Hardware Security Key** - Use devices like [YubiKey](https://www.yubico.com/products/yubikey-5-overview/) or [Google Titan](https://store.google.com/us/product/titan_security_key?hl=en-US&pli=1)
+
+For detailed setup instructions, see [GitHub's 2FA configuration guide](https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication).
+
 # Shell Prompt (Optional)
 
 ## Starship
