@@ -85,13 +85,7 @@ For those interested, The Carpentries has a [Version Control with Mercurial](htt
 
 # Setting Up Git
 
-When we use Git on a new computer for the first time, we need to configure a few things. Below are a few examples of configurations we will set as we get started with Git:
-
--   our name and email address,
--   what our preferred text editor is,
--   and that we want to use these settings globally (i.e. for every project).
-
-On a command line, Git commands are written as `git verb options`, where `verb` is what we actually want to do and `options` is additional optional information which may be needed for the `verb`. So here is how Alfredo sets up his new laptop:
+Configure Git on a new computer. Git commands follow the pattern: `git verb options`. Here's the basic setup:
 
 ``` bash
 git config --global user.name "Alfredo Linguini"
@@ -103,22 +97,15 @@ Please use your own name and email address instead of Alfredo's. This user name 
 For this lesson, we will be interacting with [GitHub](https://github.com/) and so the email address used should be the same as the one used when setting up your GitHub account. If you are concerned about privacy, please review [GitHub's instructions for keeping your email address private](https://help.github.com/articles/keeping-your-email-address-private/).
 
 ::: {.callout-note title="Keeping your email private"}
-If you elect to use a private email address with GitHub, then use GitHub's no-reply email address for the `user.email` value. It looks like `ID+username@users.noreply.github.com`. You can look up your own address in your GitHub [email settings](https://github.com/settings/emails).
+For privacy, use GitHub's no-reply email: `ID+username@users.noreply.github.com`.
 :::
 
 ::: {.callout-note title="Line Endings"}
-As with other keys, when you press Enter on your keyboard, your computer encodes this input as a character. Different operating systems use different character(s) to represent the end of a line. (You may also hear these referred to as newlines or line breaks.) Because Git uses these characters to compare files, it may cause unexpected issues when editing a file on different machines. Though it is beyond the scope of this lesson, you can read more about this issue [in the Pro Git book](https://www.git-scm.com/book/en/v2/Customizing-Git-Git-Configuration#_core_autocrlf).
-
-You can change the way Git recognizes and encodes line endings using the `core.autocrlf` command to `git config`. The following settings are recommended:
-
-On macOS and Linux:
-
+Git on macOS/Linux:
 ``` bash
 git config --global core.autocrlf input
 ```
-
-And on Windows:
-
+On Windows:
 ``` bash
 git config --global core.autocrlf true
 ```
@@ -132,7 +119,7 @@ git config --global core.editor "code --wait"
 It is possible to reconfigure the text editor for Git whenever you want to change it.
 
 ::: {.callout-note title="Exiting Vim"}
-Note that Vim is the default editor for many programs. If you haven't used Vim before and wish to exit a session without saving your changes, press Esc then type `:q!` and press Enter. If you want to save your changes and quit, press Esc then type `:wq` and press Enter.
+To exit Vim without saving: `Esc` then `:q!` then `Enter`. To save and quit: `Esc` then `:wq` then `Enter`.
 :::
 
 Git (2.28+) allows configuration of the name of the branch created when you initialize any new repository. Alfredo decides to use that feature to set it to `main` so it matches the cloud service he will eventually use.
@@ -142,60 +129,25 @@ git config --global init.defaultBranch main
 ```
 
 ::: {.callout-note title="Default Git branch naming"}
-Source file changes are associated with a "branch." For new learners in this lesson, it's enough to know that branches exist, and this lesson uses one branch. By default, Git will create a branch called `master` when you create a new repository with `git init` (as explained in the next episode). This term evokes the racist practice of human slavery and the [software development community](https://github.com/github/renaming) has moved to adopt more inclusive language.
-
-In 2020, most Git code hosting services transitioned to using `main` as the default branch. As an example, any new repository that is opened in GitHub and GitLab default to `main`. However, Git has not yet made the same change. As a result, local repositories must be manually configured have the same main branch name as most cloud services.
-
-For versions of Git prior to 2.28, the change can be made on an individual repository level. The command for this is in the next episode. Note that if this value is unset in your local Git configuration, the `init.defaultBranch` value defaults to `master`.
+Git's default branch is called `master`, but `main` is now standard across GitHub and GitLab. Set it locally to match cloud services.
 :::
 
-The five commands we just ran above only need to be run once: the flag `--global` tells Git to use the settings for every project, in your user account, on this computer.
-
-Let's review those settings and test our `core.editor` right away:
-
-``` bash
-git config --global --edit
-```
-
-Let's close the file without making any additional changes. Remember, since typos in the config file will cause issues, it's safer to view the configuration with:
+These commands only run once. Review your settings anytime with:
 
 ``` bash
 git config --list --global
 ```
 
-And if necessary, change your configuration using the same commands to choose another editor or update your email address. This can be done as many times as you want.
-
 ::: {.callout-note title="Proxy"}
-In some networks you need to use a [proxy](https://en.wikipedia.org/wiki/Proxy_server). If this is the case, you may also need to tell Git about the proxy:
-
+If your network uses a proxy, configure it with:
 ``` bash
 git config --global http.proxy proxy-url
 git config --global https.proxy proxy-url
 ```
-
-To disable the proxy, use
-
-``` bash
-git config --global --unset http.proxy
-git config --global --unset https.proxy
-```
 :::
 
 ::: {.callout-note title="Git Help and Manual"}
-Always remember that if you forget the subcommands or options of a `git` command, you can access the relevant list of options typing `git <command> -h` or access the corresponding Git manual by typing `git <command> --help`, e.g.:
-
-``` bash
-git config -h
-git config --help
-```
-
-While viewing the manual, remember the `:` is a prompt waiting for commands and you can press Q to exit the manual.
-
-More generally, you can get the list of available `git` commands and further resources of the Git manual typing:
-
-``` bash
-git help
-```
+Use `git <command> -h` for quick help or `git <command> --help` for full documentation.
 :::
 
 # Creating a Repository
@@ -213,13 +165,13 @@ mkdir recipes
 cd recipes
 ```
 
-Then we tell Git to make `recipes` a repository -- a place where Git can store versions of our files:
+Initialize the repository:
 
 ``` bash
 git init
 ```
 
-It is important to note that `git init` will create a repository that can include subdirectories and their files---there is no need to create separate repositories nested within the `recipes` repository, whether subdirectories are present from the beginning or added later. Also, note that the creation of the `recipes` directory and its initialization as a repository are completely separate processes.
+This creates a repository that tracks the entire directory and its subdirectories. Don't create nested repositories.
 
 If we use `ls` to show the directory's contents, it appears that nothing has changed:
 
@@ -342,15 +294,7 @@ Type the text below into the `guacamole.md` file:
 Save the file and exit your editor.
 
 ::: {.callout-note title="Markdown" collapse="true"}
-Jimmy and Alfredo are using [Markdown](https://en.wikipedia.org/wiki/Markdown) to write their recipes. It is a simple plain-text format for writing lists, links and other things that might go into a web page.
-
-| Markdown code | Rendered output |
-|---|---|
-| `*   Use asterisks` `*   to create` `*   bullet lists.` | - Use asterisks - to create - bullet lists. |
-| `1.   Use numbers` `1.   to create` `1.   numbered lists.` | 1. Use numbers 2. to create 3. numbered lists. |
-| `*  You can use indents` `   *  To create sublists` `   *  of the same type` | - You can use indents   - To create sublists   - of the same type |
-| `# A Level-1 Heading` | ## A Level-1 Heading |
-| `## A Level-2 Heading` | ### A Level-2 Heading |
+[Markdown](https://en.wikipedia.org/wiki/Markdown) is a simple plain-text format. Use `*` for bullets, `1.` for numbering, `#` for headings.
 :::
 
 Let's verify that the file was properly created by running the list command (`ls`):
@@ -431,9 +375,7 @@ git commit -m "Create initial structure for a Guacamole recipe"
 
 When we run `git commit`, Git takes everything we have told it to save by using `git add` and stores a copy permanently inside the special `.git` directory. This permanent copy is called a commit (or revision) and its short identifier is `f22b25e`. Your commit may have another identifier.
 
-We use the `-m` flag (for "message") to record a short, descriptive, and specific comment that will help us remember later on what we did and why. If we just run `git commit` without the `-m` option, Git will launch VS Code editor (or whatever other editor we configured as `core.editor`) so that we can write a longer message.
-
-Good commit messages start with a brief (less than 50 characters) statement about the changes made in the commit. Generally, the message should complete the sentence "If applied, this commit will" <commit message here>. If you want to go into more detail, add a blank line between the summary line and your additional notes. Use this additional space to explain why you made changes and/or what their impact will be.
+The `-m` flag records a message. Write a brief, descriptive commit message under 50 characters.
 
 If we run `git status` now:
 
@@ -560,7 +502,7 @@ Git insists that we add files to the set we want to commit before actually commi
 To allow for this, Git has a special *staging area* where it keeps track of things that have been added to the current changeset but not yet committed.
 
 ::: {.callout-note title="Staging Area"}
-If you think of Git as taking snapshots of changes over the life of a project, `git add` specifies *what* will go in a snapshot (putting things in the staging area), and `git commit` then *actually takes* the snapshot, and makes a permanent record of it (as a commit). If you don't have anything staged when you type `git commit`, Git will prompt you to use `git commit -a` or `git commit --all`, which is kind of like gathering *everyone* to take a group photo! However, it's almost always better to explicitly add things to the staging area, because you might commit changes you forgot you made. Try to stage things manually, or you might find yourself searching for "git undo commit" more than you would like!
+`git add` stages files for the next commit. `git commit` creates a snapshot. Stage files manually to avoid accidentally committing unwanted changes.
 :::
 
 ![](images/03_version-control__git-staging-area.svg){alt='A diagram showing how "git add" registers changes in the staging area, while "git commit" moves changes from the staging area to the repository'}
@@ -1555,7 +1497,7 @@ Log in to [GitHub](https://github.com), then click on the icon in the top right 
 Name your repository "recipes" and then click "Create Repository".
 
 ::: {.callout-note title="Important"}
-Since this repository will be connected to a local repository, it needs to be empty. Leave "Initialize this repository with a README" unchecked, and keep "None" as options for both "Add .gitignore" and "Add a license."
+Create an empty repository on GitHub. Don't initialize it with a README or license.
 :::
 
 As soon as the repository is created, GitHub displays a page with a URL and some information on how to configure your local repository. This effectively does the following on GitHub's servers:
@@ -1573,7 +1515,7 @@ If you remember back to the earlier episode where we added and committed our wor
 Now we connect the two repositories. We do this by making the GitHub repository a remote for the local repository. The home page of the repository on GitHub includes the URL string we need to identify it. Click on the 'SSH' link to change the protocol from HTTPS to SSH.
 
 ::: {.callout-note title="HTTPS vs. SSH"}
-We use SSH here because, while it requires some additional configuration, it is a security protocol widely used by many applications. This section describes SSH at a minimum level for GitHub.
+SSH is more secure. Use SSH for GitHub authentication.
 :::
 
 Copy that URL from the browser, go into the local `recipes` repository, and run this command:
@@ -1599,18 +1541,14 @@ origin   git@github.com:alflin/recipes.git (push)
 
 ## SSH Background and Setup
 
-Before Alfredo can connect to a remote repository, he needs to set up a way for his computer to authenticate with GitHub so it knows it's him trying to connect to his remote repository.
-
-We are going to set up the method that is commonly used by many different services to authenticate access on the command line. This method is called Secure Shell Protocol (SSH). SSH is a cryptographic network protocol that allows secure communication between computers using an otherwise insecure network.
-
-SSH uses what is called a key pair. This is two keys that work together to validate access. One key is publicly known and called the public key, and the other key called the private key is kept private. You can think of the public key as a padlock, and only you have the key (the private key) to open it. You use the public key where you want a secure method of communication, such as your GitHub account. You give this padlock, or public key, to GitHub and say "lock the communications to my account with this so that only computers that have my private key can unlock communications and send git commands as my GitHub account."
+SSH (Secure Shell Protocol) allows secure communication. SSH uses a key pair: a public key (like a padlock) shared with GitHub, and a private key (the only key to open it) kept on your computer. GitHub authenticates you using these keys.
 
 What we will do now is the minimum required to set up the SSH keys and add the public key to a GitHub account.
 
 The first thing we are going to do is check if this has already been done on the computer you're on. Because generally speaking, this setup only needs to happen once and then you can forget about it.
 
 ::: {.callout-note title="Keeping your keys secure"}
-You shouldn't really forget about your SSH keys, since they keep your account secure. It's good practice to check your SSH keys every so often to ensure they are still secure, up to date, and that there are no unauthorized keys that could compromise your account. This is especially important if you are using multiple computers to access your account.
+Check your SSH keys periodically to ensure they're current and secure.
 :::
 
 We will run the list command to check what key pairs already exist on your computer.
@@ -1906,7 +1844,7 @@ create mode 100644 README.md
 Version control really shines when we collaborate with other people. We already have most of the machinery we need to do this; now we'll see how to use it effectively.
 
 ::: {.callout-note title="Practicing By Yourself"}
-If you're working through this lesson on your own, you can carry on by opening a second terminal window. This window will represent your partner, working on another computer. You won't need to give anyone access on GitHub, because both 'partners' are you.
+Working alone? Open a second terminal to simulate a partner.
 :::
 
 ## Adding collaborators
