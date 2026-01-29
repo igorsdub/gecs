@@ -255,7 +255,7 @@ nothing to commit (create/copy files and use "git add" to track)
 
 If you are using a different version of `git`, the exact wording of the output might be slightly different.
 
-## Challenge: Places to Create Git Repositories
+## Places to Create Git Repositories
 
 Along with tracking information about recipes (the project we have already created), Alfredo would also like to track information about desserts specifically. Alfredo creates a `desserts` project inside his `recipes` project with the following sequence of commands:
 
@@ -762,7 +762,7 @@ To recap, when we want to add changes to our repository, we first need to add th
 
 ![](images/03_version-control__git-committing.svg){alt='A diagram showing two documents being separately staged using git add, before being combined into one commit using git commit'}
 
-## Challenge: Choosing a Commit Message
+## Choosing a Commit Message
 
 Which of the following commit messages would be most appropriate for the last commit made to `guacamole.md`?
 
@@ -774,7 +774,7 @@ Which of the following commit messages would be most appropriate for the last co
 Answer 1 is not descriptive enough, and the purpose of the commit is unclear; and answer 2 is redundant to using "git diff" to see what changed in this commit; but answer 3 is good: short, descriptive, and imperative.
 :::
 
-## Challenge: Committing Changes to Git
+## Committing Changes to Git
 
 Which command(s) below would save the changes of `myfile.txt` to my local Git repository?
 
@@ -790,7 +790,7 @@ Which command(s) below would save the changes of `myfile.txt` to my local Git re
 4. Would try to commit a file "my recent changes" with the message myfile.txt.
 :::
 
-## Challenge: Committing Multiple Files
+## Committing Multiple Files
 
 When you make changes, they often belong together as one logical improvement. Git lets you group related edits into a single commit so your project stays consistent. This is something word processors can't easily do—each suggestion is separate, even if they depend on each other.
 
@@ -853,7 +853,7 @@ git commit -m "Write prices for ingredients and their source"
 ```
 :::
 
-## Challenge: `bio` Repository
+## `bio` Repository
 
 - Create a new Git repository on your computer called `bio`.
 - Write a three-line biography for yourself in a file called `me.txt`, commit your changes
@@ -1114,7 +1114,7 @@ So, to put it all together, here's how Git works in cartoon form:
 
 The fact that files can be reverted one by one tends to change the way people organize their work. If everything is in one large document, it's hard (but not impossible) to undo changes to the introduction without also undoing changes made later to the conclusion. If the introduction and conclusion are stored in separate files, on the other hand, moving backward and forward in time becomes much easier.
 
-## Challenge: Recovering Older Versions of a File
+## Recovering Older Versions of a File
 
 Jennifer has made changes to the Python script that she has been working on for weeks, and the modifications she made this morning "broke" the script and it no longer runs. She has spent approximately 1 hour trying to fix it, with no luck...
 
@@ -1136,7 +1136,7 @@ Answer 3 gets the version of `data_cruncher.py` from the commit *before* `HEAD`,
 Answer 1 results in an error. You need to specify a file to restore. If you want to restore all files you should use `git restore .`
 :::
 
-## Challenge: Reverting a Commit
+## Reverting a Commit
 
 Jennifer is collaborating with colleagues on her Python script. She realizes her last commit to the project's repository contained an error, and wants to undo it. Jennifer wants to undo correctly so everyone in the project's repository gets the correct change. The command `git revert [erroneous commit ID]` will create a new commit that reverses the erroneous commit.
 
@@ -1156,7 +1156,7 @@ The command `git log` lists project history with commit IDs.
 The command `git show HEAD` shows changes made at the latest commit, and lists the commit ID; however, Jennifer should double-check it is the correct commit, and no one else has committed changes to the repository.
 :::
 
-## Challenge: Understanding Workflow and History
+## Understanding Workflow and History
 
 What is the output of the last command in the following sequence?
 
@@ -1201,13 +1201,13 @@ I like tomatoes, therefore I like ketchup
 ```
 :::
 
-## Challenge: Checking Understanding of `git diff`
+## Checking Understanding of `git diff`
 
 Consider this command: `git diff HEAD~9 guacamole.md`. What do you predict this command will do if you execute it? What happens when you do execute it? Why?
 
 Try another command, `git diff [ID] guacamole.md`, where [ID] is replaced with the unique identifier for your most recent commit. What do you think will happen, and what does happen?
 
-## Challenge: Getting Rid of Staged Changes
+## Getting Rid of Staged Changes
 
 `git restore` can be used to restore a previous commit when unstaged changes have been made, but will it also work for changes that have been staged but not committed? Make a change to `guacamole.md`, add that change using `git add`, then use `git restore` to see if you can remove your change.
 
@@ -1258,7 +1258,7 @@ nothing to commit, working tree clean
 ```
 :::
 
-## Challenge: Explore and Summarize Histories
+## Explore and Summarize Histories
 
 Exploring history is an important part of Git, and often it is a challenge to find the right commit ID, especially if the commit is from several months ago.
 
@@ -1404,7 +1404,7 @@ Ignored files:
 nothing to commit, working tree clean
 ```
 
-## Challenge: Ignoring Nested Files
+## Ignoring Nested Files
 
 Given a directory structure that looks like:
 
@@ -1427,7 +1427,7 @@ This line will ensure only the contents of `pictures/cake` is ignored, and not t
 As with most programming issues, there are a few alternative ways that one may ensure this ignore rule is followed. Further, the discussion pages have more detail on ignore rules.
 :::
 
-## Challenge: Including Specific Files
+## Including Specific Files
 
 How would you ignore all `.png` files in your root directory except for `final.png`?
 
@@ -1446,7 +1446,7 @@ The exclamation point operator will include a previously excluded entry.
 Note also that, if you've previously committed `.png` files in this lesson, they will not be ignored with this new rule. Only future additions of `.png` files to the root directory will be ignored.
 :::
 
-## Challenge: Ignoring Nested Files: Variation
+## Ignoring Nested Files: Variation
 
 Given a directory structure that looks similar to the earlier Nested Files exercise, but with a slightly different directory structure:
 
@@ -1470,7 +1470,7 @@ pictures/*              # ignore everything in pictures folder
 ```
 :::
 
-## Challenge: Ignoring all data Files in a Directory
+## Ignoring all data Files in a Directory
 
 Assuming you have an empty `.gitignore` file, and given a directory structure that looks like:
 
@@ -1488,7 +1488,7 @@ What's the shortest `.gitignore` rule you could write to ignore all `.dat` files
 Appending `pictures/data/location/gps/*.dat` will match every file in `pictures/data/location/gps` that ends with `.dat`. The file `pictures/data/location/gps/info.txt` will not be ignored.
 :::
 
-## Challenge: Ignoring all data Files in the repository
+## Ignoring all data Files in the repository
 
 Let us assume you have many `.csv` files in different subdirectories of your repository. For example, you might have:
 
@@ -1511,7 +1511,7 @@ In the `.gitignore` file, write:
 This will ignore all the `.csv` files, regardless of their position in the directory tree. You can still include some specific exception with the exclamation point operator.
 :::
 
-## Challenge: The Order of Rules
+## The Order of Rules
 
 Given a `.gitignore` file with the following contents:
 
@@ -1526,7 +1526,7 @@ What will be the result?
 The `!` modifier will negate an entry from a previously defined ignore pattern. Because the `!*.csv` entry negates all of the previous `.csv` files in the `.gitignore`, none of them will be ignored, and all `.csv` files will be tracked.
 :::
 
-## Challenge: Log Files
+## Log Files
 
 You wrote a script that creates many intermediate log-files of the form `log_01`, `log_02`, `log_03`, etc. You want to keep them but you do not want to track them through `git`.
 
@@ -1830,7 +1830,7 @@ Already up to date.
 
 Pulling has no effect in this case because the two repositories are already synchronized. If someone else had pushed some changes to the repository on GitHub, though, this command would download them to our local repository.
 
-## Challenge: GitHub GUI
+## GitHub GUI
 
 Browse to your `recipes` repository on GitHub. Under the Code tab, find and click on the text that says "XX commits" (where "XX" is some number). Hover over, and click on, the three buttons to the right of each commit. What information can you gather/explore from these buttons? How would you get that same information in the shell?
 
@@ -1846,7 +1846,7 @@ The right-most button lets you view all of the files in the repository at the ti
 GitHub also allows you to skip the command line and upload files directly to your repository without having to leave the browser. There are two options. First you can click the "Upload files" button in the toolbar at the top of the file tree. Or, you can drag and drop files from your desktop onto the file tree. You can read more about this on the [GitHub help page](https://help.github.com/articles/adding-a-file-to-a-repository/).
 :::
 
-## Challenge: GitHub Timestamp
+## GitHub Timestamp
 
 Create a remote repository on GitHub. Push the contents of your local repository to the remote. Make changes to your local repository and push these changes. Go to the repo you just created on GitHub and check the timestamps of the files. How does GitHub record times, and why?
 
@@ -1854,7 +1854,7 @@ Create a remote repository on GitHub. Push the contents of your local repository
 GitHub displays timestamps in a human readable relative format (i.e. "22 hours ago" or "three weeks ago"). However, if you hover over the timestamp, you can see the exact time at which the last change to the file occurred.
 :::
 
-## Challenge: Push vs. Commit
+## Push vs. Commit
 
 In this episode, we introduced the `git push` command. How is `git push` different from `git commit`?
 
@@ -1862,7 +1862,7 @@ In this episode, we introduced the `git push` command. How is `git push` differe
 When we push changes, we're interacting with a remote repository to update it with the changes we've made locally (often this corresponds to sharing the changes we've made with others). Commit only updates your local repository.
 :::
 
-## Challenge: GitHub License and README files
+## GitHub License and README files
 
 In this episode we learned about creating a remote repository on GitHub, but when you initialized your GitHub repo, you didn't add a README.md or a license file. If you had, what do you think would have happened when you tried to link your local and remote repositories?
 
@@ -2034,11 +2034,11 @@ In practice, it is good to be sure that you have an updated version of the repos
 It is better to make many commits with smaller changes rather than one commit with massive changes: small commits are easier to read and review.
 :::
 
-## Challenge: Switch Roles and Repeat
+## Switch Roles and Repeat
 
 Switch roles with your partner and repeat the whole process. One person should now be the collaborator making changes to the other person's repository.
 
-## Challenge: Review Changes
+## Review Changes
 
 The owner pushed commits to the repository without giving any information to the collaborator. How can the collaborator find out what has changed with the command line? And on GitHub?
 
@@ -2048,7 +2048,7 @@ On the command line, the collaborator can use `git fetch origin main` to get the
 On GitHub, the collaborator can go to the repository and click on "commits" to view the most recent commits pushed to the repository.
 :::
 
-## Challenge: Comment Changes in GitHub
+## Comment Changes in GitHub
 
 The collaborator has some questions about one line change made by the owner and has some suggestions to propose.
 
@@ -2056,7 +2056,7 @@ With GitHub, it is possible to comment on the diff of a commit. Over the line of
 
 The collaborator posts their comments and suggestions using the GitHub interface.
 
-## Challenge: Version History, Backup, and Version Control
+## Version History, Backup, and Version Control
 
 Some backup software can keep a history of the versions of your files. They also allow you to recover specific versions. How is this functionality different from version control? What are some of the benefits of using version control, Git, and GitHub?
 
@@ -2359,11 +2359,11 @@ Conflicts can also be minimized with project management strategies:
 - Discuss what order tasks should be carried out in with your collaborators so that tasks expected to change the same lines won't be worked on simultaneously
 - If the conflicts are stylistic churn (e.g. tabs vs. spaces), establish a project convention that is governing and use code style tools (e.g. `htmltidy`, `perltidy`, `rubocop`, etc.) to enforce, if necessary
 
-## Challenge: Solving Conflicts that You Create
+## Solving Conflicts that You Create
 
 Clone the repository created by your instructor. Add a new file to it, and modify an existing file (your instructor will tell you which one). When asked by your instructor, pull their changes from the repository to create a conflict, then resolve it.
 
-## Challenge: Conflicts on Non-textual files
+## Conflicts on Non-textual files
 
 What does Git do when there is a conflict in an image or some other non-textual file that is stored in version control?
 
@@ -2495,7 +2495,7 @@ git commit -m "Use two images: just guacamole and with nachos"
 Now both images of guacamole are checked into the repository, and `guacamole.jpg` no longer exists.
 :::
 
-## Challenge: A Typical Work Session
+## A Typical Work Session
 
 You sit down at your computer to work on a shared project that is tracked in a remote Git repository. During your work session, you take the following actions, but not in this order:
 
@@ -2547,11 +2547,11 @@ Choosing a license that is in common use makes life easier for contributors and 
 
 At the end of the day what matters is that there is a clear statement as to what the license is. Also, the license is best chosen from the get-go, even if for a repository that is not public. Pushing off the decision only makes it more complicated later, because each time a new collaborator starts contributing, they, too, hold copyright and will thus need to be asked for approval once a license is chosen.
 
-### Challenge: Can I Use Open License?
+### Can I Use Open License?
 
 Find out whether you are allowed to apply an open license to your software. Can you do this unilaterally, or do you need permission from someone in your institution? If so, who?
 
-### Challenge: What licenses have I already accepted?
+### What licenses have I already accepted?
 
 Many of the software tools we use on a daily basis (including in this workshop) are released as open-source software. Pick a project on GitHub from the list below, or one of your own choosing. Find its license (usually in a file called `LICENSE` or `COPYING`) and talk about how it restricts your use of the software. Is it one of the licenses discussed in this session? How is it different?
 
@@ -2618,11 +2618,11 @@ Large hosting services also enable **continuous integration (CI)**, which automa
 Sharing is ideal for science, but institutions may restrict sharing to protect intellectual property or sensitive data. If you encounter restrictions, inquire about the motivations and request exceptions or push for institutional reform to support open science.
 :::
 
-### Challenge: Can My Work Be Public?
+### Can My Work Be Public?
 
 Find out whether you're allowed to host your work openly in a public repository. Do you need permission from your institution?
 
-### Challenge: Where Can I Share My Work?
+### Where Can I Share My Work?
 
 Does your institution have repositories for sharing papers, data, and software? How do institutional repositories differ from services like [arXiV](https://arxiv.org/), [figshare](https://figshare.com/), [GitHub](https://github.com/) or [GitLab](https://about.gitlab.com/)?
 
