@@ -243,7 +243,7 @@ Import the GECS profile from the **Profiles editor** by selecting the **Import P
 
 When you select **Import Profile...**, you are prompted for the URL of a GitHub gist or the file location of a profile via an **Import Profile** dialog. Paste the link above and click **Create** button below.
 
-### ![](images/paste-31.png)
+![](images/paste-31.png)
 
 Accept any installations or suggestions offered by extensions. Now, you are ready to go!
 
