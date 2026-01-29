@@ -1,15 +1,5 @@
 ---
-title: "Good Enough Computing in Science (GECS)<br><small>Mini Course at OIST</small>" 
-# date: AY2025 T2
-# author:
-#   - name: Igors Dubanevics
-#     affiliation: 
-#       name: OIST
-#       group: ESBU
-#     roles: instructor
-#   - name: Pin Ju Chong
-#     affiliation: 
-#       - CNEU (rotation) @OIST
+title: "Good Enough Computing in Science (GECS)" 
 ---
 
 ```{mermaid}
@@ -72,11 +62,11 @@ This course is for researchers who want to learn how to automate repetitive task
 **Time:** 10:00-12:00 (Fridays)\
 **Location:** L3B700 (near-ish the GS counter)
 
-| Part 1  |     |                      | Part 2 |     |                 |
-|---------|-----|----------------------|--------|-----|-----------------|
-| January | 16  | Terminal             | March  | 6   | Version Control |
-|         | 23  | Project Structure    |        | 13  | Testing         |
-|         | 30  | Virtual Environments |        | 27  | Automation      |
+| Part 1  |     |                   | Part 2 |     |                      |
+|---------|-----|-------------------|--------|-----|----------------------|
+| January | 16  | Terminal          | March  | 6   | Virtual Environments |
+|         | 23  | Project Structure |        | 13  | Testing              |
+|         | 30  | Version Control   |        | 27  | Automation           |
 
 
 ## Drop-in
