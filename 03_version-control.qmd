@@ -75,13 +75,6 @@ Unless multiple users make changes to the same section of the document - a confl
 
 A version control system is a tool that keeps track of these changes for us, effectively creating different versions of our files. It allows us to decide which changes will be made to the next version (each record of these changes is called a commit), and keeps useful metadata about them, such as who made the change. The complete history of commits for a particular project and their metadata make up a repository. Repositories can be kept in sync across different computers, facilitating collaboration among different people.
 
-::: {.callout-note collapse="true" appearance="minimal" title="The Long History of Version Control Systems"}
-Automated version control systems are nothing new. Tools like [RCS](https://en.wikipedia.org/wiki/Revision_Control_System), [CVS](https://en.wikipedia.org/wiki/Concurrent_Versions_System), or [Subversion](https://en.wikipedia.org/wiki/Apache_Subversion) have been around since the early 1980s and are used by many large companies. However, many of these are now considered legacy systems (i.e., outdated) due to various limitations in their capabilities. More modern systems, such as [Git](https://en.wikipedia.org/wiki/Git) and [Mercurial](https://en.wikipedia.org/wiki/Mercurial), are *distributed*, meaning that they do not need a centralized server to host the repository. These modern systems also include powerful merging tools that make it possible for multiple authors to work on the same files concurrently.
-
-Git was created by Linus Torvalds in 2005 as an alternative to BitKeeper, one of the first distributed version control systems, to track changes in the Linux kernel. Torvalds provided several explanations of the name, of varying degrees of politeness, which are enumerated in the [project's README](https://github.com/git/git/blob/master/README.md?plain=1#L55), including "Global Information Tacker" for when "you're in a good mood".
-
-For those interested, The Carpentries has a [Version Control with Mercurial](https://swcarpentry.github.io/hg-novice/) lesson (2013-2018), which provides additional context and historical perspective.
-:::
 
 # Setting Up Git
 
@@ -138,13 +131,6 @@ These commands only run once. Review your settings anytime with:
 git config --list --global
 ```
 
-::: {.callout-note title="Proxy"}
-If your network uses a proxy, configure it with:
-``` bash
-git config --global http.proxy proxy-url
-git config --global https.proxy proxy-url
-```
-:::
 
 ::: {.callout-note title="Git Help and Manual"}
 Use `git <command> -h` for quick help or `git <command> --help` for full documentation.
@@ -618,87 +604,9 @@ Date:   Thu Aug 22 09:51:46 2013 -0400
     Create initial structure for a Guacamole recipe
 ```
 
-::: {.callout-note title="Word-based diffing"}
-Sometimes, e.g. in the case of text documents a line-wise diff is too coarse. That is where the `--color-words` option of `git diff` comes in very useful as it highlights the changed words using colors.
-:::
 
-::: {.callout-note title="Paging the Log"}
-When the output of `git log` is too long to fit in your screen, `git` uses a program to split it into pages of the size of your screen. When this "pager" is called, you will notice that the last line in your screen is a `:`, instead of your usual prompt.
 
-- To get out of the pager, press Q.
-- To move to the next page, press Spacebar.
-- To search for `some_word` in all pages, press `/` and type `some_word`. Navigate through matches pressing N.
-:::
 
-::: {.callout-note title="Limit Log Size"}
-To avoid having `git log` cover your entire terminal screen, you can limit the number of commits that Git lists by using `-N`, where `N` is the number of commits that you want to view. For example, if you only want information from the last commit you can use:
-
-``` bash
-git log -1
-```
-
-```output
-commit 005937fbe2a98fb83f0ade869025dc2636b4dad5 (HEAD -> main)
-Author: Alfredo Linguini <a.linguini@ratatouille.fr>
-Date:   Thu Aug 22 10:14:07 2013 -0400
-
-   Modify guacamole to the traditional recipe
-```
-
-You can also reduce the quantity of information using the `--oneline` option:
-
-``` bash
-git log --oneline
-```
-
-```output
-005937f (HEAD -> main) Modify guacamole to the traditional recipe
-34961b1 Add ingredients for basic guacamole
-f22b25e Create initial structure for a Guacamole recipe
-```
-
-You can also combine the `--oneline` option with others. One useful combination adds `--graph` to display the commit history as a text-based graph and to indicate which commits are associated with the current `HEAD`, the current branch `main`, or other Git references:
-
-``` bash
-git log --oneline --graph
-```
-
-```output
-* 005937f (HEAD -> main) Modify guacamole to the traditional recipe
-* 34961b1 Add ingredients for basic guacamole
-* f22b25e Create initial structure for a Guacamole recipe
-```
-:::
-
-::: {.callout-note title="Directories"}
-Two important facts you should know about directories in Git.
-
-1. Git does not track directories on their own, only files within them. Try it for yourself:
-
-``` bash
-mkdir cakes
-git status
-git add cakes
-git status
-```
-
-Note, our newly created empty directory `cakes` does not appear in the list of untracked files even if we explicitly add it (via `git add`) to our repository. This is the reason why you will sometimes see `.gitkeep` files in otherwise empty directories. The sole purpose of `.gitkeep` files is to populate a directory so that Git adds it to the repository. The name `.gitkeep` is just a convention, and in fact, you can name these files anything you like.
-
-2. If you create a directory in your Git repository and populate it with files, you can add all the files in the directory at once by referring to the directory in your `git add` command. Try it for yourself:
-
-``` bash
-touch cakes/brownie cakes/lemon_drizzle
-git status
-git add cakes
-git status
-```
-
-Before moving on, we will commit these changes.
-
-``` bash
-git commit -m "Add some initial cakes"
-```
-:::
 
 To recap, when we want to add changes to our repository, we first need to add the changed files to the staging area (`git add`) and then commit the staged changes to the repository (`git commit`):
 
@@ -1143,7 +1051,7 @@ I like tomatoes, therefore I like ketchup
 ```
 :::
 
-## Checking Understanding of `git diff`
+## Understanding of `git diff`
 
 Consider this command: `git diff HEAD~9 guacamole.md`. What do you predict this command will do if you execute it? What happens when you do execute it? Why?
 
@@ -1635,27 +1543,6 @@ drwxr-xr-x 1 Alfredo   197121   0 Jul 16 14:48 ../
 -rw-r--r-- 1 Alfredo   197121 106 Jul 16 14:48 id_ed25519.pub
 ```
 
-::: {.callout-note title="Resolving SSH Key Conflicts" collapse="true"}
-If you need to create an SSH key pair with a custom name or store it in a non-default location (e.g., because a default-named key like id_ed25519 already exists), Git may not automatically use it when pushing or pulling from GitHub.
-
-One solution is to add a GitHub entry to your SSH config. Open or create the SSH config file:
-
-``` bash
-code ~/.ssh/config
-```
-
-Add an entry for GitHub, replacing the path with your key's actual name and location:
-
-```output
-Host github.com
-	HostName github.com
-	User git
-	IdentityFile ~/<full_path_to_SSH_key_file>/<key_name>
-	IdentitiesOnly yes
-```
-
-Save and exit. Now Git will use the correct key when pushing to GitHub.
-:::
 
 ## Copying the public key to GitHub
 
@@ -1738,21 +1625,7 @@ git config --global --unset https.proxy
 ```
 :::
 
-::: {.callout-note title="Password Managers"}
-If your operating system has a password manager configured, `git push` will try to use it when it needs your username and password. For example, this is the default behavior for Git Bash on Windows. If you want to type your username and password at the terminal instead of using a password manager, type:
 
-``` bash
-unset SSH_ASKPASS
-```
-
-in the terminal, before you run `git push`. Despite the name, Git uses `SSH_ASKPASS` for all credential entry, so you may want to unset `SSH_ASKPASS` whether you are using Git via SSH or HTTPS.
-
-You may also want to add `unset SSH_ASKPASS` at the end of your `~/.bashrc` to make Git default to using the terminal for usernames and passwords.
-:::
-
-::: {.callout-note title="The '-u' Flag"}
-You may see a `-u` option used with `git push` in some documentation. This option is synonymous with the `--set-upstream-to` option for the `git branch` command, and is used to associate the current branch with a remote branch so that the `git pull` command can be used without any arguments. To do this, simply use `git push -u origin main` once the remote has been set up.
-:::
 
 We can pull changes from the remote repository to the local one as well:
 
@@ -1780,9 +1653,6 @@ The middle button (with the picture of two overlapping squares or pages) copies 
 The right-most button lets you view all of the files in the repository at the time of that commit. To do this in the shell, we'd need to checkout the repository at that particular time. We can do this with `git checkout ID` where ID is the identifier of the commit we want to look at. If we do this, we need to remember to put the repository back to the right state afterwards!
 :::
 
-::: {.callout-note title="Uploading files directly in GitHub browser"}
-GitHub also allows you to skip the command line and upload files directly to your repository without having to leave the browser. There are two options. First you can click the "Upload files" button in the toolbar at the top of the file tree. Or, you can drag and drop files from your desktop onto the file tree. You can read more about this on the [GitHub help page](https://help.github.com/articles/adding-a-file-to-a-repository/).
-:::
 
 ## GitHub Timestamp
 
@@ -1798,45 +1668,6 @@ In this episode, we introduced the `git push` command. How is `git push` differe
 
 ::: {.callout-note title="Solution" collapse="true"}
 When we push changes, we're interacting with a remote repository to update it with the changes we've made locally (often this corresponds to sharing the changes we've made with others). Commit only updates your local repository.
-:::
-
-## GitHub License and README files
-
-In this episode we learned about creating a remote repository on GitHub, but when you initialized your GitHub repo, you didn't add a README.md or a license file. If you had, what do you think would have happened when you tried to link your local and remote repositories?
-
-::: {.callout-note title="Solution" collapse="true"}
-In this case, you'd see a merge conflict due to unrelated histories. When GitHub creates a README.md file, it performs a commit in the remote repository. When you try to pull the remote repository to your local repository, Git detects that they have histories that do not share a common origin and refuses to merge.
-
-``` bash
-git pull origin main
-```
-
-```output
-warning: no common commits
-remote: Enumerating objects: 3, done.
-remote: Counting objects: 100% (3/3), done.
-remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
-Unpacking objects: 100% (3/3), done.
-From https://github.com/alflin/recipes
- * branch            main     -> FETCH_HEAD
- * [new branch]      main     -> origin/main
-fatal: refusing to merge unrelated histories
-```
-
-You can force git to merge the two repositories with the option `--allow-unrelated-histories`. Be careful when you use this option and carefully examine the contents of local and remote repositories before merging.
-
-``` bash
-git pull --allow-unrelated-histories origin main
-```
-
-```output
-From https://github.com/alflin/recipes
- * branch            main     -> FETCH_HEAD
-Merge made by the 'recursive' strategy.
-README.md | 1 +
-1 file changed, 1 insertion(+)
-create mode 100644 README.md
-```
 :::
 
 # Collaborating
@@ -1923,17 +1754,7 @@ Take a look at the owner's repository on GitHub again, and you should be able to
 
 ## Understanding remotes
 
-In this episode and the previous one, our local repository has had a single "remote", called `origin`. A remote is a copy of the repository that is hosted somewhere else, that we can push to and pull from, and there's no reason that you have to work with only one. For example, on some large projects you might have your own copy in your own GitHub account (you'd probably call this `origin`) and also the main "upstream" project repository (let's call this `upstream` for the sake of examples). You would pull from `upstream` from time to time to get the latest updates that other people have committed.
-
-Remember that the name you give to a remote only exists locally. It's an alias that you choose - whether `origin`, or `upstream`, or `alfred` - and not something intrinsic to the remote repository.
-
-The `git remote` family of commands is used to set up and alter the remotes associated with a repository. Here are some of the most useful ones:
-
-- `git remote -v` lists all the remotes that are configured (we already used this in the last episode)
-- `git remote add [name] [url]` is used to add a new remote
-- `git remote remove [name]` removes a remote. Note that it doesn't affect the remote repository at all - it just removes the link to it from the local repo.
-- `git remote set-url [name] [newurl]` changes the URL that is associated with the remote. This is useful if it has moved, e.g. to a different GitHub account, or from GitHub to a different hosting service. Or, if we made a typo when adding it!
-- `git remote rename [oldname] [newname]` changes the local alias by which a remote is known - its name. For example, one could use this to change `upstream` to `alfred`.
+A remote is a copy of your repository hosted elsewhere (like GitHub). `origin` is the default remote name. Use `git remote -v` to list your remotes.
 
 ## Pulling changes from a collaborator
 
