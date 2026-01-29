@@ -124,7 +124,7 @@
     "href": "00_setting-up.html#sec-github",
     "title": "0. Setting Up",
     "section": "GitHub",
-    "text": "GitHub\nGitHub is a widely used platform to store, manage, share, and collaborate with others on software projects. An account is free and you can upgrade to Pro for free as a student (see the tip below). Sign up here.\n\n\n\n\n\n\nTipGitHub Education\n\n\n\n\n\nAs a student, you can get a free GitHub Pro account as part of GitHub Education alongside other perks. Once you have a basic account, follow this link.\nYou can use a photo of your student ID card (both-sides) or other eligible documents listed on here.",
+    "text": "GitHub\nGitHub is a widely used platform to store, manage, share, and collaborate with others on software projects. An account is free and you can upgrade to Pro for free as a student (see the tip below). Sign up here.\n\n\n\n\n\n\nTipGitHub Education\n\n\n\n\n\nAs a student, you can get a free GitHub Pro account as part of GitHub Education alongside other perks. Once you have a basic account, follow this link.\nYou can use a photo of your student ID card (both-sides) or other eligible documents listed on here.\n\n\n\n\nMulti-factor Authentication\nSince 2023, GitHub requires all accounts to have multi-factor authentication (2FA) for extra security. Here are the recommended options:\nRecommended: Passkeys\nPasskeys are the most secure and convenient option. They work on most devices and browsers without requiring a separate app.\nOther 2FA Options:\n\nAuthenticator App (e.g., Google Authenticator, Duo Mobile) - Install on your smartphone and add GitHub\nText Message (SMS) - Receive authentication codes via text (check if your country is supported)\nHardware Security Key - Use devices like YubiKey or Google Titan\n\nFor detailed setup instructions, see GitHub’s 2FA configuration guide.",
     "crumbs": [
       "0. Setting Up"
     ]
@@ -344,6 +344,396 @@
     "text": "Reloading Configuration Files\nWhen you modify configuration files like .bashrc or .zshrc, the changes won’t take effect until you start a new terminal session. However, you can reload the configuration without closing your terminal using the source command:\nsource ~/.bashrc\nOr for Zsh users:\nsource ~/.zshrc\nThis reads and executes the commands from the specified file in your current shell session. You used this command during setup to activate Pixi after installation.\n\n\n\n\n\n\nYou can view the contents of your configuration files using cat ~/.bashrc or less ~/.bashrc to see what customizations you’ve made.\n\n\n\nAs you progress through more advanced topics, you’ll encounter many more hidden files and directories. Configuration files, cache directories, and version control metadata (like .git/) all use the dot-prefix convention. This naming strategy keeps your file system organized and separates system/application configuration from your regular working files. In future lessons, we’ll explore how these hidden files and directories make it very convenient to manage complex configurations without cluttering your workspace.",
     "crumbs": [
       "1. Terminal"
+    ]
+  },
+  {
+    "objectID": "03_version-control.html",
+    "href": "03_version-control.html",
+    "title": "3. Version Control",
+    "section": "",
+    "text": "If I could turn back time\nCher, If I Could Turn Back Time 1989\nVersion control tracks changes to your files, lets you undo mistakes, and makes collaboration easy. Once you start using it, you’ll wonder how you worked without it!",
+    "crumbs": [
+      "3. Version Control"
+    ]
+  },
+  {
+    "objectID": "03_version-control.html#installing-git",
+    "href": "03_version-control.html#installing-git",
+    "title": "3. Version Control",
+    "section": "Installing Git",
+    "text": "Installing Git\nYou should have Git already installed in your distribution. Check it out by typing in your terminal:\ngit --version\nIf you get an error, please see this webpage from The Software Carpentries for instructions on installing Git for various operating systems.",
+    "crumbs": [
+      "3. Version Control"
+    ]
+  },
+  {
+    "objectID": "03_version-control.html#creating-github-account",
+    "href": "03_version-control.html#creating-github-account",
+    "title": "3. Version Control",
+    "section": "Creating GitHub Account",
+    "text": "Creating GitHub Account\nIf you don’t already have a GitHub account, check the Setting Up section.",
+    "crumbs": [
+      "3. Version Control"
+    ]
+  },
+  {
+    "objectID": "03_version-control.html#preparing-your-working-directory",
+    "href": "03_version-control.html#preparing-your-working-directory",
+    "title": "3. Version Control",
+    "section": "Preparing Your Working Directory",
+    "text": "Preparing Your Working Directory\nYou can choose which directory you want to work in. If you have no preference, move to your home directory:\ncd",
+    "crumbs": [
+      "3. Version Control"
+    ]
+  },
+  {
+    "objectID": "03_version-control.html#places-to-create-git-repositories",
+    "href": "03_version-control.html#places-to-create-git-repositories",
+    "title": "3. Version Control",
+    "section": "Places to Create Git Repositories",
+    "text": "Places to Create Git Repositories\nAlong with tracking information about recipes (the project we have already created), Alfredo would also like to track information about desserts specifically. Alfredo creates a desserts project inside his recipes project with the following sequence of commands:\ncd              # return to the home directory\ncd recipes      # go into recipes directory, which is already a Git repository\nls -a           # ensure the .git subdirectory is still present in the recipes directory\nmkdir desserts  # make a sub-directory recipes/desserts\ncd desserts     # go into desserts subdirectory\ngit init        # make the desserts subdirectory a Git repository\nls -a           # ensure the .git subdirectory is present indicating we have created a new Git repository\nIs the git init command, run inside the desserts subdirectory, required for tracking files stored in the desserts subdirectory?\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nNo. Alfredo does not need to make the desserts subdirectory a Git repository because the recipes repository will track all files, sub-directories, and subdirectory files under the recipes directory. Thus, in order to track all information about desserts, Alfredo only needed to add the desserts subdirectory to the recipes directory.\nAdditionally, Git repositories can interfere with each other if they are “nested”: the outer repository will try to version-control the inner repository. Therefore, it’s best to create each new Git repository in a separate directory. To be sure that there is no conflicting repository in the directory, check the output of git status. If it looks like the following, you are good to go to create a new repository as shown above:\ngit status\nfatal: Not a git repository (or any of the parent directories): .git",
+    "crumbs": [
+      "3. Version Control"
+    ]
+  },
+  {
+    "objectID": "03_version-control.html#choosing-a-commit-message",
+    "href": "03_version-control.html#choosing-a-commit-message",
+    "title": "3. Version Control",
+    "section": "Choosing a Commit Message",
+    "text": "Choosing a Commit Message\nWhich of the following commit messages would be most appropriate for the last commit made to guacamole.md?\n\n“Changes”\n“Change lemon for lime”\n“Modify guacamole to the traditional recipe”\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nAnswer 3. Good commit messages are short, descriptive, and explain why, not just what.",
+    "crumbs": [
+      "3. Version Control"
+    ]
+  },
+  {
+    "objectID": "03_version-control.html#committing-changes-to-git",
+    "href": "03_version-control.html#committing-changes-to-git",
+    "title": "3. Version Control",
+    "section": "Committing Changes to Git",
+    "text": "Committing Changes to Git\nWhich command(s) below would save the changes of myfile.txt to my local Git repository?\n\ngit commit -m \"my recent changes\"\ngit init myfile.txt then git commit -m \"my recent changes\"\ngit add myfile.txt then git commit -m \"my recent changes\"\ngit commit -m myfile.txt \"my recent changes\"\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nAnswer 3 is correct: git add stages the file, then git commit saves it.",
+    "crumbs": [
+      "3. Version Control"
+    ]
+  },
+  {
+    "objectID": "03_version-control.html#committing-multiple-files",
+    "href": "03_version-control.html#committing-multiple-files",
+    "title": "3. Version Control",
+    "section": "Committing Multiple Files",
+    "text": "Committing Multiple Files\nYou can group changes from multiple files into one commit. Use git add file1.txt file2.txt to stage multiple files, then commit them together.\n\nAdd some text to guacamole.md noting the rough price of the ingredients.\nCreate a new file groceries.md with a list of products and their prices for different markets.\nAdd changes from both files to the staging area, and commit those changes.\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nFirst we make our changes to the guacamole.md and groceries.md files:\ncat guacamole.md\n# Guacamole\n## Ingredients\n* avocado (1.35)\n* lime (0.64)\n* salt (2)\ncat groceries.md\n# Market A\n* avocado: 1.35 per unit.\n* lime: 0.64 per unit\n* salt: 2 per kg\nNow you can add both files to the staging area. We can do that in one line:\ngit add guacamole.md groceries.md\nOr with multiple commands:\ngit add guacamole.md\ngit add groceries.md\nNow the files are ready to commit. You can check that using git status. If you are ready to commit use:\ngit commit -m \"Write prices for ingredients and their source\"\n[main cc127c2]\n Write prices for ingredients and their source\n 2 files changed, 7 insertions(+)\n create mode 100644 groceries.md",
+    "crumbs": [
+      "3. Version Control"
+    ]
+  },
+  {
+    "objectID": "03_version-control.html#bio-repository",
+    "href": "03_version-control.html#bio-repository",
+    "title": "3. Version Control",
+    "section": "bio Repository",
+    "text": "bio Repository\n\nCreate a new Git repository on your computer called bio.\nWrite a three-line biography for yourself in a file called me.txt, commit your changes\nModify one line, add a fourth line\nDisplay the differences between its updated state and its original state.\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nIf needed, move out of the recipes folder:\ncd ..\nCreate a new folder called bio and ‘move’ into it:\nmkdir bio\ncd bio\nInitialise git:\ngit init\nCreate your biography file me.txt using VS Code or another text editor. Once in place, add and commit it to the repository:\ngit add me.txt\ngit commit -m \"Add biography file\"\nModify the file as described (modify one line, add a fourth line). To display the differences between its updated state and its original state, use git diff:\ngit diff me.txt",
+    "crumbs": [
+      "3. Version Control"
+    ]
+  },
+  {
+    "objectID": "03_version-control.html#recovering-older-versions-of-a-file",
+    "href": "03_version-control.html#recovering-older-versions-of-a-file",
+    "title": "3. Version Control",
+    "section": "Recovering Older Versions of a File",
+    "text": "Recovering Older Versions of a File\nJennifer has made changes to the Python script that she has been working on for weeks, and the modifications she made this morning “broke” the script and it no longer runs. She has spent approximately 1 hour trying to fix it, with no luck…\nLuckily, she has been keeping track of her project’s versions using Git! Which commands below will let her recover the last committed version of her Python script called data_cruncher.py?\n\ngit restore\ngit restore data_cruncher.py\ngit restore -s HEAD~1 data_cruncher.py\ngit restore -s &lt;unique ID of last commit&gt; data_cruncher.py\nBoth 2 and 4\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nThe answer is (5) - Both 2 and 4.\nThe restore command restores files from the repository, overwriting the files in your working directory. Answers 2 and 4 both restore the latest version in the repository of the file data_cruncher.py. Answer 2 uses HEAD to indicate the latest, whereas answer 4 uses the unique ID of the last commit, which is what HEAD means.\nAnswer 3 gets the version of data_cruncher.py from the commit before HEAD, which is NOT what we wanted.\nAnswer 1 results in an error. You need to specify a file to restore. If you want to restore all files you should use git restore .",
+    "crumbs": [
+      "3. Version Control"
+    ]
+  },
+  {
+    "objectID": "03_version-control.html#understanding-workflow-and-history",
+    "href": "03_version-control.html#understanding-workflow-and-history",
+    "title": "3. Version Control",
+    "section": "Understanding Workflow and History",
+    "text": "Understanding Workflow and History\nWhat is the output of the last command in the following sequence?\ncd recipes\necho \"I like tomatoes, therefore I like ketchup\" &gt; ketchup.md\ngit add ketchup.md\necho \"ketchup enhances pasta dishes\" &gt;&gt; ketchup.md\ngit commit -m \"My opinions about the red sauce\"\ngit restore ketchup.md\ncat ketchup.md\n\n   ketchup enhances pasta dishes\n   I like tomatoes, therefore I like ketchup\n   I like tomatoes, therefore I like ketchup\n   ketchup enhances pasta dishes\n   Error because you have changed ketchup.md without committing the changes\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nThe answer is 2.\nThe changes to the file from the second echo command are only applied to the working copy, not the version in the staging area. The command git add ketchup.md places the current version of ketchup.md into the staging area.\nSo, when git commit -m \"My opinions about the red sauce\" is executed, the version of ketchup.md committed to the repository is the one from the staging area and has only one line.\nAt this time, the working copy still has the second line (and git status will show that the file is modified). However, git restore ketchup.md replaces the working copy with the most recently committed version of ketchup.md. So, cat ketchup.md will output:\nI like tomatoes, therefore I like ketchup",
+    "crumbs": [
+      "3. Version Control"
+    ]
+  },
+  {
+    "objectID": "03_version-control.html#understanding-of-git-diff",
+    "href": "03_version-control.html#understanding-of-git-diff",
+    "title": "3. Version Control",
+    "section": "Understanding of git diff",
+    "text": "Understanding of git diff\nConsider this command: git diff HEAD~9 guacamole.md. What do you predict this command will do if you execute it? What happens when you do execute it? Why?\nTry another command, git diff [ID] guacamole.md, where [ID] is replaced with the unique identifier for your most recent commit. What do you think will happen, and what does happen?",
+    "crumbs": [
+      "3. Version Control"
+    ]
+  },
+  {
+    "objectID": "03_version-control.html#getting-rid-of-staged-changes",
+    "href": "03_version-control.html#getting-rid-of-staged-changes",
+    "title": "3. Version Control",
+    "section": "Getting Rid of Staged Changes",
+    "text": "Getting Rid of Staged Changes\ngit restore can be used to restore a previous commit when unstaged changes have been made, but will it also work for changes that have been staged but not committed? Make a change to guacamole.md, add that change using git add, then use git restore to see if you can remove your change.\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nAfter adding a change, git restore cannot be used directly. Let’s look at the output of git status:\nOn branch main\nChanges to be committed:\n  (use \"git restore --staged &lt;file&gt;...\" to unstage)\n        modified:   guacamole.md\nNote that if you don’t have the same output, you may either have forgotten to change the file, or you have added it and committed it.\nUsing the command git restore guacamole.md now does not give an error, but it does not restore the file either. Git helpfully tells us that we need to use git restore --staged first to unstage the file:\ngit restore --staged guacamole.md\nNow, git status gives us:\ngit status\nOn branch main\nChanges not staged for commit:\n  (use \"git add &lt;file&gt;...\" to update what will be committed)\n  (use \"git restore &lt;file&gt;...\" to discard changes in working directory)\n        modified:   guacamole.md\n\nno changes added to commit (use \"git add\" and/or \"git commit -a\")\nThis means we can now use git restore to restore the file to the previous commit:\ngit restore guacamole.md\ngit status\nOn branch main\nnothing to commit, working tree clean",
+    "crumbs": [
+      "3. Version Control"
+    ]
+  },
+  {
+    "objectID": "03_version-control.html#explore-and-summarize-histories",
+    "href": "03_version-control.html#explore-and-summarize-histories",
+    "title": "3. Version Control",
+    "section": "Explore and Summarize Histories",
+    "text": "Explore and Summarize Histories\nExploring history is an important part of Git, and often it is a challenge to find the right commit ID, especially if the commit is from several months ago.\nImagine the recipes project has more than 50 files. You would like to find a commit that modifies some specific text in guacamole.md. When you type git log, a very long list appeared. How can you narrow down the search?\nRecall that the git diff command allows us to explore one specific file, e.g., git diff guacamole.md. We can apply a similar idea here.\ngit log guacamole.md\nUnfortunately some of these commit messages are very ambiguous, e.g., update files. How can you search through these files?\nBoth git diff and git log are very useful and they summarize a different part of the history for you. Is it possible to combine both? Let’s try the following:\ngit log --patch guacamole.md\nYou should get a long list of output, and you should be able to see both commit messages and the difference between each commit.\nQuestion: What does the following command do?\ngit log --patch HEAD~9 *.md",
+    "crumbs": [
+      "3. Version Control"
+    ]
+  },
+  {
+    "objectID": "03_version-control.html#ignoring-nested-files",
+    "href": "03_version-control.html#ignoring-nested-files",
+    "title": "3. Version Control",
+    "section": "Ignoring Nested Files",
+    "text": "Ignoring Nested Files\nGiven a directory structure that looks like:\npictures/cake\npictures/pizza\nHow would you ignore only pictures/cake and not pictures/pizza?\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nIf you only want to ignore the contents of pictures/cake, you can change your .gitignore to ignore only the /cake/ subfolder by adding the following line to your .gitignore:\npictures/cake/\nThis line will ensure only the contents of pictures/cake is ignored, and not the contents of pictures/pizza.\nAs with most programming issues, there are a few alternative ways that one may ensure this ignore rule is followed. Further, the discussion pages have more detail on ignore rules.",
+    "crumbs": [
+      "3. Version Control"
+    ]
+  },
+  {
+    "objectID": "03_version-control.html#including-specific-files",
+    "href": "03_version-control.html#including-specific-files",
+    "title": "3. Version Control",
+    "section": "Including Specific Files",
+    "text": "Including Specific Files\nHow would you ignore all .png files in your root directory except for final.png?\nHint: Find out what ! (the exclamation point operator) does\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nYou would add the following two lines to your .gitignore:\n*.png           # ignore all png files\n!final.png      # except final.png\nThe exclamation point operator will include a previously excluded entry.\nNote also that, if you’ve previously committed .png files in this lesson, they will not be ignored with this new rule. Only future additions of .png files to the root directory will be ignored.",
+    "crumbs": [
+      "3. Version Control"
+    ]
+  },
+  {
+    "objectID": "03_version-control.html#ignoring-nested-files-variation",
+    "href": "03_version-control.html#ignoring-nested-files-variation",
+    "title": "3. Version Control",
+    "section": "Ignoring Nested Files: Variation",
+    "text": "Ignoring Nested Files: Variation\nGiven a directory structure that looks similar to the earlier Nested Files exercise, but with a slightly different directory structure:\npictures/cake\npictures/pizza\npictures/pie\npictures/brownie\nHow would you ignore all of the contents in the pictures folder, but not pictures/pie?\nHint: think a bit about how you created an exception with the ! operator before.\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nIf you want to ignore the contents of pictures/ but not those of pictures/pie/, you can change your .gitignore to ignore the contents of pictures folder, but create an exception for the contents of the pictures/pie subfolder. Your .gitignore would look like this:\npictures/*              # ignore everything in pictures folder\n!pictures/pie/          # do not ignore pictures/pie/ contents",
+    "crumbs": [
+      "3. Version Control"
+    ]
+  },
+  {
+    "objectID": "03_version-control.html#ignoring-all-data-files-in-a-directory",
+    "href": "03_version-control.html#ignoring-all-data-files-in-a-directory",
+    "title": "3. Version Control",
+    "section": "Ignoring all data Files in a Directory",
+    "text": "Ignoring all data Files in a Directory\nAssuming you have an empty .gitignore file, and given a directory structure that looks like:\npictures/data/location/gps/a.dat\npictures/data/location/gps/b.dat\npictures/data/location/gps/c.dat\npictures/data/location/gps/info.txt\npictures/plots\nWhat’s the shortest .gitignore rule you could write to ignore all .dat files in pictures/data/location/gps? Do not ignore the info.txt.\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nAppending pictures/data/location/gps/*.dat will match every file in pictures/data/location/gps that ends with .dat. The file pictures/data/location/gps/info.txt will not be ignored.",
+    "crumbs": [
+      "3. Version Control"
+    ]
+  },
+  {
+    "objectID": "03_version-control.html#ignoring-all-data-files-in-the-repository",
+    "href": "03_version-control.html#ignoring-all-data-files-in-the-repository",
+    "title": "3. Version Control",
+    "section": "Ignoring all data Files in the repository",
+    "text": "Ignoring all data Files in the repository\nLet us assume you have many .csv files in different subdirectories of your repository. For example, you might have:\nresults/a.csv\ndata/experiment_1/b.csv\ndata/experiment_2/c.csv\ndata/experiment_2/variation_1/d.csv\nHow do you ignore all the .csv files, without explicitly listing the names of the corresponding folders?\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nIn the .gitignore file, write:\n**/*.csv\nThis will ignore all the .csv files, regardless of their position in the directory tree. You can still include some specific exception with the exclamation point operator.",
+    "crumbs": [
+      "3. Version Control"
+    ]
+  },
+  {
+    "objectID": "03_version-control.html#the-order-of-rules",
+    "href": "03_version-control.html#the-order-of-rules",
+    "title": "3. Version Control",
+    "section": "The Order of Rules",
+    "text": "The Order of Rules\nGiven a .gitignore file with the following contents:\n*.csv\n!*.csv\nWhat will be the result?\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nThe ! modifier will negate an entry from a previously defined ignore pattern. Because the !*.csv entry negates all of the previous .csv files in the .gitignore, none of them will be ignored, and all .csv files will be tracked.",
+    "crumbs": [
+      "3. Version Control"
+    ]
+  },
+  {
+    "objectID": "03_version-control.html#log-files",
+    "href": "03_version-control.html#log-files",
+    "title": "3. Version Control",
+    "section": "Log Files",
+    "text": "Log Files\nYou wrote a script that creates many intermediate log-files of the form log_01, log_02, log_03, etc. You want to keep them but you do not want to track them through git.\n\nWrite one .gitignore entry that excludes files of the form log_01, log_02, etc.\nTest your “ignore pattern” by creating some dummy files of the form log_01, etc.\nYou find that the file log_01 is very important after all, add it to the tracked files without changing the .gitignore again.\nDiscuss with your neighbor what other types of files could reside in your directory that you do not want to track and thus would exclude via .gitignore.\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\n\nAppend either log_* or log* as a new entry in your .gitignore\nTrack log_01 using git add -f log_01",
+    "crumbs": [
+      "3. Version Control"
+    ]
+  },
+  {
+    "objectID": "03_version-control.html#creating-a-remote-repository",
+    "href": "03_version-control.html#creating-a-remote-repository",
+    "title": "3. Version Control",
+    "section": "Creating a remote repository",
+    "text": "Creating a remote repository\nLog in to GitHub, then click on the icon in the top right corner to create a new repository called recipes.\nName your repository “recipes” and then click “Create Repository”.\n\n\n\n\n\n\nNoteImportant\n\n\n\nCreate an empty repository on GitHub. Don’t initialize it with a README or license.\n\n\nAs soon as the repository is created, GitHub displays a page with a URL and some information on how to configure your local repository. This effectively does the following on GitHub’s servers:\nmkdir recipes\ncd recipes\ngit init\nIf you remember back to the earlier episode where we added and committed our work on guacamole.md, we had a diagram of the local repository. Now that we have two repositories, we need to connect them.",
+    "crumbs": [
+      "3. Version Control"
+    ]
+  },
+  {
+    "objectID": "03_version-control.html#connecting-local-to-remote-repository",
+    "href": "03_version-control.html#connecting-local-to-remote-repository",
+    "title": "3. Version Control",
+    "section": "Connecting local to remote repository",
+    "text": "Connecting local to remote repository\nNow we connect the two repositories. We do this by making the GitHub repository a remote for the local repository. The home page of the repository on GitHub includes the URL string we need to identify it. Click on the ‘SSH’ link to change the protocol from HTTPS to SSH.\n\n\n\n\n\n\nNoteHTTPS vs. SSH\n\n\n\nSSH is more secure. Use SSH for GitHub authentication.\n\n\nCopy that URL from the browser, go into the local recipes repository, and run this command:\ngit remote add origin git@github.com:alflin/recipes.git\nMake sure to use the URL for your repository rather than Alfredo’s: the only difference should be your username instead of alflin.\norigin is a local name used to refer to the remote repository. It could be called anything, but origin is a convention that is often used by default in git and GitHub, so it’s helpful to stick with this unless there’s a reason not to.\nWe can check that the command has worked by running git remote -v:\ngit remote -v\norigin   git@github.com:alflin/recipes.git (fetch)\norigin   git@github.com:alflin/recipes.git (push)",
+    "crumbs": [
+      "3. Version Control"
+    ]
+  },
+  {
+    "objectID": "03_version-control.html#ssh-background-and-setup",
+    "href": "03_version-control.html#ssh-background-and-setup",
+    "title": "3. Version Control",
+    "section": "SSH Background and Setup",
+    "text": "SSH Background and Setup\nSSH (Secure Shell Protocol) allows secure communication. SSH uses a key pair: a public key (like a padlock) shared with GitHub, and a private key (the only key to open it) kept on your computer. GitHub authenticates you using these keys.\nWhat we will do now is the minimum required to set up the SSH keys and add the public key to a GitHub account.\nThe first thing we are going to do is check if this has already been done on the computer you’re on. Because generally speaking, this setup only needs to happen once and then you can forget about it.\n\n\n\n\n\n\nNoteKeeping your keys secure\n\n\n\nCheck your SSH keys periodically to ensure they’re current and secure.\n\n\nWe will run the list command to check what key pairs already exist on your computer.\nls -al ~/.ssh\nYour output is going to look a little different depending on whether or not SSH has ever been set up on the computer you are using.\nIf SSH has not been set up, your output is:\nls: cannot access '~/.ssh': No such file or directory\nIf SSH has been set up on the computer you’re using, the public and private key pairs will be listed. The file names are either id_ed25519/id_ed25519.pub or id_rsa/id_rsa.pub depending on how the key pairs were set up.",
+    "crumbs": [
+      "3. Version Control"
+    ]
+  },
+  {
+    "objectID": "03_version-control.html#creating-an-ssh-key-pair",
+    "href": "03_version-control.html#creating-an-ssh-key-pair",
+    "title": "3. Version Control",
+    "section": "Creating an SSH key pair",
+    "text": "Creating an SSH key pair\nTo create an SSH key pair use this command, where the -t option specifies which type of algorithm to use and -C attaches a comment to the key (here, your email):\nssh-keygen -t ed25519 -C \"a.linguini@ratatouille.fr\"\nIf you are using a legacy system that doesn’t support the Ed25519 algorithm, use:\nssh-keygen -t rsa -b 4096 -C \"your_email@example.com\"\nGenerating public/private ed25519 key pair.\nEnter file in which to save the key (/c/Users/Alfredo/.ssh/id_ed25519):\nWe want to use the default file, so just press Enter.\nCreated directory '/c/Users/Alfredo/.ssh'.\nEnter passphrase (empty for no passphrase):\nNow, it is prompting you for a passphrase. Since you might be using a shared laptop, you want to create a passphrase. Be sure to use something memorable or save your passphrase somewhere, as there is no “reset my password” option. Note that when typing a passphrase on a terminal, there won’t be any visual feedback of your typing. This is normal: your passphrase will be recorded even if you see nothing changing on your screen.\nEnter same passphrase again:\nAfter entering the same passphrase a second time, you receive the confirmation:\nYour identification has been saved in /c/Users/Alfredo/.ssh/id_ed25519\nYour public key has been saved in /c/Users/Alfredo/.ssh/id_ed25519.pub\nThe key fingerprint is:\nSHA256:SMSPIStNyA00KPxuYu94KpZgRAYjgt9g4BA4kFy3g1o a.linguini@ratatouille.fr\nThe key's randomart image is:\n+--[ED25519 256]--+\n|^B== o.          |\n|%*=.*.+          |\n|+=.E =.+         |\n| .=.+.o..        |\n|....  . S        |\n|.+ o             |\n|+ =              |\n|.o.o             |\n|oo+.             |\n+----[SHA256]-----+\nThe “identification” is actually the private key. You should never share it. The public key is appropriately named. The “key fingerprint” is a shorter version of a public key.\nNow that you have generated the SSH keys, you will find the SSH files when you check:\nls -al ~/.ssh\ndrwxr-xr-x 1 Alfredo   197121   0 Jul 16 14:48 ./\ndrwxr-xr-x 1 Alfredo   197121   0 Jul 16 14:48 ../\n-rw-r--r-- 1 Alfredo   197121 419 Jul 16 14:48 id_ed25519\n-rw-r--r-- 1 Alfredo   197121 106 Jul 16 14:48 id_ed25519.pub",
+    "crumbs": [
+      "3. Version Control"
+    ]
+  },
+  {
+    "objectID": "03_version-control.html#copying-the-public-key-to-github",
+    "href": "03_version-control.html#copying-the-public-key-to-github",
+    "title": "3. Version Control",
+    "section": "Copying the public key to GitHub",
+    "text": "Copying the public key to GitHub\nNow you have an SSH key pair and you can run this command to check if GitHub can read your authentication:\nssh -T git@github.com\nThe authenticity of host 'github.com (192.30.255.112)' can't be established.\nRSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.\nThis key is not known by any other names\nAre you sure you want to continue connecting (yes/no/[fingerprint])? yes\nWarning: Permanently added 'github.com' (RSA) to the list of known hosts.\ngit@github.com: Permission denied (publickey).\nRight, we forgot that we need to give GitHub our public key!\nFirst, we need to copy the public key. Be sure to include the .pub at the end, otherwise you’re looking at the private key.\ncat ~/.ssh/id_ed25519.pub\nssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDmRA3d51X0uu9wXek559gfn6UFNF69yZjChyBIU2qKI a.linguini@ratatouille.fr\nNow, going to GitHub.com, click on your profile icon in the top right corner to get the drop-down menu. Click “Settings”, then on the settings page, click “SSH and GPG keys” on the left side “Access” menu. Click the “New SSH key” button on the right side. Now, you can add the title (use something descriptive like “My Laptop” so you can remember where the original key pair files are located), paste your SSH key into the field, and click the “Add SSH key” to complete the setup.\nNow that you’ve set that up, let’s check your authentication again from the command line:\nssh -T git@github.com\nHi Alfredo! You've successfully authenticated, but GitHub does not provide shell access.\nGood! This output confirms that the SSH key works as intended. You are now ready to push your work to the remote repository.",
+    "crumbs": [
+      "3. Version Control"
+    ]
+  },
+  {
+    "objectID": "03_version-control.html#pushing-local-changes-to-a-remote",
+    "href": "03_version-control.html#pushing-local-changes-to-a-remote",
+    "title": "3. Version Control",
+    "section": "Pushing local changes to a remote",
+    "text": "Pushing local changes to a remote\nNow that authentication is set up, we can return to the remote. This command will push the changes from our local repository to the repository on GitHub:\ngit push origin main\nIf you set up a passphrase, it will prompt you for it. If you completed advanced settings for your authentication, it will not prompt for a passphrase.\nEnumerating objects: 16, done.\nCounting objects: 100% (16/16), done.\nDelta compression using up to 8 threads.\nCompressing objects: 100% (11/11), done.\nWriting objects: 100% (16/16), 1.45 KiB | 372.00 KiB/s, done.\nTotal 16 (delta 2), reused 0 (delta 0)\nremote: Resolving deltas: 100% (2/2), done.\nTo https://github.com/alflin/recipes.git\n * [new branch]      main -&gt; main\n\n\n\n\n\n\nNoteProxy\n\n\n\nIf the network you are connected to uses a proxy, there is a chance that your last command failed with “Could not resolve hostname” as the error message. To solve this issue, you need to tell Git about the proxy:\ngit config --global http.proxy http://user:password@proxy.url\ngit config --global https.proxy https://user:password@proxy.url\nWhen you connect to another network that doesn’t use a proxy, you will need to tell Git to disable the proxy using:\ngit config --global --unset http.proxy\ngit config --global --unset https.proxy\n\n\nWe can pull changes from the remote repository to the local one as well:\ngit pull origin main\nFrom https://github.com/alflin/recipes\n * branch            main     -&gt; FETCH_HEAD\nAlready up to date.\nPulling has no effect in this case because the two repositories are already synchronized. If someone else had pushed some changes to the repository on GitHub, though, this command would download them to our local repository.",
+    "crumbs": [
+      "3. Version Control"
+    ]
+  },
+  {
+    "objectID": "03_version-control.html#github-gui",
+    "href": "03_version-control.html#github-gui",
+    "title": "3. Version Control",
+    "section": "GitHub GUI",
+    "text": "GitHub GUI\nBrowse to your recipes repository on GitHub. Under the Code tab, find and click on the text that says “XX commits” (where “XX” is some number). Hover over, and click on, the three buttons to the right of each commit. What information can you gather/explore from these buttons? How would you get that same information in the shell?\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nWhen you click on the left-most button, you’ll see all of the changes that were made in that particular commit. Green shaded lines indicate additions and red ones removals. In the shell we can do the same thing with git diff. In particular, git diff ID1..ID2 where ID1 and ID2 are commit identifiers (e.g. git diff a3bf1e5..041e637) will show the differences between those two commits.\nThe middle button (with the picture of two overlapping squares or pages) copies the full identifier of the commit to the clipboard. In the shell, git log will show you the full commit identifier for each commit.\nThe right-most button lets you view all of the files in the repository at the time of that commit. To do this in the shell, we’d need to checkout the repository at that particular time. We can do this with git checkout ID where ID is the identifier of the commit we want to look at. If we do this, we need to remember to put the repository back to the right state afterwards!",
+    "crumbs": [
+      "3. Version Control"
+    ]
+  },
+  {
+    "objectID": "03_version-control.html#github-timestamp",
+    "href": "03_version-control.html#github-timestamp",
+    "title": "3. Version Control",
+    "section": "GitHub Timestamp",
+    "text": "GitHub Timestamp\nCreate a remote repository on GitHub. Push the contents of your local repository to the remote. Make changes to your local repository and push these changes. Go to the repo you just created on GitHub and check the timestamps of the files. How does GitHub record times, and why?\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nGitHub displays timestamps in a human readable relative format (i.e. “22 hours ago” or “three weeks ago”). However, if you hover over the timestamp, you can see the exact time at which the last change to the file occurred.",
+    "crumbs": [
+      "3. Version Control"
+    ]
+  },
+  {
+    "objectID": "03_version-control.html#push-vs.-commit",
+    "href": "03_version-control.html#push-vs.-commit",
+    "title": "3. Version Control",
+    "section": "Push vs. Commit",
+    "text": "Push vs. Commit\nIn this episode, we introduced the git push command. How is git push different from git commit?\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nWhen we push changes, we’re interacting with a remote repository to update it with the changes we’ve made locally (often this corresponds to sharing the changes we’ve made with others). Commit only updates your local repository.",
+    "crumbs": [
+      "3. Version Control"
+    ]
+  },
+  {
+    "objectID": "03_version-control.html#adding-collaborators",
+    "href": "03_version-control.html#adding-collaborators",
+    "title": "3. Version Control",
+    "section": "Adding collaborators",
+    "text": "Adding collaborators\nThe repository owner needs to give other people access. In your repository page on GitHub, click the “Settings” button on the right, select “Collaborators”, click “Add people”, and then enter your collaborator’s username.\nTo accept access to the owner’s repository, the collaborator needs to go to https://github.com/notifications or check for email notification. Once there, they can accept access to the owner’s repository.",
+    "crumbs": [
+      "3. Version Control"
+    ]
+  },
+  {
+    "objectID": "03_version-control.html#cloning-a-repository",
+    "href": "03_version-control.html#cloning-a-repository",
+    "title": "3. Version Control",
+    "section": "Cloning a repository",
+    "text": "Cloning a repository\nNext, the collaborator needs to download a copy of the owner’s repository to their machine. This is called “cloning a repo”.\nThe collaborator doesn’t want to overwrite their own version of recipes.git, so they need to clone the owner’s repository to a different location than their own repository with the same name.\nTo clone the owner’s repo into the home directory ~, the collaborator enters:\ngit clone git@github.com:alflin/recipes.git ~/alflin-recipes\nReplace ‘alflin’ with the owner’s username.\n\n\n\n\n\n\nNoteImportant\n\n\n\nIf you choose to clone without the clone path (~/alflin-recipes) specified at the end, you will clone inside your own recipes folder! Make sure to navigate to the home directory first.",
+    "crumbs": [
+      "3. Version Control"
+    ]
+  },
+  {
+    "objectID": "03_version-control.html#making-changes-as-a-collaborator",
+    "href": "03_version-control.html#making-changes-as-a-collaborator",
+    "title": "3. Version Control",
+    "section": "Making changes as a collaborator",
+    "text": "Making changes as a collaborator\nThe collaborator can now make a change in their clone of the owner’s repository, exactly the same way as we’ve been doing before:\ncd ~/alflin-recipes\ncode hummus.md\ncat hummus.md\n# Hummus\n## Ingredients\n* chickpeas\n* lemon\n* olive oil\n* salt\ngit add hummus.md\ngit commit -m \"Add ingredients for hummus\"\n 1 file changed, 6 insertion(+)\n create mode 100644 hummus.md\nThen push the change to the owner’s repository on GitHub:\ngit push origin main\nEnumerating objects: 4, done.\nCounting objects: 4, done.\nDelta compression using up to 4 threads.\nCompressing objects: 100% (2/2), done.\nWriting objects: 100% (3/3), 306 bytes, done.\nTotal 3 (delta 0), reused 0 (delta 0)\nTo https://github.com/alflin/recipes.git\n   9272da5..29aba7c  main -&gt; main\nNote that we didn’t have to create a remote called origin: Git uses this name by default when we clone a repository. (This is why origin was a sensible choice earlier when we were setting up remotes by hand.)\nTake a look at the owner’s repository on GitHub again, and you should be able to see the new commit made by the collaborator. You may need to refresh your browser to see the new commit.",
+    "crumbs": [
+      "3. Version Control"
+    ]
+  },
+  {
+    "objectID": "03_version-control.html#understanding-remotes",
+    "href": "03_version-control.html#understanding-remotes",
+    "title": "3. Version Control",
+    "section": "Understanding remotes",
+    "text": "Understanding remotes\nA remote is a copy of your repository hosted elsewhere (like GitHub). origin is the default remote name. Use git remote -v to list your remotes.",
+    "crumbs": [
+      "3. Version Control"
+    ]
+  },
+  {
+    "objectID": "03_version-control.html#pulling-changes-from-a-collaborator",
+    "href": "03_version-control.html#pulling-changes-from-a-collaborator",
+    "title": "3. Version Control",
+    "section": "Pulling changes from a collaborator",
+    "text": "Pulling changes from a collaborator\nTo download the collaborator’s changes from GitHub, the owner now enters:\ngit pull origin main\nremote: Enumerating objects: 4, done.\nremote: Counting objects: 100% (4/4), done.\nremote: Compressing objects: 100% (2/2), done.\nremote: Total 3 (delta 0), reused 3 (delta 0), pack-reused 0\nUnpacking objects: 100% (3/3), done.\nFrom https://github.com/alflin/recipes\n * branch            main     -&gt; FETCH_HEAD\n   9272da5..29aba7c  main     -&gt; origin/main\nUpdating 9272da5..29aba7c\nFast-forward\n hummus.md | 5 +\n 1 file changed, 5 insertion(+)\n create mode 100644 hummus.md\nNow the three repositories (owner’s local, collaborator’s local, and owner’s on GitHub) are back in sync.\n\n\n\n\n\n\nNoteA Basic Collaborative Workflow\n\n\n\nIn practice, it is good to be sure that you have an updated version of the repository you are collaborating on, so you should git pull before making changes. The basic collaborative workflow would be:\n\nupdate your local repo with git pull origin main,\nmake your changes and stage them with git add,\ncommit your changes with git commit -m, and\nupload the changes to GitHub with git push origin main\n\nIt is better to make many commits with smaller changes rather than one commit with massive changes: small commits are easier to read and review.",
+    "crumbs": [
+      "3. Version Control"
+    ]
+  },
+  {
+    "objectID": "03_version-control.html#switch-roles-and-repeat",
+    "href": "03_version-control.html#switch-roles-and-repeat",
+    "title": "3. Version Control",
+    "section": "Switch Roles and Repeat",
+    "text": "Switch Roles and Repeat\nSwitch roles with your partner and repeat the whole process. One person should now be the collaborator making changes to the other person’s repository.",
+    "crumbs": [
+      "3. Version Control"
+    ]
+  },
+  {
+    "objectID": "03_version-control.html#review-changes",
+    "href": "03_version-control.html#review-changes",
+    "title": "3. Version Control",
+    "section": "Review Changes",
+    "text": "Review Changes\nThe owner pushed commits to the repository without giving any information to the collaborator. How can the collaborator find out what has changed with the command line? And on GitHub?\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nOn the command line, the collaborator can use git fetch origin main to get the remote changes into the local repository, but without merging them. Then by running git diff main origin/main the collaborator will see the changes output in the terminal.\nOn GitHub, the collaborator can go to the repository and click on “commits” to view the most recent commits pushed to the repository.",
+    "crumbs": [
+      "3. Version Control"
+    ]
+  },
+  {
+    "objectID": "03_version-control.html#comment-changes-in-github",
+    "href": "03_version-control.html#comment-changes-in-github",
+    "title": "3. Version Control",
+    "section": "Comment Changes in GitHub",
+    "text": "Comment Changes in GitHub\nThe collaborator has some questions about one line change made by the owner and has some suggestions to propose.\nWith GitHub, it is possible to comment on the diff of a commit. Over the line of code to comment, a blue comment icon appears to open a comment window.\nThe collaborator posts their comments and suggestions using the GitHub interface.",
+    "crumbs": [
+      "3. Version Control"
+    ]
+  },
+  {
+    "objectID": "03_version-control.html#version-history-backup-and-version-control",
+    "href": "03_version-control.html#version-history-backup-and-version-control",
+    "title": "3. Version Control",
+    "section": "Version History, Backup, and Version Control",
+    "text": "Version History, Backup, and Version Control\nSome backup software can keep a history of the versions of your files. They also allow you to recover specific versions. How is this functionality different from version control? What are some of the benefits of using version control, Git, and GitHub?",
+    "crumbs": [
+      "3. Version Control"
     ]
   }
 ]

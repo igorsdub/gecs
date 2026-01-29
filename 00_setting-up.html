@@ -168,6 +168,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./03_version-control.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Version Control</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./00_vs-code.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">VS Code</span></a>
   </div>
@@ -205,7 +211,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#developer-platform" id="toc-developer-platform" class="nav-link" data-scroll-target="#developer-platform">Developer Platform</a>
   <ul class="collapse">
-  <li><a href="#sec-github" id="toc-sec-github" class="nav-link" data-scroll-target="#sec-github">GitHub</a></li>
+  <li><a href="#sec-github" id="toc-sec-github" class="nav-link" data-scroll-target="#sec-github">GitHub</a>
+  <ul class="collapse">
+  <li><a href="#multi-factor-authentication" id="toc-multi-factor-authentication" class="nav-link" data-scroll-target="#multi-factor-authentication">Multi-factor Authentication</a></li>
+  </ul></li>
   </ul></li>
   <li><a href="#shell-prompt-optional" id="toc-shell-prompt-optional" class="nav-link" data-scroll-target="#shell-prompt-optional">Shell Prompt (Optional)</a>
   <ul class="collapse">
@@ -578,6 +587,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+<section id="multi-factor-authentication" class="level3">
+<h3 class="anchored" data-anchor-id="multi-factor-authentication">Multi-factor Authentication</h3>
+<p>Since 2023, GitHub requires all accounts to have <a href="https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/about-two-factor-authentication">multi-factor authentication (2FA)</a> for extra security. Here are the recommended options:</p>
+<p><strong>Recommended: Passkeys</strong></p>
+<p><a href="https://docs.github.com/en/authentication/authenticating-with-a-passkey/signing-in-with-a-passkey">Passkeys</a> are the most secure and convenient option. They work on most devices and browsers without requiring a separate app.</p>
+<p><strong>Other 2FA Options:</strong></p>
+<ol type="1">
+<li><strong>Authenticator App</strong> (e.g., Google Authenticator, Duo Mobile) - Install on your smartphone and add GitHub</li>
+<li><strong>Text Message (SMS)</strong> - Receive authentication codes via text (<a href="https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/countries-where-sms-authentication-is-supported">check if your country is supported</a>)</li>
+<li><strong>Hardware Security Key</strong> - Use devices like <a href="https://www.yubico.com/products/yubikey-5-overview/">YubiKey</a> or <a href="https://store.google.com/us/product/titan_security_key?hl=en-US&amp;pli=1">Google Titan</a></li>
+</ol>
+<p>For detailed setup instructions, see <a href="https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication">GitHub’s 2FA configuration guide</a>.</p>
+</section>
 </section>
 </section>
 <section id="shell-prompt-optional" class="level1">
