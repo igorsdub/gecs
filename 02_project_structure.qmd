@@ -19,7 +19,7 @@ We will look at two project structures: messy and structured - to see what works
 
 ## Messy Project
 
-``` bash
+``` text
 .
 ├── analysis.sh
 ├── book1.txt
@@ -47,7 +47,7 @@ Once unzipped, open the directory with VS Code (`Cmd+O`).
 
 ## Structured Project
 
-``` bash
+``` text
 .
 ├── books                           <-- Text files of books used for analysis
 │   ├── dracula.txt
@@ -87,7 +87,7 @@ The directory structure distinguishes three kinds of folders:
 
 -   Project-generated (PG): folders generated when running the code; these folders can be deleted or emptied and will be completely reconstituted as the project is run.
 
-``` bash
+``` text
 .
 ├── README.md          <- Description and how to run the project (HW)
 ├── requirements.txt   <- System requirements for running the project (HW)
