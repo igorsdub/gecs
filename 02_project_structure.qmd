@@ -3,7 +3,7 @@ title: "2. Project Structure"
 format: html
 ---
 
-> If you get hit by a bus today, will your colleagues be able to run your code tomorrow?
+> If you get hit by a bus today, will your colleagues be able to run your project tomorrow?
 >
 > [The Bus Factor](https://en.wikipedia.org/wiki/Bus_factor)
 
