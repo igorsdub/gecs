@@ -2359,34 +2359,20 @@ Conflicts can also be minimized with project management strategies:
 - Discuss what order tasks should be carried out in with your collaborators so that tasks expected to change the same lines won't be worked on simultaneously
 - If the conflicts are stylistic churn (e.g. tabs vs. spaces), establish a project convention that is governing and use code style tools (e.g. `htmltidy`, `perltidy`, `rubocop`, etc.) to enforce, if necessary
 
-# Licensing, Citation, and Hosting
+# Licensing
 
-## Licensing
-
-A `LICENSE` or `LICENSE.txt` file specifies how others can use your code and data. Without one, default copyright laws apply. Choose a license from the start—even for private repositories—since adding one later requires approval from all contributors who hold copyright.
+A `LICENSE` file specifies how others can use your code and data. Without one, default copyright laws apply. Choose a license from the start—even for private repositories—since adding one later requires approval from all contributors who hold copyright.
 
 Use [choosealicense.com](https://choosealicense.com/) to find a license. Key considerations:
 - Patent rights protection
 - Whether derivative works must share source code
 - Whether you're licensing source code
 
-The [Open Source Initiative](https://opensource.org/licenses) and [Free Software Foundation](https://www.gnu.org/licenses/license-list.html) maintain lists of popular licenses.
+GitHub allows you to easily to add a license in their web browser explained [here](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/adding-a-license-to-a-repository).
 
-### Can I Use Open License?
+# Citation
 
-Find out if you can apply an open license to your software. Do you need permission from your institution?
-
-### What licenses have I already accepted?
-
-Find the license for a project on GitHub (usually in `LICENSE` or `COPYING`). How does it restrict your use? Consider:
-- [Git](https://github.com/git/git)
-- [CPython](https://github.com/python/cpython)
-- [Jupyter](https://github.com/jupyter)
-- [EtherPad](https://github.com/ether/etherpad-lite)
-
-## Citation
-
-Include a `CITATION` or `CITATION.txt` file to explain how to cite your project:
+Include a `CITATION` file to explain how to cite your project:
 
 ```
 To reference this project, cite:
