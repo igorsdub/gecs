@@ -79,7 +79,7 @@ After every session there will be a drop-in the following week. You can come wit
 
 ## Setting Up
 
-If you need help with configuring your computer for the course, a session will be held on January 14 Wednesday at the Cafe Private Room during the lunchtime, 12:00-13:00. See [Setting up](00_setting_up.qmd) section.
+If you need help with configuring your computer for the course, a session will be held on January 14 Wednesday at the Cafe Private Room during the lunchtime, 12:00-13:00. See [Setting Up](00_setting-up.qmd) section.
 
 # Registration
 

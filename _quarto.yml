@@ -17,13 +17,13 @@ website:
       - text: "Home"
         href: index.qmd
       - text: "0. Setting Up"
-        href: 00_setting_up.qmd
+        href: 00_setting-up.qmd
       - text: "1. Terminal"
         href: 01_terminal.qmd
       - text: "2. Project Structure"
-        href: 02_project_structure.qmd
+        href: 02_project-structure.qmd
       - text: "VS Code"
-        href: 00_vs_code.qmd
+        href: 00_vs-code.qmd
       # - text: "About"
       #   href: about.qmd
       # -  auto: 0?_*
