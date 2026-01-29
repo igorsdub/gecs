@@ -154,7 +154,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./00_setting_up.html" class="sidebar-item-text sidebar-link">
+  <a href="./00_setting-up.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">0. Setting Up</span></a>
   </div>
 </li>
@@ -166,13 +166,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02_project_structure.html" class="sidebar-item-text sidebar-link">
+  <a href="./02_project-structure.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">2. Project Structure</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./00_vs_code.html" class="sidebar-item-text sidebar-link">
+  <a href="./00_vs-code.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">VS Code</span></a>
   </div>
 </li>
@@ -596,7 +596,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="downloading-files-from-the-web" class="level2">
 <h2 class="anchored" data-anchor-id="downloading-files-from-the-web">Downloading Files from the Web</h2>
-<p>Another powerful command you encountered during <a href="./00_setting_up.html">the setup process</a> is <code>curl</code> (<strong>C</strong>lient <strong>URL</strong>). It’s used to transfer data from or to a server, often for downloading files or scripts from the internet:</p>
+<p>Another powerful command you encountered during <a href="00_setting_up.qmd">the setup process</a> is <code>curl</code> (<strong>C</strong>lient <strong>URL</strong>). It’s used to transfer data from or to a server, often for downloading files or scripts from the internet:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb59"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-fsSL</span> https://pixi.sh/install.sh <span class="kw">|</span> <span class="fu">sh</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This command downloads the Pixi installation script and pipes it directly to <code>sh</code> (the shell) for execution. Let’s break down the options:</p>
 <ul>
@@ -662,7 +662,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>.bashrc</code> - Configuration file for the Bash shell. Contains settings, aliases, and functions that customize your Bash environment.</li>
 <li><code>.zshrc</code> - Configuration file for the Zsh shell. Similar to <code>.bashrc</code>, but for Zsh.</li>
 </ul>
-<p>These files are executed every time you start a terminal. During the <a href="./00_setting_up.html">setup process</a>, you modified these files when installing tools like Pixi and Starship. For example, you added lines like:</p>
+<p>These files are executed every time you start a terminal. During the <a href="00_setting_up.qmd">setup process</a>, you modified these files when installing tools like Pixi and Starship. For example, you added lines like:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb66"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">'eval "$(starship init bash)"'</span> <span class="op">&gt;&gt;</span> ~/.bashrc</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This command appended a line to your <code>.bashrc</code> file that tells your shell to start Starship. If you remove that line, your terminal will go back to the looks it had before.</p>
 <section id="reloading-configuration-files" class="level2">
