@@ -5,7 +5,7 @@ format: html
 
 > “Graphical user interfaces make easy tasks easy, while command line interfaces make difficult tasks possible.”
 >
-> -   William Shotts, *The Linux Command Line: A Complete Introduction*
+> William Shotts, *The Linux Command Line: A Complete Introduction*
 
 If there is one software skill you had to learn, it would be working with a terminal. It is ubiquitous! It has been around since 1970s and is likely to stay, unlike other tools. Thus, investing your time learning how to use it properly is worth it.
 
