@@ -7,7 +7,7 @@ format: html
 >
 > Cher, *If I Could Turn Back Time* 1989
 
-The biggest concern that every reseracher using software faces is to rememer how to run a program, fix broken parts wihout affecting the working ones, and experiment by adding new features. Version control can do that! Although, the learning curve is steep your future self will think: "How no one has taught me this before?!"
+Version control tracks changes to your files, lets you undo mistakes, and makes collaboration easy. Once you start using it, you'll wonder how you worked without it!
 
 ::: callout-important
 This tutorial was "stolen" from the [Version Control with Git by The Software Carpentries](https://swcarpentry.github.io/git-novice). They have good educational resources on different topics for software practices in science res
@@ -15,7 +15,7 @@ This tutorial was "stolen" from the [Version Control with Git by The Software Ca
 
 # Summary
 
-![Version control, in contrast to ambiguously named files, enables easy picking between successive document versions. The Turing Way project illustration by Scriberia. Used under a CC-BY 4.0 licence. DOI: The Turing Way Community & Scriberia (2024).](https://book.the-turing-way.org/build/project-history-32b4416c7750af16823b2a0d09d980d3.svg){alt="An illustration with two examples of project history management. The left shows a stack of ambiguously named files, shown as book-like objects. A hand carefully tries to pull out one of the files without making the stack crumble.  In contrast, the right shows a dial with options ranging from V1 to V6. On top of the dial the six corresponding files are represented as ordered documents. A hand moves the dial to V3, which highlights the third document on top in blue."}
+![An illustration with two examples of project history management. The left shows a stack of ambiguously named files, shown as book-like objects. A hand carefully tries to pull out one of the files without making the stack crumble. In contrast, the right shows a dial with options ranging from V1 to V6. On top of the dial the six corresponding files are represented as ordered documents. A hand moves the dial to V3, which highlights the third document on top in blue.](https://book.the-turing-way.org/build/project-history-32b4416c7750af16823b2a0d09d980d3.svg)
 
 Jimmy and Alfredo have been hired by Ratatouille restaurant to investigate if it is possible to make the best recipes archive ever. They want to be able to work on indexing the prices at the same time, but they have run into problems doing this in the past. If they take turns, each one will spend a lot of time waiting for the other to finish, but if they work on their own copies and email changes back and forth things will be lost, overwritten, or duplicated.
 
@@ -29,7 +29,7 @@ Version control is better than mailing files back and forth:
 
 Teams are not the only ones to benefit from version control: lone researchers can benefit immensely. Keeping a record of what was changed, when, and why is extremely useful for all researchers if they ever need to come back to the project later on (e.g., a year later, when memory has faded).
 
-**Version control is the lab notebook of the digital world**: it's what professionals use to keep track of what they've done and to collaborate with other people. Every large software development project relies on it, and most programmers use it for their small jobs as well. And it isn't just for software: books, papers, small data sets, and anything that changes over time or needs to be shared can and should be stored in a version control system.
+**Version control is the lab notebook of the digital world**: professionals use it to track changes and work together. Whether you're coding, writing, or managing data, version control is essential.
 
 ## Installing Git
 
@@ -75,7 +75,6 @@ Unless multiple users make changes to the same section of the document - a confl
 
 A version control system is a tool that keeps track of these changes for us, effectively creating different versions of our files. It allows us to decide which changes will be made to the next version (each record of these changes is called a commit), and keeps useful metadata about them, such as who made the change. The complete history of commits for a particular project and their metadata make up a repository. Repositories can be kept in sync across different computers, facilitating collaboration among different people.
 
-
 # Setting Up Git
 
 Configure Git on a new computer. Git commands follow the pattern: `git verb options`. Here's the basic setup:
@@ -95,10 +94,13 @@ For privacy, use GitHub's no-reply email: `ID+username@users.noreply.github.com`
 
 ::: {.callout-note title="Line Endings"}
 Git on macOS/Linux:
+
 ``` bash
 git config --global core.autocrlf input
 ```
+
 On Windows:
+
 ``` bash
 git config --global core.autocrlf true
 ```
@@ -106,9 +108,10 @@ git config --global core.autocrlf true
 
 Alfredo also has to set his favorite text editor, following this table:
 
-```bash
+``` bash
 git config --global core.editor "code --wait"
 ```
+
 It is possible to reconfigure the text editor for Git whenever you want to change it.
 
 ::: {.callout-note title="Exiting Vim"}
@@ -131,13 +134,11 @@ These commands only run once. Review your settings anytime with:
 git config --list --global
 ```
 
-
 ::: {.callout-note title="Git Help and Manual"}
 Use `git <command> -h` for quick help or `git <command> --help` for full documentation.
 :::
 
 # Creating a Repository
-
 
 Once Git is configured, we can start using it.
 
@@ -171,8 +172,8 @@ But if we add the `-a` flag to show everything, we can see that Git has created 
 ls -a
 ```
 
-```output
-.	..	.git
+``` output
+.   ..  .git
 ```
 
 Git uses this special subdirectory to store all the information about the project, including the tracked files and sub-directories located within the project's directory. If we ever delete the `.git` subdirectory, we will lose the project's history.
@@ -183,7 +184,7 @@ We can now start using one of the most important git commands, which is particul
 git status
 ```
 
-```output
+``` output
 On branch main
 
 No commits yet
@@ -218,37 +219,9 @@ Additionally, Git repositories can interfere with each other if they are "nested
 git status
 ```
 
-```output
+``` output
 fatal: Not a git repository (or any of the parent directories): .git
 ```
-:::
-
-## Correcting `git init` Mistakes
-
-Jimmy explains to Alfredo how a nested repository is redundant and may cause confusion down the road. Alfredo would like to go back to a single git repository. How can Alfredo undo his last `git init` in the `desserts` subdirectory?
-
-::: {.callout-note title="Solution: USE WITH CAUTION!" collapse="true"}
-
-**Background**
-
-Removing files from a Git repository needs to be done with caution. But we have not learned yet how to tell Git to track a particular file; we will learn this in the next episode. Files that are not tracked by Git can easily be removed like any other "ordinary" files with
-
-``` bash
-rm filename
-```
-
-Similarly a directory can be removed using `rm -r dirname`. If the files or folder being removed in this fashion are tracked by Git, then their removal becomes another change that we will need to track, as we will see in the next episode.
-
-**Solution**
-
-Git keeps all of its files in the `.git` directory. To recover from this little mistake, Alfredo can remove the `.git` folder in the desserts subdirectory by running the following command from inside the `recipes` directory:
-
-``` bash
-rm -rf desserts/.git
-```
-
-But be careful! Running this command in the wrong directory will remove the entire Git history of a project you might want to keep. In general, deleting files and directories using `rm` from the command line cannot be reversed. Therefore, always check your current directory using the command `pwd`.
-
 :::
 
 # Tracking Changes
@@ -268,10 +241,9 @@ code guacamole.md
 
 If `code` is not working via terminal, you can just use GUI to create a new file by pressing `Cmd/Ctrl+N`.
 
-
 Type the text below into the `guacamole.md` file:
 
-```output
+``` output
 # Guacamole
 ## Ingredients
 ## Instructions
@@ -289,7 +261,7 @@ Let's verify that the file was properly created by running the list command (`ls
 ls
 ```
 
-```output
+``` output
 guacamole.md
 ```
 
@@ -299,7 +271,7 @@ guacamole.md
 cat guacamole.md
 ```
 
-```output
+``` output
 # Guacamole
 ## Ingredients
 ## Instructions
@@ -311,7 +283,7 @@ If we check the status of our project again, Git tells us that it's noticed the 
 git status
 ```
 
-```output
+``` output
 On branch main
 
 No commits yet
@@ -319,7 +291,7 @@ No commits yet
 Untracked files:
    (use "git add <file>..." to include in what will be committed)
 
-	guacamole.md
+    guacamole.md
 
 nothing added to commit but untracked files present (use "git add" to track)
 ```
@@ -336,7 +308,7 @@ and then check that the right thing happened:
 git status
 ```
 
-```output
+``` output
 On branch main
 
 No commits yet
@@ -344,7 +316,7 @@ No commits yet
 Changes to be committed:
   (use "git rm --cached <file>..." to unstage)
 
-	new file:   guacamole.md
+    new file:   guacamole.md
 ```
 
 Git now knows that it's supposed to keep track of `guacamole.md`, but it hasn't recorded these changes as a commit yet. To get it to do that, we need to run one more command:
@@ -353,7 +325,7 @@ Git now knows that it's supposed to keep track of `guacamole.md`, but it hasn't 
 git commit -m "Create initial structure for a Guacamole recipe"
 ```
 
-```output
+``` output
 [main (root-commit) f22b25e] Create initial structure for a Guacamole recipe
  1 file changed, 1 insertion(+)
  create mode 100644 guacamole.md
@@ -369,7 +341,7 @@ If we run `git status` now:
 git status
 ```
 
-```output
+``` output
 On branch main
 nothing to commit, working tree clean
 ```
@@ -380,7 +352,7 @@ it tells us everything is up to date. If we want to know what we've done recentl
 git log
 ```
 
-```output
+``` output
 commit f22b25e3233b4645dabd0d81e651fe074bd8e73b
 Author: Alfredo Linguini <a.linguini@ratatouille.fr>
 Date:   Thu Aug 22 09:51:46 2013 -0400
@@ -401,7 +373,7 @@ code guacamole.md
 cat guacamole.md
 ```
 
-```output
+``` output
 # Guacamole
 ## Ingredients
 * avocado
@@ -416,13 +388,13 @@ When we run `git status` now, it tells us that a file it already knows about has
 git status
 ```
 
-```output
+``` output
 On branch main
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git restore <file>..." to discard changes in working directory)
 
-	modified:   guacamole.md
+    modified:   guacamole.md
 
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
@@ -433,7 +405,7 @@ The last line is the key phrase: "no changes added to commit". We have changed t
 git diff
 ```
 
-```output
+``` output
 diff --git a/guacamole.md b/guacamole.md
 index df0654a..315bf3a 100644
 --- a/guacamole.md
@@ -447,12 +419,7 @@ index df0654a..315bf3a 100644
  ## Instructions
 ```
 
-The output is cryptic because it is actually a series of commands for tools like editors and `patch` telling them how to reconstruct one file given the other. If we break it down into pieces:
-
-1. The first line tells us that Git is producing output similar to the Unix `diff` command comparing the old and new versions of the file.
-2. The second line tells exactly which versions of the file Git is comparing; `df0654a` and `315bf3a` are unique computer-generated labels for those versions.
-3. The third and fourth lines once again show the name of the file being changed.
-4. The remaining lines are the most interesting, they show us the actual differences and the lines on which they occur. In particular, the `+` marker in the first column shows where we added a line.
+The output shows: - Lines with `+` are additions (new lines) - Lines with `-` are deletions (removed lines) - The file name and commit IDs are shown at the top
 
 After reviewing our change, it's time to commit it:
 
@@ -460,13 +427,13 @@ After reviewing our change, it's time to commit it:
 git commit -m "Add ingredients for basic guacamole"
 ```
 
-```output
+``` output
 On branch main
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git restore <file>..." to discard changes in working directory)
 
-	modified:   guacamole.md
+    modified:   guacamole.md
 
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
@@ -478,7 +445,7 @@ git add guacamole.md
 git commit -m "Add ingredients for basic guacamole"
 ```
 
-```output
+``` output
 [main 34961b1] Add ingredients for basic guacamole
  1 file changed, 3 insertions(+)
 ```
@@ -491,7 +458,7 @@ To allow for this, Git has a special *staging area* where it keeps track of thin
 `git add` stages files for the next commit. `git commit` creates a snapshot. Stage files manually to avoid accidentally committing unwanted changes.
 :::
 
-![](images/03_version-control__git-staging-area.svg){alt='A diagram showing how "git add" registers changes in the staging area, while "git commit" moves changes from the staging area to the repository'}
+![The staging area in Git. From [Research Software Engineering with Python](https://third-bit.com/py-rse/git-cmdline.html). ](images/paste-46.png)
 
 Let's watch as our changes to a file move from our editor to the staging area and into long-term storage. First, we'll improve our recipe by changing 'lemon' to 'lime':
 
@@ -500,7 +467,7 @@ code guacamole.md
 cat guacamole.md
 ```
 
-```output
+``` output
 # Guacamole
 ## Ingredients
 * avocado
@@ -513,7 +480,7 @@ cat guacamole.md
 git diff
 ```
 
-```output
+``` output
 diff --git a/guacamole.md b/guacamole.md
 index 315bf3a..b36abfd 100644
 --- a/guacamole.md
@@ -541,7 +508,7 @@ There is no output: as far as Git can tell, there's no difference between what i
 git diff --staged
 ```
 
-```output
+``` output
 diff --git a/guacamole.md b/guacamole.md
 index 315bf3a..b36abfd 100644
 --- a/guacamole.md
@@ -562,7 +529,7 @@ it shows us the difference between the last committed change and what's in the s
 git commit -m "Modify guacamole to the traditional recipe"
 ```
 
-```output
+``` output
 [main 005937f] Modify guacamole to the traditional recipe
  1 file changed, 1 insertion(+)
 ```
@@ -573,7 +540,7 @@ check our status:
 git status
 ```
 
-```output
+``` output
 On branch main
 nothing to commit, working tree clean
 ```
@@ -584,7 +551,7 @@ and look at the history of what we've done so far:
 git log
 ```
 
-```output
+``` output
 commit 005937fbe2a98fb83f0ade869025dc2636b4dad5 (HEAD -> main)
 Author: Alfredo Linguini <a.linguini@ratatouille.fr>
 Date:   Thu Aug 22 10:14:07 2013 -0400
@@ -604,51 +571,42 @@ Date:   Thu Aug 22 09:51:46 2013 -0400
     Create initial structure for a Guacamole recipe
 ```
 
-
-
-
-
 To recap, when we want to add changes to our repository, we first need to add the changed files to the staging area (`git add`) and then commit the staged changes to the repository (`git commit`):
 
-![](images/03_version-control__git-committing.svg){alt='A diagram showing two documents being separately staged using git add, before being combined into one commit using git commit'}
+![Commands included in basic Git workflows. From [Research Software Engineering with Python](https://third-bit.com/py-rse/git-cmdline.html).](images/paste-47.png)
 
 ## Choosing a Commit Message
 
 Which of the following commit messages would be most appropriate for the last commit made to `guacamole.md`?
 
-1. "Changes"
-2. "Change lemon for lime"
-3. "Modify guacamole to the traditional recipe"
+1.  "Changes"
+2.  "Change lemon for lime"
+3.  "Modify guacamole to the traditional recipe"
 
 ::: {.callout-note title="Solution" collapse="true"}
-Answer 1 is not descriptive enough, and the purpose of the commit is unclear; and answer 2 is redundant to using "git diff" to see what changed in this commit; but answer 3 is good: short, descriptive, and imperative.
+Answer 3. Good commit messages are short, descriptive, and explain *why*, not just *what*.
 :::
 
 ## Committing Changes to Git
 
 Which command(s) below would save the changes of `myfile.txt` to my local Git repository?
 
-1. `git commit -m "my recent changes"`
-2. `git init myfile.txt` then `git commit -m "my recent changes"`
-3. `git add myfile.txt` then `git commit -m "my recent changes"`
-4. `git commit -m myfile.txt "my recent changes"`
+1.  `git commit -m "my recent changes"`
+2.  `git init myfile.txt` then `git commit -m "my recent changes"`
+3.  `git add myfile.txt` then `git commit -m "my recent changes"`
+4.  `git commit -m myfile.txt "my recent changes"`
 
 ::: {.callout-note title="Solution" collapse="true"}
-1. Would only create a commit if files have already been staged.
-2. Would try to create a new repository.
-3. Is correct: first add the file to the staging area, then commit.
-4. Would try to commit a file "my recent changes" with the message myfile.txt.
+Answer 3 is correct: `git add` stages the file, then `git commit` saves it.
 :::
 
 ## Committing Multiple Files
 
-When you make changes, they often belong together as one logical improvement. Git lets you group related edits into a single commit so your project stays consistent. This is something word processors can't easily do—each suggestion is separate, even if they depend on each other.
+You can group changes from multiple files into one commit. Use `git add file1.txt file2.txt` to stage multiple files, then commit them together.
 
-The staging area can hold changes from any number of files that you want to commit as a single snapshot.
-
-1. Add some text to `guacamole.md` noting the rough price of the ingredients.
-2. Create a new file `groceries.md` with a list of products and their prices for different markets.
-3. Add changes from both files to the staging area, and commit those changes.
+1.  Add some text to `guacamole.md` noting the rough price of the ingredients.
+2.  Create a new file `groceries.md` with a list of products and their prices for different markets.
+3.  Add changes from both files to the staging area, and commit those changes.
 
 ::: {.callout-note title="Solution" collapse="true"}
 First we make our changes to the `guacamole.md` and `groceries.md` files:
@@ -657,7 +615,7 @@ First we make our changes to the `guacamole.md` and `groceries.md` files:
 cat guacamole.md
 ```
 
-```output
+``` output
 # Guacamole
 ## Ingredients
 * avocado (1.35)
@@ -669,7 +627,7 @@ cat guacamole.md
 cat groceries.md
 ```
 
-```output
+``` output
 # Market A
 * avocado: 1.35 per unit.
 * lime: 0.64 per unit
@@ -695,7 +653,7 @@ Now the files are ready to commit. You can check that using `git status`. If you
 git commit -m "Write prices for ingredients and their source"
 ```
 
-```output
+``` output
 [main cc127c2]
  Write prices for ingredients and their source
  2 files changed, 7 insertions(+)
@@ -705,10 +663,10 @@ git commit -m "Write prices for ingredients and their source"
 
 ## `bio` Repository
 
-- Create a new Git repository on your computer called `bio`.
-- Write a three-line biography for yourself in a file called `me.txt`, commit your changes
-- Modify one line, add a fourth line
-- Display the differences between its updated state and its original state.
+-   Create a new Git repository on your computer called `bio`.
+-   Write a three-line biography for yourself in a file called `me.txt`, commit your changes
+-   Modify one line, add a fourth line
+-   Display the differences between its updated state and its original state.
 
 ::: {.callout-note title="Solution" collapse="true"}
 If needed, move out of the `recipes` folder:
@@ -755,7 +713,7 @@ code guacamole.md
 cat guacamole.md
 ```
 
-```output
+``` output
 # Guacamole
 ## Ingredients
 * avocado
@@ -771,7 +729,7 @@ Now, let's see what we get.
 git diff HEAD guacamole.md
 ```
 
-```output
+``` output
 diff --git a/guacamole.md b/guacamole.md
 index b36abfd..0848c8d 100644
 --- a/guacamole.md
@@ -783,7 +741,7 @@ index b36abfd..0848c8d 100644
 +An ill-considered change
 ```
 
-Note that `HEAD` is the default option for `git diff`, so omitting it will not change the command's output at all (give it a try). However, the real power of `git diff` lies in its ability to compare with previous commits. For example, by adding `~1` (where "~" is "tilde", pronounced [**til**\-d*uh*]), we can look at the commit before `HEAD`.
+Note that `HEAD` is the default option for `git diff`, so omitting it will not change the command's output at all (give it a try). However, the real power of `git diff` lies in its ability to compare with previous commits. For example, by adding `~1` (where "\~" is "tilde", pronounced \[**til**-d*uh*\]), we can look at the commit before `HEAD`.
 
 ``` bash
 git diff HEAD~1 guacamole.md
@@ -795,7 +753,7 @@ If we want to see the differences between older commits we can use `git diff` ag
 git diff HEAD~2 guacamole.md
 ```
 
-```output
+``` output
 diff --git a/guacamole.md b/guacamole.md
 index df0654a..b36abfd 100644
 --- a/guacamole.md
@@ -815,7 +773,7 @@ We could also use `git show` which shows us what changes we made at an older com
 git show HEAD~2 guacamole.md
 ```
 
-```output
+``` output
 commit f22b25e3233b4645dabd0d81e651fe074bd8e73b
 Author: Alfredo Linguini <a.linguini@ratatouille.fr>
 Date:   Thu Aug 22 10:07:21 2013 -0400
@@ -841,7 +799,7 @@ We can also refer to commits using those long strings of digits and letters that
 git diff f22b25e3233b4645dabd0d81e651fe074bd8e73b guacamole.md
 ```
 
-```output
+``` output
 diff --git a/guacamole.md b/guacamole.md
 index df0654a..93a3e13 100644
 --- a/guacamole.md
@@ -862,7 +820,7 @@ That's the right answer, but typing out random 40-character strings is annoying,
 git diff f22b25e guacamole.md
 ```
 
-```output
+``` output
 diff --git a/guacamole.md b/guacamole.md
 index df0654a..93a3e13 100644
 --- a/guacamole.md
@@ -885,7 +843,7 @@ All right! So we can save changes to files and see what we've changed. Now, how 
 git status
 ```
 
-```output
+``` output
 On branch main
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
@@ -902,7 +860,7 @@ git restore guacamole.md
 cat guacamole.md
 ```
 
-```output
+``` output
 # Guacamole
 ## Ingredients
 * avocado
@@ -918,7 +876,7 @@ git restore -s f22b25e guacamole.md
 cat guacamole.md
 ```
 
-```output
+``` output
 # Guacamole
 ## Ingredients
 ## Instructions
@@ -928,7 +886,7 @@ cat guacamole.md
 git status
 ```
 
-```output
+``` output
 On branch main
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
@@ -945,7 +903,7 @@ git restore guacamole.md
 cat guacamole.md
 ```
 
-```output
+``` output
 # Guacamole
 ## Ingredients
 * avocado
@@ -956,11 +914,11 @@ cat guacamole.md
 
 It's important to remember that we must use the commit number that identifies the state of the repository *before* the change we're trying to undo. A common mistake is to use the number of the commit in which we made the change we're trying to discard. In the example below, we want to retrieve the state from before the most recent commit (`HEAD~1`), which is commit `f22b25e`. We use the `.` to mean all files:
 
-![](images/03_version-control__git-restore.svg){alt='A diagram showing how git restore can be used to restore the previous version of two files'}
+![](images/03_version-control__git-restore.svg){alt="A diagram showing how git restore can be used to restore the previous version of two files"}
 
 So, to put it all together, here's how Git works in cartoon form:
 
-![](images/03_version-control__git_staging.svg){alt='A diagram showing the entire git workflow: local changes are staged using git add, applied to the local repository using git commit, and can be restored from the repository using git restore'}
+![](images/03_version-control__git_staging.svg){alt="A diagram showing the entire git workflow: local changes are staged using git add, applied to the local repository using git commit, and can be restored from the repository using git restore"}
 
 The fact that files can be reverted one by one tends to change the way people organize their work. If everything is in one large document, it's hard (but not impossible) to undo changes to the introduction without also undoing changes made later to the conclusion. If the introduction and conclusion are stored in separate files, on the other hand, moving backward and forward in time becomes much easier.
 
@@ -970,11 +928,11 @@ Jennifer has made changes to the Python script that she has been working on for 
 
 Luckily, she has been keeping track of her project's versions using Git! Which commands below will let her recover the last committed version of her Python script called `data_cruncher.py`?
 
-1. `git restore`
-2. `git restore data_cruncher.py`
-3. `git restore -s HEAD~1 data_cruncher.py`
-4. `git restore -s <unique ID of last commit> data_cruncher.py`
-5. Both 2 and 4
+1.  `git restore`
+2.  `git restore data_cruncher.py`
+3.  `git restore -s HEAD~1 data_cruncher.py`
+4.  `git restore -s <unique ID of last commit> data_cruncher.py`
+5.  Both 2 and 4
 
 ::: {.callout-note title="Solution" collapse="true"}
 The answer is (5) - Both 2 and 4.
@@ -984,26 +942,6 @@ The `restore` command restores files from the repository, overwriting the files 
 Answer 3 gets the version of `data_cruncher.py` from the commit *before* `HEAD`, which is NOT what we wanted.
 
 Answer 1 results in an error. You need to specify a file to restore. If you want to restore all files you should use `git restore .`
-:::
-
-## Reverting a Commit
-
-Jennifer is collaborating with colleagues on her Python script. She realizes her last commit to the project's repository contained an error, and wants to undo it. Jennifer wants to undo correctly so everyone in the project's repository gets the correct change. The command `git revert [erroneous commit ID]` will create a new commit that reverses the erroneous commit.
-
-The command `git revert` is different from `git restore -s [commit ID] .` because `git restore` returns the files not yet committed within the local repository to a previous state, whereas `git revert` reverses changes committed to the local and project repositories.
-
-Below are the right steps and explanations for Jennifer to use `git revert`. What is the missing command?
-
-1. `________ # Look at the git history of the project to find the commit ID`
-2. Copy the ID (the first few characters of the ID, e.g. 0b1d055).
-3. `git revert [commit ID]`
-4. Type in the new commit message.
-5. Save and close.
-
-::: {.callout-note title="Solution" collapse="true"}
-The command `git log` lists project history with commit IDs.
-
-The command `git show HEAD` shows changes made at the latest commit, and lists the commit ID; however, Jennifer should double-check it is the correct commit, and no one else has committed changes to the repository.
 :::
 
 ## Understanding Workflow and History
@@ -1020,22 +958,30 @@ git restore ketchup.md
 cat ketchup.md
 ```
 
-1. ```output
-   ketchup enhances pasta dishes
-   ```
+1.  
 
-2. ```output
-   I like tomatoes, therefore I like ketchup
-   ```
+    ``` output
+       ketchup enhances pasta dishes
+    ```
 
-3. ```output
-   I like tomatoes, therefore I like ketchup
-   ketchup enhances pasta dishes
-   ```
+2.  
 
-4. ```output
-   Error because you have changed ketchup.md without committing the changes
-   ```
+    ``` output
+       I like tomatoes, therefore I like ketchup
+    ```
+
+3.  
+
+    ``` output
+       I like tomatoes, therefore I like ketchup
+       ketchup enhances pasta dishes
+    ```
+
+4.  
+
+    ``` output
+       Error because you have changed ketchup.md without committing the changes
+    ```
 
 ::: {.callout-note title="Solution" collapse="true"}
 The answer is 2.
@@ -1046,7 +992,7 @@ So, when `git commit -m "My opinions about the red sauce"` is executed, the vers
 
 At this time, the working copy still has the second line (and `git status` will show that the file is modified). However, `git restore ketchup.md` replaces the working copy with the most recently committed version of `ketchup.md`. So, `cat ketchup.md` will output:
 
-```output
+``` output
 I like tomatoes, therefore I like ketchup
 ```
 :::
@@ -1055,7 +1001,7 @@ I like tomatoes, therefore I like ketchup
 
 Consider this command: `git diff HEAD~9 guacamole.md`. What do you predict this command will do if you execute it? What happens when you do execute it? Why?
 
-Try another command, `git diff [ID] guacamole.md`, where [ID] is replaced with the unique identifier for your most recent commit. What do you think will happen, and what does happen?
+Try another command, `git diff [ID] guacamole.md`, where \[ID\] is replaced with the unique identifier for your most recent commit. What do you think will happen, and what does happen?
 
 ## Getting Rid of Staged Changes
 
@@ -1064,7 +1010,7 @@ Try another command, `git diff [ID] guacamole.md`, where [ID] is replaced with t
 ::: {.callout-note title="Solution" collapse="true"}
 After adding a change, `git restore` cannot be used directly. Let's look at the output of `git status`:
 
-```output
+``` output
 On branch main
 Changes to be committed:
   (use "git restore --staged <file>..." to unstage)
@@ -1085,7 +1031,7 @@ Now, `git status` gives us:
 git status
 ```
 
-```output
+``` output
 On branch main
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
@@ -1102,7 +1048,7 @@ git restore guacamole.md
 git status
 ```
 
-```output
+``` output
 On branch main
 nothing to commit, working tree clean
 ```
@@ -1151,15 +1097,15 @@ and see what Git says:
 git status
 ```
 
-```output
+``` output
 On branch main
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
 
-	a.png
-	b.png
-	c.png
-	pictures/
+    a.png
+    b.png
+    c.png
+    pictures/
 
 nothing added to commit but untracked files present (use "git add" to track)
 ```
@@ -1174,7 +1120,7 @@ code .gitignore
 
 Type the text below into the `.gitignore` file:
 
-```output
+``` output
 *.png
 pictures/
 ```
@@ -1187,7 +1133,7 @@ Verify that the file contains the files to ignore.
 cat .gitignore
 ```
 
-```output
+``` output
 *.png
 pictures/
 ```
@@ -1200,12 +1146,12 @@ Once we have created this file, the output of `git status` is much cleaner:
 git status
 ```
 
-```output
+``` output
 On branch main
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
 
-	.gitignore
+    .gitignore
 
 nothing added to commit but untracked files present (use "git add" to track)
 ```
@@ -1218,7 +1164,7 @@ git commit -m "Ignore png files and the pictures folder."
 git status
 ```
 
-```output
+``` output
 On branch main
 nothing to commit, working tree clean
 ```
@@ -1229,7 +1175,7 @@ As a bonus, using `.gitignore` helps us avoid accidentally adding files to the r
 git add a.png
 ```
 
-```output
+``` output
 The following paths are ignored by one of your .gitignore files:
 a.png
 Use -f if you really want to add them.
@@ -1241,7 +1187,7 @@ If we really want to override our ignore settings, we can use `git add -f` to fo
 git status --ignored
 ```
 
-```output
+``` output
 On branch main
 Ignored files:
  (use "git add -f <file>..." to include in what will be committed)
@@ -1268,7 +1214,7 @@ How would you ignore only `pictures/cake` and not `pictures/pizza`?
 ::: {.callout-note title="Solution" collapse="true"}
 If you only want to ignore the contents of `pictures/cake`, you can change your `.gitignore` to ignore only the `/cake/` subfolder by adding the following line to your `.gitignore`:
 
-```output
+``` output
 pictures/cake/
 ```
 
@@ -1286,7 +1232,7 @@ Hint: Find out what `!` (the exclamation point operator) does
 ::: {.callout-note title="Solution" collapse="true"}
 You would add the following two lines to your `.gitignore`:
 
-```output
+``` output
 *.png           # ignore all png files
 !final.png      # except final.png
 ```
@@ -1314,7 +1260,7 @@ Hint: think a bit about how you created an exception with the `!` operator befor
 ::: {.callout-note title="Solution" collapse="true"}
 If you want to ignore the contents of `pictures/` but not those of `pictures/pie/`, you can change your `.gitignore` to ignore the contents of pictures folder, but create an exception for the contents of the `pictures/pie` subfolder. Your `.gitignore` would look like this:
 
-```output
+``` output
 pictures/*              # ignore everything in pictures folder
 !pictures/pie/          # do not ignore pictures/pie/ contents
 ```
@@ -1354,7 +1300,7 @@ How do you ignore all the `.csv` files, without explicitly listing the names of 
 ::: {.callout-note title="Solution" collapse="true"}
 In the `.gitignore` file, write:
 
-```output
+``` output
 **/*.csv
 ```
 
@@ -1365,7 +1311,7 @@ This will ignore all the `.csv` files, regardless of their position in the direc
 
 Given a `.gitignore` file with the following contents:
 
-```output
+``` output
 *.csv
 !*.csv
 ```
@@ -1380,14 +1326,14 @@ The `!` modifier will negate an entry from a previously defined ignore pattern. 
 
 You wrote a script that creates many intermediate log-files of the form `log_01`, `log_02`, `log_03`, etc. You want to keep them but you do not want to track them through `git`.
 
-1. Write **one** `.gitignore` entry that excludes files of the form `log_01`, `log_02`, etc.
-2. Test your "ignore pattern" by creating some dummy files of the form `log_01`, etc.
-3. You find that the file `log_01` is very important after all, add it to the tracked files without changing the `.gitignore` again.
-4. Discuss with your neighbor what other types of files could reside in your directory that you do not want to track and thus would exclude via `.gitignore`.
+1.  Write **one** `.gitignore` entry that excludes files of the form `log_01`, `log_02`, etc.
+2.  Test your "ignore pattern" by creating some dummy files of the form `log_01`, etc.
+3.  You find that the file `log_01` is very important after all, add it to the tracked files without changing the `.gitignore` again.
+4.  Discuss with your neighbor what other types of files could reside in your directory that you do not want to track and thus would exclude via `.gitignore`.
 
 ::: {.callout-note title="Solution" collapse="true"}
-1. Append either `log_*` or `log*` as a new entry in your `.gitignore`
-2. Track `log_01` using `git add -f log_01`
+1.  Append either `log_*` or `log*` as a new entry in your `.gitignore`
+2.  Track `log_01` using `git add -f log_01`
 :::
 
 # Remotes in GitHub
@@ -1442,7 +1388,7 @@ We can check that the command has worked by running `git remote -v`:
 git remote -v
 ```
 
-```output
+``` output
 origin   git@github.com:alflin/recipes.git (fetch)
 origin   git@github.com:alflin/recipes.git (push)
 ```
@@ -1469,7 +1415,7 @@ Your output is going to look a little different depending on whether or not SSH 
 
 If SSH has not been set up, your output is:
 
-```output
+``` output
 ls: cannot access '~/.ssh': No such file or directory
 ```
 
@@ -1489,27 +1435,27 @@ If you are using a legacy system that doesn't support the Ed25519 algorithm, use
 ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 ```
 
-```output
+``` output
 Generating public/private ed25519 key pair.
 Enter file in which to save the key (/c/Users/Alfredo/.ssh/id_ed25519):
 ```
 
 We want to use the default file, so just press Enter.
 
-```output
+``` output
 Created directory '/c/Users/Alfredo/.ssh'.
 Enter passphrase (empty for no passphrase):
 ```
 
 Now, it is prompting you for a passphrase. Since you might be using a shared laptop, you want to create a passphrase. Be sure to use something memorable or save your passphrase somewhere, as there is no "reset my password" option. Note that when typing a passphrase on a terminal, there won't be any visual feedback of your typing. This is normal: your passphrase will be recorded even if you see nothing changing on your screen.
 
-```output
+``` output
 Enter same passphrase again:
 ```
 
 After entering the same passphrase a second time, you receive the confirmation:
 
-```output
+``` output
 Your identification has been saved in /c/Users/Alfredo/.ssh/id_ed25519
 Your public key has been saved in /c/Users/Alfredo/.ssh/id_ed25519.pub
 The key fingerprint is:
@@ -1536,13 +1482,12 @@ Now that you have generated the SSH keys, you will find the SSH files when you c
 ls -al ~/.ssh
 ```
 
-```output
+``` output
 drwxr-xr-x 1 Alfredo   197121   0 Jul 16 14:48 ./
 drwxr-xr-x 1 Alfredo   197121   0 Jul 16 14:48 ../
 -rw-r--r-- 1 Alfredo   197121 419 Jul 16 14:48 id_ed25519
 -rw-r--r-- 1 Alfredo   197121 106 Jul 16 14:48 id_ed25519.pub
 ```
-
 
 ## Copying the public key to GitHub
 
@@ -1552,7 +1497,7 @@ Now you have an SSH key pair and you can run this command to check if GitHub can
 ssh -T git@github.com
 ```
 
-```output
+``` output
 The authenticity of host 'github.com (192.30.255.112)' can't be established.
 RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.
 This key is not known by any other names
@@ -1569,7 +1514,7 @@ First, we need to copy the public key. Be sure to include the `.pub` at the end,
 cat ~/.ssh/id_ed25519.pub
 ```
 
-```output
+``` output
 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDmRA3d51X0uu9wXek559gfn6UFNF69yZjChyBIU2qKI a.linguini@ratatouille.fr
 ```
 
@@ -1581,7 +1526,7 @@ Now that you've set that up, let's check your authentication again from the comm
 ssh -T git@github.com
 ```
 
-```output
+``` output
 Hi Alfredo! You've successfully authenticated, but GitHub does not provide shell access.
 ```
 
@@ -1597,7 +1542,7 @@ git push origin main
 
 If you set up a passphrase, it will prompt you for it. If you completed advanced settings for your authentication, it will not prompt for a passphrase.
 
-```output
+``` output
 Enumerating objects: 16, done.
 Counting objects: 100% (16/16), done.
 Delta compression using up to 8 threads.
@@ -1625,15 +1570,13 @@ git config --global --unset https.proxy
 ```
 :::
 
-
-
 We can pull changes from the remote repository to the local one as well:
 
 ``` bash
 git pull origin main
 ```
 
-```output
+``` output
 From https://github.com/alflin/recipes
  * branch            main     -> FETCH_HEAD
 Already up to date.
@@ -1652,7 +1595,6 @@ The middle button (with the picture of two overlapping squares or pages) copies 
 
 The right-most button lets you view all of the files in the repository at the time of that commit. To do this in the shell, we'd need to checkout the repository at that particular time. We can do this with `git checkout ID` where ID is the identifier of the commit we want to look at. If we do this, we need to remember to put the repository back to the right state afterwards!
 :::
-
 
 ## GitHub Timestamp
 
@@ -1682,7 +1624,7 @@ Working alone? Open a second terminal to simulate a partner.
 
 The repository owner needs to give other people access. In your repository page on GitHub, click the "Settings" button on the right, select "Collaborators", click "Add people", and then enter your collaborator's username.
 
-To accept access to the owner's repository, the collaborator needs to go to [https://github.com/notifications](https://github.com/notifications) or check for email notification. Once there, they can accept access to the owner's repository.
+To accept access to the owner's repository, the collaborator needs to go to <https://github.com/notifications> or check for email notification. Once there, they can accept access to the owner's repository.
 
 ## Cloning a repository
 
@@ -1712,7 +1654,7 @@ code hummus.md
 cat hummus.md
 ```
 
-```output
+``` output
 # Hummus
 ## Ingredients
 * chickpeas
@@ -1726,7 +1668,7 @@ git add hummus.md
 git commit -m "Add ingredients for hummus"
 ```
 
-```output
+``` output
  1 file changed, 6 insertion(+)
  create mode 100644 hummus.md
 ```
@@ -1737,7 +1679,7 @@ Then push the change to the *owner's repository* on GitHub:
 git push origin main
 ```
 
-```output
+``` output
 Enumerating objects: 4, done.
 Counting objects: 4, done.
 Delta compression using up to 4 threads.
@@ -1764,7 +1706,7 @@ To download the collaborator's changes from GitHub, the owner now enters:
 git pull origin main
 ```
 
-```output
+``` output
 remote: Enumerating objects: 4, done.
 remote: Counting objects: 100% (4/4), done.
 remote: Compressing objects: 100% (2/2), done.
@@ -1785,10 +1727,10 @@ Now the three repositories (owner's local, collaborator's local, and owner's on 
 ::: {.callout-note title="A Basic Collaborative Workflow"}
 In practice, it is good to be sure that you have an updated version of the repository you are collaborating on, so you should `git pull` before making changes. The basic collaborative workflow would be:
 
-- update your local repo with `git pull origin main`,
-- make your changes and stage them with `git add`,
-- commit your changes with `git commit -m`, and
-- upload the changes to GitHub with `git push origin main`
+-   update your local repo with `git pull origin main`,
+-   make your changes and stage them with `git add`,
+-   commit your changes with `git commit -m`, and
+-   upload the changes to GitHub with `git push origin main`
 
 It is better to make many commits with smaller changes rather than one commit with massive changes: small commits are easier to read and review.
 :::
@@ -1829,7 +1771,7 @@ To see how we can resolve conflicts, we must first create one. The file `guacamo
 cat guacamole.md
 ```
 
-```output
+``` output
 # Guacamole
 ## Ingredients
 * avocado
@@ -1845,7 +1787,7 @@ code guacamole.md
 cat guacamole.md
 ```
 
-```output
+``` output
 # Guacamole
 ## Ingredients
 * avocado
@@ -1862,7 +1804,7 @@ git add guacamole.md
 git commit -m "First step on the instructions"
 ```
 
-```output
+``` output
 [main 5ae9631] First step on the instructions
  1 file changed, 1 insertion(+)
 ```
@@ -1871,7 +1813,7 @@ git commit -m "First step on the instructions"
 git push origin main
 ```
 
-```output
+``` output
 Enumerating objects: 5, done.
 Counting objects: 100% (5/5), done.
 Delta compression using up to 8 threads
@@ -1890,7 +1832,7 @@ code guacamole.md
 cat guacamole.md
 ```
 
-```output
+``` output
 # Guacamole
 ## Ingredients
 * avocado
@@ -1907,7 +1849,7 @@ git add guacamole.md
 git commit -m "Add first step"
 ```
 
-```output
+``` output
 [main 07ebc69] Add first step
  1 file changed, 1 insertion(+)
 ```
@@ -1918,7 +1860,7 @@ but Git won't let us push it to GitHub:
 git push origin main
 ```
 
-```output
+``` output
 To https://github.com/alflin/recipes.git
  ! [rejected]        main -> main (fetch first)
 error: failed to push some refs to 'https://github.com/alflin/recipes.git'
@@ -1935,7 +1877,7 @@ Git rejects the push because it detects that the remote repository has new updat
 git pull origin main
 ```
 
-```output
+``` output
 remote: Enumerating objects: 5, done.
 remote: Counting objects: 100% (5/5), done.
 remote: Compressing objects: 100% (1/1), done.
@@ -1949,44 +1891,13 @@ CONFLICT (content): Merge conflict in guacamole.md
 Automatic merge failed; fix conflicts and then commit the result.
 ```
 
-::: {.callout-note title="You may need to tell Git what to do"}
-If you see the below in your output, Git is asking what it should do.
-
-```output
-hint: You have divergent branches and need to specify how to reconcile them.
-hint: You can do so by running one of the following commands sometime before
-hint: your next pull:
-hint:
-hint:   git config pull.rebase false  # merge (the default strategy)
-hint:   git config pull.rebase true   # rebase
-hint:   git config pull.ff only       # fast-forward only
-hint:
-hint: You can replace "git config" with "git config --global" to set a default
-hint: preference for all repositories. You can also pass --rebase, --no-rebase,
-hint: or --ff-only on the command line to override the configured default per
-hint: invocation.
-```
-
-In newer versions of Git it gives you the option of specifying different behaviors when a pull would merge divergent branches. In our case we want 'the default strategy'. To use this strategy run the following command to select it as the default thing git should do.
-
-``` bash
-git config pull.rebase false
-```
-
-Then attempt the pull again.
-
-``` bash
-git pull origin main
-```
-:::
-
 The `git pull` command updates the local repository to include those changes already included in the remote repository. After the changes from remote branch have been fetched, Git detects that changes made to the local copy overlap with those made to the remote repository, and therefore refuses to merge the two versions to stop us from trampling on our previous work. The conflict is marked in the affected file:
 
 ``` bash
 cat guacamole.md
 ```
 
-```output
+``` output
 # Guacamole
 ## Ingredients
 * avocado
@@ -2009,7 +1920,7 @@ code guacamole.md
 cat guacamole.md
 ```
 
-```output
+``` output
 # Guacamole
 ## Ingredients
 * avocado
@@ -2026,22 +1937,21 @@ git add guacamole.md
 git status
 ```
 
-```output
+``` output
 On branch main
 All conflicts fixed but you are still merging.
   (use "git commit" to conclude merge)
 
 Changes to be committed:
 
-	modified:   guacamole.md
-
+    modified:   guacamole.md
 ```
 
 ``` bash
 git commit -m "Merge changes from GitHub"
 ```
 
-```output
+``` output
 [main 2abf2b1] Merge changes from GitHub
 ```
 
@@ -2051,7 +1961,7 @@ Now we can push our changes to GitHub:
 git push origin main
 ```
 
-```output
+``` output
 Enumerating objects: 10, done.
 Counting objects: 100% (10/10), done.
 Delta compression using up to 4 threads
@@ -2069,7 +1979,7 @@ Git keeps track of what we've merged with what, so we don't have to fix things b
 git pull origin main
 ```
 
-```output
+``` output
 remote: Enumerating objects: 10, done.
 remote: Counting objects: 100% (10/10), done.
 remote: Compressing objects: 100% (2/2), done.
@@ -2090,7 +2000,7 @@ We get the merged file:
 cat guacamole.md
 ```
 
-```output
+``` output
 # Guacamole
 ## Ingredients
 * avocado
@@ -2102,30 +2012,13 @@ cat guacamole.md
 
 We don't need to merge again because Git knows someone has already done that.
 
-## Strategies to minimize conflicts
-
-Git's ability to resolve conflicts is very useful, but conflict resolution costs time and effort, and can introduce errors if conflicts are not resolved correctly. If you find yourself resolving a lot of conflicts in a project, consider these technical approaches to reducing them:
-
-- Pull from upstream more frequently, especially before starting new work
-- Use topic branches to segregate work, merging to main when complete
-- Make smaller more atomic commits
-- Push your work when it is done and encourage your team to do the same to reduce work in progress and, by extension, the chance of having conflicts
-- Where logically appropriate, break large files into smaller ones so that it is less likely that two authors will alter the same file simultaneously
-
-Conflicts can also be minimized with project management strategies:
-
-- Clarify who is responsible for what areas with your collaborators
-- Discuss what order tasks should be carried out in with your collaborators so that tasks expected to change the same lines won't be worked on simultaneously
-- If the conflicts are stylistic churn (e.g. tabs vs. spaces), establish a project convention that is governing and use code style tools (e.g. `htmltidy`, `perltidy`, `rubocop`, etc.) to enforce, if necessary
+To minimize conflicts: - Pull frequently from the remote repository - Communicate with teammates about who's working on what - Make smaller, focused commits
 
 # Licensing
 
 A `LICENSE` file specifies how others can use your code and data. Without one, default copyright laws apply. Choose a license from the start—even for private repositories—since adding one later requires approval from all contributors who hold copyright.
 
-Use [choosealicense.com](https://choosealicense.com/) to find a license. Key considerations:
-- Patent rights protection
-- Whether derivative works must share source code
-- Whether you're licensing source code
+Use [choosealicense.com](https://choosealicense.com/) to find a license. Key considerations: - Patent rights protection - Whether derivative works must share source code - Whether you're licensing source code
 
 GitHub allows you to easily to add a license in their web browser explained [here](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/adding-a-license-to-a-repository).
 
@@ -2133,7 +2026,7 @@ GitHub allows you to easily to add a license in their web browser explained [her
 
 Include a `CITATION` file to explain how to cite your project:
 
-```
+```         
 To reference this project, cite:
 
 Author Name: "Project Title". Publisher, Year.
@@ -2146,7 +2039,3 @@ Author Name: "Project Title". Publisher, Year.
 ```
 
 Use [Citation File Format (`CITATION.cff`)](https://citation-file-format.github.io/) for automated citation information. GitHub automatically renders CFF files on your repository page. Create one at [cff-init](https://citation-file-format.github.io/cff-initializer-javascript/#/).
-
-
-
-
