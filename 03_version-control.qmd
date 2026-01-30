@@ -88,16 +88,8 @@ Use your own name and email address instead of Alfredo's. This user name and ema
 
 For this lesson, we will be interacting with [GitHub](https://github.com/) and so the email address used should be the same as the one used when setting up your GitHub account. If you are concerned about privacy, please review [GitHub's instructions for keeping your email address private](https://help.github.com/articles/keeping-your-email-address-private/).
 
-::: {.callout-note title="Keeping your email private"}
+::: {.callout-tip title="Keeping your email private"}
 For privacy, use GitHub's no-reply email: `ID+username@users.noreply.github.com`.
-:::
-
-::: {.callout-note title="Line Endings"}
-Git on macOS/Linux:
-
-``` bash
-git config --global core.autocrlf input
-```
 :::
 
 Alfredo also has to set his favorite text editor, following this table:
@@ -370,7 +362,7 @@ Date:   Thu Aug 22 09:51:46 2013 -0400
 
 `git log` lists all commits made to a repository in reverse chronological order. The listing for each commit includes the commit's full identifier (which starts with the same characters as the short identifier printed by the `git commit` command earlier), the commit's author, when it was created, and the log message Git was given when the commit was created.
 
-::: {.callout-note title="Where Are My Changes?"}
+::: {.callout-note title="Where Are My Changes?" collapse="true"}
 If we run `ls` at this point, we will still see just one file called `guacamole.md`. That's because Git saves information about files' history in the special `.git` directory mentioned earlier so that our filesystem doesn't become cluttered (and so that we can't accidentally edit or delete an old version).
 :::
 
@@ -1358,7 +1350,7 @@ Log in to [GitHub](https://github.com), then click on the icon in the top right 
 
 Name your repository "recipes" and then click "Create Repository".
 
-::: {.callout-note title="Important"}
+::: {.callout-important}
 Create an empty repository on GitHub. Don't initialize it with a README or license.
 :::
 
@@ -1409,7 +1401,7 @@ What we will do now is the minimum required to set up the SSH keys and add the p
 
 The first thing we are going to do is check if this has already been done on the computer you're on. Because generally speaking, this setup only needs to happen once and then you can forget about it.
 
-::: {.callout-note title="Keeping your keys secure"}
+::: {.callout-tip title="Keeping your keys secure"}
 Check your SSH keys periodically to ensure they're current and secure.
 :::
 
