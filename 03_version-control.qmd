@@ -176,7 +176,7 @@ We can now start using one of the most important git commands, which is particul
 git status
 ```
 
-``` output
+``` git
 On branch main
 
 No commits yet
@@ -211,7 +211,7 @@ Additionally, Git repositories can interfere with each other if they are "nested
 git status
 ```
 
-``` output
+``` git
 fatal: Not a git repository (or any of the parent directories): .git
 ```
 
@@ -281,7 +281,7 @@ If we check the status of our project again, Git tells us that it's noticed the 
 git status
 ```
 
-``` output
+``` git
 On branch main
 
 No commits yet
@@ -306,7 +306,7 @@ and then check that the right thing happened:
 git status
 ```
 
-``` output
+``` git
 On branch main
 
 No commits yet
@@ -323,7 +323,7 @@ Git now knows that it's supposed to keep track of `guacamole.md`, but it hasn't 
 git commit -m "Create initial structure for a Guacamole recipe"
 ```
 
-``` output
+``` git
 [main (root-commit) f22b25e] Create initial structure for a Guacamole recipe
  1 file changed, 1 insertion(+)
  create mode 100644 guacamole.md
@@ -339,7 +339,7 @@ If we run `git status` now:
 git status
 ```
 
-``` output
+``` git
 On branch main
 nothing to commit, working tree clean
 ```
@@ -350,7 +350,7 @@ it tells us everything is up to date. If we want to know what we've done recentl
 git log
 ```
 
-``` output
+``` git
 commit f22b25e3233b4645dabd0d81e651fe074bd8e73b
 Author: Alfredo Linguini <a.linguini@ratatouille.fr>
 Date:   Thu Aug 22 09:51:46 2013 -0400
@@ -386,7 +386,7 @@ When we run `git status` now, it tells us that a file it already knows about has
 git status
 ```
 
-``` output
+``` git
 On branch main
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
@@ -403,7 +403,7 @@ The last line is the key phrase: "no changes added to commit". We have changed t
 git diff
 ```
 
-``` output
+``` git
 diff --git a/guacamole.md b/guacamole.md
 index df0654a..315bf3a 100644
 --- a/guacamole.md
@@ -425,7 +425,7 @@ After reviewing our change, it's time to commit it:
 git commit -m "Add ingredients for basic guacamole"
 ```
 
-``` output
+``` git
 On branch main
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
@@ -443,7 +443,7 @@ git add guacamole.md
 git commit -m "Add ingredients for basic guacamole"
 ```
 
-``` output
+``` git
 [main 34961b1] Add ingredients for basic guacamole
  1 file changed, 3 insertions(+)
 ```
@@ -478,7 +478,7 @@ cat guacamole.md
 git diff
 ```
 
-``` output
+``` git
 diff --git a/guacamole.md b/guacamole.md
 index 315bf3a..b36abfd 100644
 --- a/guacamole.md
@@ -506,7 +506,7 @@ There is no output: as far as Git can tell, there's no difference between what i
 git diff --staged
 ```
 
-``` output
+``` git
 diff --git a/guacamole.md b/guacamole.md
 index 315bf3a..b36abfd 100644
 --- a/guacamole.md
@@ -527,7 +527,7 @@ it shows us the difference between the last committed change and what's in the s
 git commit -m "Modify guacamole to the traditional recipe"
 ```
 
-``` output
+``` git
 [main 005937f] Modify guacamole to the traditional recipe
  1 file changed, 1 insertion(+)
 ```
@@ -538,7 +538,7 @@ check our status:
 git status
 ```
 
-``` output
+``` git
 On branch main
 nothing to commit, working tree clean
 ```
@@ -549,7 +549,7 @@ and look at the history of what we've done so far:
 git log
 ```
 
-``` output
+``` git
 commit 005937fbe2a98fb83f0ade869025dc2636b4dad5 (HEAD -> main)
 Author: Alfredo Linguini <a.linguini@ratatouille.fr>
 Date:   Thu Aug 22 10:14:07 2013 -0400
@@ -651,7 +651,7 @@ Now the files are ready to commit. You can check that using `git status`. If you
 git commit -m "Write prices for ingredients and their source"
 ```
 
-``` output
+``` git
 [main cc127c2]
  Write prices for ingredients and their source
  2 files changed, 7 insertions(+)
@@ -727,7 +727,7 @@ Now, let's see what we get.
 git diff HEAD guacamole.md
 ```
 
-``` output
+``` git
 diff --git a/guacamole.md b/guacamole.md
 index b36abfd..0848c8d 100644
 --- a/guacamole.md
@@ -751,7 +751,7 @@ If we want to see the differences between older commits we can use `git diff` ag
 git diff HEAD~2 guacamole.md
 ```
 
-``` output
+``` git
 diff --git a/guacamole.md b/guacamole.md
 index df0654a..b36abfd 100644
 --- a/guacamole.md
@@ -797,7 +797,7 @@ We can also refer to commits using those long strings of digits and letters that
 git diff f22b25e3233b4645dabd0d81e651fe074bd8e73b guacamole.md
 ```
 
-``` output
+``` git
 diff --git a/guacamole.md b/guacamole.md
 index df0654a..93a3e13 100644
 --- a/guacamole.md
@@ -818,7 +818,7 @@ That's the right answer, but typing out random 40-character strings is annoying,
 git diff f22b25e guacamole.md
 ```
 
-``` output
+``` git
 diff --git a/guacamole.md b/guacamole.md
 index df0654a..93a3e13 100644
 --- a/guacamole.md
@@ -841,7 +841,7 @@ All right! So we can save changes to files and see what we've changed. Now, how 
 git status
 ```
 
-``` output
+``` git
 On branch main
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
@@ -884,7 +884,7 @@ cat guacamole.md
 git status
 ```
 
-``` output
+``` git
 On branch main
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
@@ -1008,7 +1008,7 @@ Try another command, `git diff [ID] guacamole.md`, where \[ID\] is replaced with
 ::: {.callout-note title="Solution" collapse="true"}
 After adding a change, `git restore` cannot be used directly. Let's look at the output of `git status`:
 
-``` output
+``` git
 On branch main
 Changes to be committed:
   (use "git restore --staged <file>..." to unstage)
@@ -1029,7 +1029,7 @@ Now, `git status` gives us:
 git status
 ```
 
-``` output
+``` git
 On branch main
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
@@ -1046,7 +1046,7 @@ git restore guacamole.md
 git status
 ```
 
-``` output
+``` git
 On branch main
 nothing to commit, working tree clean
 ```
@@ -1095,7 +1095,7 @@ and see what Git says:
 git status
 ```
 
-``` output
+``` git
 On branch main
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
@@ -1144,7 +1144,7 @@ Once we have created this file, the output of `git status` is much cleaner:
 git status
 ```
 
-``` output
+``` git
 On branch main
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
@@ -1162,7 +1162,7 @@ git commit -m "Ignore png files and the pictures folder."
 git status
 ```
 
-``` output
+``` git
 On branch main
 nothing to commit, working tree clean
 ```
@@ -1173,7 +1173,7 @@ As a bonus, using `.gitignore` helps us avoid accidentally adding files to the r
 git add a.png
 ```
 
-``` output
+``` git
 The following paths are ignored by one of your .gitignore files:
 a.png
 Use -f if you really want to add them.
@@ -1185,7 +1185,7 @@ If we really want to override our ignore settings, we can use `git add -f` to fo
 git status --ignored
 ```
 
-``` output
+``` git
 On branch main
 Ignored files:
  (use "git add -f <file>..." to include in what will be committed)
@@ -1386,7 +1386,7 @@ We can check that the command has worked by running `git remote -v`:
 git remote -v
 ```
 
-``` output
+``` git
 origin   git@github.com:alflin/recipes.git (fetch)
 origin   git@github.com:alflin/recipes.git (push)
 ```
@@ -1574,7 +1574,7 @@ We can pull changes from the remote repository to the local one as well:
 git pull origin main
 ```
 
-``` output
+``` git
 From https://github.com/alflin/recipes
  * branch            main     -> FETCH_HEAD
 Already up to date.
@@ -1677,7 +1677,7 @@ Then push the change to the *owner's repository* on GitHub:
 git push origin main
 ```
 
-``` output
+``` git
 Enumerating objects: 4, done.
 Counting objects: 4, done.
 Delta compression using up to 4 threads.
@@ -1704,7 +1704,7 @@ To download the collaborator's changes from GitHub, the owner now enters:
 git pull origin main
 ```
 
-``` output
+``` git
 remote: Enumerating objects: 4, done.
 remote: Counting objects: 100% (4/4), done.
 remote: Compressing objects: 100% (2/2), done.
@@ -1858,7 +1858,7 @@ but Git won't let us push it to GitHub:
 git push origin main
 ```
 
-``` output
+``` git
 To https://github.com/alflin/recipes.git
  ! [rejected]        main -> main (fetch first)
 error: failed to push some refs to 'https://github.com/alflin/recipes.git'
@@ -1875,7 +1875,7 @@ Git rejects the push because it detects that the remote repository has new updat
 git pull origin main
 ```
 
-``` output
+``` git
 remote: Enumerating objects: 5, done.
 remote: Counting objects: 100% (5/5), done.
 remote: Compressing objects: 100% (1/1), done.
@@ -1895,7 +1895,7 @@ The `git pull` command updates the local repository to include those changes alr
 cat guacamole.md
 ```
 
-``` output
+``` git
 # Guacamole
 ## Ingredients
 * avocado
@@ -1949,7 +1949,7 @@ Changes to be committed:
 git commit -m "Merge changes from GitHub"
 ```
 
-``` output
+``` git
 [main 2abf2b1] Merge changes from GitHub
 ```
 
@@ -1977,7 +1977,7 @@ Git keeps track of what we've merged with what, so we don't have to fix things b
 git pull origin main
 ```
 
-``` output
+``` git
 remote: Enumerating objects: 10, done.
 remote: Counting objects: 100% (10/10), done.
 remote: Compressing objects: 100% (2/2), done.
