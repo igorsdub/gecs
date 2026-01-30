@@ -105,7 +105,7 @@ git config --global init.defaultBranch main
 ```
 
 ::: {.callout-important}
-We will not be convering branch management in this lesson, but setting the default branch name to `main` now will help avoid confusion later.
+We will not be convering branch management in this lesson, but setting the default branch name to `main` now will help avoid confusion later. In short, a branch is a separate line of development in a repository. The default branch is the main line of development where the stable version of the project is maintained. See Atlassion tutorial on [Git Branch](https://www.atlassian.com/git/tutorials/using-branches) for more information.
 :::
 
 ::: {.callout-note title="How `master` became `main`" collapse="true"}
@@ -118,7 +118,7 @@ These commands only run once. Review your settings anytime with:
 git config --list --global
 ```
 
-::: {.callout-note title="Git Help and Manual"}
+::: {.callout-tip title="Git Help and Manual"}
 Use `git <command> -h` for quick help or `git <command> --help` for full documentation.
 :::
 
