@@ -383,7 +383,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Git uses this special subdirectory to store all the information about the project, including the tracked files and sub-directories located within the project’s directory. If we ever delete the <code>.git</code> subdirectory, we will lose the project’s history.</p>
 <p>We can now start using one of the most important git commands, which is particularly helpful to beginners. <code>git status</code> tells us the status of our project, and better, a list of changes in the project and options on what to do with those changes. We can use it as often as we want, whenever we want to understand what is going on.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<pre class="output"><code>On branch main
+<pre class="git"><code>On branch main
 
 No commits yet
 
@@ -415,7 +415,7 @@ nothing to commit (create/copy files and use "git add" to track)</code></pre>
 <p>No.&nbsp;Alfredo does not need to make the <code>desserts</code> subdirectory a Git repository because the <code>recipes</code> repository will track all files, sub-directories, and subdirectory files under the <code>recipes</code> directory. Thus, in order to track all information about desserts, Alfredo only needed to add the <code>desserts</code> subdirectory to the <code>recipes</code> directory.</p>
 <p>Additionally, Git repositories can interfere with each other if they are “nested”: the outer repository will try to version-control the inner repository. Therefore, it’s best to create each new Git repository in a separate directory. To be sure that there is no conflicting repository in the directory, check the output of <code>git status</code>. If it looks like the following, you are good to go to create a new repository as shown above:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<pre class="output"><code>fatal: Not a git repository (or any of the parent directories): .git</code></pre>
+<pre class="git"><code>fatal: Not a git repository (or any of the parent directories): .git</code></pre>
 <p>To delete unwanted nested repositories, simply delete the <code>.git</code> subdirectory inside the unwanted repository while in the parent repository. For example, to delete the unwanted <code>desserts</code> repository, Alfredo would run:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> .git</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -462,7 +462,7 @@ nothing to commit (create/copy files and use "git add" to track)</code></pre>
 ## Instructions</code></pre>
 <p>If we check the status of our project again, Git tells us that it’s noticed the new file:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<pre class="output"><code>On branch main
+<pre class="git"><code>On branch main
 
 No commits yet
 
@@ -476,7 +476,7 @@ nothing added to commit but untracked files present (use "git add" to track)</co
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add guacamole.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>and then check that the right thing happened:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<pre class="output"><code>On branch main
+<pre class="git"><code>On branch main
 
 No commits yet
 
@@ -486,18 +486,18 @@ Changes to be committed:
     new file:   guacamole.md</code></pre>
 <p>Git now knows that it’s supposed to keep track of <code>guacamole.md</code>, but it hasn’t recorded these changes as a commit yet. To get it to do that, we need to run one more command:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Create initial structure for a Guacamole recipe"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<pre class="output"><code>[main (root-commit) f22b25e] Create initial structure for a Guacamole recipe
+<pre class="git"><code>[main (root-commit) f22b25e] Create initial structure for a Guacamole recipe
  1 file changed, 1 insertion(+)
  create mode 100644 guacamole.md</code></pre>
 <p>When we run <code>git commit</code>, Git takes everything we have told it to save by using <code>git add</code> and stores a copy permanently inside the special <code>.git</code> directory. This permanent copy is called a commit (or revision) and its short identifier is <code>f22b25e</code>. Your commit may have another identifier.</p>
 <p>The <code>-m</code> flag records a message. Write a brief, descriptive commit message under 50 characters.</p>
 <p>If we run <code>git status</code> now:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<pre class="output"><code>On branch main
+<pre class="git"><code>On branch main
 nothing to commit, working tree clean</code></pre>
 <p>it tells us everything is up to date. If we want to know what we’ve done recently, we can ask Git to show us the project’s history using <code>git log</code>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<pre class="output"><code>commit f22b25e3233b4645dabd0d81e651fe074bd8e73b
+<pre class="git"><code>commit f22b25e3233b4645dabd0d81e651fe074bd8e73b
 Author: Alfredo Linguini &lt;a.linguini@ratatouille.fr&gt;
 Date:   Thu Aug 22 09:51:46 2013 -0400
 
@@ -527,7 +527,7 @@ Date:   Thu Aug 22 09:51:46 2013 -0400
 ## Instructions</code></pre>
 <p>When we run <code>git status</code> now, it tells us that a file it already knows about has been modified:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<pre class="output"><code>On branch main
+<pre class="git"><code>On branch main
 Changes not staged for commit:
   (use "git add &lt;file&gt;..." to update what will be committed)
   (use "git restore &lt;file&gt;..." to discard changes in working directory)
@@ -537,7 +537,7 @@ Changes not staged for commit:
 no changes added to commit (use "git add" and/or "git commit -a")</code></pre>
 <p>The last line is the key phrase: “no changes added to commit”. We have changed this file, but we haven’t told Git we will want to save those changes (which we do with <code>git add</code>) nor have we saved them (which we do with <code>git commit</code>). So let’s do that now. It is good practice to always review our changes before saving them. We do this using <code>git diff</code>. This shows us the differences between the current state of the file and the most recently saved version:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<pre class="output"><code>diff --git a/guacamole.md b/guacamole.md
+<pre class="git"><code>diff --git a/guacamole.md b/guacamole.md
 index df0654a..315bf3a 100644
 --- a/guacamole.md
 +++ b/guacamole.md
@@ -551,7 +551,7 @@ index df0654a..315bf3a 100644
 <p>The output shows: - Lines with <code>+</code> are additions (new lines) - Lines with <code>-</code> are deletions (removed lines) - The file name and commit IDs are shown at the top</p>
 <p>After reviewing our change, it’s time to commit it:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add ingredients for basic guacamole"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<pre class="output"><code>On branch main
+<pre class="git"><code>On branch main
 Changes not staged for commit:
   (use "git add &lt;file&gt;..." to update what will be committed)
   (use "git restore &lt;file&gt;..." to discard changes in working directory)
@@ -562,7 +562,7 @@ no changes added to commit (use "git add" and/or "git commit -a")</code></pre>
 <p>Whoops: Git won’t commit because we didn’t use <code>git add</code> first. Let’s fix that:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add guacamole.md</span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add ingredients for basic guacamole"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<pre class="output"><code>[main 34961b1] Add ingredients for basic guacamole
+<pre class="git"><code>[main 34961b1] Add ingredients for basic guacamole
  1 file changed, 3 insertions(+)</code></pre>
 <p>Git insists that we add files to the set we want to commit before actually committing anything. This allows us to commit our changes in stages and capture changes in logical portions rather than only large batches. For example, suppose we’re adding a few citations to relevant research to our thesis. We might want to commit those additions, and the corresponding bibliography entries, but <em>not</em> commit some of our work drafting the conclusion (which we haven’t finished yet).</p>
 <p>To allow for this, Git has a special <em>staging area</em> where it keeps track of things that have been added to the current changeset but not yet committed.</p>
@@ -595,7 +595,7 @@ no changes added to commit (use "git add" and/or "git commit -a")</code></pre>
 * salt
 ## Instructions</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb49"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<pre class="output"><code>diff --git a/guacamole.md b/guacamole.md
+<pre class="git"><code>diff --git a/guacamole.md b/guacamole.md
 index 315bf3a..b36abfd 100644
 --- a/guacamole.md
 +++ b/guacamole.md
@@ -612,7 +612,7 @@ index 315bf3a..b36abfd 100644
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>There is no output: as far as Git can tell, there’s no difference between what it’s been asked to save permanently and what’s currently in the directory. However, if we do this:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb52"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff <span class="at">--staged</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<pre class="output"><code>diff --git a/guacamole.md b/guacamole.md
+<pre class="git"><code>diff --git a/guacamole.md b/guacamole.md
 index 315bf3a..b36abfd 100644
 --- a/guacamole.md
 +++ b/guacamole.md
@@ -626,15 +626,15 @@ index 315bf3a..b36abfd 100644
  ## Instructions</code></pre>
 <p>it shows us the difference between the last committed change and what’s in the staging area. Let’s save our changes:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb54"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Modify guacamole to the traditional recipe"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<pre class="output"><code>[main 005937f] Modify guacamole to the traditional recipe
+<pre class="git"><code>[main 005937f] Modify guacamole to the traditional recipe
  1 file changed, 1 insertion(+)</code></pre>
 <p>check our status:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb56"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<pre class="output"><code>On branch main
+<pre class="git"><code>On branch main
 nothing to commit, working tree clean</code></pre>
 <p>and look at the history of what we’ve done so far:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb58"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<pre class="output"><code>commit 005937fbe2a98fb83f0ade869025dc2636b4dad5 (HEAD -&gt; main)
+<pre class="git"><code>commit 005937fbe2a98fb83f0ade869025dc2636b4dad5 (HEAD -&gt; main)
 Author: Alfredo Linguini &lt;a.linguini@ratatouille.fr&gt;
 Date:   Thu Aug 22 10:14:07 2013 -0400
 
@@ -748,7 +748,7 @@ Date:   Thu Aug 22 09:51:46 2013 -0400
 <span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add groceries.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Now the files are ready to commit. You can check that using <code>git status</code>. If you are ready to commit use:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb66"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Write prices for ingredients and their source"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<pre class="output"><code>[main cc127c2]
+<pre class="git"><code>[main cc127c2]
  Write prices for ingredients and their source
  2 files changed, 7 insertions(+)
  create mode 100644 groceries.md</code></pre>
@@ -808,7 +808,7 @@ Date:   Thu Aug 22 09:51:46 2013 -0400
 An ill-considered change</code></pre>
 <p>Now, let’s see what we get.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb75"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff HEAD guacamole.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<pre class="output"><code>diff --git a/guacamole.md b/guacamole.md
+<pre class="git"><code>diff --git a/guacamole.md b/guacamole.md
 index b36abfd..0848c8d 100644
 --- a/guacamole.md
 +++ b/guacamole.md
@@ -821,7 +821,7 @@ index b36abfd..0848c8d 100644
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb77"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff HEAD~1 guacamole.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>If we want to see the differences between older commits we can use <code>git diff</code> again, but with the notation <code>HEAD~1</code>, <code>HEAD~2</code>, and so on, to refer to them:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb78"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff HEAD~2 guacamole.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<pre class="output"><code>diff --git a/guacamole.md b/guacamole.md
+<pre class="git"><code>diff --git a/guacamole.md b/guacamole.md
 index df0654a..b36abfd 100644
 --- a/guacamole.md
 +++ b/guacamole.md
@@ -852,7 +852,7 @@ index 0000000..df0654a
 <p>In this way, we can build up a chain of commits. The most recent end of the chain is referred to as <code>HEAD</code>; we can refer to previous commits using the <code>~</code> notation, so <code>HEAD~1</code> means “the previous commit”, while <code>HEAD~123</code> goes back 123 commits from where we are now.</p>
 <p>We can also refer to commits using those long strings of digits and letters that both <code>git log</code> and <code>git show</code> display. These are unique IDs for the changes, and “unique” really does mean unique: every change to any set of files on any computer has a unique 40-character identifier. Our first commit was given the ID <code>f22b25e3233b4645dabd0d81e651fe074bd8e73b</code>, so let’s try this:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb82"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff f22b25e3233b4645dabd0d81e651fe074bd8e73b guacamole.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<pre class="output"><code>diff --git a/guacamole.md b/guacamole.md
+<pre class="git"><code>diff --git a/guacamole.md b/guacamole.md
 index df0654a..93a3e13 100644
 --- a/guacamole.md
 +++ b/guacamole.md
@@ -866,7 +866,7 @@ index df0654a..93a3e13 100644
 +An ill-considered change</code></pre>
 <p>That’s the right answer, but typing out random 40-character strings is annoying, so Git lets us use just the first few characters (typically seven for normal size projects):</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb84"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff f22b25e guacamole.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<pre class="output"><code>diff --git a/guacamole.md b/guacamole.md
+<pre class="git"><code>diff --git a/guacamole.md b/guacamole.md
 index df0654a..93a3e13 100644
 --- a/guacamole.md
 +++ b/guacamole.md
@@ -881,7 +881,7 @@ index df0654a..93a3e13 100644
 <p>All right! So we can save changes to files and see what we’ve changed. Now, how can we restore older versions of things? Let’s suppose we change our mind about the last update to <code>guacamole.md</code> (the “ill-considered change”).</p>
 <p><code>git status</code> now tells us that the file has been changed, but those changes haven’t been staged:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb86"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<pre class="output"><code>On branch main
+<pre class="git"><code>On branch main
 Changes not staged for commit:
   (use "git add &lt;file&gt;..." to update what will be committed)
   (use "git restore &lt;file&gt;..." to discard changes in working directory)
@@ -904,7 +904,7 @@ no changes added to commit (use "git add" and/or "git commit -a")</code></pre>
 ## Ingredients
 ## Instructions</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb92"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<pre class="output"><code>On branch main
+<pre class="git"><code>On branch main
 Changes not staged for commit:
   (use "git add &lt;file&gt;..." to update what will be committed)
   (use "git restore &lt;file&gt;..." to discard changes in working directory)
@@ -1015,7 +1015,7 @@ no changes added to commit (use "git add" and/or "git commit -a")</code></pre>
 <div id="callout-14" class="callout-14-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>After adding a change, <code>git restore</code> cannot be used directly. Let’s look at the output of <code>git status</code>:</p>
-<pre class="output"><code>On branch main
+<pre class="git"><code>On branch main
 Changes to be committed:
   (use "git restore --staged &lt;file&gt;..." to unstage)
         modified:   guacamole.md</code></pre>
@@ -1024,7 +1024,7 @@ Changes to be committed:
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb103"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> restore <span class="at">--staged</span> guacamole.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Now, <code>git status</code> gives us:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb104"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<pre class="output"><code>On branch main
+<pre class="git"><code>On branch main
 Changes not staged for commit:
   (use "git add &lt;file&gt;..." to update what will be committed)
   (use "git restore &lt;file&gt;..." to discard changes in working directory)
@@ -1034,7 +1034,7 @@ no changes added to commit (use "git add" and/or "git commit -a")</code></pre>
 <p>This means we can now use <code>git restore</code> to restore the file to the previous commit:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb106"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> restore guacamole.md</span>
 <span id="cb106-2"><a href="#cb106-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<pre class="output"><code>On branch main
+<pre class="git"><code>On branch main
 nothing to commit, working tree clean</code></pre>
 </div>
 </div>
@@ -1061,7 +1061,7 @@ nothing to commit, working tree clean</code></pre>
 <span id="cb111-2"><a href="#cb111-2" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> a.png b.png c.png pictures/cake1.jpg pictures/cake2.jpg</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>and see what Git says:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb112"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<pre class="output"><code>On branch main
+<pre class="git"><code>On branch main
 Untracked files:
   (use "git add &lt;file&gt;..." to include in what will be committed)
 
@@ -1085,7 +1085,7 @@ pictures/</code></pre>
 <p>These patterns tell Git to ignore any file whose name ends in <code>.png</code> and everything in the <code>pictures</code> directory. (If any of these files were already being tracked, Git would continue to track them.)</p>
 <p>Once we have created this file, the output of <code>git status</code> is much cleaner:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb118"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<pre class="output"><code>On branch main
+<pre class="git"><code>On branch main
 Untracked files:
   (use "git add &lt;file&gt;..." to include in what will be committed)
 
@@ -1096,16 +1096,16 @@ nothing added to commit but untracked files present (use "git add" to track)</co
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb120"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .gitignore</span>
 <span id="cb120-2"><a href="#cb120-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Ignore png files and the pictures folder."</span></span>
 <span id="cb120-3"><a href="#cb120-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<pre class="output"><code>On branch main
+<pre class="git"><code>On branch main
 nothing to commit, working tree clean</code></pre>
 <p>As a bonus, using <code>.gitignore</code> helps us avoid accidentally adding files to the repository that we don’t want to track:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb122"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add a.png</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<pre class="output"><code>The following paths are ignored by one of your .gitignore files:
+<pre class="git"><code>The following paths are ignored by one of your .gitignore files:
 a.png
 Use -f if you really want to add them.</code></pre>
 <p>If we really want to override our ignore settings, we can use <code>git add -f</code> to force Git to add something. For example, <code>git add -f a.png</code>. We can also always see the status of ignored files if we want:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb124"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status <span class="at">--ignored</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<pre class="output"><code>On branch main
+<pre class="git"><code>On branch main
 Ignored files:
  (use "git add -f &lt;file&gt;..." to include in what will be committed)
 
@@ -1350,7 +1350,7 @@ nothing to commit, working tree clean</code></pre>
 <p><code>origin</code> is a local name used to refer to the remote repository. It could be called anything, but <code>origin</code> is a convention that is often used by default in git and GitHub, so it’s helpful to stick with this unless there’s a reason not to.</p>
 <p>We can check that the command has worked by running <code>git remote -v</code>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb137"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb137-1"><a href="#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote <span class="at">-v</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<pre class="output"><code>origin   git@github.com:alflin/recipes.git (fetch)
+<pre class="git"><code>origin   git@github.com:alflin/recipes.git (fetch)
 origin   git@github.com:alflin/recipes.git (push)</code></pre>
 </section>
 <section id="ssh-background-and-setup" class="level2">
@@ -1470,7 +1470,7 @@ To https://github.com/alflin/recipes.git
 </div>
 <p>We can pull changes from the remote repository to the local one as well:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb159"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb159-1"><a href="#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<pre class="output"><code>From https://github.com/alflin/recipes
+<pre class="git"><code>From https://github.com/alflin/recipes
  * branch            main     -&gt; FETCH_HEAD
 Already up to date.</code></pre>
 <p>Pulling has no effect in this case because the two repositories are already synchronized. If someone else had pushed some changes to the repository on GitHub, though, this command would download them to our local repository.</p>
@@ -1598,7 +1598,7 @@ Already up to date.</code></pre>
  create mode 100644 hummus.md</code></pre>
 <p>Then push the change to the <em>owner’s repository</em> on GitHub:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb166"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb166-1"><a href="#cb166-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<pre class="output"><code>Enumerating objects: 4, done.
+<pre class="git"><code>Enumerating objects: 4, done.
 Counting objects: 4, done.
 Delta compression using up to 4 threads.
 Compressing objects: 100% (2/2), done.
@@ -1617,7 +1617,7 @@ To https://github.com/alflin/recipes.git
 <h2 class="anchored" data-anchor-id="pulling-changes-from-a-collaborator">Pulling changes from a collaborator</h2>
 <p>To download the collaborator’s changes from GitHub, the owner now enters:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb168"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb168-1"><a href="#cb168-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<pre class="output"><code>remote: Enumerating objects: 4, done.
+<pre class="git"><code>remote: Enumerating objects: 4, done.
 remote: Counting objects: 100% (4/4), done.
 remote: Compressing objects: 100% (2/2), done.
 remote: Total 3 (delta 0), reused 3 (delta 0), pack-reused 0
@@ -1741,7 +1741,7 @@ To https://github.com/alflin/recipes.git
  1 file changed, 1 insertion(+)</code></pre>
 <p>but Git won’t let us push it to GitHub:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb182"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb182-1"><a href="#cb182-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<pre class="output"><code>To https://github.com/alflin/recipes.git
+<pre class="git"><code>To https://github.com/alflin/recipes.git
  ! [rejected]        main -&gt; main (fetch first)
 error: failed to push some refs to 'https://github.com/alflin/recipes.git'
 hint: Updates were rejected because the remote contains work that you do
@@ -1751,7 +1751,7 @@ hint: (e.g., 'git pull ...') before pushing again.
 hint: See the 'Note about fast-forwards' in 'git push --help' for details.</code></pre>
 <p>Git rejects the push because it detects that the remote repository has new updates that have not been incorporated into the local branch. What we have to do is pull the changes from GitHub, merge them into the copy we’re currently working in, and then push that. Let’s start by pulling:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb184"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb184-1"><a href="#cb184-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<pre class="output"><code>remote: Enumerating objects: 5, done.
+<pre class="git"><code>remote: Enumerating objects: 5, done.
 remote: Counting objects: 100% (5/5), done.
 remote: Compressing objects: 100% (1/1), done.
 remote: Total 3 (delta 2), reused 3 (delta 2), pack-reused 0
@@ -1764,7 +1764,7 @@ CONFLICT (content): Merge conflict in guacamole.md
 Automatic merge failed; fix conflicts and then commit the result.</code></pre>
 <p>The <code>git pull</code> command updates the local repository to include those changes already included in the remote repository. After the changes from remote branch have been fetched, Git detects that changes made to the local copy overlap with those made to the remote repository, and therefore refuses to merge the two versions to stop us from trampling on our previous work. The conflict is marked in the affected file:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb186"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb186-1"><a href="#cb186-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> guacamole.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<pre class="output"><code># Guacamole
+<pre class="git"><code># Guacamole
 ## Ingredients
 * avocado
 * lime
@@ -1797,7 +1797,7 @@ Changes to be committed:
 
     modified:   guacamole.md</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb192"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb192-1"><a href="#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Merge changes from GitHub"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<pre class="output"><code>[main 2abf2b1] Merge changes from GitHub</code></pre>
+<pre class="git"><code>[main 2abf2b1] Merge changes from GitHub</code></pre>
 <p>Now we can push our changes to GitHub:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb194"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb194-1"><a href="#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="output"><code>Enumerating objects: 10, done.
@@ -1811,7 +1811,7 @@ To https://github.com/alflin/recipes.git
    dabb4c8..2abf2b1  main -&gt; main</code></pre>
 <p>Git keeps track of what we’ve merged with what, so we don’t have to fix things by hand again when the collaborator who made the first change pulls again:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb196"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb196-1"><a href="#cb196-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<pre class="output"><code>remote: Enumerating objects: 10, done.
+<pre class="git"><code>remote: Enumerating objects: 10, done.
 remote: Counting objects: 100% (10/10), done.
 remote: Compressing objects: 100% (2/2), done.
 remote: Total 6 (delta 4), reused 6 (delta 4), pack-reused 0
