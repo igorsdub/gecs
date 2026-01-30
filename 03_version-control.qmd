@@ -98,7 +98,7 @@ Git on macOS/Linux:
 ``` bash
 git config --global core.autocrlf input
 ```
-
+:::
 
 Alfredo also has to set his favorite text editor, following this table:
 
