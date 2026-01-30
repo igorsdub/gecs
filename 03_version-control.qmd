@@ -203,23 +203,33 @@ ls -a           # ensure the .git subdirectory is present indicating we have cre
 Is the `git init` command, run inside the `desserts` subdirectory, required for tracking files stored in the `desserts` subdirectory?
 
 ::: {.callout-note title="Solution" collapse="true"}
-No. Alfredo does not need to make the `desserts` subdirectory a Git repository because the `recipes` repository will track all files, sub-directories, and subdirectory files under the `recipes` directory. Thus, in order to track all information about desserts, Alfredo only needed to add the `desserts` subdirectory to the `recipes` directory.
+**No. Alfredo does not need to make the `desserts` subdirectory a Git repository because the `recipes` repository will track all files, sub-directories, and subdirectory files under the `recipes` directory. Thus, in order to track all information about desserts, Alfredo only needed to add the `desserts` subdirectory to the `recipes` directory.
 
-Additionally, Git repositories can interfere with each other if they are "nested": the outer repository will try to version-control the inner repository. Therefore, it's best to create each new Git repository in a separate directory. To be sure that there is no conflicting repository in the directory, check the output of `git status`. If it looks like the following, you are good to go to create a new repository as shown above:
+Right now, you have a "nested repository" is a Git repository that exists within the working directory of another Git repository. Each nested repository operates independently with its own history. Git is designed primarily to manage one repository per directory tree. When Git encounters a `.git` folder within a subdirectory of a parent repository, it treats the inner repository as a separate entity and usually ignores its contents within the parent's version control.
+
+Yo**u can verify that the `desserts` subdirectory is not being tracked by the `recipes` repository by running the following command from within the `recipes` directory:
 
 ``` bash
-git status
-```
-
-``` git
-fatal: Not a git repository (or any of the parent directories): .git
+touch tiramisu.md # create a new file in recipes directory
+git status        # check the status of the recipes repository
+cd ..             # go back to recipes directory  
+git status        # check the status of the desserts repository
 ```
 
 To delete unwanted nested repositories, simply delete the `.git` subdirectory inside the unwanted repository while in the parent repository. For example, to delete the unwanted `desserts` repository, Alfredo would run:
 
 ```bash
+cd desserts
 rm -rf .git
+git status
 ```
+
+and then return to the `recipes` directory:
+
+``` bash
+cd ..
+```
+
 :::
 
 # Tracking Changes
