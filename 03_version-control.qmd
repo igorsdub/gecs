@@ -84,7 +84,7 @@ git config --global user.name "Alfredo Linguini"
 git config --global user.email "a.linguini@ratatouille.fr"
 ```
 
-Please use your own name and email address instead of Alfredo's. This user name and email will be associated with your subsequent Git activity, which means that any changes pushed to [GitHub](https://github.com/), [BitBucket](https://bitbucket.org/), [GitLab](https://gitlab.com/) or another Git host server after this lesson will include this information.
+Use your own name and email address instead of Alfredo's. This user name and email will be associated with your subsequent Git activity, which means that any changes pushed to [GitHub](https://github.com/), [BitBucket](https://bitbucket.org/), [GitLab](https://gitlab.com/) or another Git host server after this lesson will include this information.
 
 For this lesson, we will be interacting with [GitHub](https://github.com/) and so the email address used should be the same as the one used when setting up your GitHub account. If you are concerned about privacy, please review [GitHub's instructions for keeping your email address private](https://help.github.com/articles/keeping-your-email-address-private/).
 
@@ -99,12 +99,6 @@ Git on macOS/Linux:
 git config --global core.autocrlf input
 ```
 
-On Windows:
-
-``` bash
-git config --global core.autocrlf true
-```
-:::
 
 Alfredo also has to set his favorite text editor, following this table:
 
@@ -112,20 +106,18 @@ Alfredo also has to set his favorite text editor, following this table:
 git config --global core.editor "code --wait"
 ```
 
-It is possible to reconfigure the text editor for Git whenever you want to change it.
-
-::: {.callout-note title="Exiting Vim"}
-To exit Vim without saving: `Esc` then `:q!` then `Enter`. To save and quit: `Esc` then `:wq` then `Enter`.
-:::
-
 Git (2.28+) allows configuration of the name of the branch created when you initialize any new repository. Alfredo decides to use that feature to set it to `main` so it matches the cloud service he will eventually use.
 
 ``` bash
 git config --global init.defaultBranch main
 ```
 
-::: {.callout-note title="Default Git branch naming"}
-Git's default branch is called `master`, but `main` is now standard across GitHub and GitLab. Set it locally to match cloud services.
+::: {.callout-important}
+We will not be convering branch management in this lesson, but setting the default branch name to `main` now will help avoid confusion later.
+:::
+
+::: {.callout-note title="How `master` became `main`" collapse="true"}
+Following the 2020 Black Lives Matter protests, the [Software Freedom Conservancy](https://sfconservancy.org/news/2020/jun/23/gitbranchname/) encouraged removing non-inclusive language in software, targeting the term "master". GitHub changed the default branch name for new repositories from `master` to `main` in October 2020. Other platforms followed suit.
 :::
 
 These commands only run once. Review your settings anytime with:
