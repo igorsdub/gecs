@@ -236,6 +236,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#github-gui" id="toc-github-gui" class="nav-link" data-scroll-target="#github-gui">GitHub GUI</a></li>
   <li><a href="#github-timestamp" id="toc-github-timestamp" class="nav-link" data-scroll-target="#github-timestamp">GitHub Timestamp</a></li>
   <li><a href="#push-vs.-commit" id="toc-push-vs.-commit" class="nav-link" data-scroll-target="#push-vs.-commit">Push vs.&nbsp;Commit</a></li>
+  <li><a href="#general-workflow" id="toc-general-workflow" class="nav-link" data-scroll-target="#general-workflow">General Workflow</a></li>
   </ul></li>
   <li><a href="#collaborating" id="toc-collaborating" class="nav-link" data-scroll-target="#collaborating">Collaborating</a>
   <ul class="collapse">
@@ -247,7 +248,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#switch-roles-and-repeat" id="toc-switch-roles-and-repeat" class="nav-link" data-scroll-target="#switch-roles-and-repeat">Switch Roles and Repeat</a></li>
   <li><a href="#review-changes" id="toc-review-changes" class="nav-link" data-scroll-target="#review-changes">Review Changes</a></li>
   <li><a href="#comment-changes-in-github" id="toc-comment-changes-in-github" class="nav-link" data-scroll-target="#comment-changes-in-github">Comment Changes in GitHub</a></li>
-  <li><a href="#version-history-backup-and-version-control" id="toc-version-history-backup-and-version-control" class="nav-link" data-scroll-target="#version-history-backup-and-version-control">Version History, Backup, and Version Control</a></li>
   </ul></li>
   <li><a href="#conflicts" id="toc-conflicts" class="nav-link" data-scroll-target="#conflicts">Conflicts</a></li>
   <li><a href="#licensing" id="toc-licensing" class="nav-link" data-scroll-target="#licensing">Licensing</a></li>
@@ -708,13 +708,7 @@ Author: Alfredo Linguini &lt;a.linguini@ratatouille.fr&gt;
 Date:   Thu Aug 22 09:51:46 2013 -0400
 
     Create initial structure for a Guacamole recipe</code></pre>
-<p>To recap, when we want to add changes to our repository, we first need to add the changed files to the staging area (<code>git add</code>) and then commit the staged changes to the repository (<code>git commit</code>):</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/paste-47.png" class="img-fluid figure-img"></p>
-<figcaption>Commands included in basic Git workflows. From <a href="https://third-bit.com/py-rse/git-cmdline.html">Research Software Engineering with Python</a>.</figcaption>
-</figure>
-</div>
+<p>To recap, when we want to add changes to our repository, we first need to add the changed files to the staging area (<code>git add</code>) and then commit the staged changes to the repository (<code>git commit</code>).</p>
 <section id="choosing-a-commit-message" class="level2">
 <h2 class="anchored" data-anchor-id="choosing-a-commit-message">Choosing a Commit Message</h2>
 <p>Which of the following commit messages would be most appropriate for the last commit made to <code>guacamole.md</code>?</p>
@@ -1573,17 +1567,27 @@ Already up to date.</code></pre>
 </div>
 </div>
 </section>
+<section id="general-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="general-workflow">General Workflow</h2>
+<p>In one picture, here is the general workflow we have been following:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/paste-47.png" class="img-fluid figure-img"></p>
+<figcaption>Commands included in basic Git workflows. From <a href="https://third-bit.com/py-rse/git-cmdline.html">Research Software Engineering with Python</a>.</figcaption>
+</figure>
+</div>
+</section>
 </section>
 <section id="collaborating" class="level1">
 <h1>Collaborating</h1>
 <p>Version control really shines when we collaborate with other people. We already have most of the machinery we need to do this; now we’ll see how to use it effectively.</p>
-<div class="callout callout-style-simple callout-note callout-titled" title="Practicing By Yourself">
+<div class="callout callout-style-simple callout-tip callout-titled" title="Practicing By Yourself">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Practicing By Yourself
+<span class="screen-reader-only">Tip</span>Practicing By Yourself
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1721,10 +1725,6 @@ Fast-forward
 <p>The collaborator has some questions about one line change made by the owner and has some suggestions to propose.</p>
 <p>With GitHub, it is possible to comment on the diff of a commit. Over the line of code to comment, a blue comment icon appears to open a comment window.</p>
 <p>The collaborator posts their comments and suggestions using the GitHub interface.</p>
-</section>
-<section id="version-history-backup-and-version-control" class="level2">
-<h2 class="anchored" data-anchor-id="version-history-backup-and-version-control">Version History, Backup, and Version Control</h2>
-<p>Some backup software can keep a history of the versions of your files. They also allow you to recover specific versions. How is this functionality different from version control? What are some of the benefits of using version control, Git, and GitHub?</p>
 </section>
 </section>
 <section id="conflicts" class="level1">

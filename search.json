@@ -647,6 +647,16 @@
     ]
   },
   {
+    "objectID": "03_version-control.html#general-workflow",
+    "href": "03_version-control.html#general-workflow",
+    "title": "3. Version Control",
+    "section": "General Workflow",
+    "text": "General Workflow\nIn one picture, here is the general workflow we have been following:\n\n\n\nCommands included in basic Git workflows. From Research Software Engineering with Python.",
+    "crumbs": [
+      "3. Version Control"
+    ]
+  },
+  {
     "objectID": "03_version-control.html#adding-collaborators",
     "href": "03_version-control.html#adding-collaborators",
     "title": "3. Version Control",
@@ -722,16 +732,6 @@
     "title": "3. Version Control",
     "section": "Comment Changes in GitHub",
     "text": "Comment Changes in GitHub\nThe collaborator has some questions about one line change made by the owner and has some suggestions to propose.\nWith GitHub, it is possible to comment on the diff of a commit. Over the line of code to comment, a blue comment icon appears to open a comment window.\nThe collaborator posts their comments and suggestions using the GitHub interface.",
-    "crumbs": [
-      "3. Version Control"
-    ]
-  },
-  {
-    "objectID": "03_version-control.html#version-history-backup-and-version-control",
-    "href": "03_version-control.html#version-history-backup-and-version-control",
-    "title": "3. Version Control",
-    "section": "Version History, Backup, and Version Control",
-    "text": "Version History, Backup, and Version Control\nSome backup software can keep a history of the versions of your files. They also allow you to recover specific versions. How is this functionality different from version control? What are some of the benefits of using version control, Git, and GitHub?",
     "crumbs": [
       "3. Version Control"
     ]
