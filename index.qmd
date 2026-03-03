@@ -51,7 +51,7 @@ To provide an overview of core software development practices that support effic
 
 # Description
 
-Less time for programming, more time for science (and your other stuff).
+Less time for programming, more time for science. This mini course introduces the basics of software development. In two hour sessions, we cover tools and practices that are used by reserachers tp manage their projects effectively. The course is dieided in two parts, three sessions each. The first part focuses on the must-know: the terminal, version control, and project structure. The second part covers more advanced topics, such as virtual environments, automation, and testing. You will not learn how to write a specific code, but the way to think about your code from bird's eye view. The course is designed to be language agnostic, but we will use Python for examples.
 
 # Target Audience
 
