@@ -478,7 +478,7 @@ git commit -m "first commit"
 
 ## The Book Project
 
-Throughout this tutorial, we've built a Pixi project from scratch. If you'd like to see a complete, working example of everything we've covered, you can access the finished project on GitHub at https://github.com/igorsdub/gecs-venv.
+Throughout this tutorial, we've built a Pixi project from scratch. If you'd like to see a complete, working example of everything we've covered, you can access the finished project on GitHub at [https://github.com/igorsdub/gecs-venv](https://github.com/igorsdub/gecs-venv).
 
 To use this example project on your machine:
 
