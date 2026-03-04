@@ -2,3 +2,63 @@
 title: "4. Virtual Environments"
 format: html
 ---
+
+Reproducibility is a fundamental aspect of scientific research, and managing computational environmentsis is crucial for ensuring that our code can be run by others. One of the best ways to manage dependencies in Python is through the use of virtual environments.
+
+## What is a Virtual Environment?
+
+A virtual environment is a self-contained directory that contains a Python installation and all the packages required for a specific project. It allows us to have different versions of Python and packages for different projects without interfering with each other.
+
+## Package Managers
+
+To create a virtual environment, we can use the `venv` module using [pip](https://en.wikipedia.org/wiki/Pip_(package_manager)#:~:text=pip%20(also%20known%20by%20Python,later%20include%20pip%20by%20default.) that comes with Python. However, it is an outdated method. Instead, we will use a dedicated package manager, which provides a modern and efficient way to manage virtual environments, package versions, and dependencies. As with different programming languages, there are several managers just for Python: [Conda](https://en.wikipedia.org/wiki/Conda_(package_manager)), [Mamba](https://github.com/mamba-org/mamba), [Poetry](https://python-poetry.org), and [uv](https://docs.astral.sh/uv/) - just to name a few. For this course, we will use [Pixi](https://pixi.prefix.dev/latest/). Let me you tell you why.
+
+### Pixi
+
+Pixi, to quote the website, "is a fast, modern, and reproducible package management tool". *Fast* referees to time it takes to build your environment and find compatible package versions. You do notice a difference if you have worked with Conda before. *Modern* since it is multi-platform /-language, memory efficient, and manages complex pipeline. *Reproducible* because keeps track of your package dependencies for you on both version and system level, making it easy to reproduce for you in the future or anyone interested.
+
+Check out this blog post by the creator of Pixi for a comprehensive introduction: [Pixi - reproducible, scientific software workflows!](https://prefix.dev/blog/pixi_for_scientists).
+
+You should have installed Pixi during the setup process ([Setting Up](00_setting-up.qmd)).
+
+![Typical Pixi workflow https://www.kdnuggets.com/pixi-a-smarter-way-to-manage-python-environments](images/paste-48.png)
+
+## Making a Pixi workspace
+
+> This section is based on the [Pixi documentation](https://pixi.prefix.dev/latest/first_workspace/).
+
+To create a new Pixi workspace, you can use the `pixi init` command:
+
+```bash
+pixi init gecs-pixi
+```
+
+
+This command creates a new directory called `gecs-pixi` with the following structure:
+
+```text
+gecs-pixi
+├── .gitattributes
+├── .gitignore
+└── pixi.toml
+```
+
+::: note
+If you want to create the workspace in a specific location, you can provide the path as an argument to the `pixi init` command.
+:::
+
+The `pixi.toml` file is the manifest of your Pixi workspace. It contains all the information about your workspace, such as its channels, platforms, dependencies, tasks, and more.
+
+```toml
+[workspace]
+authors = ["Your Name <your email from your global Git config>"]
+channels = ["conda-forge"]
+name = "example"
+# This will be whatever your machine's platform is
+platforms = ["linux-64"]
+version = "0.1.0"
+
+[tasks]
+
+[dependencies]
+```
