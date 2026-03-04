@@ -64,7 +64,7 @@ This course is for researchers who want to learn how to automate repetitive task
 
 | Part 1  |     |                   | Part 2 |     |                      |
 |---------|-----|-------------------|--------|-----|----------------------|
-| January | 16  | Terminal          | March  | 6   | Virtual Environments |
+| January | 16  | Terminal          | March  | 6   | Virtual Environment  |
 |         | 23  | Project Structure |        | 13  | Automation           |
 |         | 30  | Version Control   |        | 27  | Testing              |
 
