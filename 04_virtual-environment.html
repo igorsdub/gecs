@@ -547,8 +547,17 @@ Type "help", "copyright", "credits" or "license" for more information.
 ✔ Added osx-arm64
 ✔ Added win-64</code></pre>
 <p>This both adds the platforms to the <code>workspace</code> <code>platforms</code> list and solves for the platforms and updates the lock file!</p>
-<p>One can also manually edit the <code>pixi.toml</code> with a text editor to add the desired platforms to the <code>platforms</code> list.</p>
-<p>The resulting <code>pixi.toml</code> manifest is</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>You can also manually edit the <code>pixi.toml</code> with a text editor to add the desired platforms to the <code>platforms</code> list. In this case you need to run <code>pixi install</code> to solve for the new platforms and update the lock file.</p>
+</div>
+</div>
+</div>
+<p>The resulting <code>pixi.toml</code> manifest looks like this</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode toml code-with-copy"><code class="sourceCode toml"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[workspace]</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="dt">channels</span> <span class="op">=</span> <span class="op">[</span><span class="st">"conda-forge"</span><span class="op">]</span></span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"gecs-pixi"</span></span>
@@ -585,22 +594,34 @@ Type "help", "copyright", "credits" or "license" for more information.
 <span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="dt">dependencies</span> <span class="op">=</span> <span class="op">{ </span><span class="dt">bat</span><span class="op"> =</span> <span class="st">"*"</span><span class="op"> }</span></span>
 <span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="dt">exposed</span> <span class="op">=</span> <span class="op">{ </span><span class="dt">bat</span><span class="op"> =</span> <span class="st">"bat"</span><span class="op"> }</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>As new software is added to the system with <code>pixi global</code> this global manifest is updated. If the global manifest is updated manually, the next time <code>pixi global update</code> is run, the environments defined in the global manifest will be installed on the system. This means that by sharing a Pixi global manifest, a new machine can be provisioned with an entire suite of command line tools in seconds.</p>
+<p>If you want to delete a globally installed environment, you can use <code>pixi global uninstall</code> to remove the tool from the system and update the global manifest.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> global uninstall bat</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>In this case we could have used <code>pixi global remove bat</code> as well since there is only one version of <code>bat</code> installed. Difference between <code>remove</code> and <code>uninstall</code> is that <code>remove</code> can be used to remove a specific version of a tool if there are multiple versions installed, while <code>uninstall</code> will remove environment with that name.</p>
+</div>
+</div>
+</div>
 </section>
 <section id="version-controlling-the-project" class="level2">
 <h2 class="anchored" data-anchor-id="version-controlling-the-project">Version controlling the project</h2>
 <p>Now, we can version control our project with Git and share it on GitHub. Use terminal to add the <code>pixi.toml</code> and <code>pixi.lock</code> files to Git and commit them to your local repository. Alternatively, you can use or VS Source Control tab to do the same thing automatically and publish the repository on GitHub in one go.</p>
 <p>For local Git commit, use the following commands in the terminal:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add pixi.<span class="pp">*</span> .git<span class="pp">*</span></span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"first commit"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add pixi.<span class="pp">*</span> .git<span class="pp">*</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"first commit"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="the-book-project" class="level2">
 <h2 class="anchored" data-anchor-id="the-book-project">The Book Project</h2>
-<p>Throughout this tutorial, we’ve built a Pixi project from scratch. If you’d like to see a complete, working example of everything we’ve covered, you can access the finished project on GitHub at <a href="https://github.com/igorsdub/gecs-venv">https://github.com/igorsdub/gecs-venv</a>.</p>
+<p>Throughout this tutorial, we’ve built a Pixi project from scratch. If you’d like to see a complete, working example of everything we’ve covered, you can access the finished project on GitHub at <a href="https://github.com/igorsdub/gecs-venv" class="uri">https://github.com/igorsdub/gecs-venv</a>.</p>
 <p>To use this example project on your machine:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/igorsdub/gecs-venv.git</span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> gecs-venv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/igorsdub/gecs-venv.git</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> gecs-venv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Then follow the instructions in the <code>README.md</code> file to set up the project.</p>
 
 
