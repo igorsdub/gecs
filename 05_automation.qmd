@@ -3,3 +3,423 @@ title: "5. Automation"
 format: html
 ---
 
+> This tutorial was adapted from the [Automation and Make](https://swcarpentry.github.io/make-novice/) lesson by [The Software Carpentries](https://software-carpentry.org/) and reworked to match the project structure in `gecs-make/`.
+
+Automation is what turns a one-off analysis into a repeatable workflow. In the `gecs-make` project, we already have a useful pipeline: take a book from `books/`, count the words into `counts/`, and turn those counts into an interactive plot in `figures/`.
+
+The problem is not that the commands are hard to run. The problem is that they are still hard-coded around a single example, `dracula.txt`. As soon as we want to repeat the same workflow for six or seven books, the process becomes repetitive, error-prone, and annoying to maintain.
+
+This is exactly the kind of problem `make` is good at solving.
+
+## Starting from the current project
+
+The `gecs-make` project has this structure:
+
+``` text
+books/      raw text files
+counts/     generated word-count tables
+figures/    generated HTML plots
+scripts/    Python analysis scripts
+pixi.toml   project dependencies and tasks
+```
+
+The README already shows the manual workflow for one book:
+
+``` bash
+python scripts/get_summary.py books/dracula.txt
+python scripts/count_words.py books/dracula.txt counts/dracula.tsv
+python scripts/plot_counts.py counts/dracula.tsv figures/dracula.html
+```
+
+The first command, `get_summary.py`, is useful for inspecting metadata, but it is not part of the main file-generation pipeline. The core workflow we want to automate is the one that produces files:
+
+``` text
+books/*.txt -> counts/*.tsv -> figures/*.html
+```
+
+There are also Pixi tasks for the same book:
+
+``` bash
+pixi run summarize
+pixi run count
+pixi run plot
+pixi run all
+```
+
+That is a nice start, but the tasks in `pixi.toml` are still hard coded to `dracula.txt`. `make` lets us describe the dependency structure once and then apply it to every book in the project.
+
+Before going further, make sure `make` is available:
+
+``` bash
+make --version
+```
+
+## A first Makefile
+
+`make` reads instructions from a file called `Makefile`. Let us start by automating one real step from the project: generating a count table for Dracula.
+
+``` makefile
+counts/dracula.tsv : books/dracula.txt scripts/count_words.py
+	python scripts/count_words.py books/dracula.txt counts/dracula.tsv
+```
+
+This rule has three important parts:
+
+-   **Target**: `counts/dracula.tsv` is the file we want to create.
+-   **Dependencies**: `books/dracula.txt` and `scripts/count_words.py` are the things needed to build the target.
+-   **Recipe**: the indented command tells `make` how to build the target.
+
+The indentation matters. Recipe lines must start with a TAB character, not spaces.
+
+If we run:
+
+``` bash
+make counts/dracula.tsv
+```
+
+then `make` checks whether `counts/dracula.tsv` exists and whether either dependency is newer. If the target is missing or out of date, it runs the recipe.
+
+That gives us our first big improvement over a shell script: `make` knows what output file a command is supposed to create, and it can decide when the command actually needs to run.
+
+Another way to say this is that `make` helps us follow the DRY principle: **Don't Repeat Yourself**. Instead of copying the same filenames and command patterns in lots of places, we describe the workflow once and reuse that description.
+
+## Chaining steps together
+
+The workflow in `gecs-make` has a second stage: turning counts into an HTML figure.
+
+``` makefile
+counts/dracula.tsv : books/dracula.txt scripts/count_words.py
+	python scripts/count_words.py books/dracula.txt counts/dracula.tsv
+
+figures/dracula.html : counts/dracula.tsv scripts/plot_counts.py
+	python scripts/plot_counts.py counts/dracula.tsv figures/dracula.html
+```
+
+Now the dependencies form a chain:
+
+``` text
+books/dracula.txt -> counts/dracula.tsv -> figures/dracula.html
+```
+
+If we ask for the final output,
+
+``` bash
+make figures/dracula.html
+```
+
+`make` will build `counts/dracula.tsv` first if needed, then build the figure.
+
+This is the core idea behind `make`: we describe how files depend on each other, and `make` figures out the correct order.
+
+This dependency structure is often described as a **Directed Acyclic Graph**, or **DAG**:
+
+-   **Directed** means the dependencies point in one direction, from inputs to outputs.
+-   **Acyclic** means the graph cannot contain loops such as "A depends on B and B depends on A".
+-   **Graph** means we are really dealing with a network of connected files and build steps, not just one long shell script.
+
+For this project, the DAG is simple:
+
+``` text
+books/dracula.txt -> counts/dracula.tsv -> figures/dracula.html
+```
+
+As the project grows to many books, the graph gets wider, but the idea stays the same. `make` works well because it can walk that DAG and rebuild only the parts that are affected by a change.
+
+### Phony targets
+
+Sometimes we want a target that stands for an action rather than a real file. For example:
+
+``` makefile
+.PHONY : all
+all : figures/dracula.html
+```
+
+Now `make all` is a convenient alias for building the Dracula plot.
+
+Cleanup is another common phony target:
+
+``` makefile
+.PHONY : clean
+clean :
+	rm -f counts/*.tsv figures/*.html
+```
+
+Then we can run:
+
+``` bash
+make clean
+```
+
+::: {.callout-note title="Why use `.PHONY`?"}
+If a file named `clean` or `all` ever appears in the project, `make` might think the target is already up to date and skip the recipe. Marking those names as `.PHONY` tells `make` they are commands, not output files.
+:::
+
+## Automatic variables
+
+The two rules above repeat the same filenames in the target line and the recipe. That is easy to write for one example, but it becomes tedious quickly.
+
+`make` provides automatic variables to reduce duplication:
+
+-   `$@` means the current target
+-   `$^` means all dependencies for the current rule
+-   `$<` means the first dependency
+
+We can rewrite the rules like this:
+
+``` makefile
+counts/dracula.tsv : books/dracula.txt scripts/count_words.py
+	python scripts/count_words.py $< $@
+
+figures/dracula.html : counts/dracula.tsv scripts/plot_counts.py
+	python scripts/plot_counts.py $< $@
+```
+
+In both cases, the scripts take the first dependency as input and write to the target path. This makes the recipes shorter and keeps the filenames consistent with the rule declaration.
+
+That is another DRY win: the target and dependency names already appear in the rule header, so automatic variables let us reuse them instead of typing them again in the recipe.
+
+### Code is a dependency too
+
+Notice that the rules depend not only on data files, but also on scripts.
+
+``` makefile
+counts/dracula.tsv : books/dracula.txt scripts/count_words.py
+```
+
+That means if `scripts/count_words.py` changes, `make` knows it should regenerate `counts/dracula.tsv`. This is a very important idea in computational work: code changes can invalidate outputs just as much as data changes do.
+
+## Variables in Makefiles
+
+As the workflow grows, we start repeating commands and script paths. Variables help make the Makefile easier to read and easier to update.
+
+For example:
+
+``` makefile
+PYTHON=python
+COUNT_SCRIPT=scripts/count_words.py
+PLOT_SCRIPT=scripts/plot_counts.py
+```
+
+We can then use those variables in our rules:
+
+``` makefile
+PYTHON=python
+COUNT_SCRIPT=scripts/count_words.py
+PLOT_SCRIPT=scripts/plot_counts.py
+
+counts/dracula.tsv : books/dracula.txt $(COUNT_SCRIPT)
+	$(PYTHON) $(COUNT_SCRIPT) $< $@
+
+figures/dracula.html : counts/dracula.tsv $(PLOT_SCRIPT)
+	$(PYTHON) $(PLOT_SCRIPT) $< $@
+```
+
+This is especially helpful when several rules use the same script or command. If something changes later, we update the variable once instead of hunting through the whole file.
+
+Variables are one of the simplest ways to make a Makefile more DRY. They let us keep shared information in one place instead of repeating it across many rules.
+
+## Pattern rules
+
+At this point, the workflow still only handles Dracula. But the project contains many books:
+
+``` text
+books/dracula.txt
+books/frankenstein.txt
+books/jane_eyre.txt
+books/moby_dick.txt
+books/sense_and_sensibility.txt
+books/sherlock_holmes.txt
+books/time_machine.txt
+```
+
+The filenames change, but the workflow shape stays the same. That is exactly what pattern rules are for.
+
+``` makefile
+PYTHON=python
+COUNT_SCRIPT=scripts/count_words.py
+PLOT_SCRIPT=scripts/plot_counts.py
+
+counts/%.tsv : books/%.txt $(COUNT_SCRIPT)
+	$(PYTHON) $(COUNT_SCRIPT) $< $@
+
+figures/%.html : counts/%.tsv $(PLOT_SCRIPT)
+	$(PYTHON) $(PLOT_SCRIPT) $< $@
+```
+
+The `%` symbol is a wildcard stem. With these two rules, `make` now knows how to build:
+
+-   `counts/dracula.tsv` from `books/dracula.txt`
+-   `counts/frankenstein.tsv` from `books/frankenstein.txt`
+-   `figures/moby_dick.html` from `counts/moby_dick.tsv`
+-   and so on
+
+That means we no longer need one handwritten rule per book.
+
+Pattern rules are one of the biggest DRY improvements in `make`. We replace many nearly identical rules with one general rule that captures the shared structure of the workflow.
+
+We can still ask for a specific target:
+
+``` bash
+make figures/jane_eyre.html
+```
+
+and `make` will fill in the pattern automatically.
+
+## Functions
+
+Pattern rules tell `make` how to build matching files. Functions help us build lists of files.
+
+The most useful starting point here is `wildcard`, which finds filenames that match a pattern:
+
+``` makefile
+BOOK_FILES=$(wildcard books/*.txt)
+```
+
+In `gecs-make`, that expands to all the `.txt` files in `books/`.
+
+Next, we can use `patsubst` to transform those input filenames into the output files we want:
+
+``` makefile
+BOOK_FILES=$(wildcard books/*.txt)
+COUNT_FILES=$(patsubst books/%.txt,counts/%.tsv,$(BOOK_FILES))
+FIGURE_FILES=$(patsubst books/%.txt,figures/%.html,$(BOOK_FILES))
+```
+
+Now we have three connected lists:
+
+-   `BOOK_FILES` for raw texts
+-   `COUNT_FILES` for generated count tables
+-   `FIGURE_FILES` for generated plots
+
+This is what allows `make` to scale from one hard-coded book to the entire project.
+
+### Building everything
+
+Once we have those lists, we can define a proper `all` target:
+
+``` makefile
+PYTHON=python
+COUNT_SCRIPT=scripts/count_words.py
+PLOT_SCRIPT=scripts/plot_counts.py
+
+BOOK_FILES=$(wildcard books/*.txt)
+COUNT_FILES=$(patsubst books/%.txt,counts/%.tsv,$(BOOK_FILES))
+FIGURE_FILES=$(patsubst books/%.txt,figures/%.html,$(BOOK_FILES))
+
+.PHONY : all
+all : $(FIGURE_FILES)
+
+counts/%.tsv : books/%.txt $(COUNT_SCRIPT)
+	$(PYTHON) $(COUNT_SCRIPT) $< $@
+
+figures/%.html : counts/%.tsv $(PLOT_SCRIPT)
+	$(PYTHON) $(PLOT_SCRIPT) $< $@
+
+.PHONY : clean
+clean :
+	rm -f counts/*.tsv figures/*.html
+```
+
+Running
+
+``` bash
+make all
+```
+
+will now build the complete set of figures for all books in the repository.
+
+::: {.callout-tip title="From Pixi tasks to `make` targets"}
+Pixi tasks are still useful for environment management and for a few convenient commands. The advantage of `make` here is that it expresses file dependencies directly and scales naturally from one example book to a whole directory of inputs.
+:::
+
+## A self-documenting Makefile
+
+As Makefiles grow, it becomes useful to advertise the main entry points. A simple way to do that is to add a `help` target.
+
+``` makefile
+.PHONY : help
+help :
+	@echo "Available targets:"
+	@echo "  make all                  Build all figures"
+	@echo "  make clean                Remove generated counts and figures"
+	@echo "  make figures/dracula.html Build one specific figure"
+```
+
+For a slightly more polished version, we can annotate targets with comments and extract them automatically:
+
+``` makefile
+.PHONY : help
+help : ## Show available targets
+	@grep -E '^[a-zA-Z_./-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "%-22s %s\n", $$1, $$2}'
+
+.PHONY : all
+all : $(FIGURE_FILES) ## Build figures for all books
+
+.PHONY : clean
+clean : ## Remove generated counts and figures
+	rm -f counts/*.tsv figures/*.html
+```
+
+Then:
+
+``` bash
+make help
+```
+
+prints a short summary of the workflow.
+
+## A complete example
+
+Putting everything together, a Makefile for `gecs-make` could look like this:
+
+``` makefile
+PYTHON=python
+COUNT_SCRIPT=scripts/count_words.py
+PLOT_SCRIPT=scripts/plot_counts.py
+
+BOOK_FILES=$(wildcard books/*.txt)
+COUNT_FILES=$(patsubst books/%.txt,counts/%.tsv,$(BOOK_FILES))
+FIGURE_FILES=$(patsubst books/%.txt,figures/%.html,$(BOOK_FILES))
+
+.PHONY : help
+help : ## Show available targets
+	@grep -E '^[a-zA-Z_./-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "%-22s %s\n", $$1, $$2}'
+
+.PHONY : all
+all : $(FIGURE_FILES) ## Build figures for all books
+
+counts/%.tsv : books/%.txt $(COUNT_SCRIPT)
+	$(PYTHON) $(COUNT_SCRIPT) $< $@
+
+figures/%.html : counts/%.tsv $(PLOT_SCRIPT)
+	$(PYTHON) $(PLOT_SCRIPT) $< $@
+
+.PHONY : clean
+clean : ## Remove generated counts and figures
+	rm -f counts/*.tsv figures/*.html
+```
+
+This Makefile captures the real project workflow:
+
+-   text files in `books/` are inputs
+-   count tables in `counts/` are intermediate outputs
+-   plots in `figures/` are final outputs
+-   the Python scripts in `scripts/` are part of the dependency graph
+
+Most importantly, the Makefile is no longer hard coded to Dracula. Add another `.txt` file to `books/`, and the workflow can pick it up automatically.
+
+## What to remember
+
+`make` is useful when your work produces files from other files. Instead of rerunning commands by hand, we describe the dependency structure once and let `make` handle the ordering and incremental rebuilds.
+
+In this project, the key ideas are:
+
+-   A rule has a target, dependencies, and a recipe.
+-   `make` models the workflow as a DAG, a dependency graph with no cycles.
+-   `.PHONY` is for targets like `all`, `clean`, and `help` that are not real files.
+-   Automatic variables such as `$@` and `$<` reduce duplication.
+-   Variables, automatic variables, and pattern rules help us keep the Makefile DRY.
+-   Pattern rules such as `counts/%.tsv : books/%.txt` generalize the workflow across many books.
+-   Functions such as `wildcard` and `patsubst` let us build dynamic file lists from the real project structure.
+
+Pixi remains useful for managing the environment. `make` adds the missing piece: a reusable, dependency-aware way to automate the actual analysis pipeline.

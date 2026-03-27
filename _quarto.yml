@@ -26,6 +26,8 @@ website:
         href: 03_version-control.qmd
       - text: "4. Virtual Environment"
         href: 04_virtual-environment.qmd 
+      - text: "5. Automation"
+        href: 05_automation.qmd
       - text: "VS Code"
         href: 00_vs-code.qmd
       # - text: "About"
