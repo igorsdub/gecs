@@ -72,10 +72,10 @@ make --version
 If that command fails, install `make` first:
 
 -   **macOS**: if you use [Homebrew](https://brew.sh/), run `brew install make`. Depending on your shell setup, you may then need to use `gmake` instead of `make`, because the GNU version from Homebrew is often installed under that name.
--   **WSL (Ubuntu/Debian)**: run `sudo apt update` and then `sudo apt install make`. Installing `build-essential` is also common if you want the standard Unix build tools as a group.
+-   **WSL**: run `sudo apt update` and then `sudo apt install make`. Installing `build-essential` is also common if you want the standard Unix build tools as a group.
 -   **Pixi Global**: if you already use Pixi, you can also install GNU Make with `pixi global install make` and then use it from your shell.
 
-## A first Makefile
+## Makefile
 
 `make` reads instructions from a file called `Makefile`. Create a new file named `Makefile` in the root of the `gecs-make` repository, next to `books/`, `counts/`, `figures/`, and `scripts/`. Then add the first rule below to that file.
 
@@ -460,7 +460,7 @@ This Makefile captures the real project workflow:
 
 Most importantly, the Makefile is no longer hard coded to Dracula. Add another `.txt` file to `books/`, and the workflow can pick it up automatically.
 
-## What to remember
+## Final words
 
 `make` is useful when your work produces files from other files. Instead of rerunning commands by hand, we describe the dependency structure once and let `make` handle the ordering and incremental rebuilds.
 
