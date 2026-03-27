@@ -11,7 +11,7 @@ The problem is not that the commands are hard to run. The problem is that they a
 
 This is exactly the kind of problem `make` is good at solving.
 
-## Starting from the current project
+## The Book Project
 
 If you do not have the example project yet, clone it from GitHub first:
 
@@ -77,7 +77,15 @@ If that command fails, install `make` first:
 
 ## A first Makefile
 
-`make` reads instructions from a file called `Makefile`. Let us start by automating one real step from the project: generating a count table for Dracula.
+`make` reads instructions from a file called `Makefile`. Create a new file named `Makefile` in the root of the `gecs-make` repository, next to `books/`, `counts/`, `figures/`, and `scripts/`. Then add the first rule below to that file.
+
+If you want to use a different filename, for example `workflow.mk`, you can tell `make` which file to read with the `-f` option:
+
+``` bash
+make -f workflow.mk counts/dracula.tsv
+```
+
+For the rest of this lesson, we will assume the file is named `Makefile`. Let us start by automating one real step from the project: generating a count table for Dracula.
 
 ``` makefile
 counts/dracula.tsv : books/dracula.txt scripts/count_words.py
@@ -369,17 +377,28 @@ help :
 For a slightly more polished version, we can annotate targets with comments and extract them automatically:
 
 ``` makefile
+.DEFAULT_GOAL := help
+
+## Show available targets
 .PHONY : help
-help : ## Show available targets
-	@grep -E '^[a-zA-Z_./-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "%-22s %s\n", $$1, $$2}'
+help:
+	@echo "Available rules:"
+	@grep -E '^## |^[a-zA-Z0-9_.\/%\-]+ *:' $(MAKEFILE_LIST) | \
+	awk 'BEGIN {FS = " *:.*"} \
+	/^## / {desc = substr($$0, 4); next} \
+	/^[a-zA-Z0-9_.\/%\-]+ *:/ {printf "%-22s %s\n", $$1, desc}'
 
+## Build figures for all books
 .PHONY : all
-all : $(FIGURE_FILES) ## Build figures for all books
+all : $(FIGURE_FILES)
 
+## Remove generated counts and figures
 .PHONY : clean
-clean : ## Remove generated counts and figures
+clean :
 	rm -f counts/*.tsv figures/*.html
 ```
+
+Here `$(MAKEFILE_LIST)` is a built-in `make` variable. It expands to the makefiles that were read during the current run, so we do not have to define it ourselves. In this version, `grep` and `awk` read the Makefile and pair comments such as `## Build figures for all books` with the target that appears immediately below them.
 
 Then:
 
@@ -402,12 +421,23 @@ BOOK_FILES=$(wildcard books/*.txt)
 COUNT_FILES=$(patsubst books/%.txt,counts/%.tsv,$(BOOK_FILES))
 FIGURE_FILES=$(patsubst books/%.txt,figures/%.html,$(BOOK_FILES))
 
-.PHONY : help
-help : ## Show available targets
-	@grep -E '^[a-zA-Z_./-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "%-22s %s\n", $$1, $$2}'
+.DEFAULT_GOAL := help
 
+## Show available targets
+.PHONY : help
+help:
+	@echo "Available rules:"
+	@grep -E '^## |^[a-zA-Z0-9_.\/%\-]+ *:' $(MAKEFILE_LIST) | \
+	awk 'BEGIN {FS = " *:.*"} \
+	/^## / {desc = substr($$0, 4); next} \
+	/^[a-zA-Z0-9_.\/%\-]+ *:/ {printf "%-22s %s\n", $$1, desc}'
+
+## Build figures for all books
 .PHONY : all
-all : $(FIGURE_FILES) ## Build figures for all books
+all : $(FIGURE_FILES)
+
+## Build count tables for all books
+counts : $(COUNT_FILES)
 
 counts/%.tsv : books/%.txt $(COUNT_SCRIPT)
 	$(PYTHON) $(COUNT_SCRIPT) $< $@
@@ -415,8 +445,9 @@ counts/%.tsv : books/%.txt $(COUNT_SCRIPT)
 figures/%.html : counts/%.tsv $(PLOT_SCRIPT)
 	$(PYTHON) $(PLOT_SCRIPT) $< $@
 
+## Remove generated counts and figures
 .PHONY : clean
-clean : ## Remove generated counts and figures
+clean :
 	rm -f counts/*.tsv figures/*.html
 ```
 
