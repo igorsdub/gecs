@@ -122,7 +122,7 @@ That gives us our first big improvement over a shell script: `make` knows what o
 
 Another way to say this is that `make` helps us follow the DRY principle: **Don't Repeat Yourself**. Instead of copying the same filenames and command patterns in lots of places, we describe the workflow once and reuse that description.
 
-## Chaining steps together
+## Chaining Steps Together
 
 The workflow in `gecs-make` has a second stage: turning counts into an HTML figure.
 
@@ -164,7 +164,7 @@ books/dracula.txt -> counts/dracula.tsv -> figures/dracula.html
 
 As the project grows to many books, the graph gets wider, but the idea stays the same. `make` works well because it can walk that DAG and rebuild only the parts that are affected by a change.
 
-### Phony targets
+### Phony Targets
 
 Sometimes we want a target that stands for an action rather than a real file. For example:
 
@@ -193,7 +193,7 @@ make clean
 If a file named `clean` or `all` ever appears in the project, `make` might think the target is already up to date and skip the recipe. Marking those names as `.PHONY` tells `make` they are commands, not output files.
 :::
 
-## Automatic variables
+## Automatic Variables
 
 The two rules above repeat the same filenames in the target line and the recipe. That is easy to write for one example, but it becomes tedious quickly.
 
@@ -217,7 +217,7 @@ In both cases, the scripts take the first dependency as input and write to the t
 
 That is another DRY win: the target and dependency names already appear in the rule header, so automatic variables let us reuse them instead of typing them again in the recipe.
 
-### Code is a dependency too
+### Code is a Dependency
 
 Notice that the rules depend not only on data files, but also on scripts.
 
@@ -257,7 +257,7 @@ This is especially helpful when several rules use the same script or command. If
 
 Variables are one of the simplest ways to make a Makefile more DRY. They let us keep shared information in one place instead of repeating it across many rules.
 
-## Pattern rules
+## Pattern Rules
 
 At this point, the workflow still only handles Dracula. But the project contains many books:
 
@@ -332,7 +332,7 @@ Now we have three connected lists:
 
 This is what allows `make` to scale from one hard-coded book to the entire project.
 
-### Building everything
+### Building Everything
 
 Once we have those lists, we can define a proper `all` target:
 
@@ -371,7 +371,7 @@ will now build the complete set of figures for all books in the repository.
 Pixi tasks are still useful for environment management and for a few convenient commands. The advantage of `make` here is that it expresses file dependencies directly and scales naturally from one example book to a whole directory of inputs.
 :::
 
-## A self-documenting Makefile
+## Self-documenting Makefile
 
 As Makefiles grow, it becomes useful to advertise the main entry points. A simple way to do that is to add a `help` target.
 
@@ -418,7 +418,7 @@ make help
 
 prints a short summary of the workflow.
 
-## A complete example
+## Complete Example
 
 Putting everything together, a Makefile for `gecs-make` could look like this:
 
@@ -470,7 +470,7 @@ This Makefile captures the real project workflow:
 
 Most importantly, the Makefile is no longer hard coded to Dracula. Add another `.txt` file to `books/`, and the workflow can pick it up automatically.
 
-## Final words
+## Final Words
 
 `make` is useful when your work produces files from other files. Instead of rerunning commands by hand, we describe the dependency structure once and let `make` handle the ordering and incremental rebuilds.
 
