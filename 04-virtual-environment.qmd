@@ -25,7 +25,7 @@ Pixi, to quote the website, "is a fast, modern, and reproducible package managem
 
 Check out this blog post by the creator of Pixi for a comprehensive introduction: [Pixi - reproducible, scientific software workflows!](https://prefix.dev/blog/pixi_for_scientists).
 
-You should have installed Pixi during the setup process ([Setting Up](00_setting-up.qmd)).
+You should have installed Pixi during the setup process ([Setting Up](00-setting-up.qmd)).
 
 ![Typical Pixi workflow https://www.kdnuggets.com/pixi-a-smarter-way-to-manage-python-environments](images/paste-48.png)
 

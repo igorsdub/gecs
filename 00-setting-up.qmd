@@ -18,7 +18,7 @@ by Justin Bois, [bootcamp 2025](https://justinbois.github.io/bootcamp/2025_wis/l
 
 # UNIX
 
-The motivation behind the use of terminal will be explained in [the next session](01_terminal.qmd)
+The motivation behind the use of terminal will be explained in [the next session](01-terminal.qmd)
 
 First, we need an efficient way to interact with your computer. UNIX is by far the most well supported and used operating system (OS) to do so. It allows Apple Mac users to sigh in relief since their computers are based on UNIX and can skip to the next section. Windows, however, is another story.
 
@@ -249,7 +249,7 @@ Accept any installations or suggestions offered by extensions. Now, you are read
 
 # Package Manager
 
-An out-of-box UNIX-based OS has limited amount of tools. For this course we will use various open-source tools which need to be downloaded, installed, updated and keeping track of. Package manager is a tool to manage tools. We will use Pixi package manager in this course and will dive deep into it in [the Virtual Environments session.](02_virtual_environments.qmd)
+An out-of-box UNIX-based OS has limited amount of tools. For this course we will use various open-source tools which need to be downloaded, installed, updated and keeping track of. Package manager is a tool to manage tools. We will use Pixi package manager in this course and will dive deep into it in [the Virtual Environments session.](04-virtual-environment.qmd)
 
 ## Pixi
 
@@ -293,7 +293,7 @@ You will see something like `/Users/username/.pixi/bin/pixi` printed, where `use
 
 # Developer Platform
 
-Your code needs to live somewhere besides your computer. Otherwise, if you lose your computer, will you be able to access your projects? For this purpose, we will use GitHub which will take a central role alongside Git during [the session on version control](04_version_control.qmd).
+Your code needs to live somewhere besides your computer. Otherwise, if you lose your computer, will you be able to access your projects? For this purpose, we will use GitHub which will take a central role alongside Git during [the session on version control](03-version-control.qmd).
 
 ## GitHub {#sec-github}
 

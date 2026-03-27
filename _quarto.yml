@@ -17,19 +17,19 @@ website:
       - text: "Home"
         href: index.qmd
       - text: "0. Setting Up"
-        href: 00_setting-up.qmd
+        href: 00-setting-up.qmd
       - text: "1. Terminal"
-        href: 01_terminal.qmd
+        href: 01-terminal.qmd
       - text: "2. Project Structure"
-        href: 02_project-structure.qmd
+        href: 02-project-structure.qmd
       - text: "3. Version Control"
-        href: 03_version-control.qmd
+        href: 03-version-control.qmd
       - text: "4. Virtual Environment"
-        href: 04_virtual-environment.qmd 
+        href: 04-virtual-environment.qmd
       - text: "5. Automation"
-        href: 05_automation.qmd
+        href: 05-automation.qmd
       - text: "VS Code"
-        href: 00_vs-code.qmd
+        href: 00-vs-code.qmd
       # - text: "About"
       #   href: about.qmd
       # -  auto: 0?_*
@@ -44,5 +44,4 @@ format:
     mermaid:
       theme: neutral
     callout-appearance: simple
-
 

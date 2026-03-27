@@ -533,7 +533,7 @@ Most Linux command line tools include a man page. Try taking a brief look at the
 
 ## Downloading Files from the Web
 
-Another powerful command you encountered during [the setup process](00_setting_up.qmd) is `curl` (**C**lient **URL**). It's used to transfer data from or to a server, often for downloading files or scripts from the internet:
+Another powerful command you encountered during [the setup process](00-setting-up.qmd) is `curl` (**C**lient **URL**). It's used to transfer data from or to a server, often for downloading files or scripts from the internet:
 
 ```bash
 curl -fsSL https://pixi.sh/install.sh | sh
@@ -609,7 +609,7 @@ Hidden files are commonly used for storing configuration settings. For example:
 - `.bashrc` - Configuration file for the Bash shell. Contains settings, aliases, and functions that customize your Bash environment.
 - `.zshrc` - Configuration file for the Zsh shell. Similar to `.bashrc`, but for Zsh.
 
-These files are executed every time you start a terminal. During the [setup process](00_setting_up.qmd), you modified these files when installing tools like Pixi and Starship. For example, you added lines like:
+These files are executed every time you start a terminal. During the [setup process](00-setting-up.qmd), you modified these files when installing tools like Pixi and Starship. For example, you added lines like:
 
 ```bash
 echo 'eval "$(starship init bash)"' >> ~/.bashrc

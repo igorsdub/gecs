@@ -43,7 +43,7 @@ If you get an error, please see [this webpage](https://carpentries.github.io/wor
 
 ## Creating GitHub Account
 
-If you don't already have a GitHub account, check the [Setting Up](00_setting-up.qmd) section.
+If you don't already have a GitHub account, check the [Setting Up](00-setting-up.qmd) section.
 
 ## Preparing Your Working Directory
 
