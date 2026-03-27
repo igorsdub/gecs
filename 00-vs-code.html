@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>2. Project Structure – Good Enough Computing in Science 👍⚖️🧑‍💻🧪</title>
+<title>VS Code – Good Enough Computing in Science 👍⚖️🧑‍💻🧪</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -119,7 +119,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02_project-structure.html">2. Project Structure</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./00-vs-code.html">VS Code</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -152,43 +152,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./00_setting-up.html" class="sidebar-item-text sidebar-link">
+  <a href="./00-setting-up.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">0. Setting Up</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01_terminal.html" class="sidebar-item-text sidebar-link">
+  <a href="./01-terminal.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">1. Terminal</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02_project-structure.html" class="sidebar-item-text sidebar-link active">
+  <a href="./02-project-structure.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">2. Project Structure</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03_version-control.html" class="sidebar-item-text sidebar-link">
+  <a href="./03-version-control.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">3. Version Control</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04_virtual-environment.html" class="sidebar-item-text sidebar-link">
+  <a href="./04-virtual-environment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">4. Virtual Environment</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05_automation.html" class="sidebar-item-text sidebar-link">
+  <a href="./05-automation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">5. Automation</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./00_vs-code.html" class="sidebar-item-text sidebar-link">
+  <a href="./00-vs-code.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">VS Code</span></a>
   </div>
 </li>
@@ -202,18 +202,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#lost-book-project" id="toc-lost-book-project" class="nav-link active" data-scroll-target="#lost-book-project">Lost Book Project</a>
-  <ul class="collapse">
-  <li><a href="#messy-project" id="toc-messy-project" class="nav-link" data-scroll-target="#messy-project">Messy Project</a></li>
-  <li><a href="#structured-project" id="toc-structured-project" class="nav-link" data-scroll-target="#structured-project">Structured Project</a></li>
-  </ul></li>
-  <li><a href="#tips" id="toc-tips" class="nav-link" data-scroll-target="#tips">Tips</a>
-  <ul class="collapse">
-  <li><a href="#directory-structure" id="toc-directory-structure" class="nav-link" data-scroll-target="#directory-structure">Directory Structure</a></li>
-  <li><a href="#naming-files-and-directories" id="toc-naming-files-and-directories" class="nav-link" data-scroll-target="#naming-files-and-directories">Naming Files and Directories</a></li>
-  <li><a href="#readme" id="toc-readme" class="nav-link" data-scroll-target="#readme">README</a></li>
-  <li><a href="#project-template" id="toc-project-template" class="nav-link" data-scroll-target="#project-template">Project Template</a></li>
-  </ul></li>
+  <li><a href="#start-up" id="toc-start-up" class="nav-link active" data-scroll-target="#start-up">Start Up</a></li>
+  <li><a href="#interface-and-layout" id="toc-interface-and-layout" class="nav-link" data-scroll-target="#interface-and-layout">Interface and Layout</a></li>
+  <li><a href="#settings" id="toc-settings" class="nav-link" data-scroll-target="#settings">Settings</a></li>
+  <li><a href="#searching-and-replacing" id="toc-searching-and-replacing" class="nav-link" data-scroll-target="#searching-and-replacing">Searching and Replacing</a></li>
+  <li><a href="#shortcuts" id="toc-shortcuts" class="nav-link" data-scroll-target="#shortcuts">Shortcuts</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
@@ -223,7 +216,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">2. Project Structure</h1>
+<h1 class="title">VS Code</h1>
 </div>
 
 
@@ -240,124 +233,96 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<blockquote class="blockquote">
-<p>If you get hit by a bus today, will your colleagues be able to run your project tomorrow?</p>
-<p><a href="https://en.wikipedia.org/wiki/Bus_factor">The Bus Factor</a></p>
-</blockquote>
-<p>Software projects can be messy. Imagine you join a lab and your supervisor hands a project folder left by a previous postdoc. It usually looks like this:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/paste-44.png" class="img-fluid figure-img"></p>
-<figcaption>https://datacarpentry.github.io/rr-organization1/fig/files_messy_tidy.png</figcaption>
-</figure>
+<p>In this tutorial you will get familiar with the functionality of VS Code. A powerful IDE as it is, VS Code has a lot of features. However, even if you know the basics it will get you a long way. This tutorial is heavily based on the official <a href="https://code.visualstudio.com/docs/getstarted/getting-started">Tutorial: Get started with Visual Studio Code</a>.</p>
+<section id="start-up" class="level1">
+<h1>Start Up</h1>
+<ol type="1">
+<li><p>Open Visual Studio Code. Then open a folder with <strong>File</strong> &gt; <strong>Open Folder…</strong> or <code>Cmd+O</code>. On Linux/WSL users, you will first have to start a remote WSL session. With the WSL extension installed, you will see a new Status bar item at the far left.</p>
+<p><img src="images/paste-41.png" class="img-fluid"></p>
+<p>The Remote Status bar item can quickly show you in which context VS Code is running (local or remote) and clicking on the item will bring up the WSL extension commands.</p>
+<p><img src="images/paste-42.png" class="img-fluid"></p>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<p>OK, probably not as extreme. Still, it is common for a newcomer to data science to put everything into a single folder: data, scripts, figures, tables. That can work if you only need to do analysis once and no one else will ever do it again, including yourself. That is far from truth in research be it academia or industry. In this tutorial we will see quick fixes you can do to help others and the future you to understand what does a project do. Let’s get organized.</p>
-<section id="lost-book-project" class="level1">
-<h1>Lost Book Project</h1>
-<p>We will look at two project structures: messy and structured - to see what works and what does not in short and long term projects.</p>
-<section id="messy-project" class="level2">
-<h2 class="anchored" data-anchor-id="messy-project">Messy Project</h2>
-<pre class="text"><code>.
-├── analysis.sh
-├── book1.txt
-├── book102.txt
-├── book2.txt
-├── book3.txt
-├── book5.txt
-├── book55.txt
-├── book79.txt
-├── plot.sh
-└── summary.sh</code></pre>
-<p>First, try to make sense what the project is about and how to use it.</p>
-<p><a href="https://github.com/igorsdub/gecs-02-project_structure/archive/refs/heads/2025-02_messy-dir.zip">DOWNLOAD HERE</a></p>
-<p>If you want to practice your terminal skills, you can unzip the file with <code>unzip</code> program:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span> gecs-02-project_structure-2025-02_messy-dir</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Once unzipped, open the directory with VS Code (<code>Cmd+O</code>).</p>
+<div class="callout-body-container">
+<p>Alternatively, WSL users can open their Linux terminal, create a directory in their Linux distribution file system, change their directory and open it in VS Code WSL remote with <code>code .</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> vscode101</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> vscode101</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">code</span> .</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Note the <code>.</code> in front of <code>code</code>. You need to tell VS Code what you are opening. Later, we will see that you can open any file or directory with this command.</p>
+</div>
+</div>
+</div></li>
+<li><p>Select <strong>New Folder</strong> and create a new folder named <code>vscode101</code>. Then select <strong>Select Folder (Open on macOS)</strong> to open the folder in VS Code.</p></li>
+<li><p>On the Workspace Trust dialog, select <strong>Yes, I trust the authors</strong> to enable all features in the workspace. If you do not see this dialog, then you probably have already opened this area before.</p>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Workspace Trust lets you decide whether code in your project folder can be executed by VS Code. When you download code from the internet, you should first review it to make sure it’s safe to run. Get more info about <a href="https://code.visualstudio.com/docs/editing/workspaces/workspace-trust">Workspace Trust</a>.</p>
+</div>
+</div>
+</div></li>
+</ol>
+<p><img src="images/paste-40.png" class="img-fluid"></p>
+<ol start="4" type="1">
+<li><p>You should now see the <strong>Explorer</strong> view on the left, showing the name of the folder. Alongside terminal commands like <code>ls</code>, <code>tree</code>, and other commands, you can use the <strong>Explorer</strong> view to view and manage the files and folders in your workspace.</p>
+<p><img src="images/paste-43.png" class="img-fluid"></p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>When you open a folder in VS Code, VS Code can restore the UI state for that folder, such as the open files, the active view, and the layout of the editor. You can also configure settings that only apply to that folder, or define debug configurations. Get more info about <a href="https://code.visualstudio.com/docs/getstarted/getting-started">workspaces</a>.</p>
+</div>
+</div>
+</div></li>
+</ol>
+<p>VS Code now considers the folder you’ve opened a workspace. You can also use <code>code .</code> in your terminal, especially for WSL users, to start a WSL remote session.</p>
 </section>
-<section id="structured-project" class="level2">
-<h2 class="anchored" data-anchor-id="structured-project">Structured Project</h2>
-<pre class="text"><code>.
-├── books                           &lt;-- Text files of books used for analysis
-│   ├── dracula.txt
-│   ├── frankenstein.txt
-│   ├── jane_eyre.txt
-│   ├── moby_dick.txt
-│   ├── README.md                   &lt;-- README for the book files
-│   ├── sense_and_sensibility.txt
-│   ├── sherlock_holmes.txt
-│   └── time_machine.txt
-├── counts                          &lt;-- Word count .tsv data
-├── figures                         &lt;-- Bar plots of word counts
-├── README.md                       &lt;-- README for the project
-└── scripts                         &lt;-- Scripts directory
-    ├── count_words.sh              &lt;-- Counts occurences of word in a books
-    ├── get_summary.sh              &lt;-- Gets a book summary
-    └── plot_counts.sh              &lt;-- Plots count histogram in terminal window</code></pre>
-<p>This is the same project but organized.</p>
-<p><a href="https://github.com/igorsdub/gecs-02-project_structure/archive/refs/heads/main.zip">DOWNLOAD HERE</a></p>
-<p>Once downloaded and unzipped, open the directory with VS Code.</p>
-</section>
-</section>
-<section id="tips" class="level1">
-<h1>Tips</h1>
-<section id="directory-structure" class="level2">
-<h2 class="anchored" data-anchor-id="directory-structure">Directory Structure</h2>
-<p>Here is a minimal directory structure adapted from <a href="https://github.com/bvreede/good-enough-project">bvreede on GitHub</a>. There are larger.</p>
-<p>The directory structure distinguishes three kinds of folders:</p>
+<section id="interface-and-layout" class="level1">
+<h1>Interface and Layout</h1>
 <ul>
-<li><p>Read-only (RO): not edited by either code or researcher</p></li>
-<li><p>Human-writeable (HW): edited by the researcher only.</p></li>
-<li><p>Project-generated (PG): folders generated when running the code; these folders can be deleted or emptied and will be completely reconstituted as the project is run.</p></li>
+<li>Sidebar</li>
+<li>Code editor</li>
+<li>Terminal</li>
 </ul>
-<pre class="text"><code>.
-├── README.md          &lt;- Description and how to run the project (HW)
-├── requirements.txt   &lt;- System requirements for running the project (HW)
-├── processed_data     &lt;- Processed data ready for analysis (PG)
-├── raw_data           &lt;- The original, immutable data dump (RO)
-├── scripts            &lt;- Scripts for this project (HW)
-└── results            &lt;- Project results: tables, figures, etc. (PG) </code></pre>
 </section>
-<section id="naming-files-and-directories" class="level2">
-<h2 class="anchored" data-anchor-id="naming-files-and-directories">Naming Files and Directories</h2>
-<p>Jenny Bryan from The Carpentiries has shared <a href="https://speakerdeck.com/jennybc/how-to-name-files">an online slides</a> to show how to and how to not name files and directories. The presentation can be summarized as follows.</p>
+<section id="settings" class="level1">
+<h1>Settings</h1>
 <ul>
-<li><p>KISS (<em>Keep It Simple Stupid</em>): use simple and consistent file names</p>
-<ul>
-<li><p>Machine readable</p></li>
-<li><p>Human readable</p></li>
-<li><p>Orders well in a directory</p></li>
-</ul></li>
-<li><p>No special characters and <strong>no spaces</strong>!</p></li>
-<li><p>Use YYYY-MM-DD date format</p></li>
-<li><p>Use <code>-</code> to delimit words and <code>_</code> to delimit sections</p>
-<ul>
-<li>i.e.&nbsp;<code>2019-01-19_my-data.csv</code></li>
-</ul></li>
-<li><p>Left-pad numbers</p>
-<ul>
-<li><p>i.e.&nbsp;<code>01_my-data.csv</code> vs <code>1_my-data.csv</code></p></li>
-<li><p>If you don’t, file orders get messed up when you get to double-digits</p></li>
-</ul></li>
+<li>Autosave</li>
+<li>Word wrap</li>
+<li>Theme customization</li>
+<li>GECS profile configuration</li>
 </ul>
-<p>You can use a variation of the above as long as you are consistent within a project.</p>
 </section>
-<section id="readme" class="level2">
-<h2 class="anchored" data-anchor-id="readme">README</h2>
-<p><code>README</code>, or <code>README.md</code> since <a href="https://en.wikipedia.org/wiki/Markdown">Markdown</a> language is the standard now, is the most important file in your project. It grants the power to the new users to execute your project and, remember, your future self. Without it, almost no one will get through your project without a considerable struggle (again, including future you).</p>
-<p><a href="https://www.makeareadme.com/">Make a README</a> does a great job in conveying this message in a single webpage. Check it out!</p>
+<section id="searching-and-replacing" class="level1">
+<h1>Searching and Replacing</h1>
+<ul>
+<li>Search in a file</li>
+<li>Search across files</li>
+</ul>
 </section>
-<section id="project-template" class="level2">
-<h2 class="anchored" data-anchor-id="project-template">Project Template</h2>
-<p>Instead of creating project directory with all its supplementary files, software developers came up with a boilerplate structure that can be created in minutes. <a href="https://cookiecutter-data-science.drivendata.org/">Cookie Cutter Data Science</a> project is one of those. Although, the default template is aimed towards machine learning / data science researchers, you can find a simpler one shared by other researchers <a href="https://github.com/aeturrell/cookiecutter-research-project/tree/main">online</a>. Another option, to create your own template that suits your needs.</p>
-<p><img src="images/paste-2.gif" class="img-fluid"></p>
-<p>Also, check out their <a href="https://cookiecutter-data-science.drivendata.org/opinions/">Opinions page</a> for project management tips.</p>
-</section>
+<section id="shortcuts" class="level1">
+<h1>Shortcuts</h1>
+<ul>
+<li><strong>Layout</strong>: <code>Cmd+B</code> for the Sidebar, <code>Ctrl+`</code> for the Terminal</li>
+<li><strong>Code editor</strong>: <code>Cmd+D</code> for selecting the expression, <code>Opt+Up/Down</code> to move a line, <code>Opt+Shift+F</code> to format a document</li>
+<li><strong>General</strong>: <code>Cmd+Shift+P</code> for the Command Palette, <code>Cmd+P</code> for the File and Open Editors search bar</li>
+</ul>
 </section>
 <section id="references" class="level1">
 <h1>References</h1>
 <ul>
-<li><a href="https://datacarpentry.github.io/rr-organization1/" class="uri">https://datacarpentry.github.io/rr-organization1/</a></li>
-<li><a href="https://bookdown.org/arnold_c/repro-research/2-3-how-to-name-files-and-directories.html" class="uri">https://bookdown.org/arnold_c/repro-research/2-3-how-to-name-files-and-directories.html</a></li>
+<li><a href="https://code.visualstudio.com/docs/getstarted/getting-started" class="uri">https://code.visualstudio.com/docs/getstarted/getting-started</a></li>
+<li><a href="https://code.visualstudio.com/docs/remote/wsl-tutorial" class="uri">https://code.visualstudio.com/docs/remote/wsl-tutorial</a></li>
 </ul>
 
 
