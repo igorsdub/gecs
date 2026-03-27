@@ -13,6 +13,21 @@ This is exactly the kind of problem `make` is good at solving.
 
 ## Starting from the current project
 
+If you do not have the example project yet, clone it from GitHub first:
+
+``` bash
+git clone https://github.com/igorsdub/gecs-make
+cd gecs-make
+```
+
+If you already cloned it earlier, move into the project directory:
+
+``` bash
+cd gecs-make
+```
+
+This tutorial assumes you are running the commands below from inside that repository.
+
 The `gecs-make` project has this structure:
 
 ``` text
@@ -53,6 +68,12 @@ Before going further, make sure `make` is available:
 ``` bash
 make --version
 ```
+
+If that command fails, install `make` first:
+
+-   **macOS**: if you use [Homebrew](https://brew.sh/), run `brew install make`. Depending on your shell setup, you may then need to use `gmake` instead of `make`, because the GNU version from Homebrew is often installed under that name.
+-   **WSL (Ubuntu/Debian)**: run `sudo apt update` and then `sudo apt install make`. Installing `build-essential` is also common if you want the standard Unix build tools as a group.
+-   **Pixi Global**: if you already use Pixi, you can also install GNU Make with `pixi global install make` and then use it from your shell.
 
 ## A first Makefile
 
