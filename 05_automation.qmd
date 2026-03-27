@@ -100,6 +100,16 @@ This rule has three important parts:
 
 The indentation matters. Recipe lines must start with a TAB character, not spaces.
 
+::: {.callout-warning title="Tabs vs spaces in Makefiles"}
+Recipe lines in a `Makefile` must begin with a `TAB`. If you indent a recipe with four spaces instead, `make` will usually fail with an error like:
+
+``` output
+Makefile:<line-number>: *** missing separator.  Stop.
+```
+
+If that happens, check the start of the recipe line carefully and replace the spaces with a TAB character.
+:::
+
 If we run:
 
 ``` bash
