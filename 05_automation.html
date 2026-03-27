@@ -77,7 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-dea667461a5c81afc9ba75ce94cd63f3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-be3771519f21acc1c5b6733774c6dcd8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -254,6 +254,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This is exactly the kind of problem <code>make</code> is good at solving.</p>
 <section id="starting-from-the-current-project" class="level2">
 <h2 class="anchored" data-anchor-id="starting-from-the-current-project">Starting from the current project</h2>
+<p>If you do not have the example project yet, clone it from GitHub first:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/igorsdub/gecs-make</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> gecs-make</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If you already cloned it earlier, move into the project directory:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> gecs-make</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This tutorial assumes you are running the commands below from inside that repository.</p>
 <p>The <code>gecs-make</code> project has this structure:</p>
 <pre class="text"><code>books/      raw text files
 counts/     generated word-count tables
@@ -261,25 +267,31 @@ figures/    generated HTML plots
 scripts/    Python analysis scripts
 pixi.toml   project dependencies and tasks</code></pre>
 <p>The README already shows the manual workflow for one book:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> scripts/get_summary.py books/dracula.txt</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> scripts/count_words.py books/dracula.txt counts/dracula.tsv</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> scripts/plot_counts.py counts/dracula.tsv figures/dracula.html</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> scripts/get_summary.py books/dracula.txt</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> scripts/count_words.py books/dracula.txt counts/dracula.tsv</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> scripts/plot_counts.py counts/dracula.tsv figures/dracula.html</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The first command, <code>get_summary.py</code>, is useful for inspecting metadata, but it is not part of the main file-generation pipeline. The core workflow we want to automate is the one that produces files:</p>
 <pre class="text"><code>books/*.txt -&gt; counts/*.tsv -&gt; figures/*.html</code></pre>
 <p>There are also Pixi tasks for the same book:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run summarize</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run count</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run plot</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run all</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run summarize</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run count</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run plot</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run all</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>That is a nice start, but the tasks in <code>pixi.toml</code> are still hard coded to <code>dracula.txt</code>. <code>make</code> lets us describe the dependency structure once and then apply it to every book in the project.</p>
 <p>Before going further, make sure <code>make</code> is available:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If that command fails, install <code>make</code> first:</p>
+<ul>
+<li><strong>macOS</strong>: if you use <a href="https://brew.sh/">Homebrew</a>, run <code>brew install make</code>. Depending on your shell setup, you may then need to use <code>gmake</code> instead of <code>make</code>, because the GNU version from Homebrew is often installed under that name.</li>
+<li><strong>WSL (Ubuntu/Debian)</strong>: run <code>sudo apt update</code> and then <code>sudo apt install make</code>. Installing <code>build-essential</code> is also common if you want the standard Unix build tools as a group.</li>
+<li><strong>Pixi Global</strong>: if you already use Pixi, you can also install GNU Make with <code>pixi global install make</code> and then use it from your shell.</li>
+</ul>
 </section>
 <section id="a-first-makefile" class="level2">
 <h2 class="anchored" data-anchor-id="a-first-makefile">A first Makefile</h2>
 <p><code>make</code> reads instructions from a file called <code>Makefile</code>. Let us start by automating one real step from the project: generating a count table for Dracula.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dv">counts/dracula.tsv :</span><span class="dt"> books/dracula.txt scripts/count_words.py</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>python scripts/count_words.py books/dracula.txt counts/dracula.tsv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dv">counts/dracula.tsv :</span><span class="dt"> books/dracula.txt scripts/count_words.py</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>python scripts/count_words.py books/dracula.txt counts/dracula.tsv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This rule has three important parts:</p>
 <ul>
 <li><strong>Target</strong>: <code>counts/dracula.tsv</code> is the file we want to create.</li>
@@ -288,7 +300,7 @@ pixi.toml   project dependencies and tasks</code></pre>
 </ul>
 <p>The indentation matters. Recipe lines must start with a TAB character, not spaces.</p>
 <p>If we run:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> counts/dracula.tsv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> counts/dracula.tsv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>then <code>make</code> checks whether <code>counts/dracula.tsv</code> exists and whether either dependency is newer. If the target is missing or out of date, it runs the recipe.</p>
 <p>That gives us our first big improvement over a shell script: <code>make</code> knows what output file a command is supposed to create, and it can decide when the command actually needs to run.</p>
 <p>Another way to say this is that <code>make</code> helps us follow the DRY principle: <strong>Don’t Repeat Yourself</strong>. Instead of copying the same filenames and command patterns in lots of places, we describe the workflow once and reuse that description.</p>
@@ -296,15 +308,15 @@ pixi.toml   project dependencies and tasks</code></pre>
 <section id="chaining-steps-together" class="level2">
 <h2 class="anchored" data-anchor-id="chaining-steps-together">Chaining steps together</h2>
 <p>The workflow in <code>gecs-make</code> has a second stage: turning counts into an HTML figure.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dv">counts/dracula.tsv :</span><span class="dt"> books/dracula.txt scripts/count_words.py</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>python scripts/count_words.py books/dracula.txt counts/dracula.tsv</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="dv">figures/dracula.html :</span><span class="dt"> counts/dracula.tsv scripts/plot_counts.py</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>python scripts/plot_counts.py counts/dracula.tsv figures/dracula.html</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="dv">counts/dracula.tsv :</span><span class="dt"> books/dracula.txt scripts/count_words.py</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>python scripts/count_words.py books/dracula.txt counts/dracula.tsv</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="dv">figures/dracula.html :</span><span class="dt"> counts/dracula.tsv scripts/plot_counts.py</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>python scripts/plot_counts.py counts/dracula.tsv figures/dracula.html</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Now the dependencies form a chain:</p>
 <pre class="text"><code>books/dracula.txt -&gt; counts/dracula.tsv -&gt; figures/dracula.html</code></pre>
 <p>If we ask for the final output,</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> figures/dracula.html</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> figures/dracula.html</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><code>make</code> will build <code>counts/dracula.tsv</code> first if needed, then build the figure.</p>
 <p>This is the core idea behind <code>make</code>: we describe how files depend on each other, and <code>make</code> figures out the correct order.</p>
 <p>This dependency structure is often described as a <strong>Directed Acyclic Graph</strong>, or <strong>DAG</strong>:</p>
@@ -319,15 +331,15 @@ pixi.toml   project dependencies and tasks</code></pre>
 <section id="phony-targets" class="level3">
 <h3 class="anchored" data-anchor-id="phony-targets">Phony targets</h3>
 <p>Sometimes we want a target that stands for an action rather than a real file. For example:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ot">.PHONY</span> <span class="ot">:</span><span class="dt"> all</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="dv">all :</span><span class="dt"> figures/dracula.html</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ot">.PHONY</span> <span class="ot">:</span><span class="dt"> all</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="dv">all :</span><span class="dt"> figures/dracula.html</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Now <code>make all</code> is a convenient alias for building the Dracula plot.</p>
 <p>Cleanup is another common phony target:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ot">.PHONY</span> <span class="ot">:</span><span class="dt"> clean</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="dv">clean :</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>rm -f counts/*.tsv figures/*.html</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ot">.PHONY</span> <span class="ot">:</span><span class="dt"> clean</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="dv">clean :</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>rm -f counts/*.tsv figures/*.html</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Then we can run:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> clean</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> clean</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-simple callout-note callout-titled" title="Why use `.PHONY`?">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -353,17 +365,17 @@ pixi.toml   project dependencies and tasks</code></pre>
 <li><code>$&lt;</code> means the first dependency</li>
 </ul>
 <p>We can rewrite the rules like this:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="dv">counts/dracula.tsv :</span><span class="dt"> books/dracula.txt scripts/count_words.py</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>python scripts/count_words.py <span class="ch">$&lt;</span> <span class="ch">$@</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="dv">figures/dracula.html :</span><span class="dt"> counts/dracula.tsv scripts/plot_counts.py</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>python scripts/plot_counts.py <span class="ch">$&lt;</span> <span class="ch">$@</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="dv">counts/dracula.tsv :</span><span class="dt"> books/dracula.txt scripts/count_words.py</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>python scripts/count_words.py <span class="ch">$&lt;</span> <span class="ch">$@</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="dv">figures/dracula.html :</span><span class="dt"> counts/dracula.tsv scripts/plot_counts.py</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>python scripts/plot_counts.py <span class="ch">$&lt;</span> <span class="ch">$@</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>In both cases, the scripts take the first dependency as input and write to the target path. This makes the recipes shorter and keeps the filenames consistent with the rule declaration.</p>
 <p>That is another DRY win: the target and dependency names already appear in the rule header, so automatic variables let us reuse them instead of typing them again in the recipe.</p>
 <section id="code-is-a-dependency-too" class="level3">
 <h3 class="anchored" data-anchor-id="code-is-a-dependency-too">Code is a dependency too</h3>
 <p>Notice that the rules depend not only on data files, but also on scripts.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="dv">counts/dracula.tsv :</span><span class="dt"> books/dracula.txt scripts/count_words.py</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="dv">counts/dracula.tsv :</span><span class="dt"> books/dracula.txt scripts/count_words.py</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>That means if <code>scripts/count_words.py</code> changes, <code>make</code> knows it should regenerate <code>counts/dracula.tsv</code>. This is a very important idea in computational work: code changes can invalidate outputs just as much as data changes do.</p>
 </section>
 </section>
@@ -371,19 +383,19 @@ pixi.toml   project dependencies and tasks</code></pre>
 <h2 class="anchored" data-anchor-id="variables-in-makefiles">Variables in Makefiles</h2>
 <p>As the workflow grows, we start repeating commands and script paths. Variables help make the Makefile easier to read and easier to update.</p>
 <p>For example:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="dt">PYTHON</span><span class="ch">=</span><span class="st">python</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="dt">COUNT_SCRIPT</span><span class="ch">=</span><span class="st">scripts/count_words.py</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="dt">PLOT_SCRIPT</span><span class="ch">=</span><span class="st">scripts/plot_counts.py</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="dt">PYTHON</span><span class="ch">=</span><span class="st">python</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="dt">COUNT_SCRIPT</span><span class="ch">=</span><span class="st">scripts/count_words.py</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="dt">PLOT_SCRIPT</span><span class="ch">=</span><span class="st">scripts/plot_counts.py</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>We can then use those variables in our rules:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="dt">PYTHON</span><span class="ch">=</span><span class="st">python</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="dt">COUNT_SCRIPT</span><span class="ch">=</span><span class="st">scripts/count_words.py</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="dt">PLOT_SCRIPT</span><span class="ch">=</span><span class="st">scripts/plot_counts.py</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="dv">counts/dracula.tsv :</span><span class="dt"> books/dracula.txt </span><span class="ch">$(</span><span class="dt">COUNT_SCRIPT</span><span class="ch">)</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="er">    </span><span class="ch">$(</span><span class="dt">PYTHON</span><span class="ch">)</span> <span class="ch">$(</span><span class="dt">COUNT_SCRIPT</span><span class="ch">)</span> <span class="ch">$&lt;</span> <span class="ch">$@</span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="dv">figures/dracula.html :</span><span class="dt"> counts/dracula.tsv </span><span class="ch">$(</span><span class="dt">PLOT_SCRIPT</span><span class="ch">)</span></span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="er">    </span><span class="ch">$(</span><span class="dt">PYTHON</span><span class="ch">)</span> <span class="ch">$(</span><span class="dt">PLOT_SCRIPT</span><span class="ch">)</span> <span class="ch">$&lt;</span> <span class="ch">$@</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="dt">PYTHON</span><span class="ch">=</span><span class="st">python</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="dt">COUNT_SCRIPT</span><span class="ch">=</span><span class="st">scripts/count_words.py</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="dt">PLOT_SCRIPT</span><span class="ch">=</span><span class="st">scripts/plot_counts.py</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="dv">counts/dracula.tsv :</span><span class="dt"> books/dracula.txt </span><span class="ch">$(</span><span class="dt">COUNT_SCRIPT</span><span class="ch">)</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="er">    </span><span class="ch">$(</span><span class="dt">PYTHON</span><span class="ch">)</span> <span class="ch">$(</span><span class="dt">COUNT_SCRIPT</span><span class="ch">)</span> <span class="ch">$&lt;</span> <span class="ch">$@</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="dv">figures/dracula.html :</span><span class="dt"> counts/dracula.tsv </span><span class="ch">$(</span><span class="dt">PLOT_SCRIPT</span><span class="ch">)</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="er">    </span><span class="ch">$(</span><span class="dt">PYTHON</span><span class="ch">)</span> <span class="ch">$(</span><span class="dt">PLOT_SCRIPT</span><span class="ch">)</span> <span class="ch">$&lt;</span> <span class="ch">$@</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This is especially helpful when several rules use the same script or command. If something changes later, we update the variable once instead of hunting through the whole file.</p>
 <p>Variables are one of the simplest ways to make a Makefile more DRY. They let us keep shared information in one place instead of repeating it across many rules.</p>
 </section>
@@ -398,15 +410,15 @@ books/sense_and_sensibility.txt
 books/sherlock_holmes.txt
 books/time_machine.txt</code></pre>
 <p>The filenames change, but the workflow shape stays the same. That is exactly what pattern rules are for.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="dt">PYTHON</span><span class="ch">=</span><span class="st">python</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="dt">COUNT_SCRIPT</span><span class="ch">=</span><span class="st">scripts/count_words.py</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="dt">PLOT_SCRIPT</span><span class="ch">=</span><span class="st">scripts/plot_counts.py</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="dv">counts/%.tsv :</span><span class="dt"> books/%.txt </span><span class="ch">$(</span><span class="dt">COUNT_SCRIPT</span><span class="ch">)</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="er">    </span><span class="ch">$(</span><span class="dt">PYTHON</span><span class="ch">)</span> <span class="ch">$(</span><span class="dt">COUNT_SCRIPT</span><span class="ch">)</span> <span class="ch">$&lt;</span> <span class="ch">$@</span></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="dv">figures/%.html :</span><span class="dt"> counts/%.tsv </span><span class="ch">$(</span><span class="dt">PLOT_SCRIPT</span><span class="ch">)</span></span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="er">    </span><span class="ch">$(</span><span class="dt">PYTHON</span><span class="ch">)</span> <span class="ch">$(</span><span class="dt">PLOT_SCRIPT</span><span class="ch">)</span> <span class="ch">$&lt;</span> <span class="ch">$@</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="dt">PYTHON</span><span class="ch">=</span><span class="st">python</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="dt">COUNT_SCRIPT</span><span class="ch">=</span><span class="st">scripts/count_words.py</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="dt">PLOT_SCRIPT</span><span class="ch">=</span><span class="st">scripts/plot_counts.py</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="dv">counts/%.tsv :</span><span class="dt"> books/%.txt </span><span class="ch">$(</span><span class="dt">COUNT_SCRIPT</span><span class="ch">)</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="er">    </span><span class="ch">$(</span><span class="dt">PYTHON</span><span class="ch">)</span> <span class="ch">$(</span><span class="dt">COUNT_SCRIPT</span><span class="ch">)</span> <span class="ch">$&lt;</span> <span class="ch">$@</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="dv">figures/%.html :</span><span class="dt"> counts/%.tsv </span><span class="ch">$(</span><span class="dt">PLOT_SCRIPT</span><span class="ch">)</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="er">    </span><span class="ch">$(</span><span class="dt">PYTHON</span><span class="ch">)</span> <span class="ch">$(</span><span class="dt">PLOT_SCRIPT</span><span class="ch">)</span> <span class="ch">$&lt;</span> <span class="ch">$@</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The <code>%</code> symbol is a wildcard stem. With these two rules, <code>make</code> now knows how to build:</p>
 <ul>
 <li><code>counts/dracula.tsv</code> from <code>books/dracula.txt</code></li>
@@ -417,19 +429,19 @@ books/time_machine.txt</code></pre>
 <p>That means we no longer need one handwritten rule per book.</p>
 <p>Pattern rules are one of the biggest DRY improvements in <code>make</code>. We replace many nearly identical rules with one general rule that captures the shared structure of the workflow.</p>
 <p>We can still ask for a specific target:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> figures/jane_eyre.html</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> figures/jane_eyre.html</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>and <code>make</code> will fill in the pattern automatically.</p>
 </section>
 <section id="functions" class="level2">
 <h2 class="anchored" data-anchor-id="functions">Functions</h2>
 <p>Pattern rules tell <code>make</code> how to build matching files. Functions help us build lists of files.</p>
 <p>The most useful starting point here is <code>wildcard</code>, which finds filenames that match a pattern:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="dt">BOOK_FILES</span><span class="ch">=$(</span><span class="kw">wildcard</span><span class="st"> books/*.txt</span><span class="ch">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="dt">BOOK_FILES</span><span class="ch">=$(</span><span class="kw">wildcard</span><span class="st"> books/*.txt</span><span class="ch">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>In <code>gecs-make</code>, that expands to all the <code>.txt</code> files in <code>books/</code>.</p>
 <p>Next, we can use <code>patsubst</code> to transform those input filenames into the output files we want:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="dt">BOOK_FILES</span><span class="ch">=$(</span><span class="kw">wildcard</span><span class="st"> books/*.txt</span><span class="ch">)</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="dt">COUNT_FILES</span><span class="ch">=$(</span><span class="kw">patsubst</span><span class="st"> books/%.txt</span><span class="kw">,</span><span class="st">counts/%.tsv</span><span class="kw">,</span><span class="ch">$(</span><span class="dt">BOOK_FILES</span><span class="ch">))</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="dt">FIGURE_FILES</span><span class="ch">=$(</span><span class="kw">patsubst</span><span class="st"> books/%.txt</span><span class="kw">,</span><span class="st">figures/%.html</span><span class="kw">,</span><span class="ch">$(</span><span class="dt">BOOK_FILES</span><span class="ch">))</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="dt">BOOK_FILES</span><span class="ch">=$(</span><span class="kw">wildcard</span><span class="st"> books/*.txt</span><span class="ch">)</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="dt">COUNT_FILES</span><span class="ch">=$(</span><span class="kw">patsubst</span><span class="st"> books/%.txt</span><span class="kw">,</span><span class="st">counts/%.tsv</span><span class="kw">,</span><span class="ch">$(</span><span class="dt">BOOK_FILES</span><span class="ch">))</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="dt">FIGURE_FILES</span><span class="ch">=$(</span><span class="kw">patsubst</span><span class="st"> books/%.txt</span><span class="kw">,</span><span class="st">figures/%.html</span><span class="kw">,</span><span class="ch">$(</span><span class="dt">BOOK_FILES</span><span class="ch">))</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Now we have three connected lists:</p>
 <ul>
 <li><code>BOOK_FILES</code> for raw texts</li>
@@ -440,28 +452,28 @@ books/time_machine.txt</code></pre>
 <section id="building-everything" class="level3">
 <h3 class="anchored" data-anchor-id="building-everything">Building everything</h3>
 <p>Once we have those lists, we can define a proper <code>all</code> target:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="dt">PYTHON</span><span class="ch">=</span><span class="st">python</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="dt">COUNT_SCRIPT</span><span class="ch">=</span><span class="st">scripts/count_words.py</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="dt">PLOT_SCRIPT</span><span class="ch">=</span><span class="st">scripts/plot_counts.py</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="dt">BOOK_FILES</span><span class="ch">=$(</span><span class="kw">wildcard</span><span class="st"> books/*.txt</span><span class="ch">)</span></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="dt">COUNT_FILES</span><span class="ch">=$(</span><span class="kw">patsubst</span><span class="st"> books/%.txt</span><span class="kw">,</span><span class="st">counts/%.tsv</span><span class="kw">,</span><span class="ch">$(</span><span class="dt">BOOK_FILES</span><span class="ch">))</span></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="dt">FIGURE_FILES</span><span class="ch">=$(</span><span class="kw">patsubst</span><span class="st"> books/%.txt</span><span class="kw">,</span><span class="st">figures/%.html</span><span class="kw">,</span><span class="ch">$(</span><span class="dt">BOOK_FILES</span><span class="ch">))</span></span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="ot">.PHONY</span> <span class="ot">:</span><span class="dt"> all</span></span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="dv">all :</span><span class="dt"> </span><span class="ch">$(</span><span class="dt">FIGURE_FILES</span><span class="ch">)</span></span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a><span class="dv">counts/%.tsv :</span><span class="dt"> books/%.txt </span><span class="ch">$(</span><span class="dt">COUNT_SCRIPT</span><span class="ch">)</span></span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="er">    </span><span class="ch">$(</span><span class="dt">PYTHON</span><span class="ch">)</span> <span class="ch">$(</span><span class="dt">COUNT_SCRIPT</span><span class="ch">)</span> <span class="ch">$&lt;</span> <span class="ch">$@</span></span>
-<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a><span class="dv">figures/%.html :</span><span class="dt"> counts/%.tsv </span><span class="ch">$(</span><span class="dt">PLOT_SCRIPT</span><span class="ch">)</span></span>
-<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a><span class="er">    </span><span class="ch">$(</span><span class="dt">PYTHON</span><span class="ch">)</span> <span class="ch">$(</span><span class="dt">PLOT_SCRIPT</span><span class="ch">)</span> <span class="ch">$&lt;</span> <span class="ch">$@</span></span>
-<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a><span class="ot">.PHONY</span> <span class="ot">:</span><span class="dt"> clean</span></span>
-<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a><span class="dv">clean :</span></span>
-<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>rm -f counts/*.tsv figures/*.html</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="dt">PYTHON</span><span class="ch">=</span><span class="st">python</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="dt">COUNT_SCRIPT</span><span class="ch">=</span><span class="st">scripts/count_words.py</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="dt">PLOT_SCRIPT</span><span class="ch">=</span><span class="st">scripts/plot_counts.py</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="dt">BOOK_FILES</span><span class="ch">=$(</span><span class="kw">wildcard</span><span class="st"> books/*.txt</span><span class="ch">)</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="dt">COUNT_FILES</span><span class="ch">=$(</span><span class="kw">patsubst</span><span class="st"> books/%.txt</span><span class="kw">,</span><span class="st">counts/%.tsv</span><span class="kw">,</span><span class="ch">$(</span><span class="dt">BOOK_FILES</span><span class="ch">))</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="dt">FIGURE_FILES</span><span class="ch">=$(</span><span class="kw">patsubst</span><span class="st"> books/%.txt</span><span class="kw">,</span><span class="st">figures/%.html</span><span class="kw">,</span><span class="ch">$(</span><span class="dt">BOOK_FILES</span><span class="ch">))</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="ot">.PHONY</span> <span class="ot">:</span><span class="dt"> all</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="dv">all :</span><span class="dt"> </span><span class="ch">$(</span><span class="dt">FIGURE_FILES</span><span class="ch">)</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a><span class="dv">counts/%.tsv :</span><span class="dt"> books/%.txt </span><span class="ch">$(</span><span class="dt">COUNT_SCRIPT</span><span class="ch">)</span></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a><span class="er">    </span><span class="ch">$(</span><span class="dt">PYTHON</span><span class="ch">)</span> <span class="ch">$(</span><span class="dt">COUNT_SCRIPT</span><span class="ch">)</span> <span class="ch">$&lt;</span> <span class="ch">$@</span></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a><span class="dv">figures/%.html :</span><span class="dt"> counts/%.tsv </span><span class="ch">$(</span><span class="dt">PLOT_SCRIPT</span><span class="ch">)</span></span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a><span class="er">    </span><span class="ch">$(</span><span class="dt">PYTHON</span><span class="ch">)</span> <span class="ch">$(</span><span class="dt">PLOT_SCRIPT</span><span class="ch">)</span> <span class="ch">$&lt;</span> <span class="ch">$@</span></span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a><span class="ot">.PHONY</span> <span class="ot">:</span><span class="dt"> clean</span></span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a><span class="dv">clean :</span></span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>rm -f counts/*.tsv figures/*.html</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Running</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> all</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> all</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>will now build the complete set of figures for all books in the repository.</p>
 <div class="callout callout-style-simple callout-tip callout-titled" title="From Pixi tasks to `make` targets">
 <div class="callout-header d-flex align-content-center">
@@ -481,54 +493,54 @@ books/time_machine.txt</code></pre>
 <section id="a-self-documenting-makefile" class="level2">
 <h2 class="anchored" data-anchor-id="a-self-documenting-makefile">A self-documenting Makefile</h2>
 <p>As Makefiles grow, it becomes useful to advertise the main entry points. A simple way to do that is to add a <code>help</code> target.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ot">.PHONY</span> <span class="ot">:</span><span class="dt"> help</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="dv">help :</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="er">    </span><span class="ch">@</span><span class="fu">echo </span><span class="st">"Available targets:"</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    <span class="ch">@</span><span class="fu">echo </span><span class="st">"  make all                  Build all figures"</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    <span class="ch">@</span><span class="fu">echo </span><span class="st">"  make clean                Remove generated counts and figures"</span></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    <span class="ch">@</span><span class="fu">echo </span><span class="st">"  make figures/dracula.html Build one specific figure"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="ot">.PHONY</span> <span class="ot">:</span><span class="dt"> help</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="dv">help :</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="er">    </span><span class="ch">@</span><span class="fu">echo </span><span class="st">"Available targets:"</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    <span class="ch">@</span><span class="fu">echo </span><span class="st">"  make all                  Build all figures"</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    <span class="ch">@</span><span class="fu">echo </span><span class="st">"  make clean                Remove generated counts and figures"</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>    <span class="ch">@</span><span class="fu">echo </span><span class="st">"  make figures/dracula.html Build one specific figure"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>For a slightly more polished version, we can annotate targets with comments and extract them automatically:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="ot">.PHONY</span> <span class="ot">:</span><span class="dt"> help</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="dv">help :</span><span class="dt"> </span><span class="co">## Show available targets</span></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="er">    </span><span class="ch">@</span><span class="fu">grep -E </span><span class="st">'^[a-zA-Z_./-]+:.*?## .*</span><span class="ch">$$</span><span class="st">'</span><span class="fu"> </span><span class="ch">$(</span><span class="dt">MAKEFILE_LIST</span><span class="ch">)</span><span class="fu"> | sort | awk </span><span class="st">'BEGIN {FS = ":.*?## "}; {printf "%-22s %s\n", </span><span class="ch">$$</span><span class="st">1, </span><span class="ch">$$</span><span class="st">2}'</span></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="ot">.PHONY</span> <span class="ot">:</span><span class="dt"> all</span></span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="dv">all :</span><span class="dt"> </span><span class="ch">$(</span><span class="dt">FIGURE_FILES</span><span class="ch">)</span><span class="dt"> </span><span class="co">## Build figures for all books</span></span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="ot">.PHONY</span> <span class="ot">:</span><span class="dt"> clean</span></span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="dv">clean :</span><span class="dt"> </span><span class="co">## Remove generated counts and figures</span></span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>rm -f counts/*.tsv figures/*.html</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="ot">.PHONY</span> <span class="ot">:</span><span class="dt"> help</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="dv">help :</span><span class="dt"> </span><span class="co">## Show available targets</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="er">    </span><span class="ch">@</span><span class="fu">grep -E </span><span class="st">'^[a-zA-Z_./-]+:.*?## .*</span><span class="ch">$$</span><span class="st">'</span><span class="fu"> </span><span class="ch">$(</span><span class="dt">MAKEFILE_LIST</span><span class="ch">)</span><span class="fu"> | sort | awk </span><span class="st">'BEGIN {FS = ":.*?## "}; {printf "%-22s %s\n", </span><span class="ch">$$</span><span class="st">1, </span><span class="ch">$$</span><span class="st">2}'</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="ot">.PHONY</span> <span class="ot">:</span><span class="dt"> all</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="dv">all :</span><span class="dt"> </span><span class="ch">$(</span><span class="dt">FIGURE_FILES</span><span class="ch">)</span><span class="dt"> </span><span class="co">## Build figures for all books</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="ot">.PHONY</span> <span class="ot">:</span><span class="dt"> clean</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="dv">clean :</span><span class="dt"> </span><span class="co">## Remove generated counts and figures</span></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>rm -f counts/*.tsv figures/*.html</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Then:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> help</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> help</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>prints a short summary of the workflow.</p>
 </section>
 <section id="a-complete-example" class="level2">
 <h2 class="anchored" data-anchor-id="a-complete-example">A complete example</h2>
 <p>Putting everything together, a Makefile for <code>gecs-make</code> could look like this:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="dt">PYTHON</span><span class="ch">=</span><span class="st">python</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="dt">COUNT_SCRIPT</span><span class="ch">=</span><span class="st">scripts/count_words.py</span></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="dt">PLOT_SCRIPT</span><span class="ch">=</span><span class="st">scripts/plot_counts.py</span></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="dt">BOOK_FILES</span><span class="ch">=$(</span><span class="kw">wildcard</span><span class="st"> books/*.txt</span><span class="ch">)</span></span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="dt">COUNT_FILES</span><span class="ch">=$(</span><span class="kw">patsubst</span><span class="st"> books/%.txt</span><span class="kw">,</span><span class="st">counts/%.tsv</span><span class="kw">,</span><span class="ch">$(</span><span class="dt">BOOK_FILES</span><span class="ch">))</span></span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="dt">FIGURE_FILES</span><span class="ch">=$(</span><span class="kw">patsubst</span><span class="st"> books/%.txt</span><span class="kw">,</span><span class="st">figures/%.html</span><span class="kw">,</span><span class="ch">$(</span><span class="dt">BOOK_FILES</span><span class="ch">))</span></span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="ot">.PHONY</span> <span class="ot">:</span><span class="dt"> help</span></span>
-<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a><span class="dv">help :</span><span class="dt"> </span><span class="co">## Show available targets</span></span>
-<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a><span class="er">    </span><span class="ch">@</span><span class="fu">grep -E </span><span class="st">'^[a-zA-Z_./-]+:.*?## .*</span><span class="ch">$$</span><span class="st">'</span><span class="fu"> </span><span class="ch">$(</span><span class="dt">MAKEFILE_LIST</span><span class="ch">)</span><span class="fu"> | sort | awk </span><span class="st">'BEGIN {FS = ":.*?## "}; {printf "%-22s %s\n", </span><span class="ch">$$</span><span class="st">1, </span><span class="ch">$$</span><span class="st">2}'</span></span>
-<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a><span class="ot">.PHONY</span> <span class="ot">:</span><span class="dt"> all</span></span>
-<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a><span class="dv">all :</span><span class="dt"> </span><span class="ch">$(</span><span class="dt">FIGURE_FILES</span><span class="ch">)</span><span class="dt"> </span><span class="co">## Build figures for all books</span></span>
-<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a><span class="dv">counts/%.tsv :</span><span class="dt"> books/%.txt </span><span class="ch">$(</span><span class="dt">COUNT_SCRIPT</span><span class="ch">)</span></span>
-<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a><span class="er">    </span><span class="ch">$(</span><span class="dt">PYTHON</span><span class="ch">)</span> <span class="ch">$(</span><span class="dt">COUNT_SCRIPT</span><span class="ch">)</span> <span class="ch">$&lt;</span> <span class="ch">$@</span></span>
-<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a><span class="dv">figures/%.html :</span><span class="dt"> counts/%.tsv </span><span class="ch">$(</span><span class="dt">PLOT_SCRIPT</span><span class="ch">)</span></span>
-<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a><span class="er">    </span><span class="ch">$(</span><span class="dt">PYTHON</span><span class="ch">)</span> <span class="ch">$(</span><span class="dt">PLOT_SCRIPT</span><span class="ch">)</span> <span class="ch">$&lt;</span> <span class="ch">$@</span></span>
-<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a><span class="ot">.PHONY</span> <span class="ot">:</span><span class="dt"> clean</span></span>
-<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a><span class="dv">clean :</span><span class="dt"> </span><span class="co">## Remove generated counts and figures</span></span>
-<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>rm -f counts/*.tsv figures/*.html</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="dt">PYTHON</span><span class="ch">=</span><span class="st">python</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="dt">COUNT_SCRIPT</span><span class="ch">=</span><span class="st">scripts/count_words.py</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="dt">PLOT_SCRIPT</span><span class="ch">=</span><span class="st">scripts/plot_counts.py</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="dt">BOOK_FILES</span><span class="ch">=$(</span><span class="kw">wildcard</span><span class="st"> books/*.txt</span><span class="ch">)</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="dt">COUNT_FILES</span><span class="ch">=$(</span><span class="kw">patsubst</span><span class="st"> books/%.txt</span><span class="kw">,</span><span class="st">counts/%.tsv</span><span class="kw">,</span><span class="ch">$(</span><span class="dt">BOOK_FILES</span><span class="ch">))</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="dt">FIGURE_FILES</span><span class="ch">=$(</span><span class="kw">patsubst</span><span class="st"> books/%.txt</span><span class="kw">,</span><span class="st">figures/%.html</span><span class="kw">,</span><span class="ch">$(</span><span class="dt">BOOK_FILES</span><span class="ch">))</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="ot">.PHONY</span> <span class="ot">:</span><span class="dt"> help</span></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a><span class="dv">help :</span><span class="dt"> </span><span class="co">## Show available targets</span></span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a><span class="er">    </span><span class="ch">@</span><span class="fu">grep -E </span><span class="st">'^[a-zA-Z_./-]+:.*?## .*</span><span class="ch">$$</span><span class="st">'</span><span class="fu"> </span><span class="ch">$(</span><span class="dt">MAKEFILE_LIST</span><span class="ch">)</span><span class="fu"> | sort | awk </span><span class="st">'BEGIN {FS = ":.*?## "}; {printf "%-22s %s\n", </span><span class="ch">$$</span><span class="st">1, </span><span class="ch">$$</span><span class="st">2}'</span></span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a><span class="ot">.PHONY</span> <span class="ot">:</span><span class="dt"> all</span></span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a><span class="dv">all :</span><span class="dt"> </span><span class="ch">$(</span><span class="dt">FIGURE_FILES</span><span class="ch">)</span><span class="dt"> </span><span class="co">## Build figures for all books</span></span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a><span class="dv">counts/%.tsv :</span><span class="dt"> books/%.txt </span><span class="ch">$(</span><span class="dt">COUNT_SCRIPT</span><span class="ch">)</span></span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a><span class="er">    </span><span class="ch">$(</span><span class="dt">PYTHON</span><span class="ch">)</span> <span class="ch">$(</span><span class="dt">COUNT_SCRIPT</span><span class="ch">)</span> <span class="ch">$&lt;</span> <span class="ch">$@</span></span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a><span class="dv">figures/%.html :</span><span class="dt"> counts/%.tsv </span><span class="ch">$(</span><span class="dt">PLOT_SCRIPT</span><span class="ch">)</span></span>
+<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a><span class="er">    </span><span class="ch">$(</span><span class="dt">PYTHON</span><span class="ch">)</span> <span class="ch">$(</span><span class="dt">PLOT_SCRIPT</span><span class="ch">)</span> <span class="ch">$&lt;</span> <span class="ch">$@</span></span>
+<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a><span class="ot">.PHONY</span> <span class="ot">:</span><span class="dt"> clean</span></span>
+<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a><span class="dv">clean :</span><span class="dt"> </span><span class="co">## Remove generated counts and figures</span></span>
+<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>rm -f counts/*.tsv figures/*.html</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This Makefile captures the real project workflow:</p>
 <ul>
 <li>text files in <code>books/</code> are inputs</li>
