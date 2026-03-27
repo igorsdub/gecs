@@ -77,7 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-dea667461a5c81afc9ba75ce94cd63f3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-be3771519f21acc1c5b6733774c6dcd8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -204,23 +204,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#the-book-project" id="toc-the-book-project" class="nav-link active" data-scroll-target="#the-book-project">The Book Project</a></li>
   <li><a href="#makefile" id="toc-makefile" class="nav-link" data-scroll-target="#makefile">Makefile</a></li>
-  <li><a href="#chaining-steps-together" id="toc-chaining-steps-together" class="nav-link" data-scroll-target="#chaining-steps-together">Chaining steps together</a>
+  <li><a href="#chaining-steps-together" id="toc-chaining-steps-together" class="nav-link" data-scroll-target="#chaining-steps-together">Chaining Steps Together</a>
   <ul class="collapse">
-  <li><a href="#phony-targets" id="toc-phony-targets" class="nav-link" data-scroll-target="#phony-targets">Phony targets</a></li>
+  <li><a href="#phony-targets" id="toc-phony-targets" class="nav-link" data-scroll-target="#phony-targets">Phony Targets</a></li>
   </ul></li>
-  <li><a href="#automatic-variables" id="toc-automatic-variables" class="nav-link" data-scroll-target="#automatic-variables">Automatic variables</a>
+  <li><a href="#automatic-variables" id="toc-automatic-variables" class="nav-link" data-scroll-target="#automatic-variables">Automatic Variables</a>
   <ul class="collapse">
-  <li><a href="#code-is-a-dependency-too" id="toc-code-is-a-dependency-too" class="nav-link" data-scroll-target="#code-is-a-dependency-too">Code is a dependency too</a></li>
+  <li><a href="#code-is-a-dependency" id="toc-code-is-a-dependency" class="nav-link" data-scroll-target="#code-is-a-dependency">Code is a Dependency</a></li>
   </ul></li>
   <li><a href="#variables-in-makefiles" id="toc-variables-in-makefiles" class="nav-link" data-scroll-target="#variables-in-makefiles">Variables in Makefiles</a></li>
-  <li><a href="#pattern-rules" id="toc-pattern-rules" class="nav-link" data-scroll-target="#pattern-rules">Pattern rules</a></li>
+  <li><a href="#pattern-rules" id="toc-pattern-rules" class="nav-link" data-scroll-target="#pattern-rules">Pattern Rules</a></li>
   <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions">Functions</a>
   <ul class="collapse">
-  <li><a href="#building-everything" id="toc-building-everything" class="nav-link" data-scroll-target="#building-everything">Building everything</a></li>
+  <li><a href="#building-everything" id="toc-building-everything" class="nav-link" data-scroll-target="#building-everything">Building Everything</a></li>
   </ul></li>
-  <li><a href="#a-self-documenting-makefile" id="toc-a-self-documenting-makefile" class="nav-link" data-scroll-target="#a-self-documenting-makefile">A self-documenting Makefile</a></li>
-  <li><a href="#a-complete-example" id="toc-a-complete-example" class="nav-link" data-scroll-target="#a-complete-example">A complete example</a></li>
-  <li><a href="#final-words" id="toc-final-words" class="nav-link" data-scroll-target="#final-words">Final words</a></li>
+  <li><a href="#self-documenting-makefile" id="toc-self-documenting-makefile" class="nav-link" data-scroll-target="#self-documenting-makefile">Self-documenting Makefile</a></li>
+  <li><a href="#complete-example" id="toc-complete-example" class="nav-link" data-scroll-target="#complete-example">Complete Example</a></li>
+  <li><a href="#final-words" id="toc-final-words" class="nav-link" data-scroll-target="#final-words">Final Words</a></li>
   </ul>
 </nav>
     </div>
@@ -324,7 +324,7 @@ pixi.toml   project dependencies and tasks</code></pre>
 <p>Another way to say this is that <code>make</code> helps us follow the DRY principle: <strong>Don’t Repeat Yourself</strong>. Instead of copying the same filenames and command patterns in lots of places, we describe the workflow once and reuse that description.</p>
 </section>
 <section id="chaining-steps-together" class="level2">
-<h2 class="anchored" data-anchor-id="chaining-steps-together">Chaining steps together</h2>
+<h2 class="anchored" data-anchor-id="chaining-steps-together">Chaining Steps Together</h2>
 <p>The workflow in <code>gecs-make</code> has a second stage: turning counts into an HTML figure.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="dv">counts/dracula.tsv :</span><span class="dt"> books/dracula.txt scripts/count_words.py</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>python scripts/count_words.py books/dracula.txt counts/dracula.tsv</span>
@@ -347,7 +347,7 @@ pixi.toml   project dependencies and tasks</code></pre>
 <pre class="text"><code>books/dracula.txt -&gt; counts/dracula.tsv -&gt; figures/dracula.html</code></pre>
 <p>As the project grows to many books, the graph gets wider, but the idea stays the same. <code>make</code> works well because it can walk that DAG and rebuild only the parts that are affected by a change.</p>
 <section id="phony-targets" class="level3">
-<h3 class="anchored" data-anchor-id="phony-targets">Phony targets</h3>
+<h3 class="anchored" data-anchor-id="phony-targets">Phony Targets</h3>
 <p>Sometimes we want a target that stands for an action rather than a real file. For example:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ot">.PHONY</span> <span class="ot">:</span><span class="dt"> all</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="dv">all :</span><span class="dt"> figures/dracula.html</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -374,7 +374,7 @@ pixi.toml   project dependencies and tasks</code></pre>
 </section>
 </section>
 <section id="automatic-variables" class="level2">
-<h2 class="anchored" data-anchor-id="automatic-variables">Automatic variables</h2>
+<h2 class="anchored" data-anchor-id="automatic-variables">Automatic Variables</h2>
 <p>The two rules above repeat the same filenames in the target line and the recipe. That is easy to write for one example, but it becomes tedious quickly.</p>
 <p><code>make</code> provides automatic variables to reduce duplication:</p>
 <ul>
@@ -390,8 +390,8 @@ pixi.toml   project dependencies and tasks</code></pre>
 <span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>python scripts/plot_counts.py <span class="ch">$&lt;</span> <span class="ch">$@</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>In both cases, the scripts take the first dependency as input and write to the target path. This makes the recipes shorter and keeps the filenames consistent with the rule declaration.</p>
 <p>That is another DRY win: the target and dependency names already appear in the rule header, so automatic variables let us reuse them instead of typing them again in the recipe.</p>
-<section id="code-is-a-dependency-too" class="level3">
-<h3 class="anchored" data-anchor-id="code-is-a-dependency-too">Code is a dependency too</h3>
+<section id="code-is-a-dependency" class="level3">
+<h3 class="anchored" data-anchor-id="code-is-a-dependency">Code is a Dependency</h3>
 <p>Notice that the rules depend not only on data files, but also on scripts.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="dv">counts/dracula.tsv :</span><span class="dt"> books/dracula.txt scripts/count_words.py</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>That means if <code>scripts/count_words.py</code> changes, <code>make</code> knows it should regenerate <code>counts/dracula.tsv</code>. This is a very important idea in computational work: code changes can invalidate outputs just as much as data changes do.</p>
@@ -418,7 +418,7 @@ pixi.toml   project dependencies and tasks</code></pre>
 <p>Variables are one of the simplest ways to make a Makefile more DRY. They let us keep shared information in one place instead of repeating it across many rules.</p>
 </section>
 <section id="pattern-rules" class="level2">
-<h2 class="anchored" data-anchor-id="pattern-rules">Pattern rules</h2>
+<h2 class="anchored" data-anchor-id="pattern-rules">Pattern Rules</h2>
 <p>At this point, the workflow still only handles Dracula. But the project contains many books:</p>
 <pre class="text"><code>books/dracula.txt
 books/frankenstein.txt
@@ -468,7 +468,7 @@ books/time_machine.txt</code></pre>
 </ul>
 <p>This is what allows <code>make</code> to scale from one hard-coded book to the entire project.</p>
 <section id="building-everything" class="level3">
-<h3 class="anchored" data-anchor-id="building-everything">Building everything</h3>
+<h3 class="anchored" data-anchor-id="building-everything">Building Everything</h3>
 <p>Once we have those lists, we can define a proper <code>all</code> target:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="dt">PYTHON</span><span class="ch">=</span><span class="st">python</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="dt">COUNT_SCRIPT</span><span class="ch">=</span><span class="st">scripts/count_words.py</span></span>
@@ -508,8 +508,8 @@ books/time_machine.txt</code></pre>
 </div>
 </section>
 </section>
-<section id="a-self-documenting-makefile" class="level2">
-<h2 class="anchored" data-anchor-id="a-self-documenting-makefile">A self-documenting Makefile</h2>
+<section id="self-documenting-makefile" class="level2">
+<h2 class="anchored" data-anchor-id="self-documenting-makefile">Self-documenting Makefile</h2>
 <p>As Makefiles grow, it becomes useful to advertise the main entry points. A simple way to do that is to add a <code>help</code> target.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="ot">.PHONY</span> <span class="ot">:</span><span class="dt"> help</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="dv">help :</span></span>
@@ -542,8 +542,8 @@ books/time_machine.txt</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> help</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>prints a short summary of the workflow.</p>
 </section>
-<section id="a-complete-example" class="level2">
-<h2 class="anchored" data-anchor-id="a-complete-example">A complete example</h2>
+<section id="complete-example" class="level2">
+<h2 class="anchored" data-anchor-id="complete-example">Complete Example</h2>
 <p>Putting everything together, a Makefile for <code>gecs-make</code> could look like this:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="dt">PYTHON</span><span class="ch">=</span><span class="st">python</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="dt">COUNT_SCRIPT</span><span class="ch">=</span><span class="st">scripts/count_words.py</span></span>
@@ -591,7 +591,7 @@ books/time_machine.txt</code></pre>
 <p>Most importantly, the Makefile is no longer hard coded to Dracula. Add another <code>.txt</code> file to <code>books/</code>, and the workflow can pick it up automatically.</p>
 </section>
 <section id="final-words" class="level2">
-<h2 class="anchored" data-anchor-id="final-words">Final words</h2>
+<h2 class="anchored" data-anchor-id="final-words">Final Words</h2>
 <p><code>make</code> is useful when your work produces files from other files. Instead of rerunning commands by hand, we describe the dependency structure once and let <code>make</code> handle the ordering and incremental rebuilds.</p>
 <p>In this project, the key ideas are:</p>
 <ul>
