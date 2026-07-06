@@ -21,14 +21,14 @@ website:
         href: lessons/setting-up.qmd
       - text: "0. Terminal"
         href: lessons/terminal.qmd
-      - text: "1. Version Control"
-        href: lessons/version-control.qmd
-      - text: "2. Project Structure"
-        href: lessons/project-structure.qmd
-      - text: "3. Virtual Environments"
-        href: lessons/virtual-environments.qmd
-      - text: "4. Automation"
-        href: lessons/automation.qmd
+      # - text: "1. Version Control"
+      #   href: lessons/version-control.qmd
+      # - text: "2. Project Structure"
+      #   href: lessons/project-structure.qmd
+      # - text: "3. Virtual Environments"
+      #   href: lessons/virtual-environments.qmd
+      # - text: "4. Automation"
+      #   href: lessons/automation.qmd
       - text: "VS Code"
         href: lessons/vs-code.qmd
       # - text: "About"
