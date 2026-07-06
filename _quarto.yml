@@ -8,7 +8,8 @@ website:
       # - href: index.qmd
         # text: Home
       # - about.qmd
-  page-footer: by Igors Dubanevics | 2025 | MIT License
+  favicon: images/geek_emoji.jpg
+  page-footer: by Igors Dubanevics | 2025-2026 | MIT License
 
   sidebar:
     style: "floating"
@@ -16,17 +17,17 @@ website:
     contents: 
       - text: "Home"
         href: index.qmd
-      - text: "0. Setting Up"
+      - text: "Setting Up"
         href: 00-setting-up.qmd
-      - text: "1. Terminal"
+      - text: "0. Terminal"
         href: 01-terminal.qmd
-      - text: "2. Project Structure"
+      - text: "1. Project Structure"
         href: 02-project-structure.qmd
-      - text: "3. Version Control"
+      - text: "2. Version Control"
         href: 03-version-control.qmd
-      - text: "4. Virtual Environment"
+      - text: "3. Virtual Environment"
         href: 04-virtual-environment.qmd
-      - text: "5. Automation"
+      - text: "4. Automation"
         href: 05-automation.qmd
       - text: "VS Code"
         href: 00-vs-code.qmd
