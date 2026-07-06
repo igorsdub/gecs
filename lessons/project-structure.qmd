@@ -9,7 +9,7 @@ format: html
 
 Software projects can be messy. Imagine you join a lab and your supervisor hands a project folder left by a previous postdoc. It usually looks like this:
 
-![https://datacarpentry.github.io/rr-organization1/fig/files_messy_tidy.png](images/paste-44.png)
+![https://datacarpentry.github.io/rr-organization1/fig/files_messy_tidy.png](/images/paste-44.png)
 
 OK, probably not as extreme. Still, it is common for a newcomer to data science to put everything into a single folder: data, scripts, figures, tables. That can work if you only need to do analysis once and no one else will ever do it again, including yourself. That is far from truth in research be it academia or industry. In this tutorial we will see quick fixes you can do to help others and the future you to understand what does a project do. Let's get organized.
 
@@ -135,7 +135,7 @@ You can use a variation of the above as long as you are consistent within a proj
 
 Instead of creating project directory with all its supplementary files, software developers came up with a boilerplate structure that can be created in minutes. [Cookie Cutter Data Science](https://cookiecutter-data-science.drivendata.org/) project is one of those. Although, the default template is aimed towards machine learning / data science researchers, you can find a simpler one shared by other researchers [online](https://github.com/aeturrell/cookiecutter-research-project/tree/main). Another option, to create your own template that suits your needs.
 
-![](images/paste-2.gif)
+![](/images/paste-2.gif)
 
 Also, check out their [Opinions page](https://cookiecutter-data-science.drivendata.org/opinions/) for project management tips.
 

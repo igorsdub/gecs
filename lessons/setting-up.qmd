@@ -60,7 +60,7 @@ If you're experiencing some troubles with installation, it is worth:
     wsl --install
     ```
 
-![](images/paste-2.png)
+![](/images/paste-2.png)
 
 ::: {.callout-important appearance="simple"}
 You need to restart your computer after installing WSL.
@@ -80,7 +80,7 @@ Now, that you have Ubuntu installed, you need to create an account in order to s
 ::: {.callout-important appearance="simple"}
 Before you set a username on your computer, sign up for a GitHub account (see @sec-github) and check if that username is available. This unity in names will make it easier for you to orient your files and folder,as well establish a virtual nickname that you can use consistently in the future projects.
 
-![](images/paste-22.png)
+![](/images/paste-22.png)
 :::
 
 ::: {.callout-tip title="Username and password suggestions" collapse="true"}
@@ -93,11 +93,11 @@ For a password, you can set the same one you have for your OIST account to make 
 
 1.  Launch Ubuntu terminal.
 
-![](images/paste-11.png)
+![](/images/paste-11.png)
 
 2.  You will be prompted to enter a username.
 
-![](images/paste-12.png)
+![](/images/paste-12.png)
 
 Enter your chosen username and hit **Enter**. If you make a mistake in typing your username, you can close the window and open it again. In this example, `tunkert` is the username.
 
@@ -105,19 +105,19 @@ Enter your chosen username and hit **Enter**. If you make a mistake in typing yo
 If you closed the terminal window or made a mistake while typying your username or password do not worry. Ubuntu is already installed on your computer and you can open it from the **Command Promt** application.
 :::
 
-![](images/paste-13.png)
+![](/images/paste-13.png)
 
 3.  Choose a password. You will not see it as you type due to default UNIX security reasons. If not sure what you entered is correct, hold **Backspace** for a couple of seconds or hit `Ctrl+U`. That will erase everything you have written. After making sure you have entered the correct password, hit **Enter**. If unsure, write the password down.
 
-![](images/paste-14.png)
+![](/images/paste-14.png)
 
 4.  Re-type the chosen password and hit **Enter**.
 
-![](images/paste-15.png)
+![](/images/paste-15.png)
 
 5.  Once both username and password are entered, you will see a welcome message from Ubuntu.
 
-![](images/paste-16.png)
+![](/images/paste-16.png)
 
 ::: {.callout-note appearance="simple"}
 The typing line takes the new form of `tunkert@LAPTOP-JU9CGB60:~$`. Can you guess what the name after `@` means? We will talk about what each symbol means in the terminal section.
@@ -133,15 +133,15 @@ sudo apt update && sudo apt upgrade -y
 We will understand the logic behind this command later in the next section as well.
 :::
 
-![](images/paste-17.png)
+![](/images/paste-17.png)
 
 7.  You will be prompted to enter the password (Do you remember?). Enter the password—you will not see it—and press **Enter**.
 
-![](images/paste-18.png)
+![](/images/paste-18.png)
 
 8.  The update will begin. In the end, you will have an empty typing line with the latest Ubuntu.
 
-![](images/paste-21.png)
+![](/images/paste-21.png)
 
 ::: {.callout-tip title="Default Command Prompt settings" appearance="simple"}
 I suggest you make Ubuntu your Default profile. **Command Promt** > **Settings** > **Start-up** > **Default profile**, choose Ubuntu and press **Save**.
@@ -175,13 +175,13 @@ Adapted from Arthur Turell, [P4DS](https://aeturrell.github.io/python4DS/prerequ
 
 -   coloring your brackets in pairs so you can keep track of the logical order of execution of your code!
 
-![](images/paste-25.png)
+![](/images/paste-25.png)
 
 ### Installation
 
 Install VS Code from [the official website](https://code.visualstudio.com/) (it will determine which version of the installer to use) or download installer manually [here](https://code.visualstudio.com/Download).
 
-![](images/paste-23.png)
+![](/images/paste-23.png)
 
 ::: {.callout-note title="VS Code WSL extension" collapse="false"}
 Windows users will be promted to install the VS Code WSL extension. Agree and see @sec-vscode-wsl-extension.
@@ -191,7 +191,7 @@ Windows users will be promted to install the VS Code WSL extension. Agree and se
 
 The biggest power of VS Code lies in its [extensions](https://code.visualstudio.com/docs/configure/extensions/extension-marketplace). They are ubiquitous allowing you to boost your IDE simply by installing what others have solved for you. You can browse them by clicking on the four cube icon on the side bar or by pressing `Cmd/Ctrl+Shift+X`.
 
-![](images/paste-26.png)
+![](/images/paste-26.png)
 
 There are certain basic extensions that almost every VS Code user will have installed but it can be cumbersome to manually select all those one by one. That's how VS Code Profiles have been created.
 
@@ -201,15 +201,15 @@ Windows user will need one more step before they can start using VS Code at its 
 
 Once the extension is installed you need to open VS Code with Ubuntu as the main environment. To do that, locate a button in the left-bottom corner of the VS Code window consisting of two stacked arrow symbols '\>' and '\<'. **Click** on it.
 
-![](images/paste-32.png)
+![](/images/paste-32.png)
 
 After clicking on this button, a promt line will appear on the top of the window. Select **WSL: New WSL Window** and press **Enter**.
 
-![](images/paste-34.png)
+![](/images/paste-34.png)
 
 A new window will open. This time, notice that the corner button has changed. Now, we are running on Ubuntu.
 
-![](images/paste-35.png)
+![](/images/paste-35.png)
 
 Windows users will use this environment for the course.
 
@@ -220,10 +220,10 @@ Windows users will use this environment for the course.
 > [VS Code manual](https://code.visualstudio.com/docs/configure/profiles#_education)
 
 -   You can access the Profiles editor in either of the following ways: - From the **Code** \> **Settings** \> **Profiles** menu item\
-    ![](images/paste-27.png)
+    ![](/images/paste-27.png)
 
 -   From the **Manage** gear button in the bottom of the Activity Bar.\
-    ![](images/paste-28.png)
+    ![](/images/paste-28.png)
 
 You will see that the Default profile is in use. We will import the GECS profile for this course. The profile file is stored on GitHub (one of its nice features). That code is shown below.
 
@@ -239,11 +239,11 @@ https://gist.github.com/igorsdub/04f6a1191dde8e09091a1099fe87d5be
 
 Import the GECS profile from the **Profiles editor** by selecting the **Import Profile...** button in the dropdown actions of the **New Profile** button.
 
-![](images/paste-29.png)
+![](/images/paste-29.png)
 
 When you select **Import Profile...**, you are prompted for the URL of a GitHub gist or the file location of a profile via an **Import Profile** dialog. Paste the link above and click **Create** button below.
 
-![](images/paste-31.png)
+![](/images/paste-31.png)
 
 Accept any installations or suggestions offered by extensions. Now, you are ready to go!
 
@@ -263,7 +263,7 @@ That's the reason we went to such lengths to install Ubuntu on Windows. Now, you
 
 We will use the VS Code's terminal to do the installation. To open the terminal select **View** \> **Terminal** from the menu bar, or by pressing the `` Ctrl/Cmd+` `` keyboard shortcut. A terminal window will open at the bottom.
 
-![](images/paste-36.png)
+![](/images/paste-36.png)
 
 To install Pixi run the following command in your terminal:
 
@@ -327,7 +327,7 @@ For detailed setup instructions, see [GitHub's 2FA configuration guide](https://
 
 Starship is by far the most widely used shell prompt. It is a customizable prompt that controls how your terminal looks when you type a command. It is pretty and versatile.
 
-![](images/paste-1.gif)
+![](/images/paste-1.gif)
 
 To install Starship open VS Code terminal by selecting **View** \> **Terminal** from the menu bar, or by pressing the `` Ctrl/Cmd+` `` keyboard shortcut. A terminal window will open at the bottom. Then type:
 

@@ -27,7 +27,7 @@ Check out this blog post by the creator of Pixi for a comprehensive introduction
 
 You should have installed Pixi during the setup process ([Setting Up](00-setting-up.qmd)).
 
-![Typical Pixi workflow https://www.kdnuggets.com/pixi-a-smarter-way-to-manage-python-environments](images/paste-48.png)
+![Typical Pixi workflow https://www.kdnuggets.com/pixi-a-smarter-way-to-manage-python-environments](/images/paste-48.png)
 
 Pixi addresses the concept of computational reproducibility by focusing on a set of main features:
 

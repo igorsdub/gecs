@@ -290,7 +290,7 @@ echo "VISION, CHALLENGES, INNOVATION"
 
 Yes, echo just prints its arguments back out again (hence the name). But combine it with a redirect, and you’ve got a way to easily create small files. Let's redirect these words into a file that will represent the [Prof. Sydney Brenner](https://en.wikipedia.org/wiki/Sydney_Brenner) statue located at the Center Court.
 
-![Dr. Brenner's statue presented by Okinawa Prefecture and the Council for Promotion of OIST https://www.oist.jp/image/dr-sydney-brenners-statue](images/paste-39.png)
+![Dr. Brenner's statue presented by Okinawa Prefecture and the Council for Promotion of OIST https://www.oist.jp/image/dr-sydney-brenners-statue](/images/paste-39.png)
 
 ``` bash
 echo "VISION, CHALLENGES, INNOVATION" > sydney_brenner.statue
@@ -684,7 +684,7 @@ flowchart LR
 
 When you look at most operating systems, you see that most of them stem from UNIX. Then they branch into derivatives like Linux, which is the most prominent "child". Windows, on the other hand, is isolated from UNIX and only the recent introduction of WSL allowed it to use UNIX-based tools with ease.
 
-![Evolution of operating systems, its kernels, and distributions. <https://www.reddit.com/r/coolguides/comments/k1lopj/os_family_tree/>](images/paste-37.png)
+![Evolution of operating systems, its kernels, and distributions. <https://www.reddit.com/r/coolguides/comments/k1lopj/os_family_tree/>](/images/paste-37.png)
 
 # References
 

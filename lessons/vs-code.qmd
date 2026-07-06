@@ -9,11 +9,11 @@ In this tutorial you will get familiar with the functionality of VS Code. A powe
 
 1.  Open Visual Studio Code. Then open a folder with **File** > **Open Folder...** or `Cmd+O`. On Linux/WSL users, you will first have to start a remote WSL session. With the WSL extension installed, you will see a new Status bar item at the far left.
 
-    ![](images/paste-41.png)
+    ![](/images/paste-41.png)
     
     The Remote Status bar item can quickly show you in which context VS Code is running (local or remote) and clicking on the item will bring up the WSL extension commands.
     
-    ![](images/paste-42.png)
+    ![](/images/paste-42.png)
 
     ::: callout-tip
     Alternatively, WSL users can open their Linux terminal, create a directory in their Linux distribution file system, change their directory and open it in VS Code WSL remote with `code .`:
@@ -36,11 +36,11 @@ In this tutorial you will get familiar with the functionality of VS Code. A powe
     Workspace Trust lets you decide whether code in your project folder can be executed by VS Code. When you download code from the internet, you should first review it to make sure it's safe to run. Get more info about [Workspace Trust](https://code.visualstudio.com/docs/editing/workspaces/workspace-trust).
     :::
 
-![](images/paste-40.png)
+![](/images/paste-40.png)
 
 4.  You should now see the **Explorer** view on the left, showing the name of the folder. Alongside terminal commands like `ls`, `tree`, and other commands, you can use the **Explorer** view to view and manage the files and folders in your workspace.
 
-    ![](images/paste-43.png)
+    ![](/images/paste-43.png)
     
     ::: callout-note
     When you open a folder in VS Code, VS Code can restore the UI state for that folder, such as the open files, the active view, and the layout of the editor. You can also configure settings that only apply to that folder, or define debug configurations. Get more info about [workspaces](https://code.visualstudio.com/docs/getstarted/getting-started).
