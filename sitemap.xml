@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://igorsdub.github.io/gecs/02-project-structure.html</loc>
-    <lastmod>2026-03-27T05:48:31.366Z</lastmod>
-  </url>
-  <url>
     <loc>https://igorsdub.github.io/gecs/index.html</loc>
-    <lastmod>2026-03-27T05:48:31.578Z</lastmod>
-  </url>
-  <url>
-    <loc>https://igorsdub.github.io/gecs/05-automation.html</loc>
-    <lastmod>2026-03-27T05:48:31.366Z</lastmod>
-  </url>
-  <url>
-    <loc>https://igorsdub.github.io/gecs/about.html</loc>
-    <lastmod>2026-03-27T05:48:31.366Z</lastmod>
-  </url>
-  <url>
-    <loc>https://igorsdub.github.io/gecs/01-terminal.html</loc>
-    <lastmod>2026-03-27T05:48:31.366Z</lastmod>
-  </url>
-  <url>
-    <loc>https://igorsdub.github.io/gecs/00-setting-up.html</loc>
-    <lastmod>2026-03-27T05:48:31.366Z</lastmod>
+    <lastmod>2026-07-06T00:42:15.062Z</lastmod>
   </url>
   <url>
     <loc>https://igorsdub.github.io/gecs/04-virtual-environment.html</loc>
-    <lastmod>2026-03-27T05:48:31.366Z</lastmod>
-  </url>
-  <url>
-    <loc>https://igorsdub.github.io/gecs/03-version-control.html</loc>
-    <lastmod>2026-03-27T05:48:31.366Z</lastmod>
-  </url>
-  <url>
-    <loc>https://igorsdub.github.io/gecs/06-testing.html</loc>
-    <lastmod>2026-03-27T05:48:31.366Z</lastmod>
+    <lastmod>2026-07-06T00:42:14.850Z</lastmod>
   </url>
   <url>
     <loc>https://igorsdub.github.io/gecs/00-vs-code.html</loc>
-    <lastmod>2026-03-27T05:48:31.366Z</lastmod>
+    <lastmod>2026-07-06T00:42:14.849Z</lastmod>
+  </url>
+  <url>
+    <loc>https://igorsdub.github.io/gecs/about.html</loc>
+    <lastmod>2026-07-06T00:42:14.850Z</lastmod>
+  </url>
+  <url>
+    <loc>https://igorsdub.github.io/gecs/05-automation.html</loc>
+    <lastmod>2026-07-06T00:42:14.850Z</lastmod>
+  </url>
+  <url>
+    <loc>https://igorsdub.github.io/gecs/06-testing.html</loc>
+    <lastmod>2026-07-06T00:42:14.850Z</lastmod>
+  </url>
+  <url>
+    <loc>https://igorsdub.github.io/gecs/03-version-control.html</loc>
+    <lastmod>2026-07-06T00:42:14.849Z</lastmod>
+  </url>
+  <url>
+    <loc>https://igorsdub.github.io/gecs/00-setting-up.html</loc>
+    <lastmod>2026-07-06T00:42:14.849Z</lastmod>
+  </url>
+  <url>
+    <loc>https://igorsdub.github.io/gecs/02-project-structure.html</loc>
+    <lastmod>2026-07-06T00:42:14.849Z</lastmod>
+  </url>
+  <url>
+    <loc>https://igorsdub.github.io/gecs/01-terminal.html</loc>
+    <lastmod>2026-07-06T00:42:14.849Z</lastmod>
   </url>
 </urlset>
