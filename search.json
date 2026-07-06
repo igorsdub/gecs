@@ -4,17 +4,7 @@
     "href": "index.html",
     "title": "Good Enough Computing in Science (GECS)",
     "section": "",
-    "text": "flowchart LR\nA[Experiment] --&gt; B[Data]\n\n%% Parallel paths (layout only)\nsubgraph Reproducible\ndirection TB\nC(**GECS**)\nend\n\nsubgraph Irreproducible\ndirection TB\nE[Ad-hoc]\nend\n\nB --&gt; C\nB --&gt; E\n\nC --&gt; G[Results]\nE --&gt; G\n\n%% Emphasize GECS edges\nlinkStyle 1 stroke-width:4px\nlinkStyle 3 stroke-width:4px\n\n%% Node styles\nclassDef gecs fill:#cfe9e5,stroke:transparent,color:#000\nclassDef adhoc fill:#eeeeee,stroke:transparent,color:#000\nclassDef neutral fill:#f7f7f7,stroke:transparent,color:#000\nclassDef results fill:#e6dff1,stroke:transparent,color:#000\n\n%% Apply styles\nclass C gecs\nclass E adhoc\nclass A,B neutral\nclass G results\n\n%% Make subgraphs invisible\nstyle Reproducible fill:transparent,stroke-width:0px\nstyle Irreproducible fill:transparent,stroke-width:0px",
-    "crumbs": [
-      "Home"
-    ]
-  },
-  {
-    "objectID": "index.html#drop-ins",
-    "href": "index.html#drop-ins",
-    "title": "Good Enough Computing in Science (GECS)",
-    "section": "Drop-ins",
-    "text": "Drop-ins\nAfter every session there will be a drop-in the following week. You can come with questions regarding the course or related stuff.\nDate and time: Wednesday 12:00-13:00\nLocation: C102 (The Cafe Tancha meeting room)",
+    "text": "flowchart LR\nA[Experiment] --&gt; B[Data]\n\n%% Parallel paths (layout only)\nsubgraph Reproducible\ndirection TB\nC(**GECS**)\nend\n\nsubgraph Irreproducible\ndirection TB\nE[Ad hoc]\nend\n\nB edge1@==&gt; C\nedge1@{ animate: slow }\nC edge2@==&gt; G[Results]\nedge2@{ animate: slow }\n\nB -.-&gt; E\nE -.-x G\n\n%% Node styles\nclassDef gecs fill:#cfe9e5,stroke:transparent,color:#000\nclassDef adhoc fill:#eeeeee,stroke:transparent,color:#000\nclassDef neutral fill:#f7f7f7,stroke:transparent,color:#000\nclassDef results fill:#e6dff1,stroke:transparent,color:#000\n\n%% Apply styles\nclass C gecs\nclass E adhoc\nclass A,B neutral\nclass G results\n\n%% Make subgraphs invisible\nstyle Reproducible fill:transparent,stroke-width:0px\nstyle Irreproducible fill:transparent,stroke-width:0px",
     "crumbs": [
       "Home"
     ]
@@ -25,6 +15,16 @@
     "title": "Good Enough Computing in Science (GECS)",
     "section": "Getting Started",
     "text": "Getting Started\nMake sure to have your computer ready for the course. Please check out the Setting Up section. Those who are not familiar with terminal should also check out the Terminal section.\nIf you need help with configuring your computer for the course or have any questions before the course starts, a special session will be held on the first week.\nDate and time: July 8 Wednesday 12:00-13:00\nLocation: C102 (The Cafe Tancha meeting room)",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "index.html#drop-ins",
+    "href": "index.html#drop-ins",
+    "title": "Good Enough Computing in Science (GECS)",
+    "section": "Drop-ins",
+    "text": "Drop-ins\nAfter every session there will be a drop-in the following week. You can come with questions regarding the course or related stuff.\nDate and time: Wednesday 12:00-13:00\nLocation: C102 (The Cafe Tancha meeting room)",
     "crumbs": [
       "Home"
     ]
