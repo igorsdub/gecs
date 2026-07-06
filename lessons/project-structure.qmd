@@ -17,7 +17,7 @@ OK, probably not as extreme. Still, it is common for a newcomer to data science 
 
 We will look at two project structures: messy and structured - to see what works and what does not in short and long term projects.
 
-## Messy Project
+## Messy project
 
 ``` text
 .
@@ -45,7 +45,7 @@ unzip gecs-02-project_structure-2025-02_messy-dir
 
 Once unzipped, open the directory with VS Code (`Cmd+O`).
 
-## Structured Project
+## Structured project
 
 ``` text
 .
@@ -75,7 +75,7 @@ Once downloaded and unzipped, open the directory with VS Code.
 
 # Tips
 
-## Directory Structure
+## Directory structure
 
 Here is a minimal directory structure adapted from [bvreede on GitHub](https://github.com/bvreede/good-enough-project). There are larger.
 
@@ -97,7 +97,7 @@ The directory structure distinguishes three kinds of folders:
 └── results            <- Project results: tables, figures, etc. (PG) 
 ```
 
-## Naming Files and Directories
+## Naming files and directories
 
 Jenny Bryan from The Carpentiries has shared [an online slides](https://speakerdeck.com/jennybc/how-to-name-files) to show how to and how to not name files and directories. The presentation can be summarized as follows.
 
@@ -131,7 +131,7 @@ You can use a variation of the above as long as you are consistent within a proj
 
 [Make a README](https://www.makeareadme.com/) does a great job in conveying this message in a single webpage. Check it out!
 
-## Project Template
+## Project template
 
 Instead of creating project directory with all its supplementary files, software developers came up with a boilerplate structure that can be created in minutes. [Cookie Cutter Data Science](https://cookiecutter-data-science.drivendata.org/) project is one of those. Although, the default template is aimed towards machine learning / data science researchers, you can find a simpler one shared by other researchers [online](https://github.com/aeturrell/cookiecutter-research-project/tree/main). Another option, to create your own template that suits your needs.
 

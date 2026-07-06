@@ -353,12 +353,12 @@ After you restart the terminal, close it and open a new one, you should see the 
 
 # References
 
-## Setup and Installation Guides
+## Setup and installation guides
 
 -   [How to Install Ubuntu on Windows (Step-by-Step Guide for Beginners)](https://dev.to/devsubha/how-to-install-ubuntu-on-windows-step-by-step-guide-for-beginners-2hjn) by Subha Mondal
 -   [Windows Subsystem for Linux Documentation](https://www.virtualizationhowto.com/2022/11/windows-subsystem-for-linux-microsoft-store-ga-and-now-default-wsl/)
 
-## Tools and Platforms
+## Tools and platforms
 
 ### Visual Studio Code
 

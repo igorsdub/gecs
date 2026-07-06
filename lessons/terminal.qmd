@@ -81,7 +81,7 @@ This will print the full path to your current location. Usually, when you first 
 Note that the directory separator is a forward slash `/`, not the backslash `\` that you may be used to from Windows or DOS systems. This is important when navigating or specifying file paths.
 :::
 
-## Moving Between Directories
+## Moving between directories
 
 To move to a different directory, use the `cd` (**c**hange **d**irectory) command:
 
@@ -111,7 +111,7 @@ cd ~
 pwd
 ```
 
-## Listing Directory Contents
+## Listing directory contents
 
 To see what's in your current directory, use the `ls` (**l**i**s**t) command:
 
@@ -130,7 +130,7 @@ ls ~
 
 Now that you can navigate around, let's learn how to explore and examine files. There are several useful commands for working with files.
 
-## Viewing File Contents
+## Viewing file contents
 
 To see the contents of a file, you can use the `cat` (**con**ca**t**enate) command:
 
@@ -148,7 +148,7 @@ less /etc/profile
 
 Inside `less`, you can use arrow keys to scroll, Page Up/Page Down for larger jumps, and `q` to quit.
 
-## Options and Arguments
+## Options and arguments
 
 Most commands accept **options** (also called flags or switches) and **arguments**. The general format is:
 
@@ -176,7 +176,7 @@ ls -lt
 
 This combines `-l` and `-t` to show details sorted by time.
 
-## Important Rules
+## Important rules
 
 ::: callout-caution
 Try to avoid any spaces in your directory and file names. Shell interprets space as separator between options or arguments. Space in names will most likely break programs, producing errors.
@@ -402,7 +402,7 @@ Let's keep `lab.log` in `lab3/` but everything else out:
 mv lab3/lab? lab3/*.statue .
 ```
 
-## Renaming Files
+## Renaming files
 
 The `mv` command doesn't just move files between directories—it's also used to rename them. When you move a file to the same directory but give it a new name, you're effectively renaming it.
 
@@ -415,7 +415,7 @@ cat brenner_sydney.statue
 
 The file has been renamed, not moved to a different location.
 
-## Copying Files
+## Copying files
 
 Sometimes you want to create a duplicate of a file. This is where the `cp` (**c**o**p**y) command comes in:
 
@@ -433,7 +433,7 @@ ls
 
 This creates a complete copy of `lab4/` and all the files inside it, called `lab0/`.
 
-## Deleting Files and Directories
+## Deleting files and directories
 
 To remove files, use the `rm` (**r**e**m**o**v**e) command. Be careful with this—once deleted, files are generally gone for good!
 
@@ -531,7 +531,7 @@ As you can see, the ability to pipe data from one command to another, building u
 Most Linux command line tools include a man page. Try taking a brief look at the pages for some of the commands you've already encountered: `man ls`, `man cp`, `man rmdir` and so on. There's even a man page for the `man` program itself, which is accessed using `man man`, of course.
 :::
 
-## Downloading Files from the Web
+## Downloading files from the web
 
 Another powerful command you encountered during [the setup process](00-setting-up.qmd) is `curl` (**C**lient **URL**). It's used to transfer data from or to a server, often for downloading files or scripts from the internet:
 
@@ -617,7 +617,7 @@ echo 'eval "$(starship init bash)"' >> ~/.bashrc
 
 This command appended a line to your `.bashrc` file that tells your shell to start Starship. If you remove that line, your terminal will go back to the looks it had before.
 
-## Reloading Configuration Files
+## Reloading configuration files
 
 When you modify configuration files like `.bashrc` or `.zshrc`, the changes won't take effect until you start a new terminal session. However, you can reload the configuration without closing your terminal using the `source` command:
 

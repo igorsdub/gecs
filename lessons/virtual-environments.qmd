@@ -7,11 +7,11 @@ format: html
 
 Reproducibility is a fundamental aspect of scientific research, and managing computational environments is crucial for ensuring that our code can be run by others. One of the best ways to manage dependencies in Python is through the use of virtual environments.
 
-## What is a Virtual Environment?
+## What is a virtual environment?
 
 A virtual environment is a self-contained directory that contains a Python installation and all the packages required for a specific project. It allows us to have different versions of Python and packages for different projects without interfering with each other.
 
-## Package Managers
+## Package managers
 
 To create a virtual environment, we can use the `venv` module using [pip](https://en.wikipedia.org/wiki/Pip_(package_manager)) that comes with Python. However, it's an outdated approach. Instead, we will use a dedicated package manager, which provides a modern and efficient way to manage virtual environments, package versions, and dependencies. As with different programming languages, there are several managers just for Python: [Conda](https://en.wikipedia.org/wiki/Conda_(package_manager)), [Mamba](https://github.com/mamba-org/mamba), [Poetry](https://python-poetry.org), and [uv](https://docs.astral.sh/uv/) - just to name a few. For this course, we will use [Pixi](https://pixi.sh/). Here's why.
 
@@ -431,7 +431,7 @@ notebook = ">=7.4.5,<8"
 jupyterlab = ">=4.4.5,<5"
 ```
 
-## Global Tools
+## Global tools
 
 With the [`pixi global`](https://pixi.sh/dev/reference/cli/pixi/global/), users can manage globally installed tools in a way that makes them available from any directory on their machine.
 
@@ -483,7 +483,7 @@ git add pixi.* .git*
 git commit -m "first commit"
 ```
 
-## The Book Project
+## The book project
 
 Throughout this tutorial, we've built a Pixi project from scratch. If you'd like to see a complete, working example of everything we've covered, you can access the finished project on GitHub at <https://github.com/igorsdub/gecs-venv>.
 
