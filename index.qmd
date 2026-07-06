@@ -51,7 +51,7 @@ To provide an overview of core software development practices that support effic
 
 # Description
 
-Less time for programming, more time for science. This mini course introduces the basics of software development. In two hour sessions, we cover tools and practices that are used by reserachers tp manage their projects effectively. The course is dieided in two parts, three sessions each. The first part focuses on the must-know: the terminal, version control, and project structure. The second part covers more advanced topics, such as virtual environments, automation, and testing. You will not learn how to write a specific code, but the way to think about your code from bird's eye view. The course is designed to be language agnostic, but we will use Python for examples.
+Less time for programming, more time for science. This mini course introduces the basics of software development. In two hours, sessions, we cover tools and practices that are used by researchers to manage their projects effectively. You will not learn how to write a specific code, but the way to think about your code from bird’s eye view. The course is designed to be language agnostic, but we will use Python for practical examples. 
 
 # Target Audience
 
@@ -59,38 +59,46 @@ This course is for researchers who want to learn how to automate repetitive task
 
 # Schedule
 
-**Time:** 10:00-12:00 (Fridays)\
+**Time:** Friday 13:00-15:00 \
 **Location:** L3B700 (near-ish the GS counter)
 
-| Part 1  |     |                   | Part 2 |     |                      |
-|---------|-----|-------------------|--------|-----|----------------------|
-| January | 16  | Terminal          | March  | 6   | Virtual Environment  |
-|         | 23  | Project Structure |        | 13  | Automation           |
-|         | 30  | Version Control   |        | 27  | Testing              |
+|         |     |                                       | 
+|---------|-----|---------------------------------------|
+| July    | 10  | Version control and Project Structure |
+|         | 17  | Virtual environments                  |
+|         | 24  | Automation                            |        
+|         | 31  | Testing                               |       
 
 
-## Drop-in
+## Drop-ins
 
-After every session there will be a drop-in the following week. You can come with questions or problems regarding the course.
+After every session there will be a drop-in the following week. You can come with questions regarding the course or related stuff.
 
-**Time:** 12:00-13:00 (Wednesdays)\
-**Location:** C102 (The Cafe Private Room)\
-**Dates:** Jan 21, Jan 28, Feb 4 for the Part 1; Mar 11, Mar 25, and Apr 1 for the Part 2.
+**Date and time:** Wednesday 12:00-13:00\
+**Location:** C102 (The Cafe Tancha meeting room)\
 
-## Setting Up
 
-If you need help with configuring your computer for the course, a session will be held on January 14 Wednesday at the Cafe Private Room during the lunchtime, 12:00-13:00. See [Setting Up](00-setting-up.qmd) section.
+## Getting Started
+
+Make sure to have your computer ready for the course. Please check out the [Setting Up](00-setting-up.qmd) section. Those who are not familiar with terminal should also check out the [Terminal](01-terminal.qmd) section.
+
+If you need help with configuring your computer for the course or have any questions before the course starts, a special session will be held on the first week.
+
+**Date and time:** July 8 Wednesday 12:00-13:00\
+**Location:** C102 (The Cafe Tancha meeting room)\
+  
 
 # Registration
 
-[REGISTER HERE](https://forms.office.com/r/ZrwJrNN69y)\
 For official details, see [the Graduate School hosted website](https://groups.oist.jp/grad/event/good-enough-computing-science-gecs-mini-course) on TIDA.
+
+[Registration form](https://forms.office.com/r/ZrwJrNN69y)\
 
 # People
 
--   Igors Dubanevics Y4 \@ESBU
--   Pin Ju Chou Y1 \@CNEU (rotation)
--   Vitoria Yumi Uetuki Nicoleti Y1 \@NCU (rotation)
+-   Igors Dubanevics Y4 \@KondrashovU
+-   Vitoria Yumi Uetuki Nicoleti Y1 \@FukunagaU
+-   Yui Tateyama Y1 \@Pao
 
 # Manifesto
 
@@ -98,7 +106,7 @@ For official details, see [the Graduate School hosted website](https://groups.oi
 >
 > adapted from Austin Kleon, *Steal Like an Artist*
 
-As cheesy as it sounds, we are learning from you (probably more at this point) than you will learn from this course. Stupid question permission is granted. Suggestions, tips, and corrections are welcome!
+We will learn from you more than you will learn from us at this course. Stupid question permission is granted. Suggestions, tips, and corrections are welcome!
 
 # What this course is NOT?
 
