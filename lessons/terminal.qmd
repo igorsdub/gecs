@@ -647,9 +647,11 @@ You can view the contents of your configuration files using `cat ~/.bashrc` or `
 
 As you progress through more advanced topics, you'll encounter many more hidden files and directories. Configuration files, cache directories, and version control metadata (like `.git/`) all use the dot-prefix convention. This naming strategy keeps your file system organized and separates system/application configuration from your regular working files. In future lessons, we'll explore how these hidden files and directories make it very convenient to manage complex configurations without cluttering your workspace.
 
-# Terminology
+# Appendix
 
-I want to clear up the confusion with the terminology. Starting from the left in the figure below, *terminal* or more properly *terminal emulator* is a text-based input/output program that communicates with your computer. You type commands in a *command line* or a *command line interface (CLI)*. The command is passed to *shell* which is a command line interpreter (confusingly, it can be abbreviated as CLI as well, but thankfully no one does that). Next, *shell* talks to *operating system (OS)*. OS is agnostic to hardware and could be run on different physical machines. At the core of any *OS* is *kernel*. Finally, *kernel* talks to the hardware (CPU, GPU, RAM, disk, etc.).
+## Terminology
+
+Any terminology is confusing until you repeat it many times. Starting from the left in the figure below, *terminal* or more properly *terminal emulator* is a text-based input/output program that communicates with your computer. You type commands in a *command line* or a *command line interface (CLI)*. The command is passed to *shell* which is a command line interpreter (confusingly, it can be abbreviated as CLI as well, but thankfully no one does that). Next, *shell* talks to *operating system (OS)*. OS is agnostic to hardware and could be run on different physical machines. At the core of any *OS* is *kernel*. Finally, *kernel* talks to the hardware (CPU, GPU, RAM, disk, etc.).
 
 Only reason I give this detail that some times people use these terms interchangeably.
 
@@ -688,7 +690,7 @@ flowchart LR
     style T fill:#d0e2f2,stroke-width:0px
 ```
 
-# A Brief History
+## A brief history of operating systems
 
 When you look at most operating systems, you see that most of them stem from UNIX. Then they branch into derivatives like Linux, which is the most prominent "child". Windows, on the other hand, is isolated from UNIX and only the recent introduction of WSL allowed it to use UNIX-based tools with ease.
 
@@ -697,6 +699,6 @@ When you look at most operating systems, you see that most of them stem from UNI
 # References
 
 -   [Chapter 2 The Basics of the Unix Shell, Research Software Engineering with Python](https://third-bit.com/py-rse/bash-basics.html) by Wilson et al.
--   https://code.visualstudio.com/docs/terminal/basics
--   https://code.visualstudio.com/docs/terminal/getting-started
--   https://ubuntu.com/tutorials/command-line-for-beginners
+-   [Visual Studio Code Terminal Basics](https://code.visualstudio.com/docs/terminal/basics)
+-   [Getting Started with the VS Code Terminal](https://code.visualstudio.com/docs/terminal/getting-started)
+-   [Command Line for Beginners by Ubuntu](https://ubuntu.com/tutorials/command-line-for-beginners)
