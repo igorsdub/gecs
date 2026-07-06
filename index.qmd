@@ -67,6 +67,7 @@ This course is for researchers who want to learn how to automate repetitive task
 |         | 24  | Automation                            |        
 |         | 31  | Testing                               |       
 
+
 ## Getting Started
 
 Make sure to have your computer ready for the course. Please check out the [Setting Up](lessons/setting-up.qmd) section. Those who are not familiar with terminal should also check out the [Terminal](lessons/terminal.qmd) section.
@@ -83,12 +84,10 @@ After every session there will be a drop-in the following week. You can come wit
 **Date and time:** Wednesday 12:00-13:00\
 **Location:** C102 (The Cafe Tancha meeting room)\
 
-
 # Registration
-
 For official details, see [the Graduate School hosted website](https://groups.oist.jp/grad/event/good-enough-computing-science-gecs-mini-course) on TIDA.
 
-[Registration form](https://forms.office.com/r/ZrwJrNN69y)\
+<button class="btn btn-primary" onclick="window.open('https://forms.office.com/r/ZrwJrNN69y', '_blank')">Register Here</button>
 
 # People
 
