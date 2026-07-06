@@ -69,15 +69,6 @@ This course is for researchers who want to learn how to automate repetitive task
 |         | 24  | Automation                            |        
 |         | 31  | Testing                               |       
 
-
-## Drop-ins
-
-After every session there will be a drop-in the following week. You can come with questions regarding the course or related stuff.
-
-**Date and time:** Wednesday 12:00-13:00\
-**Location:** C102 (The Cafe Tancha meeting room)\
-
-
 ## Getting Started
 
 Make sure to have your computer ready for the course. Please check out the [Setting Up](00-setting-up.qmd) section. Those who are not familiar with terminal should also check out the [Terminal](01-terminal.qmd) section.
@@ -86,7 +77,14 @@ If you need help with configuring your computer for the course or have any quest
 
 **Date and time:** July 8 Wednesday 12:00-13:00\
 **Location:** C102 (The Cafe Tancha meeting room)\
-  
+
+## Drop-ins
+
+After every session there will be a drop-in the following week. You can come with questions regarding the course or related stuff.
+
+**Date and time:** Wednesday 12:00-13:00\
+**Location:** C102 (The Cafe Tancha meeting room)\
+
 
 # Registration
 
@@ -98,7 +96,7 @@ For official details, see [the Graduate School hosted website](https://groups.oi
 
 -   Igors Dubanevics Y4 \@KondrashovU
 -   Vitoria Yumi Uetuki Nicoleti Y1 \@FukunagaU
--   Yui Tateyama Y1 \@Pao
+-   Yui Tateyama Y1 \@PaoU
 
 # Manifesto
 
@@ -110,7 +108,7 @@ We will learn from you more than you will learn from us at this course. Stupid q
 
 # What this course is NOT?
 
--   Introduction to a specific programming language (e.g., Python, Bash, etc.)
+-   Introduction to a specific programming language (e.g., Python, R, etc.)
 -   Numerical simulations/modeling course
 -   High Performance Computing (HPC) training
 
