@@ -18,19 +18,19 @@ website:
       - text: "Home"
         href: index.qmd
       - text: "Setting Up"
-        href: 00-setting-up.qmd
+        href: lessons/setting-up.qmd
       - text: "0. Terminal"
-        href: 01-terminal.qmd
-      - text: "1. Project Structure"
-        href: 02-project-structure.qmd
-      - text: "2. Version Control"
-        href: 03-version-control.qmd
-      - text: "3. Virtual Environment"
-        href: 04-virtual-environment.qmd
+        href: lessons/terminal.qmd
+      - text: "1. Version Control"
+        href: lessons/version-control.qmd
+      - text: "2. Project Structure"
+        href: lessons/project-structure.qmd
+      - text: "3. Virtual Environments"
+        href: lessons/virtual-environments.qmd
       - text: "4. Automation"
-        href: 05-automation.qmd
+        href: lessons/automation.qmd
       - text: "VS Code"
-        href: 00-vs-code.qmd
+        href: lessons/vs-code.qmd
       # - text: "About"
       #   href: about.qmd
       # -  auto: 0?_*
