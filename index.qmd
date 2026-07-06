@@ -14,18 +14,16 @@ end
 
 subgraph Irreproducible
 direction TB
-E[Ad-hoc]
+E[Ad hoc]
 end
 
-B --> C
-B --> E
+B edge1@==> C
+edge1@{ animate: slow }
+C edge2@==> G[Results]
+edge2@{ animate: slow }
 
-C --> G[Results]
-E --> G
-
-%% Emphasize GECS edges
-linkStyle 1 stroke-width:4px
-linkStyle 3 stroke-width:4px
+B -.-> E
+E -.-x G
 
 %% Node styles
 classDef gecs fill:#cfe9e5,stroke:transparent,color:#000
