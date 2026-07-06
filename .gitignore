@@ -1,4 +1,8 @@
+# Quarto
 /.quarto/
 **/*.quarto_ipynb
 /_site/
 styles.css
+
+# macOS
+.DS_Store
