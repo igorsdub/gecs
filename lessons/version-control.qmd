@@ -15,7 +15,7 @@ This tutorial was "stolen" from the [Version Control with Git by The Software Ca
 
 # Summary
 
-![An illustration with two examples of project history management. The left shows a stack of ambiguously named files, shown as book-like objects. A hand carefully tries to pull out one of the files without making the stack crumble. In contrast, the right shows a dial with options ranging from V1 to V6. On top of the dial the six corresponding files are represented as ordered documents. A hand moves the dial to V3, which highlights the third document on top in blue.](https://book.the-turing-way.org/build/project-history-32b4416c7750af16823b2a0d09d980d3.svg)
+![An illustration with two examples of project history management. The left shows a stack of ambiguously named files, shown as book-like objects. A hand carefully tries to pull out one of the files without making the stack crumble. In contrast, the right shows a dial with options ranging from V1 to V6. On top of the dial the six corresponding files are represented as ordered documents. A hand moves the dial to V3, which highlights the third document on top in blue.](https://raw.githubusercontent.com/the-turing-way/the-turing-way/refs/heads/main/book/figures/project-history.svg)
 
 Jimmy and Alfredo have been hired by Ratatouille restaurant to investigate if it is possible to make the best recipes archive ever. They want to be able to work on indexing the prices at the same time, but they have run into problems doing this in the past. If they take turns, each one will spend a lot of time waiting for the other to finish, but if they work on their own copies and email changes back and forth things will be lost, overwritten, or duplicated.
 
