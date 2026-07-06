@@ -323,17 +323,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>We’ll start by exploring how version control can be used to keep track of what one person did and when. Even if you aren’t collaborating with other people, automated version control is much better than this situation:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/03_version-control__phd101212s.png" class="img-fluid figure-img"></p>
+<p><img src="../images/03_version-control__phd101212s.png" class="img-fluid figure-img"></p>
 <figcaption>Comic: a PhD student sends “FINAL.doc” to their supervisor, but after several increasingly intense and frustrating rounds of comments and revisions they end up with a file named “FINAL_rev.22.comments49.corrections.10.#@$%WHYDIDCOMETOGRADSCHOOL????.doc”</figcaption>
 </figure>
 </div>
 <p>We’ve all been in this situation before: it seems unnecessary to have multiple nearly-identical versions of the same document. Some word processors let us deal with this a little better, such as Microsoft Word’s <a href="https://support.office.com/en-us/article/Track-changes-in-Word-197ba630-0f5f-4a8e-9a77-3712475e806a">Track Changes</a>, Google Docs’ <a href="https://support.google.com/docs/answer/190843?hl=en">version history</a>, or LibreOffice’s <a href="https://help.libreoffice.org/Common/Recording_and_Displaying_Changes">Recording and Displaying Changes</a>.</p>
 <p>Version control systems start with a base version of the document and then record changes you make each step of the way. You can think of it as a recording of your progress: you can rewind to start at the base document and play back each change you made, eventually arriving at your more recent version.</p>
-<p><img src="images/03_version-control__play-changes.svg" class="img-fluid" alt="A diagram demonstrating how a single document grows as the result of sequential changes"></p>
+<p><img src="../images/03_version-control__play-changes.svg" class="img-fluid" alt="A diagram demonstrating how a single document grows as the result of sequential changes"></p>
 <p>Once you think of changes as separate from the document itself, you can then think about “playing back” different sets of changes on the base document, ultimately resulting in different versions of that document. For example, two users can make independent sets of changes on the same document.</p>
-<p><img src="images/03_version-control__versions.svg" class="img-fluid" alt="A diagram with one source document that has been modified in two different ways to produce two different versions of the document"></p>
+<p><img src="../images/03_version-control__versions.svg" class="img-fluid" alt="A diagram with one source document that has been modified in two different ways to produce two different versions of the document"></p>
 <p>Unless multiple users make changes to the same section of the document - a conflict - you can incorporate two sets of changes into the same base document.</p>
-<p><img src="images/03_version-control__merge.svg" class="img-fluid" alt="A diagram that shows the merging of two different document versions into one document that contains all of the changes from both versions"></p>
+<p><img src="../images/03_version-control__merge.svg" class="img-fluid" alt="A diagram that shows the merging of two different document versions into one document that contains all of the changes from both versions"></p>
 <p>A version control system is a tool that keeps track of these changes for us, effectively creating different versions of our files. It allows us to decide which changes will be made to the next version (each record of these changes is called a commit), and keeps useful metadata about them, such as who made the change. The complete history of commits for a particular project and their metadata make up a repository. Repositories can be kept in sync across different computers, facilitating collaboration among different people.</p>
 </section>
 <section id="setting-up-git" class="level1">
@@ -631,7 +631,7 @@ no changes added to commit (use "git add" and/or "git commit -a")</code></pre>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/paste-46.png" class="img-fluid figure-img"></p>
+<p><img src="../images/paste-46.png" class="img-fluid figure-img"></p>
 <figcaption>The staging area in Git. From <a href="https://third-bit.com/py-rse/git-cmdline.html">Research Software Engineering with Python</a>.</figcaption>
 </figure>
 </div>
@@ -965,9 +965,9 @@ no changes added to commit (use "git add" and/or "git commit -a")</code></pre>
 * salt
 ## Instructions</code></pre>
 <p>It’s important to remember that we must use the commit number that identifies the state of the repository <em>before</em> the change we’re trying to undo. A common mistake is to use the number of the commit in which we made the change we’re trying to discard. In the example below, we want to retrieve the state from before the most recent commit (<code>HEAD~1</code>), which is commit <code>f22b25e</code>. We use the <code>.</code> to mean all files:</p>
-<p><img src="images/03_version-control__git-restore.svg" class="img-fluid" alt="A diagram showing how git restore can be used to restore the previous version of two files"></p>
+<p><img src="../images/03_version-control__git-restore.svg" class="img-fluid" alt="A diagram showing how git restore can be used to restore the previous version of two files"></p>
 <p>So, to put it all together, here’s how Git works in cartoon form:</p>
-<p><img src="images/03_version-control__git_staging.svg" class="img-fluid" alt="A diagram showing the entire git workflow: local changes are staged using git add, applied to the local repository using git commit, and can be restored from the repository using git restore"></p>
+<p><img src="../images/03_version-control__git_staging.svg" class="img-fluid" alt="A diagram showing the entire git workflow: local changes are staged using git add, applied to the local repository using git commit, and can be restored from the repository using git restore"></p>
 <p>The fact that files can be reverted one by one tends to change the way people organize their work. If everything is in one large document, it’s hard (but not impossible) to undo changes to the introduction without also undoing changes made later to the conclusion. If the introduction and conclusion are stored in separate files, on the other hand, moving backward and forward in time becomes much easier.</p>
 <section id="recovering-older-versions-of-a-file" class="level2">
 <h2 class="anchored" data-anchor-id="recovering-older-versions-of-a-file">Recovering Older Versions of a File</h2>
@@ -1565,7 +1565,7 @@ Already up to date.</code></pre>
 <p>In one picture, here is the general workflow we have been following:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/paste-47.png" class="img-fluid figure-img"></p>
+<p><img src="../images/paste-47.png" class="img-fluid figure-img"></p>
 <figcaption>Commands included in basic Git workflows. From <a href="https://third-bit.com/py-rse/git-cmdline.html">Research Software Engineering with Python</a>.</figcaption>
 </figure>
 </div>
