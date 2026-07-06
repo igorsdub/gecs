@@ -9,6 +9,14 @@ format: html
 
 If there is one software skill you had to learn, it would be working with a terminal. It is ubiquitous! It has been around since 1970s and is likely to stay, unlike other tools. Thus, investing your time learning how to use it properly is worth it.
 
+# A Bit of Pop Wisdom
+
+Have you watched the movie *The Matrix*? While the protagonists are inside the Matrix, operator assists them in real time monitoring what is happening and where should they go. The operator's setup can be seen below. 
+
+![Tank, played by Marcus Chong, monitors the Matrix.](/images/matrix_computer_view.jpg)
+
+Do you notice anything unsual abou this set up? Look closely. The operator is not using a mouse. He is using a terminal to monitor the Matrix. That alone should convice you of the power of the terminal. Jokes aside, you will immensely benefit from learning how to use it. It may seem intimidating at first (and it will), but with practice, you'll find it to be an invaluable skill.
+
 # Integrated Terminal
 
 Opening a terminal varies depending on your operating system. On macOS, you can find the Terminal application in `Applications/` → `Utilities/`. On Linux, you might find it in your applications menu, or you can press `Ctrl+Alt+T` on many systems. On Windows, you'll want to use Ubuntu as part of the Windows Subsystem for Linux (WSL).
@@ -533,7 +541,7 @@ Most Linux command line tools include a man page. Try taking a brief look at the
 
 ## Downloading files from the web
 
-Another powerful command you encountered during [the setup process](00-setting-up.qmd) is `curl` (**C**lient **URL**). It's used to transfer data from or to a server, often for downloading files or scripts from the internet:
+Another powerful command you encountered during [the setup process](setting-up.qmd) is `curl` (**C**lient **URL**). It's used to transfer data from or to a server, often for downloading files or scripts from the internet:
 
 ```bash
 curl -fsSL https://pixi.sh/install.sh | sh
