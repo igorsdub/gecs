@@ -181,8 +181,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#what-is-a-virtual-environment" id="toc-what-is-a-virtual-environment" class="nav-link active" data-scroll-target="#what-is-a-virtual-environment">What is a Virtual Environment?</a></li>
-  <li><a href="#package-managers" id="toc-package-managers" class="nav-link" data-scroll-target="#package-managers">Package Managers</a>
+  <li><a href="#what-is-a-virtual-environment" id="toc-what-is-a-virtual-environment" class="nav-link active" data-scroll-target="#what-is-a-virtual-environment">What is a virtual environment?</a></li>
+  <li><a href="#package-managers" id="toc-package-managers" class="nav-link" data-scroll-target="#package-managers">Package managers</a>
   <ul class="collapse">
   <li><a href="#pixi" id="toc-pixi" class="nav-link" data-scroll-target="#pixi">Pixi</a></li>
   </ul></li>
@@ -191,9 +191,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#extending-the-manifest" id="toc-extending-the-manifest" class="nav-link" data-scroll-target="#extending-the-manifest">Extending the manifest</a></li>
   <li><a href="#task-overview" id="toc-task-overview" class="nav-link" data-scroll-target="#task-overview">Task overview</a></li>
   <li><a href="#multi-platform-projects" id="toc-multi-platform-projects" class="nav-link" data-scroll-target="#multi-platform-projects">Multi-platform projects</a></li>
-  <li><a href="#global-tools" id="toc-global-tools" class="nav-link" data-scroll-target="#global-tools">Global Tools</a></li>
+  <li><a href="#global-tools" id="toc-global-tools" class="nav-link" data-scroll-target="#global-tools">Global tools</a></li>
   <li><a href="#version-controlling-the-project" id="toc-version-controlling-the-project" class="nav-link" data-scroll-target="#version-controlling-the-project">Version controlling the project</a></li>
-  <li><a href="#the-book-project" id="toc-the-book-project" class="nav-link" data-scroll-target="#the-book-project">The Book Project</a></li>
+  <li><a href="#the-book-project" id="toc-the-book-project" class="nav-link" data-scroll-target="#the-book-project">The book project</a></li>
   </ul>
 </nav>
     </div>
@@ -224,11 +224,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </blockquote>
 <p>Reproducibility is a fundamental aspect of scientific research, and managing computational environments is crucial for ensuring that our code can be run by others. One of the best ways to manage dependencies in Python is through the use of virtual environments.</p>
 <section id="what-is-a-virtual-environment" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-a-virtual-environment">What is a Virtual Environment?</h2>
+<h2 class="anchored" data-anchor-id="what-is-a-virtual-environment">What is a virtual environment?</h2>
 <p>A virtual environment is a self-contained directory that contains a Python installation and all the packages required for a specific project. It allows us to have different versions of Python and packages for different projects without interfering with each other.</p>
 </section>
 <section id="package-managers" class="level2">
-<h2 class="anchored" data-anchor-id="package-managers">Package Managers</h2>
+<h2 class="anchored" data-anchor-id="package-managers">Package managers</h2>
 <p>To create a virtual environment, we can use the <code>venv</code> module using <a href="https://en.wikipedia.org/wiki/Pip_(package_manager)">pip</a> that comes with Python. However, it’s an outdated approach. Instead, we will use a dedicated package manager, which provides a modern and efficient way to manage virtual environments, package versions, and dependencies. As with different programming languages, there are several managers just for Python: <a href="https://en.wikipedia.org/wiki/Conda_(package_manager)">Conda</a>, <a href="https://github.com/mamba-org/mamba">Mamba</a>, <a href="https://python-poetry.org">Poetry</a>, and <a href="https://docs.astral.sh/uv/">uv</a> - just to name a few. For this course, we will use <a href="https://pixi.sh/">Pixi</a>. Here’s why.</p>
 <section id="pixi" class="level3">
 <h3 class="anchored" data-anchor-id="pixi">Pixi</h3>
@@ -566,7 +566,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 <span id="cb35-19"><a href="#cb35-19" aria-hidden="true" tabindex="-1"></a><span class="dt">jupyterlab</span> <span class="op">=</span> <span class="st">"&gt;=4.4.5,&lt;5"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="global-tools" class="level2">
-<h2 class="anchored" data-anchor-id="global-tools">Global Tools</h2>
+<h2 class="anchored" data-anchor-id="global-tools">Global tools</h2>
 <p>With the <a href="https://pixi.sh/dev/reference/cli/pixi/global/"><code>pixi global</code></a>, users can manage globally installed tools in a way that makes them available from any directory on their machine.</p>
 <p>As an example, we can install the <a href="https://github.com/sharkdp/bat"><code>bat</code></a> program — a <code>cat</code> clone with syntax highlighting and Git integration — as a global utility from conda-forge using <a href="https://pixi.sh/latest/global_tools/introduction/"><code>pixi global</code></a>.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> global install bat</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -603,7 +603,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"first commit"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="the-book-project" class="level2">
-<h2 class="anchored" data-anchor-id="the-book-project">The Book Project</h2>
+<h2 class="anchored" data-anchor-id="the-book-project">The book project</h2>
 <p>Throughout this tutorial, we’ve built a Pixi project from scratch. If you’d like to see a complete, working example of everything we’ve covered, you can access the finished project on GitHub at <a href="https://github.com/igorsdub/gecs-venv" class="uri">https://github.com/igorsdub/gecs-venv</a>.</p>
 <p>To use this example project on your machine:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~</span>

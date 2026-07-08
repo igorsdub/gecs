@@ -60,15 +60,15 @@
     "objectID": "lessons/virtual-environments.html#what-is-a-virtual-environment",
     "href": "lessons/virtual-environments.html#what-is-a-virtual-environment",
     "title": "3. Virtual Environment”",
-    "section": "What is a Virtual Environment?",
-    "text": "What is a Virtual Environment?\nA virtual environment is a self-contained directory that contains a Python installation and all the packages required for a specific project. It allows us to have different versions of Python and packages for different projects without interfering with each other."
+    "section": "What is a virtual environment?",
+    "text": "What is a virtual environment?\nA virtual environment is a self-contained directory that contains a Python installation and all the packages required for a specific project. It allows us to have different versions of Python and packages for different projects without interfering with each other."
   },
   {
     "objectID": "lessons/virtual-environments.html#package-managers",
     "href": "lessons/virtual-environments.html#package-managers",
     "title": "3. Virtual Environment”",
-    "section": "Package Managers",
-    "text": "Package Managers\nTo create a virtual environment, we can use the venv module using pip that comes with Python. However, it’s an outdated approach. Instead, we will use a dedicated package manager, which provides a modern and efficient way to manage virtual environments, package versions, and dependencies. As with different programming languages, there are several managers just for Python: Conda, Mamba, Poetry, and uv - just to name a few. For this course, we will use Pixi. Here’s why.\n\nPixi\nPixi, to quote the website, “is a fast, modern, and reproducible package management tool”.\n\nFast: Building environments and finding compatible package versions is significantly faster than Conda.\nModern: It is multi-platform, multi-language, memory efficient, and manages complex workflows.\nReproducible: It keeps track of your package dependencies at both the version and system level, making it easy to reproduce your environment.\n\nCheck out this blog post by the creator of Pixi for a comprehensive introduction: Pixi - reproducible, scientific software workflows!.\nYou should have installed Pixi during the setup process (Setting Up).\n\n\n\nTypical Pixi workflow https://www.kdnuggets.com/pixi-a-smarter-way-to-manage-python-environments\n\n\nPixi addresses the concept of computational reproducibility by focusing on a set of main features:\n\nVirtual environment management: Pixi can create environments that contain conda packages and Python packages and use or switch between environments easily.\nPackage management: Pixi enables the user to install, update, and remove packages from these environments through the pixi command line.\nTask management: Pixi has a task runner system built-in, which allows for tasks with custom logic and dependencies on other tasks to be created.\n\nIt also combines these features with robust behaviors:\n\nAutomatic lock files: Any changes to a Pixi workspace that can mutate the environments defined in it will automatically and non-optionally result in the Pixi lock file for the workspace being updated. This ensures that any and every state of a Pixi project is trivially computationally reproducible.\nSolving environments for other platforms: Pixi lets you solve dependencies for platforms other than your current machine. This means collaborators can be confident all environments will work with no additional setup.\nParity of conda and Python packages: Pixi handles both conda and Python packages seamlessly. It first solves all conda package requirements, locks the environment, then solves Python package dependencies. Pixi checks for overlaps and only installs missing Python dependencies, ensuring full reproducibility without conflicts between the two ecosystems.\nEfficient caching: Pixi uses global caching so packages are downloaded once and reused across projects."
+    "section": "Package managers",
+    "text": "Package managers\nTo create a virtual environment, we can use the venv module using pip that comes with Python. However, it’s an outdated approach. Instead, we will use a dedicated package manager, which provides a modern and efficient way to manage virtual environments, package versions, and dependencies. As with different programming languages, there are several managers just for Python: Conda, Mamba, Poetry, and uv - just to name a few. For this course, we will use Pixi. Here’s why.\n\nPixi\nPixi, to quote the website, “is a fast, modern, and reproducible package management tool”.\n\nFast: Building environments and finding compatible package versions is significantly faster than Conda.\nModern: It is multi-platform, multi-language, memory efficient, and manages complex workflows.\nReproducible: It keeps track of your package dependencies at both the version and system level, making it easy to reproduce your environment.\n\nCheck out this blog post by the creator of Pixi for a comprehensive introduction: Pixi - reproducible, scientific software workflows!.\nYou should have installed Pixi during the setup process (Setting Up).\n\n\n\nTypical Pixi workflow https://www.kdnuggets.com/pixi-a-smarter-way-to-manage-python-environments\n\n\nPixi addresses the concept of computational reproducibility by focusing on a set of main features:\n\nVirtual environment management: Pixi can create environments that contain conda packages and Python packages and use or switch between environments easily.\nPackage management: Pixi enables the user to install, update, and remove packages from these environments through the pixi command line.\nTask management: Pixi has a task runner system built-in, which allows for tasks with custom logic and dependencies on other tasks to be created.\n\nIt also combines these features with robust behaviors:\n\nAutomatic lock files: Any changes to a Pixi workspace that can mutate the environments defined in it will automatically and non-optionally result in the Pixi lock file for the workspace being updated. This ensures that any and every state of a Pixi project is trivially computationally reproducible.\nSolving environments for other platforms: Pixi lets you solve dependencies for platforms other than your current machine. This means collaborators can be confident all environments will work with no additional setup.\nParity of conda and Python packages: Pixi handles both conda and Python packages seamlessly. It first solves all conda package requirements, locks the environment, then solves Python package dependencies. Pixi checks for overlaps and only installs missing Python dependencies, ensuring full reproducibility without conflicts between the two ecosystems.\nEfficient caching: Pixi uses global caching so packages are downloaded once and reused across projects."
   },
   {
     "objectID": "lessons/virtual-environments.html#project-based-workflows",
@@ -109,8 +109,8 @@
     "objectID": "lessons/virtual-environments.html#global-tools",
     "href": "lessons/virtual-environments.html#global-tools",
     "title": "3. Virtual Environment”",
-    "section": "Global Tools",
-    "text": "Global Tools\nWith the pixi global, users can manage globally installed tools in a way that makes them available from any directory on their machine.\nAs an example, we can install the bat program — a cat clone with syntax highlighting and Git integration — as a global utility from conda-forge using pixi global.\npixi global install bat\n└── bat: 0.25.0 (installed)\n    └─ exposes: bat\nPixi has now installed bat for us in a custom environment under ~/.pixi/envs/bat/ and then exposed the bat command globally by placing bat on our shell’s PATH at ~/.pixi/bin/bat. This now means that for any new terminal shell we open, bat will be available to use.\nUsing pixi global has also created a ~/.pixi/manifests/pixi-global.toml file that tracks all of the software that is globally installed by Pixi\nversion = 1\n\n[envs.bat]\nchannels = [\"conda-forge\"]\ndependencies = { bat = \"*\" }\nexposed = { bat = \"bat\" }\nAs new software is added to the system with pixi global this global manifest is updated. If the global manifest is updated manually, the next time pixi global update is run, the environments defined in the global manifest will be installed on the system. This means that by sharing a Pixi global manifest, a new machine can be provisioned with an entire suite of command line tools in seconds.\nIf you want to delete a globally installed environment, you can use pixi global uninstall to remove the tool from the system and update the global manifest.\npixi global uninstall bat\n\n\n\n\n\n\nIn this case we could have used pixi global remove bat as well since there is only one version of bat installed. Difference between remove and uninstall is that remove can be used to remove a specific version of a tool if there are multiple versions installed, while uninstall will remove environment with that name."
+    "section": "Global tools",
+    "text": "Global tools\nWith the pixi global, users can manage globally installed tools in a way that makes them available from any directory on their machine.\nAs an example, we can install the bat program — a cat clone with syntax highlighting and Git integration — as a global utility from conda-forge using pixi global.\npixi global install bat\n└── bat: 0.25.0 (installed)\n    └─ exposes: bat\nPixi has now installed bat for us in a custom environment under ~/.pixi/envs/bat/ and then exposed the bat command globally by placing bat on our shell’s PATH at ~/.pixi/bin/bat. This now means that for any new terminal shell we open, bat will be available to use.\nUsing pixi global has also created a ~/.pixi/manifests/pixi-global.toml file that tracks all of the software that is globally installed by Pixi\nversion = 1\n\n[envs.bat]\nchannels = [\"conda-forge\"]\ndependencies = { bat = \"*\" }\nexposed = { bat = \"bat\" }\nAs new software is added to the system with pixi global this global manifest is updated. If the global manifest is updated manually, the next time pixi global update is run, the environments defined in the global manifest will be installed on the system. This means that by sharing a Pixi global manifest, a new machine can be provisioned with an entire suite of command line tools in seconds.\nIf you want to delete a globally installed environment, you can use pixi global uninstall to remove the tool from the system and update the global manifest.\npixi global uninstall bat\n\n\n\n\n\n\nIn this case we could have used pixi global remove bat as well since there is only one version of bat installed. Difference between remove and uninstall is that remove can be used to remove a specific version of a tool if there are multiple versions installed, while uninstall will remove environment with that name."
   },
   {
     "objectID": "lessons/virtual-environments.html#version-controlling-the-project",
@@ -123,8 +123,8 @@
     "objectID": "lessons/virtual-environments.html#the-book-project",
     "href": "lessons/virtual-environments.html#the-book-project",
     "title": "3. Virtual Environment”",
-    "section": "The Book Project",
-    "text": "The Book Project\nThroughout this tutorial, we’ve built a Pixi project from scratch. If you’d like to see a complete, working example of everything we’ve covered, you can access the finished project on GitHub at https://github.com/igorsdub/gecs-venv.\nTo use this example project on your machine:\ncd ~\ngit clone https://github.com/igorsdub/gecs-venv.git\ncd gecs-venv\nThen follow the instructions in the README.md file to set up the project."
+    "section": "The book project",
+    "text": "The book project\nThroughout this tutorial, we’ve built a Pixi project from scratch. If you’d like to see a complete, working example of everything we’ve covered, you can access the finished project on GitHub at https://github.com/igorsdub/gecs-venv.\nTo use this example project on your machine:\ncd ~\ngit clone https://github.com/igorsdub/gecs-venv.git\ncd gecs-venv\nThen follow the instructions in the README.md file to set up the project."
   },
   {
     "objectID": "lessons/project-structure.html",
@@ -137,29 +137,29 @@
     "objectID": "lessons/project-structure.html#messy-project",
     "href": "lessons/project-structure.html#messy-project",
     "title": "2. Project Structure",
-    "section": "Messy Project",
-    "text": "Messy Project\n.\n├── analysis.sh\n├── book1.txt\n├── book102.txt\n├── book2.txt\n├── book3.txt\n├── book5.txt\n├── book55.txt\n├── book79.txt\n├── plot.sh\n└── summary.sh\nFirst, try to make sense what the project is about and how to use it.\nDOWNLOAD HERE\nIf you want to practice your terminal skills, you can unzip the file with unzip program:\nunzip gecs-02-project_structure-2025-02_messy-dir\nOnce unzipped, open the directory with VS Code (Cmd+O)."
+    "section": "Messy project",
+    "text": "Messy project\n.\n├── analysis.sh\n├── book1.txt\n├── book102.txt\n├── book2.txt\n├── book3.txt\n├── book5.txt\n├── book55.txt\n├── book79.txt\n├── plot.sh\n└── summary.sh\nFirst, try to make sense what the project is about and how to use it.\nDOWNLOAD HERE\nIf you want to practice your terminal skills, you can unzip the file with unzip program:\nunzip gecs-02-project_structure-2025-02_messy-dir\nOnce unzipped, open the directory with VS Code (Cmd+O)."
   },
   {
     "objectID": "lessons/project-structure.html#structured-project",
     "href": "lessons/project-structure.html#structured-project",
     "title": "2. Project Structure",
-    "section": "Structured Project",
-    "text": "Structured Project\n.\n├── books                           &lt;-- Text files of books used for analysis\n│   ├── dracula.txt\n│   ├── frankenstein.txt\n│   ├── jane_eyre.txt\n│   ├── moby_dick.txt\n│   ├── README.md                   &lt;-- README for the book files\n│   ├── sense_and_sensibility.txt\n│   ├── sherlock_holmes.txt\n│   └── time_machine.txt\n├── counts                          &lt;-- Word count .tsv data\n├── figures                         &lt;-- Bar plots of word counts\n├── README.md                       &lt;-- README for the project\n└── scripts                         &lt;-- Scripts directory\n    ├── count_words.sh              &lt;-- Counts occurences of word in a books\n    ├── get_summary.sh              &lt;-- Gets a book summary\n    └── plot_counts.sh              &lt;-- Plots count histogram in terminal window\nThis is the same project but organized.\nDOWNLOAD HERE\nOnce downloaded and unzipped, open the directory with VS Code."
+    "section": "Structured project",
+    "text": "Structured project\n.\n├── books                           &lt;-- Text files of books used for analysis\n│   ├── dracula.txt\n│   ├── frankenstein.txt\n│   ├── jane_eyre.txt\n│   ├── moby_dick.txt\n│   ├── README.md                   &lt;-- README for the book files\n│   ├── sense_and_sensibility.txt\n│   ├── sherlock_holmes.txt\n│   └── time_machine.txt\n├── counts                          &lt;-- Word count .tsv data\n├── figures                         &lt;-- Bar plots of word counts\n├── README.md                       &lt;-- README for the project\n└── scripts                         &lt;-- Scripts directory\n    ├── count_words.sh              &lt;-- Counts occurences of word in a books\n    ├── get_summary.sh              &lt;-- Gets a book summary\n    └── plot_counts.sh              &lt;-- Plots count histogram in terminal window\nThis is the same project but organized.\nDOWNLOAD HERE\nOnce downloaded and unzipped, open the directory with VS Code."
   },
   {
     "objectID": "lessons/project-structure.html#directory-structure",
     "href": "lessons/project-structure.html#directory-structure",
     "title": "2. Project Structure",
-    "section": "Directory Structure",
-    "text": "Directory Structure\nHere is a minimal directory structure adapted from bvreede on GitHub. There are larger.\nThe directory structure distinguishes three kinds of folders:\n\nRead-only (RO): not edited by either code or researcher\nHuman-writeable (HW): edited by the researcher only.\nProject-generated (PG): folders generated when running the code; these folders can be deleted or emptied and will be completely reconstituted as the project is run.\n\n.\n├── README.md          &lt;- Description and how to run the project (HW)\n├── requirements.txt   &lt;- System requirements for running the project (HW)\n├── processed_data     &lt;- Processed data ready for analysis (PG)\n├── raw_data           &lt;- The original, immutable data dump (RO)\n├── scripts            &lt;- Scripts for this project (HW)\n└── results            &lt;- Project results: tables, figures, etc. (PG)"
+    "section": "Directory structure",
+    "text": "Directory structure\nHere is a minimal directory structure adapted from bvreede on GitHub. There are larger.\nThe directory structure distinguishes three kinds of folders:\n\nRead-only (RO): not edited by either code or researcher\nHuman-writeable (HW): edited by the researcher only.\nProject-generated (PG): folders generated when running the code; these folders can be deleted or emptied and will be completely reconstituted as the project is run.\n\n.\n├── README.md          &lt;- Description and how to run the project (HW)\n├── requirements.txt   &lt;- System requirements for running the project (HW)\n├── processed_data     &lt;- Processed data ready for analysis (PG)\n├── raw_data           &lt;- The original, immutable data dump (RO)\n├── scripts            &lt;- Scripts for this project (HW)\n└── results            &lt;- Project results: tables, figures, etc. (PG)"
   },
   {
     "objectID": "lessons/project-structure.html#naming-files-and-directories",
     "href": "lessons/project-structure.html#naming-files-and-directories",
     "title": "2. Project Structure",
-    "section": "Naming Files and Directories",
-    "text": "Naming Files and Directories\nJenny Bryan from The Carpentiries has shared an online slides to show how to and how to not name files and directories. The presentation can be summarized as follows.\n\nKISS (Keep It Simple Stupid): use simple and consistent file names\n\nMachine readable\nHuman readable\nOrders well in a directory\n\nNo special characters and no spaces!\nUse YYYY-MM-DD date format\nUse - to delimit words and _ to delimit sections\n\ni.e. 2019-01-19_my-data.csv\n\nLeft-pad numbers\n\ni.e. 01_my-data.csv vs 1_my-data.csv\nIf you don’t, file orders get messed up when you get to double-digits\n\n\nYou can use a variation of the above as long as you are consistent within a project."
+    "section": "Naming files and directories",
+    "text": "Naming files and directories\nJenny Bryan from The Carpentiries has shared an online slides to show how to and how to not name files and directories. The presentation can be summarized as follows.\n\nKISS (Keep It Simple Stupid): use simple and consistent file names\n\nMachine readable\nHuman readable\nOrders well in a directory\n\nNo special characters and no spaces!\nUse YYYY-MM-DD date format\nUse - to delimit words and _ to delimit sections\n\ni.e. 2019-01-19_my-data.csv\n\nLeft-pad numbers\n\ni.e. 01_my-data.csv vs 1_my-data.csv\nIf you don’t, file orders get messed up when you get to double-digits\n\n\nYou can use a variation of the above as long as you are consistent within a project."
   },
   {
     "objectID": "lessons/project-structure.html#readme",
@@ -172,8 +172,8 @@
     "objectID": "lessons/project-structure.html#project-template",
     "href": "lessons/project-structure.html#project-template",
     "title": "2. Project Structure",
-    "section": "Project Template",
-    "text": "Project Template\nInstead of creating project directory with all its supplementary files, software developers came up with a boilerplate structure that can be created in minutes. Cookie Cutter Data Science project is one of those. Although, the default template is aimed towards machine learning / data science researchers, you can find a simpler one shared by other researchers online. Another option, to create your own template that suits your needs.\n\nAlso, check out their Opinions page for project management tips."
+    "section": "Project template",
+    "text": "Project template\nInstead of creating project directory with all its supplementary files, software developers came up with a boilerplate structure that can be created in minutes. Cookie Cutter Data Science project is one of those. Although, the default template is aimed towards machine learning / data science researchers, you can find a simpler one shared by other researchers online. Another option, to create your own template that suits your needs.\n\nAlso, check out their Opinions page for project management tips."
   },
   {
     "objectID": "lessons/version-control.html",
@@ -193,64 +193,64 @@
     "objectID": "lessons/version-control.html#creating-github-account",
     "href": "lessons/version-control.html#creating-github-account",
     "title": "1. Version Control",
-    "section": "Creating GitHub Account",
-    "text": "Creating GitHub Account\nIf you don’t already have a GitHub account, check the Setting Up section."
+    "section": "Creating GitHub account",
+    "text": "Creating GitHub account\nIf you don’t already have a GitHub account, check the Setting Up section."
   },
   {
     "objectID": "lessons/version-control.html#preparing-your-working-directory",
     "href": "lessons/version-control.html#preparing-your-working-directory",
     "title": "1. Version Control",
-    "section": "Preparing Your Working Directory",
-    "text": "Preparing Your Working Directory\nYou can choose which directory you want to work in. If you have no preference, move to your home directory:\ncd"
+    "section": "Preparing your working directory",
+    "text": "Preparing your working directory\nYou can choose which directory you want to work in. If you have no preference, move to your home directory:\ncd"
   },
   {
     "objectID": "lessons/version-control.html#places-to-create-git-repositories",
     "href": "lessons/version-control.html#places-to-create-git-repositories",
     "title": "1. Version Control",
-    "section": "Places to Create Git Repositories",
-    "text": "Places to Create Git Repositories\nAlong with tracking information about recipes (the project we have already created), Alfredo would also like to track information about desserts specifically. Alfredo creates a desserts project inside his recipes project with the following sequence of commands:\ncd              # return to the home directory\ncd recipes      # go into recipes directory, which is already a Git repository\nls -a           # ensure the .git subdirectory is still present in the recipes directory\nmkdir desserts  # make a sub-directory recipes/desserts\ncd desserts     # go into desserts subdirectory\ngit init        # make the desserts subdirectory a Git repository\nls -a           # ensure the .git subdirectory is present indicating we have created a new Git repository\nIs the git init command, run inside the desserts subdirectory, required for tracking files stored in the desserts subdirectory?\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\n**No. Alfredo does not need to make the desserts subdirectory a Git repository because the recipes repository will track all files, sub-directories, and subdirectory files under the recipes directory. Thus, in order to track all information about desserts, Alfredo only needed to add the desserts subdirectory to the recipes directory.\nRight now, you have a “nested repository” is a Git repository that exists within the working directory of another Git repository. Each nested repository operates independently with its own history. Git is designed primarily to manage one repository per directory tree. When Git encounters a .git folder within a subdirectory of a parent repository, it treats the inner repository as a separate entity and usually ignores its contents within the parent’s version control.\nYo**u can verify that the desserts subdirectory is not being tracked by the recipes repository by running the following command from within the recipes directory:\ntouch tiramisu.md # create a new file in recipes directory\ngit status        # check the status of the recipes repository\ncd ..             # go back to recipes directory  \ngit status        # check the status of the desserts repository\nTo delete unwanted nested repositories, simply delete the .git subdirectory inside the unwanted repository while in the parent repository. For example, to delete the unwanted desserts repository, Alfredo would run:\ncd desserts\nrm -rf .git\ngit status\nand then return to the recipes directory:\ncd .."
+    "section": "Places to create Git repositories",
+    "text": "Places to create Git repositories\nAlong with tracking information about recipes (the project we have already created), Alfredo would also like to track information about desserts specifically. Alfredo creates a desserts project inside his recipes project with the following sequence of commands:\ncd              # return to the home directory\ncd recipes      # go into recipes directory, which is already a Git repository\nls -a           # ensure the .git subdirectory is still present in the recipes directory\nmkdir desserts  # make a sub-directory recipes/desserts\ncd desserts     # go into desserts subdirectory\ngit init        # make the desserts subdirectory a Git repository\nls -a           # ensure the .git subdirectory is present indicating we have created a new Git repository\nIs the git init command, run inside the desserts subdirectory, required for tracking files stored in the desserts subdirectory?\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\n**No. Alfredo does not need to make the desserts subdirectory a Git repository because the recipes repository will track all files, sub-directories, and subdirectory files under the recipes directory. Thus, in order to track all information about desserts, Alfredo only needed to add the desserts subdirectory to the recipes directory.\nRight now, you have a “nested repository” is a Git repository that exists within the working directory of another Git repository. Each nested repository operates independently with its own history. Git is designed primarily to manage one repository per directory tree. When Git encounters a .git folder within a subdirectory of a parent repository, it treats the inner repository as a separate entity and usually ignores its contents within the parent’s version control.\nYo**u can verify that the desserts subdirectory is not being tracked by the recipes repository by running the following command from within the recipes directory:\ntouch tiramisu.md # create a new file in recipes directory\ngit status        # check the status of the recipes repository\ncd ..             # go back to recipes directory  \ngit status        # check the status of the desserts repository\nTo delete unwanted nested repositories, simply delete the .git subdirectory inside the unwanted repository while in the parent repository. For example, to delete the unwanted desserts repository, Alfredo would run:\ncd desserts\nrm -rf .git\ngit status\nand then return to the recipes directory:\ncd .."
   },
   {
     "objectID": "lessons/version-control.html#choosing-a-commit-message",
     "href": "lessons/version-control.html#choosing-a-commit-message",
     "title": "1. Version Control",
-    "section": "Choosing a Commit Message",
-    "text": "Choosing a Commit Message\nWhich of the following commit messages would be most appropriate for the last commit made to guacamole.md?\n\n“Changes”\n“Change lemon for lime”\n“Modify guacamole to the traditional recipe”\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nAnswer 3. Good commit messages are short, descriptive, and explain why, not just what."
+    "section": "Choosing a commit message",
+    "text": "Choosing a commit message\nWhich of the following commit messages would be most appropriate for the last commit made to guacamole.md?\n\n“changes”\n“change lemon for lime”\n“modify guacamole to the traditional recipe”\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nAnswer 3. Good commit messages are short, descriptive, and explain why, not just what.\nIt’s is nice to capitalize your messages, but not required. One less key to press is always good."
   },
   {
     "objectID": "lessons/version-control.html#committing-changes-to-git",
     "href": "lessons/version-control.html#committing-changes-to-git",
     "title": "1. Version Control",
-    "section": "Committing Changes to Git",
-    "text": "Committing Changes to Git\nWhich command(s) below would save the changes of myfile.txt to my local Git repository?\n\ngit commit -m \"my recent changes\"\ngit init myfile.txt then git commit -m \"my recent changes\"\ngit add myfile.txt then git commit -m \"my recent changes\"\ngit commit -m myfile.txt \"my recent changes\"\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nAnswer 3 is correct: git add stages the file, then git commit saves it."
+    "section": "Committing changes to Git",
+    "text": "Committing changes to Git\nWhich command(s) below would save the changes of myfile.txt to my local Git repository?\n\ngit commit -m \"my recent changes\"\ngit init myfile.txt then git commit -m \"my recent changes\"\ngit add myfile.txt then git commit -m \"my recent changes\"\ngit commit -m myfile.txt \"my recent changes\"\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nAnswer 3 is correct: git add stages the file, then git commit saves it."
   },
   {
     "objectID": "lessons/version-control.html#committing-multiple-files",
     "href": "lessons/version-control.html#committing-multiple-files",
     "title": "1. Version Control",
-    "section": "Committing Multiple Files",
-    "text": "Committing Multiple Files\nYou can group changes from multiple files into one commit. Use git add file1.txt file2.txt to stage multiple files, then commit them together.\n\nAdd some text to guacamole.md noting the rough price of the ingredients.\nCreate a new file groceries.md with a list of products and their prices for different markets.\nAdd changes from both files to the staging area, and commit those changes.\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nFirst we make our changes to the guacamole.md and groceries.md files:\ncat guacamole.md\n# Guacamole\n## Ingredients\n* avocado (1.35)\n* lime (0.64)\n* salt (2)\ncat groceries.md\n# Market A\n* avocado: 1.35 per unit.\n* lime: 0.64 per unit\n* salt: 2 per kg\nNow you can add both files to the staging area. We can do that in one line:\ngit add guacamole.md groceries.md\nOr with multiple commands:\ngit add guacamole.md\ngit add groceries.md\nNow the files are ready to commit. You can check that using git status. If you are ready to commit use:\ngit commit -m \"Write prices for ingredients and their source\"\n[main cc127c2]\n Write prices for ingredients and their source\n 2 files changed, 7 insertions(+)\n create mode 100644 groceries.md"
+    "section": "Committing multiple files",
+    "text": "Committing multiple files\nYou can group changes from multiple files into one commit. Use git add file1.txt file2.txt to stage multiple files, then commit them together.\n\nAdd some text to guacamole.md noting the rough price of the ingredients.\nCreate a new file groceries.md with a list of products and their prices for different markets.\nAdd changes from both files to the staging area, and commit those changes.\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nFirst we make our changes to the guacamole.md and groceries.md files:\ncat guacamole.md\n# Guacamole\n## Ingredients\n* avocado (1.35)\n* lime (0.64)\n* salt (2)\ncat groceries.md\n# Market A\n* avocado: 1.35 per unit.\n* lime: 0.64 per unit\n* salt: 2 per kg\nNow you can add both files to the staging area. We can do that in one line:\ngit add guacamole.md groceries.md\nOr with multiple commands:\ngit add guacamole.md\ngit add groceries.md\nNow the files are ready to commit. You can check that using git status. If you are ready to commit use:\ngit commit -m \"Write prices for ingredients and their source\"\n[main cc127c2]\n Write prices for ingredients and their source\n 2 files changed, 7 insertions(+)\n create mode 100644 groceries.md"
   },
   {
-    "objectID": "lessons/version-control.html#bio-repository",
-    "href": "lessons/version-control.html#bio-repository",
+    "objectID": "lessons/version-control.html#biography-repository",
+    "href": "lessons/version-control.html#biography-repository",
     "title": "1. Version Control",
-    "section": "bio Repository",
-    "text": "bio Repository\n\nCreate a new Git repository on your computer called bio.\nWrite a three-line biography for yourself in a file called me.txt, commit your changes\nModify one line, add a fourth line\nDisplay the differences between its updated state and its original state.\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nIf needed, move out of the recipes folder:\ncd ..\nCreate a new folder called bio and ‘move’ into it:\nmkdir bio\ncd bio\nInitialise git:\ngit init\nCreate your biography file me.txt using VS Code or another text editor. Once in place, add and commit it to the repository:\ngit add me.txt\ngit commit -m \"Add biography file\"\nModify the file as described (modify one line, add a fourth line). To display the differences between its updated state and its original state, use git diff:\ngit diff me.txt"
+    "section": "biography repository",
+    "text": "biography repository\n\nCreate a new Git repository on your computer called biography.\nWrite a three-line biography for yourself in a file called me.txt, commit your changes\nModify one line, add a fourth line\nDisplay the differences between its updated state and its original state.\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nIf needed, move out of the recipes folder:\ncd ..\nCreate a new folder called biography and ‘move’ into it:\nmkdir biography\ncd biography\nInitialise git:\ngit init\nCreate your biography file me.txt using VS Code or another text editor. Once in place, add and commit it to the repository:\ngit add me.txt\ngit commit -m \"add biography file\"\nModify the file as described (modify one line, add a fourth line). To display the differences between its updated state and its original state, use git diff:\ngit diff me.txt"
   },
   {
     "objectID": "lessons/version-control.html#recovering-older-versions-of-a-file",
     "href": "lessons/version-control.html#recovering-older-versions-of-a-file",
     "title": "1. Version Control",
-    "section": "Recovering Older Versions of a File",
-    "text": "Recovering Older Versions of a File\nJennifer has made changes to the Python script that she has been working on for weeks, and the modifications she made this morning “broke” the script and it no longer runs. She has spent approximately 1 hour trying to fix it, with no luck…\nLuckily, she has been keeping track of her project’s versions using Git! Which commands below will let her recover the last committed version of her Python script called data_cruncher.py?\n\ngit restore\ngit restore data_cruncher.py\ngit restore -s HEAD~1 data_cruncher.py\ngit restore -s &lt;unique ID of last commit&gt; data_cruncher.py\nBoth 2 and 4\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nThe answer is (5) - Both 2 and 4.\nThe restore command restores files from the repository, overwriting the files in your working directory. Answers 2 and 4 both restore the latest version in the repository of the file data_cruncher.py. Answer 2 uses HEAD to indicate the latest, whereas answer 4 uses the unique ID of the last commit, which is what HEAD means.\nAnswer 3 gets the version of data_cruncher.py from the commit before HEAD, which is NOT what we wanted.\nAnswer 1 results in an error. You need to specify a file to restore. If you want to restore all files you should use git restore ."
+    "section": "Recovering older versions of a file",
+    "text": "Recovering older versions of a file\nJennifer has made changes to the Python script that she has been working on for weeks, and the modifications she made this morning “broke” the script and it no longer runs. She has spent approximately 1 hour trying to fix it, with no luck…\nLuckily, she has been keeping track of her project’s versions using Git! Which commands below will let her recover the last committed version of her Python script called data_cruncher.py?\n\ngit restore\ngit restore data_cruncher.py\ngit restore -s HEAD~1 data_cruncher.py\ngit restore -s &lt;unique ID of last commit&gt; data_cruncher.py\nBoth 2 and 4\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nThe answer is (5) - Both 2 and 4.\nThe restore command restores files from the repository, overwriting the files in your working directory. Answers 2 and 4 both restore the latest version in the repository of the file data_cruncher.py. Answer 2 uses HEAD to indicate the latest, whereas answer 4 uses the unique ID of the last commit, which is what HEAD means.\nAnswer 3 gets the version of data_cruncher.py from the commit before HEAD, which is NOT what we wanted.\nAnswer 1 results in an error. You need to specify a file to restore. If you want to restore all files you should use git restore ."
   },
   {
     "objectID": "lessons/version-control.html#understanding-workflow-and-history",
     "href": "lessons/version-control.html#understanding-workflow-and-history",
     "title": "1. Version Control",
-    "section": "Understanding Workflow and History",
-    "text": "Understanding Workflow and History\nWhat is the output of the last command in the following sequence?\ncd recipes\necho \"I like tomatoes, therefore I like ketchup\" &gt; ketchup.md\ngit add ketchup.md\necho \"ketchup enhances pasta dishes\" &gt;&gt; ketchup.md\ngit commit -m \"My opinions about the red sauce\"\ngit restore ketchup.md\ncat ketchup.md\n\n   ketchup enhances pasta dishes\n   I like tomatoes, therefore I like ketchup\n   I like tomatoes, therefore I like ketchup\n   ketchup enhances pasta dishes\n   Error because you have changed ketchup.md without committing the changes\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nThe answer is 2.\nThe changes to the file from the second echo command are only applied to the working copy, not the version in the staging area. The command git add ketchup.md places the current version of ketchup.md into the staging area.\nSo, when git commit -m \"My opinions about the red sauce\" is executed, the version of ketchup.md committed to the repository is the one from the staging area and has only one line.\nAt this time, the working copy still has the second line (and git status will show that the file is modified). However, git restore ketchup.md replaces the working copy with the most recently committed version of ketchup.md. So, cat ketchup.md will output:\nI like tomatoes, therefore I like ketchup"
+    "section": "Understanding workflow and history",
+    "text": "Understanding workflow and history\nWhat is the output of the last command in the following sequence?\ncd recipes\necho \"I like tomatoes, therefore I like ketchup\" &gt; ketchup.md\ngit add ketchup.md\necho \"ketchup enhances pasta dishes\" &gt;&gt; ketchup.md\ngit commit -m \"My opinions about the red sauce\"\ngit restore ketchup.md\ncat ketchup.md\n\n   ketchup enhances pasta dishes\n   I like tomatoes, therefore I like ketchup\n   I like tomatoes, therefore I like ketchup\n   ketchup enhances pasta dishes\n   Error because you have changed ketchup.md without committing the changes\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nThe answer is 2.\nThe changes to the file from the second echo command are only applied to the working copy, not the version in the staging area. The command git add ketchup.md places the current version of ketchup.md into the staging area.\nSo, when git commit -m \"My opinions about the red sauce\" is executed, the version of ketchup.md committed to the repository is the one from the staging area and has only one line.\nAt this time, the working copy still has the second line (and git status will show that the file is modified). However, git restore ketchup.md replaces the working copy with the most recently committed version of ketchup.md. So, cat ketchup.md will output:\nI like tomatoes, therefore I like ketchup"
   },
   {
     "objectID": "lessons/version-control.html#understanding-of-git-diff",
@@ -263,64 +263,64 @@
     "objectID": "lessons/version-control.html#getting-rid-of-staged-changes",
     "href": "lessons/version-control.html#getting-rid-of-staged-changes",
     "title": "1. Version Control",
-    "section": "Getting Rid of Staged Changes",
-    "text": "Getting Rid of Staged Changes\ngit restore can be used to restore a previous commit when unstaged changes have been made, but will it also work for changes that have been staged but not committed? Make a change to guacamole.md, add that change using git add, then use git restore to see if you can remove your change.\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nAfter adding a change, git restore cannot be used directly. Let’s look at the output of git status:\nOn branch main\nChanges to be committed:\n  (use \"git restore --staged &lt;file&gt;...\" to unstage)\n        modified:   guacamole.md\nNote that if you don’t have the same output, you may either have forgotten to change the file, or you have added it and committed it.\nUsing the command git restore guacamole.md now does not give an error, but it does not restore the file either. Git helpfully tells us that we need to use git restore --staged first to unstage the file:\ngit restore --staged guacamole.md\nNow, git status gives us:\ngit status\nOn branch main\nChanges not staged for commit:\n  (use \"git add &lt;file&gt;...\" to update what will be committed)\n  (use \"git restore &lt;file&gt;...\" to discard changes in working directory)\n        modified:   guacamole.md\n\nno changes added to commit (use \"git add\" and/or \"git commit -a\")\nThis means we can now use git restore to restore the file to the previous commit:\ngit restore guacamole.md\ngit status\nOn branch main\nnothing to commit, working tree clean"
+    "section": "Getting rid of staged changes",
+    "text": "Getting rid of staged changes\ngit restore can be used to restore a previous commit when unstaged changes have been made, but will it also work for changes that have been staged but not committed? Make a change to guacamole.md, add that change using git add, then use git restore to see if you can remove your change.\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nAfter adding a change, git restore cannot be used directly. Let’s look at the output of git status:\nOn branch main\nChanges to be committed:\n  (use \"git restore --staged &lt;file&gt;...\" to unstage)\n        modified:   guacamole.md\nNote that if you don’t have the same output, you may either have forgotten to change the file, or you have added it and committed it.\nUsing the command git restore guacamole.md now does not give an error, but it does not restore the file either. Git helpfully tells us that we need to use git restore --staged first to unstage the file:\ngit restore --staged guacamole.md\nNow, git status gives us:\ngit status\nOn branch main\nChanges not staged for commit:\n  (use \"git add &lt;file&gt;...\" to update what will be committed)\n  (use \"git restore &lt;file&gt;...\" to discard changes in working directory)\n        modified:   guacamole.md\n\nno changes added to commit (use \"git add\" and/or \"git commit -a\")\nThis means we can now use git restore to restore the file to the previous commit:\ngit restore guacamole.md\ngit status\nOn branch main\nnothing to commit, working tree clean"
   },
   {
     "objectID": "lessons/version-control.html#explore-and-summarize-histories",
     "href": "lessons/version-control.html#explore-and-summarize-histories",
     "title": "1. Version Control",
-    "section": "Explore and Summarize Histories",
-    "text": "Explore and Summarize Histories\nExploring history is an important part of Git, and often it is a challenge to find the right commit ID, especially if the commit is from several months ago.\nImagine the recipes project has more than 50 files. You would like to find a commit that modifies some specific text in guacamole.md. When you type git log, a very long list appeared. How can you narrow down the search?\nRecall that the git diff command allows us to explore one specific file, e.g., git diff guacamole.md. We can apply a similar idea here.\ngit log guacamole.md\nUnfortunately some of these commit messages are very ambiguous, e.g., update files. How can you search through these files?\nBoth git diff and git log are very useful and they summarize a different part of the history for you. Is it possible to combine both? Let’s try the following:\ngit log --patch guacamole.md\nYou should get a long list of output, and you should be able to see both commit messages and the difference between each commit.\nQuestion: What does the following command do?\ngit log --patch HEAD~9 *.md"
+    "section": "Explore and summarize histories",
+    "text": "Explore and summarize histories\nExploring history is an important part of Git, and often it is a challenge to find the right commit ID, especially if the commit is from several months ago.\nImagine the recipes project has more than 50 files. You would like to find a commit that modifies some specific text in guacamole.md. When you type git log, a very long list appeared. How can you narrow down the search?\nRecall that the git diff command allows us to explore one specific file, e.g., git diff guacamole.md. We can apply a similar idea here.\ngit log guacamole.md\nUnfortunately some of these commit messages are very ambiguous, e.g., update files. How can you search through these files?\nBoth git diff and git log are very useful and they summarize a different part of the history for you. Is it possible to combine both? Let’s try the following:\ngit log --patch guacamole.md\nYou should get a long list of output, and you should be able to see both commit messages and the difference between each commit.\nQuestion: What does the following command do?\ngit log --patch HEAD~9 *.md"
   },
   {
     "objectID": "lessons/version-control.html#ignoring-nested-files",
     "href": "lessons/version-control.html#ignoring-nested-files",
     "title": "1. Version Control",
-    "section": "Ignoring Nested Files",
-    "text": "Ignoring Nested Files\nGiven a directory structure that looks like:\npictures/cake\npictures/pizza\nHow would you ignore only pictures/cake and not pictures/pizza?\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nIf you only want to ignore the contents of pictures/cake, you can change your .gitignore to ignore only the /cake/ subfolder by adding the following line to your .gitignore:\npictures/cake/\nThis line will ensure only the contents of pictures/cake is ignored, and not the contents of pictures/pizza.\nAs with most programming issues, there are a few alternative ways that one may ensure this ignore rule is followed. Further, the discussion pages have more detail on ignore rules."
+    "section": "Ignoring nested files",
+    "text": "Ignoring nested files\nGiven a directory structure that looks like:\npictures/cake\npictures/pizza\nHow would you ignore only pictures/cake and not pictures/pizza?\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nIf you only want to ignore the contents of pictures/cake, you can change your .gitignore to ignore only the /cake/ subfolder by adding the following line to your .gitignore:\npictures/cake/\nThis line will ensure only the contents of pictures/cake is ignored, and not the contents of pictures/pizza.\nAs with most programming issues, there are a few alternative ways that one may ensure this ignore rule is followed. Further, the discussion pages have more detail on ignore rules."
   },
   {
     "objectID": "lessons/version-control.html#including-specific-files",
     "href": "lessons/version-control.html#including-specific-files",
     "title": "1. Version Control",
-    "section": "Including Specific Files",
-    "text": "Including Specific Files\nHow would you ignore all .png files in your root directory except for final.png?\nHint: Find out what ! (the exclamation point operator) does\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nYou would add the following two lines to your .gitignore:\n*.png           # ignore all png files\n!final.png      # except final.png\nThe exclamation point operator will include a previously excluded entry.\nNote also that, if you’ve previously committed .png files in this lesson, they will not be ignored with this new rule. Only future additions of .png files to the root directory will be ignored."
+    "section": "Including specific files",
+    "text": "Including specific files\nHow would you ignore all .png files in your root directory except for final.png?\nHint: Find out what ! (the exclamation point operator) does\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nYou would add the following two lines to your .gitignore:\n*.png           # ignore all png files\n!final.png      # except final.png\nThe exclamation point operator will include a previously excluded entry.\nNote also that, if you’ve previously committed .png files in this lesson, they will not be ignored with this new rule. Only future additions of .png files to the root directory will be ignored."
   },
   {
     "objectID": "lessons/version-control.html#ignoring-nested-files-variation",
     "href": "lessons/version-control.html#ignoring-nested-files-variation",
     "title": "1. Version Control",
-    "section": "Ignoring Nested Files: Variation",
-    "text": "Ignoring Nested Files: Variation\nGiven a directory structure that looks similar to the earlier Nested Files exercise, but with a slightly different directory structure:\npictures/cake\npictures/pizza\npictures/pie\npictures/brownie\nHow would you ignore all of the contents in the pictures folder, but not pictures/pie?\nHint: think a bit about how you created an exception with the ! operator before.\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nIf you want to ignore the contents of pictures/ but not those of pictures/pie/, you can change your .gitignore to ignore the contents of pictures folder, but create an exception for the contents of the pictures/pie subfolder. Your .gitignore would look like this:\npictures/*              # ignore everything in pictures folder\n!pictures/pie/          # do not ignore pictures/pie/ contents"
+    "section": "Ignoring nested files: variation",
+    "text": "Ignoring nested files: variation\nGiven a directory structure that looks similar to the earlier Nested Files exercise, but with a slightly different directory structure:\npictures/cake\npictures/pizza\npictures/pie\npictures/brownie\nHow would you ignore all of the contents in the pictures folder, but not pictures/pie?\nHint: think a bit about how you created an exception with the ! operator before.\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nIf you want to ignore the contents of pictures/ but not those of pictures/pie/, you can change your .gitignore to ignore the contents of pictures folder, but create an exception for the contents of the pictures/pie subfolder. Your .gitignore would look like this:\npictures/*              # ignore everything in pictures folder\n!pictures/pie/          # do not ignore pictures/pie/ contents"
   },
   {
     "objectID": "lessons/version-control.html#ignoring-all-data-files-in-a-directory",
     "href": "lessons/version-control.html#ignoring-all-data-files-in-a-directory",
     "title": "1. Version Control",
-    "section": "Ignoring all data Files in a Directory",
-    "text": "Ignoring all data Files in a Directory\nAssuming you have an empty .gitignore file, and given a directory structure that looks like:\npictures/data/location/gps/a.dat\npictures/data/location/gps/b.dat\npictures/data/location/gps/c.dat\npictures/data/location/gps/info.txt\npictures/plots\nWhat’s the shortest .gitignore rule you could write to ignore all .dat files in pictures/data/location/gps? Do not ignore the info.txt.\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nAppending pictures/data/location/gps/*.dat will match every file in pictures/data/location/gps that ends with .dat. The file pictures/data/location/gps/info.txt will not be ignored."
+    "section": "Ignoring all data files in a directory",
+    "text": "Ignoring all data files in a directory\nAssuming you have an empty .gitignore file, and given a directory structure that looks like:\npictures/data/location/gps/a.dat\npictures/data/location/gps/b.dat\npictures/data/location/gps/c.dat\npictures/data/location/gps/info.txt\npictures/plots\nWhat’s the shortest .gitignore rule you could write to ignore all .dat files in pictures/data/location/gps? Do not ignore the info.txt.\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nAppending pictures/data/location/gps/*.dat will match every file in pictures/data/location/gps that ends with .dat. The file pictures/data/location/gps/info.txt will not be ignored."
   },
   {
     "objectID": "lessons/version-control.html#ignoring-all-data-files-in-the-repository",
     "href": "lessons/version-control.html#ignoring-all-data-files-in-the-repository",
     "title": "1. Version Control",
-    "section": "Ignoring all data Files in the repository",
-    "text": "Ignoring all data Files in the repository\nLet us assume you have many .csv files in different subdirectories of your repository. For example, you might have:\nresults/a.csv\ndata/experiment_1/b.csv\ndata/experiment_2/c.csv\ndata/experiment_2/variation_1/d.csv\nHow do you ignore all the .csv files, without explicitly listing the names of the corresponding folders?\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nIn the .gitignore file, write:\n**/*.csv\nThis will ignore all the .csv files, regardless of their position in the directory tree. You can still include some specific exception with the exclamation point operator."
+    "section": "Ignoring all data files in the repository",
+    "text": "Ignoring all data files in the repository\nLet us assume you have many .csv files in different subdirectories of your repository. For example, you might have:\nresults/a.csv\ndata/experiment_1/b.csv\ndata/experiment_2/c.csv\ndata/experiment_2/variation_1/d.csv\nHow do you ignore all the .csv files, without explicitly listing the names of the corresponding folders?\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nIn the .gitignore file, write:\n**/*.csv\nThis will ignore all the .csv files, regardless of their position in the directory tree. You can still include some specific exception with the exclamation point operator."
   },
   {
     "objectID": "lessons/version-control.html#the-order-of-rules",
     "href": "lessons/version-control.html#the-order-of-rules",
     "title": "1. Version Control",
-    "section": "The Order of Rules",
-    "text": "The Order of Rules\nGiven a .gitignore file with the following contents:\n*.csv\n!*.csv\nWhat will be the result?\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nThe ! modifier will negate an entry from a previously defined ignore pattern. Because the !*.csv entry negates all of the previous .csv files in the .gitignore, none of them will be ignored, and all .csv files will be tracked."
+    "section": "The order of rules",
+    "text": "The order of rules\nGiven a .gitignore file with the following contents:\n*.csv\n!*.csv\nWhat will be the result?\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nThe ! modifier will negate an entry from a previously defined ignore pattern. Because the !*.csv entry negates all of the previous .csv files in the .gitignore, none of them will be ignored, and all .csv files will be tracked."
   },
   {
     "objectID": "lessons/version-control.html#log-files",
     "href": "lessons/version-control.html#log-files",
     "title": "1. Version Control",
-    "section": "Log Files",
-    "text": "Log Files\nYou wrote a script that creates many intermediate log-files of the form log_01, log_02, log_03, etc. You want to keep them but you do not want to track them through git.\n\nWrite one .gitignore entry that excludes files of the form log_01, log_02, etc.\nTest your “ignore pattern” by creating some dummy files of the form log_01, etc.\nYou find that the file log_01 is very important after all, add it to the tracked files without changing the .gitignore again.\nDiscuss with your neighbor what other types of files could reside in your directory that you do not want to track and thus would exclude via .gitignore.\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\n\nAppend either log_* or log* as a new entry in your .gitignore\nTrack log_01 using git add -f log_01"
+    "section": "Log files",
+    "text": "Log files\nYou wrote a script that creates many intermediate log-files of the form log_01, log_02, log_03, etc. You want to keep them but you do not want to track them through git.\n\nWrite one .gitignore entry that excludes files of the form log_01, log_02, etc.\nTest your “ignore pattern” by creating some dummy files of the form log_01, etc.\nYou find that the file log_01 is very important after all, add it to the tracked files without changing the .gitignore again.\nDiscuss with your neighbor what other types of files could reside in your directory that you do not want to track and thus would exclude via .gitignore.\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\n\nAppend either log_* or log* as a new entry in your .gitignore\nTrack log_01 using git add -f log_01"
   },
   {
     "objectID": "lessons/version-control.html#creating-a-remote-repository",
@@ -340,8 +340,8 @@
     "objectID": "lessons/version-control.html#ssh-background-and-setup",
     "href": "lessons/version-control.html#ssh-background-and-setup",
     "title": "1. Version Control",
-    "section": "SSH Background and Setup",
-    "text": "SSH Background and Setup\nSSH (Secure Shell Protocol) allows secure communication. SSH uses a key pair: a public key (like a padlock) shared with GitHub, and a private key (the only key to open it) kept on your computer. GitHub authenticates you using these keys.\nWhat we will do now is the minimum required to set up the SSH keys and add the public key to a GitHub account.\nThe first thing we are going to do is check if this has already been done on the computer you’re on. Because generally speaking, this setup only needs to happen once and then you can forget about it.\n\n\n\n\n\n\nTipKeeping your keys secure\n\n\n\nCheck your SSH keys periodically to ensure they’re current and secure.\n\n\nWe will run the list command to check what key pairs already exist on your computer.\nls -al ~/.ssh\nYour output is going to look a little different depending on whether or not SSH has ever been set up on the computer you are using.\nIf SSH has not been set up, your output is:\nls: cannot access '~/.ssh': No such file or directory\nIf SSH has been set up on the computer you’re using, the public and private key pairs will be listed. The file names are either id_ed25519/id_ed25519.pub or id_rsa/id_rsa.pub depending on how the key pairs were set up."
+    "section": "SSH background and setup",
+    "text": "SSH background and setup\nSSH (Secure Shell Protocol) allows secure communication. SSH uses a key pair: a public key (like a padlock) shared with GitHub, and a private key (the only key to open it) kept on your computer. GitHub authenticates you using these keys.\nWhat we will do now is the minimum required to set up the SSH keys and add the public key to a GitHub account.\nThe first thing we are going to do is check if this has already been done on the computer you’re on. Because generally speaking, this setup only needs to happen once and then you can forget about it.\n\n\n\n\n\n\nTipKeeping your keys secure\n\n\n\nCheck your SSH keys periodically to ensure they’re current and secure.\n\n\nWe will run the list command to check what key pairs already exist on your computer.\nls -al ~/.ssh\nYour output is going to look a little different depending on whether or not SSH has ever been set up on the computer you are using.\nIf SSH has not been set up, your output is:\nls: cannot access '~/.ssh': No such file or directory\nIf SSH has been set up on the computer you’re using, the public and private key pairs will be listed. The file names are either id_ed25519/id_ed25519.pub or id_rsa/id_rsa.pub depending on how the key pairs were set up."
   },
   {
     "objectID": "lessons/version-control.html#creating-an-ssh-key-pair",
@@ -375,22 +375,22 @@
     "objectID": "lessons/version-control.html#github-timestamp",
     "href": "lessons/version-control.html#github-timestamp",
     "title": "1. Version Control",
-    "section": "GitHub Timestamp",
-    "text": "GitHub Timestamp\nCreate a remote repository on GitHub. Push the contents of your local repository to the remote. Make changes to your local repository and push these changes. Go to the repo you just created on GitHub and check the timestamps of the files. How does GitHub record times, and why?\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nGitHub displays timestamps in a human readable relative format (i.e. “22 hours ago” or “three weeks ago”). However, if you hover over the timestamp, you can see the exact time at which the last change to the file occurred."
+    "section": "GitHub timestamp",
+    "text": "GitHub timestamp\nCreate a remote repository on GitHub. Push the contents of your local repository to the remote. Make changes to your local repository and push these changes. Go to the repo you just created on GitHub and check the timestamps of the files. How does GitHub record times, and why?\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nGitHub displays timestamps in a human readable relative format (i.e. “22 hours ago” or “three weeks ago”). However, if you hover over the timestamp, you can see the exact time at which the last change to the file occurred."
   },
   {
     "objectID": "lessons/version-control.html#push-vs.-commit",
     "href": "lessons/version-control.html#push-vs.-commit",
     "title": "1. Version Control",
-    "section": "Push vs. Commit",
-    "text": "Push vs. Commit\nIn this episode, we introduced the git push command. How is git push different from git commit?\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nWhen we push changes, we’re interacting with a remote repository to update it with the changes we’ve made locally (often this corresponds to sharing the changes we’ve made with others). Commit only updates your local repository."
+    "section": "Push vs. commit",
+    "text": "Push vs. commit\nIn this episode, we introduced the git push command. How is git push different from git commit?\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nWhen we push changes, we’re interacting with a remote repository to update it with the changes we’ve made locally (often this corresponds to sharing the changes we’ve made with others). Commit only updates your local repository."
   },
   {
     "objectID": "lessons/version-control.html#general-workflow",
     "href": "lessons/version-control.html#general-workflow",
     "title": "1. Version Control",
-    "section": "General Workflow",
-    "text": "General Workflow\nIn one picture, here is the general workflow we have been following:\n\n\n\nCommands included in basic Git workflows. From Research Software Engineering with Python."
+    "section": "General workflow",
+    "text": "General workflow\nIn one picture, here is the general workflow we have been following:\n\n\n\nCommands included in basic Git workflows. From Research Software Engineering with Python."
   },
   {
     "objectID": "lessons/version-control.html#adding-collaborators",
@@ -431,22 +431,22 @@
     "objectID": "lessons/version-control.html#switch-roles-and-repeat",
     "href": "lessons/version-control.html#switch-roles-and-repeat",
     "title": "1. Version Control",
-    "section": "Switch Roles and Repeat",
-    "text": "Switch Roles and Repeat\nSwitch roles with your partner and repeat the whole process. One person should now be the collaborator making changes to the other person’s repository."
+    "section": "Switch roles and repeat",
+    "text": "Switch roles and repeat\nSwitch roles with your partner and repeat the whole process. One person should now be the collaborator making changes to the other person’s repository."
   },
   {
     "objectID": "lessons/version-control.html#review-changes",
     "href": "lessons/version-control.html#review-changes",
     "title": "1. Version Control",
-    "section": "Review Changes",
-    "text": "Review Changes\nThe owner pushed commits to the repository without giving any information to the collaborator. How can the collaborator find out what has changed with the command line? And on GitHub?\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nOn the command line, the collaborator can use git fetch origin main to get the remote changes into the local repository, but without merging them. Then by running git diff main origin/main the collaborator will see the changes output in the terminal.\nOn GitHub, the collaborator can go to the repository and click on “commits” to view the most recent commits pushed to the repository."
+    "section": "Review changes",
+    "text": "Review changes\nThe owner pushed commits to the repository without giving any information to the collaborator. How can the collaborator find out what has changed with the command line? And on GitHub?\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nOn the command line, the collaborator can use git fetch origin main to get the remote changes into the local repository, but without merging them. Then by running git diff main origin/main the collaborator will see the changes output in the terminal.\nOn GitHub, the collaborator can go to the repository and click on “commits” to view the most recent commits pushed to the repository."
   },
   {
     "objectID": "lessons/version-control.html#comment-changes-in-github",
     "href": "lessons/version-control.html#comment-changes-in-github",
     "title": "1. Version Control",
-    "section": "Comment Changes in GitHub",
-    "text": "Comment Changes in GitHub\nThe collaborator has some questions about one line change made by the owner and has some suggestions to propose.\nWith GitHub, it is possible to comment on the diff of a commit. Over the line of code to comment, a blue comment icon appears to open a comment window.\nThe collaborator posts their comments and suggestions using the GitHub interface."
+    "section": "Comment changes in GitHub",
+    "text": "Comment changes in GitHub\nThe collaborator has some questions about one line change made by the owner and has some suggestions to propose.\nWith GitHub, it is possible to comment on the diff of a commit. Over the line of code to comment, a blue comment icon appears to open a comment window.\nThe collaborator posts their comments and suggestions using the GitHub interface."
   },
   {
     "objectID": "lessons/automation.html",
@@ -459,8 +459,8 @@
     "objectID": "lessons/automation.html#the-book-project",
     "href": "lessons/automation.html#the-book-project",
     "title": "4. Automation",
-    "section": "The Book Project",
-    "text": "The Book Project\nIf you do not have the example project yet, clone it from GitHub first:\ngit clone https://github.com/igorsdub/gecs-make\ncd gecs-make\nIf you already cloned it earlier, move into the project directory:\ncd gecs-make\nThis tutorial assumes you are running the commands below from inside that repository.\nThe gecs-make project has this structure:\nbooks/      raw text files\ncounts/     generated word-count tables\nfigures/    generated HTML plots\nscripts/    Python analysis scripts\npixi.toml   project dependencies and tasks\nThe README already shows the manual workflow for one book:\npython scripts/get_summary.py books/dracula.txt\npython scripts/count_words.py books/dracula.txt counts/dracula.tsv\npython scripts/plot_counts.py counts/dracula.tsv figures/dracula.html\nThe first command, get_summary.py, is useful for inspecting metadata, but it is not part of the main file-generation pipeline. The core workflow we want to automate is the one that produces files:\nbooks/*.txt -&gt; counts/*.tsv -&gt; figures/*.html\nThere are also Pixi tasks for the same book:\npixi run summarize\npixi run count\npixi run plot\npixi run all\nThat is a nice start, but the tasks in pixi.toml are still hard coded to dracula.txt. make lets us describe the dependency structure once and then apply it to every book in the project.\nBefore going further, make sure make is available:\nmake --version\nIf that command fails, install make first:\n\nmacOS: if you use Homebrew, run brew install make. Depending on your shell setup, you may then need to use gmake instead of make, because the GNU version from Homebrew is often installed under that name.\nWSL: run sudo apt update and then sudo apt install make. Installing build-essential is also common if you want the standard Unix build tools as a group.\nPixi Global: if you already use Pixi, you can also install GNU Make with pixi global install make and then use it from your shell."
+    "section": "The book project",
+    "text": "The book project\nIf you do not have the example project yet, clone it from GitHub first:\ngit clone https://github.com/igorsdub/gecs-make\ncd gecs-make\nIf you already cloned it earlier, move into the project directory:\ncd gecs-make\nThis tutorial assumes you are running the commands below from inside that repository.\nThe gecs-make project has this structure:\nbooks/      raw text files\ncounts/     generated word-count tables\nfigures/    generated HTML plots\nscripts/    Python analysis scripts\npixi.toml   project dependencies and tasks\nThe README already shows the manual workflow for one book:\npython scripts/get_summary.py books/dracula.txt\npython scripts/count_words.py books/dracula.txt counts/dracula.tsv\npython scripts/plot_counts.py counts/dracula.tsv figures/dracula.html\nThe first command, get_summary.py, is useful for inspecting metadata, but it is not part of the main file-generation pipeline. The core workflow we want to automate is the one that produces files:\nbooks/*.txt -&gt; counts/*.tsv -&gt; figures/*.html\nThere are also Pixi tasks for the same book:\npixi run summarize\npixi run count\npixi run plot\npixi run all\nThat is a nice start, but the tasks in pixi.toml are still hard coded to dracula.txt. make lets us describe the dependency structure once and then apply it to every book in the project.\nBefore going further, make sure make is available:\nmake --version\nIf that command fails, install make first:\n\nmacOS: if you use Homebrew, run brew install make. Depending on your shell setup, you may then need to use gmake instead of make, because the GNU version from Homebrew is often installed under that name.\nWSL: run sudo apt update and then sudo apt install make. Installing build-essential is also common if you want the standard Unix build tools as a group.\nPixi Global: if you already use Pixi, you can also install GNU Make with pixi global install make and then use it from your shell."
   },
   {
     "objectID": "lessons/automation.html#makefile",
@@ -473,29 +473,29 @@
     "objectID": "lessons/automation.html#chaining-steps-together",
     "href": "lessons/automation.html#chaining-steps-together",
     "title": "4. Automation",
-    "section": "Chaining Steps Together",
-    "text": "Chaining Steps Together\nThe workflow in gecs-make has a second stage: turning counts into an HTML figure.\ncounts/dracula.tsv : books/dracula.txt scripts/count_words.py\n    python scripts/count_words.py books/dracula.txt counts/dracula.tsv\n\nfigures/dracula.html : counts/dracula.tsv scripts/plot_counts.py\n    python scripts/plot_counts.py counts/dracula.tsv figures/dracula.html\nNow the dependencies form a chain:\nbooks/dracula.txt -&gt; counts/dracula.tsv -&gt; figures/dracula.html\nIf we ask for the final output,\nmake figures/dracula.html\nmake will build counts/dracula.tsv first if needed, then build the figure.\nThis is the core idea behind make: we describe how files depend on each other, and make figures out the correct order.\nThis dependency structure is often described as a Directed Acyclic Graph, or DAG:\n\nDirected means the dependencies point in one direction, from inputs to outputs.\nAcyclic means the graph cannot contain loops such as “A depends on B and B depends on A”.\nGraph means we are really dealing with a network of connected files and build steps, not just one long shell script.\n\nFor this project, the DAG is simple:\nbooks/dracula.txt -&gt; counts/dracula.tsv -&gt; figures/dracula.html\nAs the project grows to many books, the graph gets wider, but the idea stays the same. make works well because it can walk that DAG and rebuild only the parts that are affected by a change.\n\nPhony Targets\nSometimes we want a target that stands for an action rather than a real file. For example:\n.PHONY : all\nall : figures/dracula.html\nNow make all is a convenient alias for building the Dracula plot.\nCleanup is another common phony target:\n.PHONY : clean\nclean :\n    rm -f counts/*.tsv figures/*.html\nThen we can run:\nmake clean\n\n\n\n\n\n\nNoteWhy use .PHONY?\n\n\n\nIf a file named clean or all ever appears in the project, make might think the target is already up to date and skip the recipe. Marking those names as .PHONY tells make they are commands, not output files."
+    "section": "Chaining steps together",
+    "text": "Chaining steps together\nThe workflow in gecs-make has a second stage: turning counts into an HTML figure.\ncounts/dracula.tsv : books/dracula.txt scripts/count_words.py\n    python scripts/count_words.py books/dracula.txt counts/dracula.tsv\n\nfigures/dracula.html : counts/dracula.tsv scripts/plot_counts.py\n    python scripts/plot_counts.py counts/dracula.tsv figures/dracula.html\nNow the dependencies form a chain:\nbooks/dracula.txt -&gt; counts/dracula.tsv -&gt; figures/dracula.html\nIf we ask for the final output,\nmake figures/dracula.html\nmake will build counts/dracula.tsv first if needed, then build the figure.\nThis is the core idea behind make: we describe how files depend on each other, and make figures out the correct order.\nThis dependency structure is often described as a Directed Acyclic Graph, or DAG:\n\nDirected means the dependencies point in one direction, from inputs to outputs.\nAcyclic means the graph cannot contain loops such as “A depends on B and B depends on A”.\nGraph means we are really dealing with a network of connected files and build steps, not just one long shell script.\n\nFor this project, the DAG is simple:\nbooks/dracula.txt -&gt; counts/dracula.tsv -&gt; figures/dracula.html\nAs the project grows to many books, the graph gets wider, but the idea stays the same. make works well because it can walk that DAG and rebuild only the parts that are affected by a change.\n\nPhony Targets\nSometimes we want a target that stands for an action rather than a real file. For example:\n.PHONY : all\nall : figures/dracula.html\nNow make all is a convenient alias for building the Dracula plot.\nCleanup is another common phony target:\n.PHONY : clean\nclean :\n    rm -f counts/*.tsv figures/*.html\nThen we can run:\nmake clean\n\n\n\n\n\n\nNoteWhy use .PHONY?\n\n\n\nIf a file named clean or all ever appears in the project, make might think the target is already up to date and skip the recipe. Marking those names as .PHONY tells make they are commands, not output files."
   },
   {
     "objectID": "lessons/automation.html#automatic-variables",
     "href": "lessons/automation.html#automatic-variables",
     "title": "4. Automation",
-    "section": "Automatic Variables",
-    "text": "Automatic Variables\nThe two rules above repeat the same filenames in the target line and the recipe. That is easy to write for one example, but it becomes tedious quickly.\nmake provides automatic variables to reduce duplication:\n\n$@ means the current target\n$^ means all dependencies for the current rule\n$&lt; means the first dependency\n\nWe can rewrite the rules like this:\ncounts/dracula.tsv : books/dracula.txt scripts/count_words.py\n    python scripts/count_words.py $&lt; $@\n\nfigures/dracula.html : counts/dracula.tsv scripts/plot_counts.py\n    python scripts/plot_counts.py $&lt; $@\nIn both cases, the scripts take the first dependency as input and write to the target path. This makes the recipes shorter and keeps the filenames consistent with the rule declaration.\nThat is another DRY win: the target and dependency names already appear in the rule header, so automatic variables let us reuse them instead of typing them again in the recipe.\n\nCode is a Dependency\nNotice that the rules depend not only on data files, but also on scripts.\ncounts/dracula.tsv : books/dracula.txt scripts/count_words.py\nThat means if scripts/count_words.py changes, make knows it should regenerate counts/dracula.tsv. This is a very important idea in computational work: code changes can invalidate outputs just as much as data changes do."
+    "section": "Automatic variables",
+    "text": "Automatic variables\nThe two rules above repeat the same filenames in the target line and the recipe. That is easy to write for one example, but it becomes tedious quickly.\nmake provides automatic variables to reduce duplication:\n\n$@ means the current target\n$^ means all dependencies for the current rule\n$&lt; means the first dependency\n\nWe can rewrite the rules like this:\ncounts/dracula.tsv : books/dracula.txt scripts/count_words.py\n    python scripts/count_words.py $&lt; $@\n\nfigures/dracula.html : counts/dracula.tsv scripts/plot_counts.py\n    python scripts/plot_counts.py $&lt; $@\nIn both cases, the scripts take the first dependency as input and write to the target path. This makes the recipes shorter and keeps the filenames consistent with the rule declaration.\nThat is another DRY win: the target and dependency names already appear in the rule header, so automatic variables let us reuse them instead of typing them again in the recipe.\n\nCode is a Dependency\nNotice that the rules depend not only on data files, but also on scripts.\ncounts/dracula.tsv : books/dracula.txt scripts/count_words.py\nThat means if scripts/count_words.py changes, make knows it should regenerate counts/dracula.tsv. This is a very important idea in computational work: code changes can invalidate outputs just as much as data changes do."
   },
   {
     "objectID": "lessons/automation.html#variables-in-makefiles",
     "href": "lessons/automation.html#variables-in-makefiles",
     "title": "4. Automation",
-    "section": "Variables in Makefiles",
-    "text": "Variables in Makefiles\nAs the workflow grows, we start repeating commands and script paths. Variables help make the Makefile easier to read and easier to update.\nFor example:\nPYTHON=python\nCOUNT_SCRIPT=scripts/count_words.py\nPLOT_SCRIPT=scripts/plot_counts.py\nWe can then use those variables in our rules:\nPYTHON=python\nCOUNT_SCRIPT=scripts/count_words.py\nPLOT_SCRIPT=scripts/plot_counts.py\n\ncounts/dracula.tsv : books/dracula.txt $(COUNT_SCRIPT)\n    $(PYTHON) $(COUNT_SCRIPT) $&lt; $@\n\nfigures/dracula.html : counts/dracula.tsv $(PLOT_SCRIPT)\n    $(PYTHON) $(PLOT_SCRIPT) $&lt; $@\nThis is especially helpful when several rules use the same script or command. If something changes later, we update the variable once instead of hunting through the whole file.\nVariables are one of the simplest ways to make a Makefile more DRY. They let us keep shared information in one place instead of repeating it across many rules."
+    "section": "Variables in makefiles",
+    "text": "Variables in makefiles\nAs the workflow grows, we start repeating commands and script paths. Variables help make the Makefile easier to read and easier to update.\nFor example:\nPYTHON=python\nCOUNT_SCRIPT=scripts/count_words.py\nPLOT_SCRIPT=scripts/plot_counts.py\nWe can then use those variables in our rules:\nPYTHON=python\nCOUNT_SCRIPT=scripts/count_words.py\nPLOT_SCRIPT=scripts/plot_counts.py\n\ncounts/dracula.tsv : books/dracula.txt $(COUNT_SCRIPT)\n    $(PYTHON) $(COUNT_SCRIPT) $&lt; $@\n\nfigures/dracula.html : counts/dracula.tsv $(PLOT_SCRIPT)\n    $(PYTHON) $(PLOT_SCRIPT) $&lt; $@\nThis is especially helpful when several rules use the same script or command. If something changes later, we update the variable once instead of hunting through the whole file.\nVariables are one of the simplest ways to make a Makefile more DRY. They let us keep shared information in one place instead of repeating it across many rules."
   },
   {
     "objectID": "lessons/automation.html#pattern-rules",
     "href": "lessons/automation.html#pattern-rules",
     "title": "4. Automation",
-    "section": "Pattern Rules",
-    "text": "Pattern Rules\nAt this point, the workflow still only handles Dracula. But the project contains many books:\nbooks/dracula.txt\nbooks/frankenstein.txt\nbooks/jane_eyre.txt\nbooks/moby_dick.txt\nbooks/sense_and_sensibility.txt\nbooks/sherlock_holmes.txt\nbooks/time_machine.txt\nThe filenames change, but the workflow shape stays the same. That is exactly what pattern rules are for.\nPYTHON=python\nCOUNT_SCRIPT=scripts/count_words.py\nPLOT_SCRIPT=scripts/plot_counts.py\n\ncounts/%.tsv : books/%.txt $(COUNT_SCRIPT)\n    $(PYTHON) $(COUNT_SCRIPT) $&lt; $@\n\nfigures/%.html : counts/%.tsv $(PLOT_SCRIPT)\n    $(PYTHON) $(PLOT_SCRIPT) $&lt; $@\nThe % symbol is a wildcard stem. With these two rules, make now knows how to build:\n\ncounts/dracula.tsv from books/dracula.txt\ncounts/frankenstein.tsv from books/frankenstein.txt\nfigures/moby_dick.html from counts/moby_dick.tsv\nand so on\n\nThat means we no longer need one handwritten rule per book.\nPattern rules are one of the biggest DRY improvements in make. We replace many nearly identical rules with one general rule that captures the shared structure of the workflow.\nWe can still ask for a specific target:\nmake figures/jane_eyre.html\nand make will fill in the pattern automatically."
+    "section": "Pattern rules",
+    "text": "Pattern rules\nAt this point, the workflow still only handles Dracula. But the project contains many books:\nbooks/dracula.txt\nbooks/frankenstein.txt\nbooks/jane_eyre.txt\nbooks/moby_dick.txt\nbooks/sense_and_sensibility.txt\nbooks/sherlock_holmes.txt\nbooks/time_machine.txt\nThe filenames change, but the workflow shape stays the same. That is exactly what pattern rules are for.\nPYTHON=python\nCOUNT_SCRIPT=scripts/count_words.py\nPLOT_SCRIPT=scripts/plot_counts.py\n\ncounts/%.tsv : books/%.txt $(COUNT_SCRIPT)\n    $(PYTHON) $(COUNT_SCRIPT) $&lt; $@\n\nfigures/%.html : counts/%.tsv $(PLOT_SCRIPT)\n    $(PYTHON) $(PLOT_SCRIPT) $&lt; $@\nThe % symbol is a wildcard stem. With these two rules, make now knows how to build:\n\ncounts/dracula.tsv from books/dracula.txt\ncounts/frankenstein.tsv from books/frankenstein.txt\nfigures/moby_dick.html from counts/moby_dick.tsv\nand so on\n\nThat means we no longer need one handwritten rule per book.\nPattern rules are one of the biggest DRY improvements in make. We replace many nearly identical rules with one general rule that captures the shared structure of the workflow.\nWe can still ask for a specific target:\nmake figures/jane_eyre.html\nand make will fill in the pattern automatically."
   },
   {
     "objectID": "lessons/automation.html#functions",
@@ -515,15 +515,15 @@
     "objectID": "lessons/automation.html#complete-example",
     "href": "lessons/automation.html#complete-example",
     "title": "4. Automation",
-    "section": "Complete Example",
-    "text": "Complete Example\nPutting everything together, a Makefile for gecs-make could look like this:\nPYTHON=python\nCOUNT_SCRIPT=scripts/count_words.py\nPLOT_SCRIPT=scripts/plot_counts.py\n\nBOOK_FILES=$(wildcard books/*.txt)\nCOUNT_FILES=$(patsubst books/%.txt,counts/%.tsv,$(BOOK_FILES))\nFIGURE_FILES=$(patsubst books/%.txt,figures/%.html,$(BOOK_FILES))\n\n.DEFAULT_GOAL := help\n\n## Show available targets\n.PHONY : help\nhelp:\n    @echo \"Available rules:\"\n    @grep -E '^## |^[a-zA-Z0-9_.\\/%\\-]+ *:' $(MAKEFILE_LIST) | \\\n    awk 'BEGIN {FS = \" *:.*\"} \\\n    /^## / {desc = substr($$0, 4); next} \\\n    /^[a-zA-Z0-9_.\\/%\\-]+ *:/ {printf \"%-22s %s\\n\", $$1, desc}'\n\n## Build figures for all books\n.PHONY : all\nall : $(FIGURE_FILES)\n\n## Build count tables for all books\ncounts : $(COUNT_FILES)\n\ncounts/%.tsv : books/%.txt $(COUNT_SCRIPT)\n    $(PYTHON) $(COUNT_SCRIPT) $&lt; $@\n\nfigures/%.html : counts/%.tsv $(PLOT_SCRIPT)\n    $(PYTHON) $(PLOT_SCRIPT) $&lt; $@\n\n## Remove generated counts and figures\n.PHONY : clean\nclean :\n    rm -f counts/*.tsv figures/*.html\nThis Makefile captures the real project workflow:\n\ntext files in books/ are inputs\ncount tables in counts/ are intermediate outputs\nplots in figures/ are final outputs\nthe Python scripts in scripts/ are part of the dependency graph\n\nMost importantly, the Makefile is no longer hard coded to Dracula. Add another .txt file to books/, and the workflow can pick it up automatically."
+    "section": "Complete example",
+    "text": "Complete example\nPutting everything together, a Makefile for gecs-make could look like this:\nPYTHON=python\nCOUNT_SCRIPT=scripts/count_words.py\nPLOT_SCRIPT=scripts/plot_counts.py\n\nBOOK_FILES=$(wildcard books/*.txt)\nCOUNT_FILES=$(patsubst books/%.txt,counts/%.tsv,$(BOOK_FILES))\nFIGURE_FILES=$(patsubst books/%.txt,figures/%.html,$(BOOK_FILES))\n\n.DEFAULT_GOAL := help\n\n## Show available targets\n.PHONY : help\nhelp:\n    @echo \"Available rules:\"\n    @grep -E '^## |^[a-zA-Z0-9_.\\/%\\-]+ *:' $(MAKEFILE_LIST) | \\\n    awk 'BEGIN {FS = \" *:.*\"} \\\n    /^## / {desc = substr($$0, 4); next} \\\n    /^[a-zA-Z0-9_.\\/%\\-]+ *:/ {printf \"%-22s %s\\n\", $$1, desc}'\n\n## Build figures for all books\n.PHONY : all\nall : $(FIGURE_FILES)\n\n## Build count tables for all books\ncounts : $(COUNT_FILES)\n\ncounts/%.tsv : books/%.txt $(COUNT_SCRIPT)\n    $(PYTHON) $(COUNT_SCRIPT) $&lt; $@\n\nfigures/%.html : counts/%.tsv $(PLOT_SCRIPT)\n    $(PYTHON) $(PLOT_SCRIPT) $&lt; $@\n\n## Remove generated counts and figures\n.PHONY : clean\nclean :\n    rm -f counts/*.tsv figures/*.html\nThis Makefile captures the real project workflow:\n\ntext files in books/ are inputs\ncount tables in counts/ are intermediate outputs\nplots in figures/ are final outputs\nthe Python scripts in scripts/ are part of the dependency graph\n\nMost importantly, the Makefile is no longer hard coded to Dracula. Add another .txt file to books/, and the workflow can pick it up automatically."
   },
   {
     "objectID": "lessons/automation.html#final-words",
     "href": "lessons/automation.html#final-words",
     "title": "4. Automation",
-    "section": "Final Words",
-    "text": "Final Words\nmake is useful when your work produces files from other files. Instead of rerunning commands by hand, we describe the dependency structure once and let make handle the ordering and incremental rebuilds.\nIn this project, the key ideas are:\n\nA rule has a target, dependencies, and a recipe.\nmake models the workflow as a DAG, a dependency graph with no cycles.\n.PHONY is for targets like all, clean, and help that are not real files.\nAutomatic variables such as $@ and $&lt; reduce duplication.\nVariables, automatic variables, and pattern rules help us keep the Makefile DRY.\nPattern rules such as counts/%.tsv : books/%.txt generalize the workflow across many books.\nFunctions such as wildcard and patsubst let us build dynamic file lists from the real project structure.\n\nPixi remains useful for managing the environment. make adds the missing piece: a reusable, dependency-aware way to automate the actual analysis pipeline."
+    "section": "Final words",
+    "text": "Final words\nmake is useful when your work produces files from other files. Instead of rerunning commands by hand, we describe the dependency structure once and let make handle the ordering and incremental rebuilds.\nIn this project, the key ideas are:\n\nA rule has a target, dependencies, and a recipe.\nmake models the workflow as a DAG, a dependency graph with no cycles.\n.PHONY is for targets like all, clean, and help that are not real files.\nAutomatic variables such as $@ and $&lt; reduce duplication.\nVariables, automatic variables, and pattern rules help us keep the Makefile DRY.\nPattern rules such as counts/%.tsv : books/%.txt generalize the workflow across many books.\nFunctions such as wildcard and patsubst let us build dynamic file lists from the real project structure.\n\nPixi remains useful for managing the environment. make adds the missing piece: a reusable, dependency-aware way to automate the actual analysis pipeline."
   },
   {
     "objectID": "lessons/terminal.html",
@@ -539,8 +539,8 @@
     "objectID": "lessons/terminal.html#moving-between-directories",
     "href": "lessons/terminal.html#moving-between-directories",
     "title": "0. Terminal",
-    "section": "Moving Between Directories",
-    "text": "Moving Between Directories\nTo move to a different directory, use the cd (change directory) command:\ncd /usr\npwd\nYou’re now in the /usr directory. Notice how pwd shows a different path. You can use both absolute paths (starting from the root /) and relative paths (starting from your current location).\nSome useful shortcuts for relative paths:\n\ncd . - stay in the current directory\ncd .. - go up one level to the parent directory\ncd - - go back to the previous directory\ncd ~ - go to your home directory\ncd (with no arguments) - also goes to your home directory\n\nTry these out:\ncd ..\npwd\ncd -\npwd\ncd ~\npwd",
+    "section": "Moving between directories",
+    "text": "Moving between directories\nTo move to a different directory, use the cd (change directory) command:\ncd /usr\npwd\nYou’re now in the /usr directory. Notice how pwd shows a different path. You can use both absolute paths (starting from the root /) and relative paths (starting from your current location).\nSome useful shortcuts for relative paths:\n\ncd . - stay in the current directory\ncd .. - go up one level to the parent directory\ncd - - go back to the previous directory\ncd ~ - go to your home directory\ncd (with no arguments) - also goes to your home directory\n\nTry these out:\ncd ..\npwd\ncd -\npwd\ncd ~\npwd",
     "crumbs": [
       "0. Terminal"
     ]
@@ -549,8 +549,8 @@
     "objectID": "lessons/terminal.html#listing-directory-contents",
     "href": "lessons/terminal.html#listing-directory-contents",
     "title": "0. Terminal",
-    "section": "Listing Directory Contents",
-    "text": "Listing Directory Contents\nTo see what’s in your current directory, use the ls (list) command:\nls\nThis shows the files and directories in your current location. You can also list the contents of a specific directory without changing to it:\nls /usr\nls ~",
+    "section": "Listing directory contents",
+    "text": "Listing directory contents\nTo see what’s in your current directory, use the ls (list) command:\nls\nThis shows the files and directories in your current location. You can also list the contents of a specific directory without changing to it:\nls /usr\nls ~",
     "crumbs": [
       "0. Terminal"
     ]
@@ -559,8 +559,8 @@
     "objectID": "lessons/terminal.html#viewing-file-contents",
     "href": "lessons/terminal.html#viewing-file-contents",
     "title": "0. Terminal",
-    "section": "Viewing File Contents",
-    "text": "Viewing File Contents\nTo see the contents of a file, you can use the cat (concatenate) command:\ncat /etc/hostname\nThis displays the contents of the file directly in the terminal.\nFor larger files, you might want to use a pager to view them one screen at a time. The less command is perfect for this:\nless /etc/profile\nInside less, you can use arrow keys to scroll, Page Up/Page Down for larger jumps, and q to quit.",
+    "section": "Viewing file contents",
+    "text": "Viewing file contents\nTo see the contents of a file, you can use the cat (concatenate) command:\ncat /etc/hostname\nThis displays the contents of the file directly in the terminal.\nFor larger files, you might want to use a pager to view them one screen at a time. The less command is perfect for this:\nless /etc/profile\nInside less, you can use arrow keys to scroll, Page Up/Page Down for larger jumps, and q to quit.",
     "crumbs": [
       "0. Terminal"
     ]
@@ -569,8 +569,8 @@
     "objectID": "lessons/terminal.html#options-and-arguments",
     "href": "lessons/terminal.html#options-and-arguments",
     "title": "0. Terminal",
-    "section": "Options and Arguments",
-    "text": "Options and Arguments\nMost commands accept options (also called flags or switches) and arguments. The general format is:\ncommand -options arguments\nOptions typically start with a hyphen (-) or double hyphen (--). Let’s see this in action:\nls -l\nThe -l option shows a “long” listing with more details. Try:\nls -t\nThe -t option sorts files by modification time. You can combine multiple options:\nls -lt\nThis combines -l and -t to show details sorted by time.",
+    "section": "Options and arguments",
+    "text": "Options and arguments\nMost commands accept options (also called flags or switches) and arguments. The general format is:\ncommand -options arguments\nOptions typically start with a hyphen (-) or double hyphen (--). Let’s see this in action:\nls -l\nThe -l option shows a “long” listing with more details. Try:\nls -t\nThe -t option sorts files by modification time. You can combine multiple options:\nls -lt\nThis combines -l and -t to show details sorted by time.",
     "crumbs": [
       "0. Terminal"
     ]
@@ -579,8 +579,8 @@
     "objectID": "lessons/terminal.html#important-rules",
     "href": "lessons/terminal.html#important-rules",
     "title": "0. Terminal",
-    "section": "Important Rules",
-    "text": "Important Rules\n\n\n\n\n\n\nTry to avoid any spaces in your directory and file names. Shell interprets space as separator between options or arguments. Space in names will most likely break programs, producing errors.\nYou can use spaces by including names in parentheses or quotes, but that’s an unnecessary complication.\n\n\n\n\n\n\n\n\n\nCommands are case sensitive. ls is not the same as LS, Ls, or lS. Try it yourself!",
+    "section": "Important rules",
+    "text": "Important rules\n\n\n\n\n\n\nTry to avoid any spaces in your directory and file names. Shell interprets space as separator between options or arguments. Space in names will most likely break programs, producing errors.\nYou can use spaces by including names in parentheses or quotes, but that’s an unnecessary complication.\n\n\n\n\n\n\n\n\n\nCommands are case sensitive. ls is not the same as LS, Ls, or lS. Try it yourself!",
     "crumbs": [
       "0. Terminal"
     ]
@@ -609,8 +609,8 @@
     "objectID": "lessons/terminal.html#renaming-files",
     "href": "lessons/terminal.html#renaming-files",
     "title": "0. Terminal",
-    "section": "Renaming Files",
-    "text": "Renaming Files\nThe mv command doesn’t just move files between directories—it’s also used to rename them. When you move a file to the same directory but give it a new name, you’re effectively renaming it.\nFor example, let’s rename one of our statue files:\nmv sydney_brenner.statue brenner_sydney.statue\ncat brenner_sydney.statue\nThe file has been renamed, not moved to a different location.",
+    "section": "Renaming files",
+    "text": "Renaming files\nThe mv command doesn’t just move files between directories—it’s also used to rename them. When you move a file to the same directory but give it a new name, you’re effectively renaming it.\nFor example, let’s rename one of our statue files:\nmv sydney_brenner.statue brenner_sydney.statue\ncat brenner_sydney.statue\nThe file has been renamed, not moved to a different location.",
     "crumbs": [
       "0. Terminal"
     ]
@@ -619,8 +619,8 @@
     "objectID": "lessons/terminal.html#copying-files",
     "href": "lessons/terminal.html#copying-files",
     "title": "0. Terminal",
-    "section": "Copying Files",
-    "text": "Copying Files\nSometimes you want to create a duplicate of a file. This is where the cp (copy) command comes in:\ncp brenner_sydney.statue sydney_brenner.statue\nls *.statue\nYou now have two files: the original and the last-name-first copy. The cp command can also work with directories, but you need to use an option to do so. To copy an entire directory and all its contents, use the -r option (which stands for “recursive”):\ncp -r lab4 lab0\nls\nThis creates a complete copy of lab4/ and all the files inside it, called lab0/.",
+    "section": "Copying files",
+    "text": "Copying files\nSometimes you want to create a duplicate of a file. This is where the cp (copy) command comes in:\ncp brenner_sydney.statue sydney_brenner.statue\nls *.statue\nYou now have two files: the original and the last-name-first copy. The cp command can also work with directories, but you need to use an option to do so. To copy an entire directory and all its contents, use the -r option (which stands for “recursive”):\ncp -r lab4 lab0\nls\nThis creates a complete copy of lab4/ and all the files inside it, called lab0/.",
     "crumbs": [
       "0. Terminal"
     ]
@@ -629,8 +629,8 @@
     "objectID": "lessons/terminal.html#deleting-files-and-directories",
     "href": "lessons/terminal.html#deleting-files-and-directories",
     "title": "0. Terminal",
-    "section": "Deleting Files and Directories",
-    "text": "Deleting Files and Directories\nTo remove files, use the rm (remove) command. Be careful with this—once deleted, files are generally gone for good!\nrm brenner_sydney.statue\nls *.statue\nTo be honest, there is only one Lab0. To remove a directory, add the -r option:\nrm -r lab0\nls\n\n\n\n\n\n\nCautionWarning: rm is permanent\n\n\n\nUnlike moving files to a trash or recycle bin on a graphical interface, rm permanently deletes files. There is no undo! Always double-check your command before pressing Enter.",
+    "section": "Deleting files and directories",
+    "text": "Deleting files and directories\nTo remove files, use the rm (remove) command. Be careful with this—once deleted, files are generally gone for good!\nrm brenner_sydney.statue\nls *.statue\nTo be honest, there is only one Lab0. To remove a directory, add the -r option:\nrm -r lab0\nls\n\n\n\n\n\n\nCautionWarning: rm is permanent\n\n\n\nUnlike moving files to a trash or recycle bin on a graphical interface, rm permanently deletes files. There is no undo! Always double-check your command before pressing Enter.",
     "crumbs": [
       "0. Terminal"
     ]
@@ -639,8 +639,8 @@
     "objectID": "lessons/terminal.html#downloading-files-from-the-web",
     "href": "lessons/terminal.html#downloading-files-from-the-web",
     "title": "0. Terminal",
-    "section": "Downloading Files from the Web",
-    "text": "Downloading Files from the Web\nAnother powerful command you encountered during the setup process is curl (Client URL). It’s used to transfer data from or to a server, often for downloading files or scripts from the internet:\ncurl -fsSL https://pixi.sh/install.sh | sh\nThis command downloads the Pixi installation script and pipes it directly to sh (the shell) for execution. Let’s break down the options:\n\n-f - Fail silently on server errors\n-s - Silent mode (don’t show progress)\n-S - Show errors even in silent mode\n-L - Follow redirects if the URL has moved\n\nYou can also use curl to download files and save them:\ncurl -O https://example.com/file.txt\nThe -O option saves the file with its original name.\n\n\n\n\n\n\nBe cautious when piping downloaded scripts directly to a shell interpreter (| sh or | bash). Only do this with scripts from trusted sources, as they will execute with your user privileges. During setup, you used this method with official installation scripts from Pixi and Starship.",
+    "section": "Downloading files from the web",
+    "text": "Downloading files from the web\nAnother powerful command you encountered during the setup process is curl (Client URL). It’s used to transfer data from or to a server, often for downloading files or scripts from the internet:\ncurl -fsSL https://pixi.sh/install.sh | sh\nThis command downloads the Pixi installation script and pipes it directly to sh (the shell) for execution. Let’s break down the options:\n\n-f - Fail silently on server errors\n-s - Silent mode (don’t show progress)\n-S - Show errors even in silent mode\n-L - Follow redirects if the URL has moved\n\nYou can also use curl to download files and save them:\ncurl -O https://example.com/file.txt\nThe -O option saves the file with its original name.\n\n\n\n\n\n\nBe cautious when piping downloaded scripts directly to a shell interpreter (| sh or | bash). Only do this with scripts from trusted sources, as they will execute with your user privileges. During setup, you used this method with official installation scripts from Pixi and Starship.",
     "crumbs": [
       "0. Terminal"
     ]
@@ -649,8 +649,28 @@
     "objectID": "lessons/terminal.html#reloading-configuration-files",
     "href": "lessons/terminal.html#reloading-configuration-files",
     "title": "0. Terminal",
-    "section": "Reloading Configuration Files",
-    "text": "Reloading Configuration Files\nWhen you modify configuration files like .bashrc or .zshrc, the changes won’t take effect until you start a new terminal session. However, you can reload the configuration without closing your terminal using the source command:\nsource ~/.bashrc\nOr for Zsh users:\nsource ~/.zshrc\nThis reads and executes the commands from the specified file in your current shell session. You used this command during setup to activate Pixi after installation.\n\n\n\n\n\n\nYou can view the contents of your configuration files using cat ~/.bashrc or less ~/.bashrc to see what customizations you’ve made.\n\n\n\nAs you progress through more advanced topics, you’ll encounter many more hidden files and directories. Configuration files, cache directories, and version control metadata (like .git/) all use the dot-prefix convention. This naming strategy keeps your file system organized and separates system/application configuration from your regular working files. In future lessons, we’ll explore how these hidden files and directories make it very convenient to manage complex configurations without cluttering your workspace.",
+    "section": "Reloading configuration files",
+    "text": "Reloading configuration files\nWhen you modify configuration files like .bashrc or .zshrc, the changes won’t take effect until you start a new terminal session. However, you can reload the configuration without closing your terminal using the source command:\nsource ~/.bashrc\nOr for Zsh users:\nsource ~/.zshrc\nThis reads and executes the commands from the specified file in your current shell session. You used this command during setup to activate Pixi after installation.\n\n\n\n\n\n\nYou can view the contents of your configuration files using cat ~/.bashrc or less ~/.bashrc to see what customizations you’ve made.\n\n\n\nAs you progress through more advanced topics, you’ll encounter many more hidden files and directories. Configuration files, cache directories, and version control metadata (like .git/) all use the dot-prefix convention. This naming strategy keeps your file system organized and separates system/application configuration from your regular working files. In future lessons, we’ll explore how these hidden files and directories make it very convenient to manage complex configurations without cluttering your workspace.",
+    "crumbs": [
+      "0. Terminal"
+    ]
+  },
+  {
+    "objectID": "lessons/terminal.html#terminology",
+    "href": "lessons/terminal.html#terminology",
+    "title": "0. Terminal",
+    "section": "Terminology",
+    "text": "Terminology\nAny terminology is confusing until you repeat it many times. Starting from the left in the figure below, terminal or more properly terminal emulator is a text-based input/output program that communicates with your computer. You type commands in a command line or a command line interface (CLI). The command is passed to shell which is a command line interpreter (confusingly, it can be abbreviated as CLI as well, but thankfully no one does that). Next, shell talks to operating system (OS). OS is agnostic to hardware and could be run on different physical machines. At the core of any OS is kernel. Finally, kernel talks to the hardware (CPU, GPU, RAM, disk, etc.).\nOnly reason I give this detail that some times people use these terms interchangeably.\n\n\n\n\n\nflowchart LR\n    H[Hardware]\n\n    subgraph OS[Operating System]\n        K[Kernel]\n    end\n\n    S[Shell]\n\n    subgraph T[Terminal]\n        C[Command Line]\n    end\n\n    T --- S --- OS --- H\n\n    %% Single hue (blue), different lightness\n    classDef l1 fill:#eaf2fb,stroke:transparent,color:#000\n    classDef l2 fill:#d0e2f2,stroke:transparent,color:#000\n    classDef l3 fill:#9ecae1,stroke:transparent,color:#000\n    classDef l4 fill:#6baed6,stroke:transparent,color:#000\n\n    %% Apply styles\n    class H l1\n    class OS l2\n    class K l4\n    class S l2\n    class T l2\n    class C l4\n\n    %% Remove subgraph borders\n    style OS fill:#d0e2f2,stroke-width:0px\n    style T fill:#d0e2f2,stroke-width:0px",
+    "crumbs": [
+      "0. Terminal"
+    ]
+  },
+  {
+    "objectID": "lessons/terminal.html#a-brief-history-of-operating-systems",
+    "href": "lessons/terminal.html#a-brief-history-of-operating-systems",
+    "title": "0. Terminal",
+    "section": "A brief history of operating systems",
+    "text": "A brief history of operating systems\nWhen you look at most operating systems, you see that most of them stem from UNIX. Then they branch into derivatives like Linux, which is the most prominent “child”. Windows, on the other hand, is isolated from UNIX and only the recent introduction of WSL allowed it to use UNIX-based tools with ease.\n\n\n\nEvolution of operating systems, its kernels, and distributions. https://www.reddit.com/r/coolguides/comments/k1lopj/os_family_tree/",
     "crumbs": [
       "0. Terminal"
     ]
@@ -729,8 +749,8 @@
     "objectID": "lessons/setting-up.html#setup-and-installation-guides",
     "href": "lessons/setting-up.html#setup-and-installation-guides",
     "title": "Setting Up",
-    "section": "Setup and Installation Guides",
-    "text": "Setup and Installation Guides\n\nHow to Install Ubuntu on Windows (Step-by-Step Guide for Beginners) by Subha Mondal\nWindows Subsystem for Linux Documentation",
+    "section": "Setup and installation guides",
+    "text": "Setup and installation guides\n\nHow to Install Ubuntu on Windows (Step-by-Step Guide for Beginners) by Subha Mondal\nWindows Subsystem for Linux Documentation",
     "crumbs": [
       "Setting Up"
     ]
@@ -739,8 +759,8 @@
     "objectID": "lessons/setting-up.html#tools-and-platforms",
     "href": "lessons/setting-up.html#tools-and-platforms",
     "title": "Setting Up",
-    "section": "Tools and Platforms",
-    "text": "Tools and Platforms\n\nVisual Studio Code\n\nVisual Studio Code Official Website\nVS Code WSL Extension Guide\nVS Code Remote WSL Documentation\nVS Code Terminal Getting Started\n\n\n\nPackage Managers\n\nPixi Official Documentation\nPixi Installation Guide\n\n\n\nShell Customization\n\nStarship Shell Prompt\nStarship Presets",
+    "section": "Tools and platforms",
+    "text": "Tools and platforms\n\nVisual Studio Code\n\nVisual Studio Code Official Website\nVS Code WSL Extension Guide\nVS Code Remote WSL Documentation\nVS Code Terminal Getting Started\n\n\n\nPackage Managers\n\nPixi Official Documentation\nPixi Installation Guide\n\n\n\nShell Customization\n\nStarship Shell Prompt\nStarship Presets",
     "crumbs": [
       "Setting Up"
     ]
