@@ -352,11 +352,11 @@ Changes to be committed:
 Git now knows that it's supposed to keep track of `guacamole.md`, but it hasn't recorded these changes as a commit yet. To get it to do that, we need to run one more command:
 
 ``` bash
-git commit -m "Create initial structure for a Guacamole recipe"
+git commit -m "create initial structure for a Guacamole recipe"
 ```
 
 ``` git
-[main (root-commit) f22b25e] Create initial structure for a Guacamole recipe
+[main (root-commit) f22b25e] create initial structure for a Guacamole recipe
  1 file changed, 1 insertion(+)
  create mode 100644 guacamole.md
 ```
@@ -387,7 +387,7 @@ commit f22b25e3233b4645dabd0d81e651fe074bd8e73b
 Author: Alfredo Linguini <a.linguini@ratatouille.fr>
 Date:   Thu Aug 22 09:51:46 2013 -0400
 
-    Create initial structure for a Guacamole recipe
+    create initial structure for a Guacamole recipe
 ```
 
 `git log` lists all commits made to a repository in reverse chronological order. The listing for each commit includes the commit's full identifier (which starts with the same characters as the short identifier printed by the `git commit` command earlier), the commit's author, when it was created, and the log message Git was given when the commit was created.
@@ -454,7 +454,7 @@ The output shows: - Lines with `+` are additions (new lines) - Lines with `-` ar
 After reviewing our change, it's time to commit it:
 
 ``` bash
-git commit -m "Add ingredients for basic guacamole"
+git commit -m "add ingredients for basic guacamole"
 ```
 
 ``` git
@@ -472,11 +472,11 @@ Whoops: Git won't commit because we didn't use `git add` first. Let's fix that:
 
 ``` bash
 git add guacamole.md
-git commit -m "Add ingredients for basic guacamole"
+git commit -m "add ingredients for basic guacamole"
 ```
 
 ``` git
-[main 34961b1] Add ingredients for basic guacamole
+[main 34961b1] add ingredients for basic guacamole
  1 file changed, 3 insertions(+)
 ```
 
@@ -556,11 +556,11 @@ index 315bf3a..b36abfd 100644
 it shows us the difference between the last committed change and what's in the staging area. Let's save our changes:
 
 ``` bash
-git commit -m "Modify guacamole to the traditional recipe"
+git commit -m "modify guacamole to the traditional recipe"
 ```
 
 ``` git
-[main 005937f] Modify guacamole to the traditional recipe
+[main 005937f] modify guacamole to the traditional recipe
  1 file changed, 1 insertion(+)
 ```
 
@@ -586,19 +586,19 @@ commit 005937fbe2a98fb83f0ade869025dc2636b4dad5 (HEAD -> main)
 Author: Alfredo Linguini <a.linguini@ratatouille.fr>
 Date:   Thu Aug 22 10:14:07 2013 -0400
 
-    Modify guacamole to the traditional recipe
+    modify guacamole to the traditional recipe
 
 commit 34961b159c27df3b475cfe4415d94a6d1fcd064d
 Author: Alfredo Linguini <a.linguini@ratatouille.fr>
 Date:   Thu Aug 22 10:07:21 2013 -0400
 
-    Add ingredients for basic guacamole
+    add ingredients for basic guacamole
 
 commit f22b25e3233b4645dabd0d81e651fe074bd8e73b
 Author: Alfredo Linguini <a.linguini@ratatouille.fr>
 Date:   Thu Aug 22 09:51:46 2013 -0400
 
-    Create initial structure for a Guacamole recipe
+    create initial structure for a Guacamole recipe
 ```
 
 To recap, when we want to add changes to our repository, we first need to add the changed files to the staging area (`git add`) and then commit the staged changes to the repository (`git commit`).
@@ -680,12 +680,12 @@ git add groceries.md
 Now the files are ready to commit. You can check that using `git status`. If you are ready to commit use:
 
 ``` bash
-git commit -m "Write prices for ingredients and their source"
+git commit -m "write prices for ingredients and their source"
 ```
 
 ``` git
 [main cc127c2]
- Write prices for ingredients and their source
+ write prices for ingredients and their source
  2 files changed, 7 insertions(+)
  create mode 100644 groceries.md
 ```
