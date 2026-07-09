@@ -8,7 +8,7 @@ website:
       # - href: index.qmd
         # text: Home
       # - about.qmd
-  favicon: images/geek_emoji.jpg
+  favicon: images/geek_emoji.jpeg
   page-footer: by Igors Dubanevics | 2025-2026 | MIT License
 
   sidebar:
