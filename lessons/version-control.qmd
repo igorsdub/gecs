@@ -234,15 +234,6 @@ Is the `git init` command, run inside the `desserts` subdirectory, required for 
 
 Right now, you have a "nested repository" is a Git repository that exists within the working directory of another Git repository. Each nested repository operates independently with its own history. Git is designed primarily to manage one repository per directory tree. When Git encounters a `.git` folder within a subdirectory of a parent repository, it treats the inner repository as a separate entity and usually ignores its contents within the parent's version control.
 
-Yo**u can verify that the `desserts` subdirectory is not being tracked by the `recipes` repository by running the following command from within the `recipes` directory:
-
-``` bash
-touch tiramisu.md # create a new file in recipes directory
-git status        # check the status of the recipes repository
-cd ..             # go back to recipes directory  
-git status        # check the status of the desserts repository
-```
-
 To delete unwanted nested repositories, simply delete the `.git` subdirectory inside the unwanted repository while in the parent repository. For example, to delete the unwanted `desserts` repository, Alfredo would run:
 
 ```bash
