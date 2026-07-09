@@ -10,14 +10,16 @@ format: html
 Version control tracks changes to your files, lets you undo mistakes, and makes collaboration easy. Once you start using it, you'll wonder how you worked without it!
 
 ::: callout-important
-This tutorial was "stolen" from the [Version Control with Git by The Software Carpentries](https://swcarpentry.github.io/git-novice). They have good educational resources on different topics for software practices in science res
+This tutorial was "stolen" from the [Version Control with Git by The Software Carpentries](https://swcarpentry.github.io/git-novice).
 :::
 
 # Summary
 
-![An illustration with two examples of project history management. The left shows a stack of ambiguously named files, shown as book-like objects. A hand carefully tries to pull out one of the files without making the stack crumble. In contrast, the right shows a dial with options ranging from V1 to V6. On top of the dial the six corresponding files are represented as ordered documents. A hand moves the dial to V3, which highlights the third document on top in blue.](https://raw.githubusercontent.com/the-turing-way/the-turing-way/refs/heads/main/book/figures/project-history.svg)
+![Two examples of project history management. (*Left*) A stack of ambiguously named files. You need to be careful not to make the stack crumble when accessing a specific version. (*Right*) In contrast, a system that tracks version history is like a dial. You can switch betwen version without breaking the stack.](https://raw.githubusercontent.com/the-turing-way/the-turing-way/refs/heads/main/book/figures/project-history.svg)
 
-Jimmy and Alfredo have been hired by Ratatouille restaurant to investigate if it is possible to make the best recipes archive ever. They want to be able to work on indexing the prices at the same time, but they have run into problems doing this in the past. If they take turns, each one will spend a lot of time waiting for the other to finish, but if they work on their own copies and email changes back and forth things will be lost, overwritten, or duplicated.
+You will work on code with other people in your academic career at some point. You can pass the code between people via email or flash drives. However, quickly you will find out that that the 
+
+ Jimmy and Alfredo have been hired by Ratatouille restaurant to investigate if it is possible to make the best recipes archive ever. They want to be able to work on indexing the prices at the same time, but they have run into problems doing this in the past. If they take turns, each one will spend a lot of time waiting for the other to finish, but if they work on their own copies and email changes back and forth things will be lost, overwritten, or duplicated.
 
 Version control is better than mailing files back and forth:
 
@@ -710,9 +712,9 @@ git diff me.txt
 
 # Exploring History
 
-As we saw in the previous episode, we can refer to commits by their identifiers. You can refer to the *most recent commit* of the working directory by using the identifier `HEAD`.
+We can refer to the *most recent commit* with `HEAD`. You can also use `HEAD~1` for the commit before that, `HEAD~2` for the one before that, and so on.
 
-We've been adding small changes at a time to `guacamole.md`, so it's easy to track our progress by looking at it. Let's do that using our `HEAD`. Before we start, let's make a change to `guacamole.md`, adding yet another line.
+Let's make a small change to `guacamole.md` and compare it with `HEAD`:
 
 ``` bash
 code guacamole.md
@@ -747,99 +749,7 @@ index b36abfd..0848c8d 100644
 +An ill-considered change
 ```
 
-Note that `HEAD` is the default option for `git diff`, so omitting it will not change the command's output at all (give it a try). However, the real power of `git diff` lies in its ability to compare with previous commits. For example, by adding `~1` (where "\~" is "tilde", pronounced \[**til**-d*uh*\]), we can look at the commit before `HEAD`.
-
-``` bash
-git diff HEAD~1 guacamole.md
-```
-
-If we want to see the differences between older commits we can use `git diff` again, but with the notation `HEAD~1`, `HEAD~2`, and so on, to refer to them:
-
-``` bash
-git diff HEAD~2 guacamole.md
-```
-
-``` git
-diff --git a/guacamole.md b/guacamole.md
-index df0654a..b36abfd 100644
---- a/guacamole.md
-+++ b/guacamole.md
-@@ -1,3 +1,6 @@
- # Guacamole
- ## Ingredients
-+* avocado
-+* lime
-+* salt
- ## Instructions
-```
-
-We could also use `git show` which shows us what changes we made at an older commit as well as the commit message, rather than the *differences* between a commit and our working directory that we see by using `git diff`.
-
-``` bash
-git show HEAD~2 guacamole.md
-```
-
-``` output
-commit f22b25e3233b4645dabd0d81e651fe074bd8e73b
-Author: Alfredo Linguini <a.linguini@ratatouille.fr>
-Date:   Thu Aug 22 10:07:21 2013 -0400
-
-    Create initial structure for a Guacamole recipe
-
-diff --git a/guacamole.md b/guacamole.md
-new file mode 100644
-index 0000000..df0654a
---- /dev/null
-+++ b/guacamole.md
-@@ -0,0 +1,3 @@
-+# Guacamole
-+## Ingredients
-+## Instructions
-```
-
-In this way, we can build up a chain of commits. The most recent end of the chain is referred to as `HEAD`; we can refer to previous commits using the `~` notation, so `HEAD~1` means "the previous commit", while `HEAD~123` goes back 123 commits from where we are now.
-
-We can also refer to commits using those long strings of digits and letters that both `git log` and `git show` display. These are unique IDs for the changes, and "unique" really does mean unique: every change to any set of files on any computer has a unique 40-character identifier. Our first commit was given the ID `f22b25e3233b4645dabd0d81e651fe074bd8e73b`, so let's try this:
-
-``` bash
-git diff f22b25e3233b4645dabd0d81e651fe074bd8e73b guacamole.md
-```
-
-``` git
-diff --git a/guacamole.md b/guacamole.md
-index df0654a..93a3e13 100644
---- a/guacamole.md
-+++ b/guacamole.md
-@@ -1,3 +1,7 @@
- # Guacamole
- ## Ingredients
-+* avocado
-+* lime
-+* salt
- ## Instructions
-+An ill-considered change
-```
-
-That's the right answer, but typing out random 40-character strings is annoying, so Git lets us use just the first few characters (typically seven for normal size projects):
-
-``` bash
-git diff f22b25e guacamole.md
-```
-
-``` git
-diff --git a/guacamole.md b/guacamole.md
-index df0654a..93a3e13 100644
---- a/guacamole.md
-+++ b/guacamole.md
-@@ -1,3 +1,7 @@
- # Guacamole
- ## Ingredients
-+* avocado
-+* lime
-+* salt
- ## Instructions
-+An ill-considered change
-```
+`HEAD` is the default for `git diff`, so `git diff guacamole.md` gives the same result. If you want to compare against an earlier commit, use `HEAD~1` or another commit ID. Git also accepts shortened commit hashes when you need to refer to a specific older commit.
 
 All right! So we can save changes to files and see what we've changed. Now, how can we restore older versions of things? Let's suppose we change our mind about the last update to `guacamole.md` (the "ill-considered change").
 
