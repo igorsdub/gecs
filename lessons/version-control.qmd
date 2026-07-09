@@ -79,7 +79,15 @@ A version control system is a tool that keeps track of these changes for us, eff
 
 # Setting Up Git
 
-The follwing commands are necessary to configure Git on a new computer even if you only will be using VS Code Source Control panel. 
+The follwing commands are necessary to configure Git on a new computer even if you only will be using VS Code Source Control panel.
+
+Start VS Code. By default will open in your home directory or in the last opened folder. If you want to work in a different directory, use the **File** \> **Open Folder** menu item to select a different folder. 
+
+::: {.callout-tip title="Open folder like a VS Coder"}
+You can use the Commnad Palette (`Ctrl/Cmd+Shift+P`) and type `Open Folder` to select a different folder. Although silly, this is a good way to learn the Command Palette, which is a very useful feature of VS Code.
+
+Alternatively, `Ctrl/Cmd + O` is the keyboard shortcut to open a file but you can open a folder as well.
+:::
 
 We will use the VS Code's terminal to do the setting up. To open the terminal select **View** \> **Terminal** from the menu bar, or by pressing the `` Ctrl/Cmd+` `` keyboard shortcut. A terminal window will open at the bottom.
 
@@ -119,7 +127,9 @@ git config --global init.defaultBranch main
 ```
 
 ::: {.callout-important}
-We will not be convering branch management in this lesson, but setting the default branch name to `main` now will help avoid confusion later. In short, a branch is a separate line of development in a repository. The default branch is the main line of development where the stable version of the project is maintained. See Atlassion tutorial on [Git Branch](https://www.atlassian.com/git/tutorials/using-branches) for more information.
+We will not be convering branch management in this lesson, but setting the default branch name to `main` now will help avoid confusion later. In short, a branch is a separate line of development in a repository. The default branch is the main line of development where the stable version of the project is maintained. 
+
+See Atlassion tutorial on [Git Branch](https://www.atlassian.com/git/tutorials/using-branches) for more information.
 :::
 
 ::: {.callout-note title="How `master` became `main`" collapse="true"}
@@ -137,7 +147,7 @@ git config --list --global
 ::: {.callout-tip title="Git help and manual"}
 Use `git <command> -h` for quick help or `git <command> --help` for full documentation.
 :::
-****
+
 # Creating a Repository
 
 Once Git is configured, we can start using it.
@@ -149,16 +159,25 @@ First, let's create a new directory in the home directory `~` for our work and t
 ``` bash
 cd 
 mkdir recipes
-cd recipes
 ```
 
-Initialize the repository:
+Now, a bit annoying but necessary, we need to change the current working directory to the newly created one in VS Code. Use the **File** \> **Open Folder** menu item to select the `recipes` folder or any other method above.
+
+Once you are in the `recepies` (you can verify that by typying `pwd` in the terminal), we will initialize the repository. In terminal, type the following command:
 
 ``` bash
 git init
 ```
 
-This creates a repository that tracks the entire directory and its subdirectories. Don't create nested repositories.
+In VS Code we can use **View** \> **Source Control** menu item to see the Source Control panel.
+
+![Initialize a local repository in VS Code.](/images/version-control_vs-code_intialize-repository.png)
+
+Press **Initialize Repository**. You should show that we are on the `main` branch and that there are no commits yet.
+
+::: {.callout-note title="Nested repositories"}
+This creates a repository that tracks the entire directory and its subdirectories. There is no need to create nested repositories.
+:::
 
 If we use `ls` to show the directory's contents, it appears that nothing has changed:
 
@@ -192,7 +211,7 @@ No commits yet
 nothing to commit (create/copy files and use "git add" to track)
 ```
 
-If you are using a different version of `git`, the exact wording of the output might be slightly different.
+You will notice that VS Code Source Control panel has changed to show that we are on the `main` branch and that there are no commits yet.
 
 ## Places to create Git repositories
 
