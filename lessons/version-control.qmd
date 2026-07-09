@@ -712,6 +712,8 @@ mkdir biography
 cd biography
 ```
 
+Change the current working directory to the newly created one in VS Code. Use the **File** \> **Open Folder** menu item to select the `biography` folder or any other method above.
+
 Initialise git:
 
 ``` bash
@@ -730,11 +732,13 @@ Modify the file as described (modify one line, add a fourth line). To display th
 ``` bash
 git diff me.txt
 ```
+
+To go back to the `recepies` folder, change folder in VS Code back with **File** \> **Open Folder** menu item to select the `recipes` folder or any other method above.
 :::
 
 # Exploring History
 
-We can refer to the *most recent commit* with `HEAD`. You can also use `HEAD~1` for the commit before that, `HEAD~2` for the one before that, and so on.
+We can refer to the *most recent commit* with `HEAD` pointer. It is a special code that points to the commit in the current branch. You can also use `HEAD~1` for the commit before that, `HEAD~2` for the one before that, and so on.
 
 Let's make a small change to `guacamole.md` and compare it with `HEAD`:
 
