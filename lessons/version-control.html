@@ -68,7 +68,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../images/geek_emoji.jpg" rel="icon" type="image/jpeg">
+<link href="../images/geek_emoji.jpeg" rel="icon" type="image/jpeg">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -210,12 +210,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#ignoring-things" id="toc-ignoring-things" class="nav-link" data-scroll-target="#ignoring-things">Ignoring Things</a>
   <ul class="collapse">
-  <li><a href="#ignoring-nested-files" id="toc-ignoring-nested-files" class="nav-link" data-scroll-target="#ignoring-nested-files">Ignoring nested files</a></li>
-  <li><a href="#including-specific-files" id="toc-including-specific-files" class="nav-link" data-scroll-target="#including-specific-files">Including specific files</a></li>
-  <li><a href="#ignoring-nested-files-variation" id="toc-ignoring-nested-files-variation" class="nav-link" data-scroll-target="#ignoring-nested-files-variation">Ignoring nested files: variation</a></li>
-  <li><a href="#ignoring-all-data-files-in-a-directory" id="toc-ignoring-all-data-files-in-a-directory" class="nav-link" data-scroll-target="#ignoring-all-data-files-in-a-directory">Ignoring all data files in a directory</a></li>
-  <li><a href="#ignoring-all-data-files-in-the-repository" id="toc-ignoring-all-data-files-in-the-repository" class="nav-link" data-scroll-target="#ignoring-all-data-files-in-the-repository">Ignoring all data files in the repository</a></li>
-  <li><a href="#the-order-of-rules" id="toc-the-order-of-rules" class="nav-link" data-scroll-target="#the-order-of-rules">The order of rules</a></li>
   <li><a href="#log-files" id="toc-log-files" class="nav-link" data-scroll-target="#log-files">Log files</a></li>
   </ul></li>
   <li><a href="#remotes-in-github" id="toc-remotes-in-github" class="nav-link" data-scroll-target="#remotes-in-github">Remotes in GitHub</a>
@@ -281,7 +275,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>This tutorial was “stolen” from the <a href="https://swcarpentry.github.io/git-novice">Version Control with Git by The Software Carpentries</a>. They have good educational resources on different topics for software practices in science res</p>
+<p>This tutorial was “stolen” from the <a href="https://swcarpentry.github.io/git-novice">Version Control with Git by The Software Carpentries</a>.</p>
 </div>
 </div>
 </div>
@@ -290,9 +284,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://raw.githubusercontent.com/the-turing-way/the-turing-way/refs/heads/main/book/figures/project-history.svg" class="img-fluid figure-img"></p>
-<figcaption>An illustration with two examples of project history management. The left shows a stack of ambiguously named files, shown as book-like objects. A hand carefully tries to pull out one of the files without making the stack crumble. In contrast, the right shows a dial with options ranging from V1 to V6. On top of the dial the six corresponding files are represented as ordered documents. A hand moves the dial to V3, which highlights the third document on top in blue.</figcaption>
+<figcaption>Two examples of project history management. (<em>Left</em>) A stack of ambiguously named files. You need to be careful not to make the stack crumble when accessing a specific version. (<em>Right</em>) In contrast, a system that tracks version history is like a dial. You can switch betwen version without breaking the stack.</figcaption>
 </figure>
 </div>
+<p>You will work on code with other people in your academic career at some point. You can pass the code between people via email or flash drives. However, quickly you will find out that that the</p>
 <p>Jimmy and Alfredo have been hired by Ratatouille restaurant to investigate if it is possible to make the best recipes archive ever. They want to be able to work on indexing the prices at the same time, but they have run into problems doing this in the past. If they take turns, each one will spend a lot of time waiting for the other to finish, but if they work on their own copies and email changes back and forth things will be lost, overwritten, or duplicated.</p>
 <p>Version control is better than mailing files back and forth:</p>
 <ul>
@@ -338,25 +333,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="setting-up-git" class="level1">
 <h1>Setting Up Git</h1>
-<p>Configure Git on a new computer. Git commands follow the pattern: <code>git verb options</code>. Here’s the basic setup:</p>
+<p>The follwing commands are necessary to configure Git on a new computer even if you only will be using VS Code Source Control panel.</p>
+<p>Start VS Code. By default will open in your home directory or in the last opened folder. If you want to work in a different directory, use the <strong>File</strong> &gt; <strong>Open Folder</strong> menu item to select a different folder.</p>
+<div class="callout callout-style-simple callout-tip callout-titled" title="Open folder like a VS Coder">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Open folder like a VS Coder
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You can use the Commnad Palette (<code>Ctrl/Cmd+Shift+P</code>) and type <code>Open Folder</code> to select a different folder. Although silly, this is a good way to learn the Command Palette, which is a very useful feature of VS Code.</p>
+<p>Alternatively, <code>Ctrl/Cmd + O</code> is the keyboard shortcut to open a file but you can open a folder as well.</p>
+</div>
+</div>
+<p>We will use the VS Code’s terminal to do the setting up. To open the terminal select <strong>View</strong> &gt; <strong>Terminal</strong> from the menu bar, or by pressing the <code>Ctrl/Cmd+`</code> keyboard shortcut. A terminal window will open at the bottom.</p>
+<p><img src="../images/paste-36.png" class="img-fluid"></p>
+<p>If you are a Windows user (I’m sorry…), be sure to select start WSL session. Either press <code>Ctrl+Shift+P</code> and type <code>WSL: New Window</code> or <code>WSL: Reopen Folder in WSL</code>, or click the green button in the bottom left corner of VS Code and select <code>New WSL Window</code>.</p>
+<p><img src="../images/paste-32.png" class="img-fluid"></p>
+<p>Now, the time to type. Git commands follow the pattern: <code>git verb options</code>. Here’s the basic setup:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">"Alfredo Linguini"</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.email <span class="st">"a.linguini@ratatouille.fr"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Use your own name and email address instead of Alfredo’s. This user name and email will be associated with your subsequent Git activity, which means that any changes pushed to <a href="https://github.com/">GitHub</a>, <a href="https://bitbucket.org/">BitBucket</a>, <a href="https://gitlab.com/">GitLab</a> or another Git host server after this lesson will include this information.</p>
-<p>For this lesson, we will be interacting with <a href="https://github.com/">GitHub</a> and so the email address used should be the same as the one used when setting up your GitHub account. If you are concerned about privacy, please review <a href="https://help.github.com/articles/keeping-your-email-address-private/">GitHub’s instructions for keeping your email address private</a>.</p>
+<p>For this lesson, we will be using <a href="https://github.com/">GitHub</a>. Therefore, the email address used should be the same as the one used when setting up your GitHub account.</p>
 <div class="callout callout-style-simple callout-tip callout-titled" title="Keeping your email private">
-<div class="callout-header d-flex align-content-center">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
 <span class="screen-reader-only">Tip</span>Keeping your email private
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>For privacy, use GitHub’s no-reply email: <code>ID+username@users.noreply.github.com</code>.</p>
+<p>If you are concerned about privacy, please review <a href="https://help.github.com/articles/keeping-your-email-address-private/">GitHub’s instructions for keeping your email address private</a>.</p>
+<p>GitHub’s no-reply email will look like this: <code>ID+username@users.noreply.github.com</code>.</p>
 </div>
 </div>
-<p>Alfredo also has to set his favorite text editor, following this table:</p>
+</div>
+<p>Alfredo also has to set his favorite text editor. We, of course, will be using VS Code, but you can use any editor you like. The <code>--wait</code> option tells VS Code to wait until the file is closed before returning control to the terminal.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> core.editor <span class="st">"code --wait"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Git (2.28+) allows configuration of the name of the branch created when you initialize any new repository. Alfredo decides to use that feature to set it to <code>main</code> so it matches the cloud service he will eventually use.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> init.defaultBranch main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -366,12 +385,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>We will not be convering branch management in this lesson, but setting the default branch name to <code>main</code> now will help avoid confusion later. In short, a branch is a separate line of development in a repository. The default branch is the main line of development where the stable version of the project is maintained. See Atlassion tutorial on <a href="https://www.atlassian.com/git/tutorials/using-branches">Git Branch</a> for more information.</p>
+<p>We will not be convering branch management in this lesson, but setting the default branch name to <code>main</code> now will help avoid confusion later. In short, a branch is a separate line of development in a repository. The default branch is the main line of development where the stable version of the project is maintained.</p>
+<p>See Atlassion tutorial on <a href="https://www.atlassian.com/git/tutorials/using-branches">Git Branch</a> for more information.</p>
 </div>
 </div>
 </div>
 <div class="callout callout-style-simple callout-note callout-titled" title="How `master` became `main`">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -380,7 +400,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Following the 2020 Black Lives Matter protests, the <a href="https://sfconservancy.org/news/2020/jun/23/gitbranchname/">Software Freedom Conservancy</a> encouraged removing non-inclusive language in software, targeting the term “master”. GitHub changed the default branch name for new repositories from <code>master</code> to <code>main</code> in October 2020. Other platforms followed suit.</p>
 <p>The same type of terminology has been changed in HPC jargon. Slave nodes are now called worker or compute nodes, and master nodes are now called controller or head nodes.</p>
@@ -389,13 +409,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>These commands only run once. Review your settings anytime with:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--list</span> <span class="at">--global</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="callout callout-style-simple callout-tip callout-titled" title="Git Help and Manual">
+<div class="callout callout-style-simple callout-tip callout-titled" title="Git help and manual">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Git Help and Manual
+<span class="screen-reader-only">Tip</span>Git help and manual
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -409,11 +429,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>We will help Alfredo with his new project, create a repository with all his recipes.</p>
 <p>First, let’s create a new directory in the home directory <code>~</code> for our work and then change the current working directory to the newly created one:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> </span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> recipes</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> recipes</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Initialize the repository:</p>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> recipes</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Now, a bit annoying but necessary, we need to change the current working directory to the newly created one in VS Code. Use the <strong>File</strong> &gt; <strong>Open Folder</strong> menu item to select the <code>recipes</code> folder or any other method above.</p>
+<p>Once you are in the <code>recepies</code> (you can verify that by typying <code>pwd</code> in the terminal), we will initialize the repository. In terminal, type the following command:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This creates a repository that tracks the entire directory and its subdirectories. Don’t create nested repositories.</p>
+<p>In VS Code we can use <strong>View</strong> &gt; <strong>Source Control</strong> menu item to see the Source Control panel.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/version-control_vs-code_intialize-repository.png" class="img-fluid figure-img"></p>
+<figcaption>Initialize a local repository in VS Code.</figcaption>
+</figure>
+</div>
+<p>Press <strong>Initialize Repository</strong>. You should show that we are on the <code>main</code> branch and that there are no commits yet.</p>
+<div class="callout callout-style-simple callout-note callout-titled" title="Nested repositories">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Nested repositories
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This creates a repository that tracks the entire directory and its subdirectories. There is no need to create nested repositories.</p>
+</div>
+</div>
 <p>If we use <code>ls</code> to show the directory’s contents, it appears that nothing has changed:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>But if we add the <code>-a</code> flag to show everything, we can see that Git has created a hidden directory within <code>recipes</code> called <code>.git</code>:</p>
@@ -427,7 +467,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 No commits yet
 
 nothing to commit (create/copy files and use "git add" to track)</code></pre>
-<p>If you are using a different version of <code>git</code>, the exact wording of the output might be slightly different.</p>
+<p>You will notice that VS Code Source Control panel has changed to show that we are on the <code>main</code> branch and that there are no commits yet.</p>
 <section id="places-to-create-git-repositories" class="level2">
 <h2 class="anchored" data-anchor-id="places-to-create-git-repositories">Places to create Git repositories</h2>
 <p>Along with tracking information about recipes (the project we have already created), Alfredo would also like to track information about desserts specifically. Alfredo creates a <code>desserts</code> project inside his <code>recipes</code> project with the following sequence of commands:</p>
@@ -440,7 +480,7 @@ nothing to commit (create/copy files and use "git add" to track)</code></pre>
 <span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-a</span>           <span class="co"># ensure the .git subdirectory is present indicating we have created a new Git repository</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Is the <code>git init</code> command, run inside the <code>desserts</code> subdirectory, required for tracking files stored in the <code>desserts</code> subdirectory?</p>
 <div class="callout callout-style-simple callout-note callout-titled" title="Solution">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -449,7 +489,7 @@ nothing to commit (create/copy files and use "git add" to track)</code></pre>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>**No.&nbsp;Alfredo does not need to make the <code>desserts</code> subdirectory a Git repository because the <code>recipes</code> repository will track all files, sub-directories, and subdirectory files under the <code>recipes</code> directory. Thus, in order to track all information about desserts, Alfredo only needed to add the <code>desserts</code> subdirectory to the <code>recipes</code> directory.</p>
 <p>Right now, you have a “nested repository” is a Git repository that exists within the working directory of another Git repository. Each nested repository operates independently with its own history. Git is designed primarily to manage one repository per directory tree. When Git encounters a <code>.git</code> folder within a subdirectory of a parent repository, it treats the inner repository as a separate entity and usually ignores its contents within the parent’s version control.</p>
@@ -483,7 +523,7 @@ nothing to commit (create/copy files and use "git add" to track)</code></pre>
 ## Instructions</code></pre>
 <p>Save the file and exit your editor.</p>
 <div class="callout callout-style-simple callout-note callout-titled" title="Markdown">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -492,7 +532,7 @@ nothing to commit (create/copy files and use "git add" to track)</code></pre>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><a href="https://en.wikipedia.org/wiki/Markdown">Markdown</a> is a simple plain-text format. Use <code>*</code> for bullets, <code>1.</code> for numbering, <code>#</code> for headings. This website uses Markdown for formatting with <a href="https://quarto.org/">Quarto</a>.</p>
 <p>Markdown files have the extension <code>.md</code> and is a friendlier then LaTeX for writing documents. You can convert Markdown files to other formats, such as PDF or HTML, even Microsoft Word.</p>
@@ -552,7 +592,7 @@ Date:   Thu Aug 22 09:51:46 2013 -0400
     Create initial structure for a Guacamole recipe</code></pre>
 <p><code>git log</code> lists all commits made to a repository in reverse chronological order. The listing for each commit includes the commit’s full identifier (which starts with the same characters as the short identifier printed by the <code>git commit</code> command earlier), the commit’s author, when it was created, and the log message Git was given when the commit was created.</p>
 <div class="callout callout-style-simple callout-note callout-titled" title="Where Are My Changes?">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -561,7 +601,7 @@ Date:   Thu Aug 22 09:51:46 2013 -0400
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>If we run <code>ls</code> at this point, we will still see just one file called <code>guacamole.md</code>. That’s because Git saves information about files’ history in the special <code>.git</code> directory mentioned earlier so that our filesystem doesn’t become cluttered (and so that we can’t accidentally edit or delete an old version).</p>
 </div>
@@ -712,7 +752,7 @@ Date:   Thu Aug 22 09:51:46 2013 -0400
 <li>“modify guacamole to the traditional recipe”</li>
 </ol>
 <div class="callout callout-style-simple callout-note callout-titled" title="Solution">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -721,7 +761,7 @@ Date:   Thu Aug 22 09:51:46 2013 -0400
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Answer 3. Good commit messages are short, descriptive, and explain <em>why</em>, not just <em>what</em>.</p>
 <p>It’s is nice to capitalize your messages, but not required. One less key to press is always good.</p>
@@ -739,7 +779,7 @@ Date:   Thu Aug 22 09:51:46 2013 -0400
 <li><code>git commit -m myfile.txt "my recent changes"</code></li>
 </ol>
 <div class="callout callout-style-simple callout-note callout-titled" title="Solution">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -748,7 +788,7 @@ Date:   Thu Aug 22 09:51:46 2013 -0400
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Answer 3 is correct: <code>git add</code> stages the file, then <code>git commit</code> saves it.</p>
 </div>
@@ -764,7 +804,7 @@ Date:   Thu Aug 22 09:51:46 2013 -0400
 <li>Add changes from both files to the staging area, and commit those changes.</li>
 </ol>
 <div class="callout callout-style-simple callout-note callout-titled" title="Solution">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -773,7 +813,7 @@ Date:   Thu Aug 22 09:51:46 2013 -0400
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>First we make our changes to the <code>guacamole.md</code> and <code>groceries.md</code> files:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb59"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> guacamole.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -811,7 +851,7 @@ Date:   Thu Aug 22 09:51:46 2013 -0400
 <li>Display the differences between its updated state and its original state.</li>
 </ul>
 <div class="callout callout-style-simple callout-note callout-titled" title="Solution">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -820,7 +860,7 @@ Date:   Thu Aug 22 09:51:46 2013 -0400
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>If needed, move out of the <code>recipes</code> folder:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb67"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -841,8 +881,8 @@ Date:   Thu Aug 22 09:51:46 2013 -0400
 </section>
 <section id="exploring-history" class="level1">
 <h1>Exploring History</h1>
-<p>As we saw in the previous episode, we can refer to commits by their identifiers. You can refer to the <em>most recent commit</em> of the working directory by using the identifier <code>HEAD</code>.</p>
-<p>We’ve been adding small changes at a time to <code>guacamole.md</code>, so it’s easy to track our progress by looking at it. Let’s do that using our <code>HEAD</code>. Before we start, let’s make a change to <code>guacamole.md</code>, adding yet another line.</p>
+<p>We can refer to the <em>most recent commit</em> with <code>HEAD</code>. You can also use <code>HEAD~1</code> for the commit before that, <code>HEAD~2</code> for the one before that, and so on.</p>
+<p>Let’s make a small change to <code>guacamole.md</code> and compare it with <code>HEAD</code>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb72"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="ex">code</span> guacamole.md</span>
 <span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> guacamole.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="output"><code># Guacamole
@@ -863,70 +903,10 @@ index b36abfd..0848c8d 100644
  * salt
  ## Instructions
 +An ill-considered change</code></pre>
-<p>Note that <code>HEAD</code> is the default option for <code>git diff</code>, so omitting it will not change the command’s output at all (give it a try). However, the real power of <code>git diff</code> lies in its ability to compare with previous commits. For example, by adding <code>~1</code> (where “~” is “tilde”, pronounced [<strong>til</strong>-d<em>uh</em>]), we can look at the commit before <code>HEAD</code>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb76"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff HEAD~1 guacamole.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>If we want to see the differences between older commits we can use <code>git diff</code> again, but with the notation <code>HEAD~1</code>, <code>HEAD~2</code>, and so on, to refer to them:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb77"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff HEAD~2 guacamole.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<pre class="git"><code>diff --git a/guacamole.md b/guacamole.md
-index df0654a..b36abfd 100644
---- a/guacamole.md
-+++ b/guacamole.md
-@@ -1,3 +1,6 @@
- # Guacamole
- ## Ingredients
-+* avocado
-+* lime
-+* salt
- ## Instructions</code></pre>
-<p>We could also use <code>git show</code> which shows us what changes we made at an older commit as well as the commit message, rather than the <em>differences</em> between a commit and our working directory that we see by using <code>git diff</code>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb79"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> show HEAD~2 guacamole.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<pre class="output"><code>commit f22b25e3233b4645dabd0d81e651fe074bd8e73b
-Author: Alfredo Linguini &lt;a.linguini@ratatouille.fr&gt;
-Date:   Thu Aug 22 10:07:21 2013 -0400
-
-    Create initial structure for a Guacamole recipe
-
-diff --git a/guacamole.md b/guacamole.md
-new file mode 100644
-index 0000000..df0654a
---- /dev/null
-+++ b/guacamole.md
-@@ -0,0 +1,3 @@
-+# Guacamole
-+## Ingredients
-+## Instructions</code></pre>
-<p>In this way, we can build up a chain of commits. The most recent end of the chain is referred to as <code>HEAD</code>; we can refer to previous commits using the <code>~</code> notation, so <code>HEAD~1</code> means “the previous commit”, while <code>HEAD~123</code> goes back 123 commits from where we are now.</p>
-<p>We can also refer to commits using those long strings of digits and letters that both <code>git log</code> and <code>git show</code> display. These are unique IDs for the changes, and “unique” really does mean unique: every change to any set of files on any computer has a unique 40-character identifier. Our first commit was given the ID <code>f22b25e3233b4645dabd0d81e651fe074bd8e73b</code>, so let’s try this:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb81"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff f22b25e3233b4645dabd0d81e651fe074bd8e73b guacamole.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<pre class="git"><code>diff --git a/guacamole.md b/guacamole.md
-index df0654a..93a3e13 100644
---- a/guacamole.md
-+++ b/guacamole.md
-@@ -1,3 +1,7 @@
- # Guacamole
- ## Ingredients
-+* avocado
-+* lime
-+* salt
- ## Instructions
-+An ill-considered change</code></pre>
-<p>That’s the right answer, but typing out random 40-character strings is annoying, so Git lets us use just the first few characters (typically seven for normal size projects):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb83"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff f22b25e guacamole.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<pre class="git"><code>diff --git a/guacamole.md b/guacamole.md
-index df0654a..93a3e13 100644
---- a/guacamole.md
-+++ b/guacamole.md
-@@ -1,3 +1,7 @@
- # Guacamole
- ## Ingredients
-+* avocado
-+* lime
-+* salt
- ## Instructions
-+An ill-considered change</code></pre>
+<p><code>HEAD</code> is the default for <code>git diff</code>, so <code>git diff guacamole.md</code> gives the same result. If you want to compare against an earlier commit, use <code>HEAD~1</code> or another commit ID. Git also accepts shortened commit hashes when you need to refer to a specific older commit.</p>
 <p>All right! So we can save changes to files and see what we’ve changed. Now, how can we restore older versions of things? Let’s suppose we change our mind about the last update to <code>guacamole.md</code> (the “ill-considered change”).</p>
 <p><code>git status</code> now tells us that the file has been changed, but those changes haven’t been staged:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb85"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb76"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="git"><code>On branch main
 Changes not staged for commit:
   (use "git add &lt;file&gt;..." to update what will be committed)
@@ -935,8 +915,8 @@ Changes not staged for commit:
 
 no changes added to commit (use "git add" and/or "git commit -a")</code></pre>
 <p>We can put things back the way they were by using <code>git restore</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb87"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> restore guacamole.md</span>
-<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> guacamole.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb78"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> restore guacamole.md</span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> guacamole.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="output"><code># Guacamole
 ## Ingredients
 * avocado
@@ -944,12 +924,12 @@ no changes added to commit (use "git add" and/or "git commit -a")</code></pre>
 * salt
 ## Instructions</code></pre>
 <p>As you might guess from its name, <code>git restore</code> restores an old version of a file. By default, it recovers the version of the file recorded in <code>HEAD</code>, which is the last saved commit. If we want to go back even further, we can use a commit identifier instead, using <code>-s</code> option:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb89"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> restore <span class="at">-s</span> f22b25e guacamole.md</span>
-<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> guacamole.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb80"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> restore <span class="at">-s</span> f22b25e guacamole.md</span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> guacamole.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="output"><code># Guacamole
 ## Ingredients
 ## Instructions</code></pre>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb91"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb82"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="git"><code>On branch main
 Changes not staged for commit:
   (use "git add &lt;file&gt;..." to update what will be committed)
@@ -958,8 +938,8 @@ Changes not staged for commit:
 
 no changes added to commit (use "git add" and/or "git commit -a")</code></pre>
 <p>Notice that the changes are not currently in the staging area, and have not been committed. If we wished, we can put things back the way they were at the last commit by using <code>git restore</code> to overwrite the working copy with the last committed version:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb93"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> restore guacamole.md</span>
-<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> guacamole.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb84"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> restore guacamole.md</span>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> guacamole.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="output"><code># Guacamole
 ## Ingredients
 * avocado
@@ -983,7 +963,7 @@ no changes added to commit (use "git add" and/or "git commit -a")</code></pre>
 <li>Both 2 and 4</li>
 </ol>
 <div class="callout callout-style-simple callout-note callout-titled" title="Solution">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -992,7 +972,7 @@ no changes added to commit (use "git add" and/or "git commit -a")</code></pre>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>The answer is (5) - Both 2 and 4.</p>
 <p>The <code>restore</code> command restores files from the repository, overwriting the files in your working directory. Answers 2 and 4 both restore the <em>latest</em> version <em>in the repository</em> of the file <code>data_cruncher.py</code>. Answer 2 uses <code>HEAD</code> to indicate the <em>latest</em>, whereas answer 4 uses the unique ID of the last commit, which is what <code>HEAD</code> means.</p>
@@ -1005,13 +985,13 @@ no changes added to commit (use "git add" and/or "git commit -a")</code></pre>
 <section id="understanding-workflow-and-history" class="level2">
 <h2 class="anchored" data-anchor-id="understanding-workflow-and-history">Understanding workflow and history</h2>
 <p>What is the output of the last command in the following sequence?</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb95"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> recipes</span>
-<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"I like tomatoes, therefore I like ketchup"</span> <span class="op">&gt;</span> ketchup.md</span>
-<span id="cb95-3"><a href="#cb95-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add ketchup.md</span>
-<span id="cb95-4"><a href="#cb95-4" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"ketchup enhances pasta dishes"</span> <span class="op">&gt;&gt;</span> ketchup.md</span>
-<span id="cb95-5"><a href="#cb95-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"My opinions about the red sauce"</span></span>
-<span id="cb95-6"><a href="#cb95-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> restore ketchup.md</span>
-<span id="cb95-7"><a href="#cb95-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> ketchup.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb86"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> recipes</span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"I like tomatoes, therefore I like ketchup"</span> <span class="op">&gt;</span> ketchup.md</span>
+<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add ketchup.md</span>
+<span id="cb86-4"><a href="#cb86-4" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"ketchup enhances pasta dishes"</span> <span class="op">&gt;&gt;</span> ketchup.md</span>
+<span id="cb86-5"><a href="#cb86-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"My opinions about the red sauce"</span></span>
+<span id="cb86-6"><a href="#cb86-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> restore ketchup.md</span>
+<span id="cb86-7"><a href="#cb86-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> ketchup.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol type="1">
 <li><pre class="output"><code>   ketchup enhances pasta dishes</code></pre></li>
 <li><pre class="output"><code>   I like tomatoes, therefore I like ketchup</code></pre></li>
@@ -1020,7 +1000,7 @@ no changes added to commit (use "git add" and/or "git commit -a")</code></pre>
 <li><pre class="output"><code>   Error because you have changed ketchup.md without committing the changes</code></pre></li>
 </ol>
 <div class="callout callout-style-simple callout-note callout-titled" title="Solution">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1029,7 +1009,7 @@ no changes added to commit (use "git add" and/or "git commit -a")</code></pre>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>The answer is 2.</p>
 <p>The changes to the file from the second <code>echo</code> command are only applied to the working copy, not the version in the staging area. The command <code>git add ketchup.md</code> places the current version of <code>ketchup.md</code> into the staging area.</p>
@@ -1049,7 +1029,7 @@ no changes added to commit (use "git add" and/or "git commit -a")</code></pre>
 <h2 class="anchored" data-anchor-id="getting-rid-of-staged-changes">Getting rid of staged changes</h2>
 <p><code>git restore</code> can be used to restore a previous commit when unstaged changes have been made, but will it also work for changes that have been staged but not committed? Make a change to <code>guacamole.md</code>, add that change using <code>git add</code>, then use <code>git restore</code> to see if you can remove your change.</p>
 <div class="callout callout-style-simple callout-note callout-titled" title="Solution">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1058,7 +1038,7 @@ no changes added to commit (use "git add" and/or "git commit -a")</code></pre>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>After adding a change, <code>git restore</code> cannot be used directly. Let’s look at the output of <code>git status</code>:</p>
 <pre class="git"><code>On branch main
@@ -1067,9 +1047,9 @@ Changes to be committed:
         modified:   guacamole.md</code></pre>
 <p>Note that if you don’t have the same output, you may either have forgotten to change the file, or you have added it <em>and</em> committed it.</p>
 <p>Using the command <code>git restore guacamole.md</code> now does not give an error, but it does not restore the file either. Git helpfully tells us that we need to use <code>git restore --staged</code> first to unstage the file:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb102"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> restore <span class="at">--staged</span> guacamole.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb93"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> restore <span class="at">--staged</span> guacamole.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Now, <code>git status</code> gives us:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb103"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb94"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="git"><code>On branch main
 Changes not staged for commit:
   (use "git add &lt;file&gt;..." to update what will be committed)
@@ -1078,8 +1058,8 @@ Changes not staged for commit:
 
 no changes added to commit (use "git add" and/or "git commit -a")</code></pre>
 <p>This means we can now use <code>git restore</code> to restore the file to the previous commit:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb105"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> restore guacamole.md</span>
-<span id="cb105-2"><a href="#cb105-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb96"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> restore guacamole.md</span>
+<span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="git"><code>On branch main
 nothing to commit, working tree clean</code></pre>
 </div>
@@ -1091,13 +1071,13 @@ nothing to commit, working tree clean</code></pre>
 <p>Exploring history is an important part of Git, and often it is a challenge to find the right commit ID, especially if the commit is from several months ago.</p>
 <p>Imagine the <code>recipes</code> project has more than 50 files. You would like to find a commit that modifies some specific text in <code>guacamole.md</code>. When you type <code>git log</code>, a very long list appeared. How can you narrow down the search?</p>
 <p>Recall that the <code>git diff</code> command allows us to explore one specific file, e.g., <code>git diff guacamole.md</code>. We can apply a similar idea here.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb107"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log guacamole.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb98"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log guacamole.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Unfortunately some of these commit messages are very ambiguous, e.g., <code>update files</code>. How can you search through these files?</p>
 <p>Both <code>git diff</code> and <code>git log</code> are very useful and they summarize a different part of the history for you. Is it possible to combine both? Let’s try the following:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb108"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--patch</span> guacamole.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb99"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--patch</span> guacamole.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>You should get a long list of output, and you should be able to see both commit messages and the difference between each commit.</p>
 <p>Question: What does the following command do?</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb109"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--patch</span> HEAD~9 <span class="pp">*</span>.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb100"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--patch</span> HEAD~9 <span class="pp">*</span>.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="ignoring-things" class="level1">
@@ -1107,10 +1087,10 @@ nothing to commit, working tree clean</code></pre>
 <p>Common knowledge</p>
 </blockquote>
 <p>What if we have files that we do not want Git to track for us, like backup files created by our editor or intermediate files created during data analysis? Let’s create a few dummy files:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb110"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> pictures</span>
-<span id="cb110-2"><a href="#cb110-2" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> a.png b.png c.png pictures/cake1.jpg pictures/cake2.jpg</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb101"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> pictures</span>
+<span id="cb101-2"><a href="#cb101-2" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> a.png b.png c.png pictures/cake1.jpg pictures/cake2.jpg</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>and see what Git says:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb111"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb102"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="git"><code>On branch main
 Untracked files:
   (use "git add &lt;file&gt;..." to include in what will be committed)
@@ -1123,18 +1103,18 @@ Untracked files:
 nothing added to commit but untracked files present (use "git add" to track)</code></pre>
 <p>Putting these files under version control would be a waste of disk space. What’s worse, having them all listed could distract us from changes that actually matter, so let’s tell Git to ignore them.</p>
 <p>We do this by creating a file in the root directory of our project called <code>.gitignore</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb113"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="ex">code</span> .gitignore</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb104"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="ex">code</span> .gitignore</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Type the text below into the <code>.gitignore</code> file:</p>
 <pre class="output"><code>*.png
 pictures/</code></pre>
 <p>Save the file and exit your editor.</p>
 <p>Verify that the file contains the files to ignore.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb115"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> .gitignore</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb106"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> .gitignore</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="output"><code>*.png
 pictures/</code></pre>
 <p>These patterns tell Git to ignore any file whose name ends in <code>.png</code> and everything in the <code>pictures</code> directory. (If any of these files were already being tracked, Git would continue to track them.)</p>
 <p>Once we have created this file, the output of <code>git status</code> is much cleaner:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb117"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb108"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="git"><code>On branch main
 Untracked files:
   (use "git add &lt;file&gt;..." to include in what will be committed)
@@ -1143,18 +1123,18 @@ Untracked files:
 
 nothing added to commit but untracked files present (use "git add" to track)</code></pre>
 <p>The only thing Git notices now is the newly-created <code>.gitignore</code> file. You might think we wouldn’t want to track it, but everyone we’re sharing our repository with will probably want to ignore the same things that we’re ignoring. Let’s add and commit <code>.gitignore</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb119"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .gitignore</span>
-<span id="cb119-2"><a href="#cb119-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Ignore png files and the pictures folder."</span></span>
-<span id="cb119-3"><a href="#cb119-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb110"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .gitignore</span>
+<span id="cb110-2"><a href="#cb110-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Ignore png files and the pictures folder."</span></span>
+<span id="cb110-3"><a href="#cb110-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="git"><code>On branch main
 nothing to commit, working tree clean</code></pre>
 <p>As a bonus, using <code>.gitignore</code> helps us avoid accidentally adding files to the repository that we don’t want to track:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb121"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add a.png</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb112"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add a.png</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="git"><code>The following paths are ignored by one of your .gitignore files:
 a.png
 Use -f if you really want to add them.</code></pre>
 <p>If we really want to override our ignore settings, we can use <code>git add -f</code> to force Git to add something. For example, <code>git add -f a.png</code>. We can also always see the status of ignored files if we want:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb123"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status <span class="at">--ignored</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb114"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status <span class="at">--ignored</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="git"><code>On branch main
 Ignored files:
  (use "git add -f &lt;file&gt;..." to include in what will be committed)
@@ -1165,66 +1145,9 @@ Ignored files:
         pictures/
 
 nothing to commit, working tree clean</code></pre>
-<section id="ignoring-nested-files" class="level2">
-<h2 class="anchored" data-anchor-id="ignoring-nested-files">Ignoring nested files</h2>
-<p>Given a directory structure that looks like:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb125"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb125-1"><a href="#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pictures/cake</span></span>
-<span id="cb125-2"><a href="#cb125-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pictures/pizza</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>How would you ignore only <code>pictures/cake</code> and not <code>pictures/pizza</code>?</p>
-<div class="callout callout-style-simple callout-note callout-titled" title="Solution">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Solution
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-15" class="callout-15-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>If you only want to ignore the contents of <code>pictures/cake</code>, you can change your <code>.gitignore</code> to ignore only the <code>/cake/</code> subfolder by adding the following line to your <code>.gitignore</code>:</p>
-<pre class="output"><code>pictures/cake/</code></pre>
-<p>This line will ensure only the contents of <code>pictures/cake</code> is ignored, and not the contents of <code>pictures/pizza</code>.</p>
-<p>As with most programming issues, there are a few alternative ways that one may ensure this ignore rule is followed. Further, the discussion pages have more detail on ignore rules.</p>
-</div>
-</div>
-</div>
-</section>
-<section id="including-specific-files" class="level2">
-<h2 class="anchored" data-anchor-id="including-specific-files">Including specific files</h2>
-<p>How would you ignore all <code>.png</code> files in your root directory except for <code>final.png</code>?</p>
-<p>Hint: Find out what <code>!</code> (the exclamation point operator) does</p>
-<div class="callout callout-style-simple callout-note callout-titled" title="Solution">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Solution
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-16" class="callout-16-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>You would add the following two lines to your <code>.gitignore</code>:</p>
-<pre class="output"><code>*.png           # ignore all png files
-!final.png      # except final.png</code></pre>
-<p>The exclamation point operator will include a previously excluded entry.</p>
-<p>Note also that, if you’ve previously committed <code>.png</code> files in this lesson, they will not be ignored with this new rule. Only future additions of <code>.png</code> files to the root directory will be ignored.</p>
-</div>
-</div>
-</div>
-</section>
-<section id="ignoring-nested-files-variation" class="level2">
-<h2 class="anchored" data-anchor-id="ignoring-nested-files-variation">Ignoring nested files: variation</h2>
-<p>Given a directory structure that looks similar to the earlier Nested Files exercise, but with a slightly different directory structure:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb128"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb128-1"><a href="#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pictures/cake</span></span>
-<span id="cb128-2"><a href="#cb128-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pictures/pizza</span></span>
-<span id="cb128-3"><a href="#cb128-3" aria-hidden="true" tabindex="-1"></a><span class="ex">pictures/pie</span></span>
-<span id="cb128-4"><a href="#cb128-4" aria-hidden="true" tabindex="-1"></a><span class="ex">pictures/brownie</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>How would you ignore all of the contents in the pictures folder, but not <code>pictures/pie</code>?</p>
-<p>Hint: think a bit about how you created an exception with the <code>!</code> operator before.</p>
+<section id="log-files" class="level2">
+<h2 class="anchored" data-anchor-id="log-files">Log files</h2>
+<p>You wrote a script that creates temporary log files like <code>log_01</code>, <code>log_02</code>, and <code>log_03</code>. Add a <code>.gitignore</code> rule for them, then force-add <code>log_01</code> if you decide that one file should be tracked after all.</p>
 <div class="callout callout-style-simple callout-note callout-titled" title="Solution">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -1237,114 +1160,7 @@ nothing to commit, working tree clean</code></pre>
 </div>
 <div id="callout-17" class="callout-17-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>If you want to ignore the contents of <code>pictures/</code> but not those of <code>pictures/pie/</code>, you can change your <code>.gitignore</code> to ignore the contents of pictures folder, but create an exception for the contents of the <code>pictures/pie</code> subfolder. Your <code>.gitignore</code> would look like this:</p>
-<pre class="output"><code>pictures/*              # ignore everything in pictures folder
-!pictures/pie/          # do not ignore pictures/pie/ contents</code></pre>
-</div>
-</div>
-</div>
-</section>
-<section id="ignoring-all-data-files-in-a-directory" class="level2">
-<h2 class="anchored" data-anchor-id="ignoring-all-data-files-in-a-directory">Ignoring all data files in a directory</h2>
-<p>Assuming you have an empty <code>.gitignore</code> file, and given a directory structure that looks like:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb130"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb130-1"><a href="#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pictures/data/location/gps/a.dat</span></span>
-<span id="cb130-2"><a href="#cb130-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pictures/data/location/gps/b.dat</span></span>
-<span id="cb130-3"><a href="#cb130-3" aria-hidden="true" tabindex="-1"></a><span class="ex">pictures/data/location/gps/c.dat</span></span>
-<span id="cb130-4"><a href="#cb130-4" aria-hidden="true" tabindex="-1"></a><span class="ex">pictures/data/location/gps/info.txt</span></span>
-<span id="cb130-5"><a href="#cb130-5" aria-hidden="true" tabindex="-1"></a><span class="ex">pictures/plots</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>What’s the shortest <code>.gitignore</code> rule you could write to ignore all <code>.dat</code> files in <code>pictures/data/location/gps</code>? Do not ignore the <code>info.txt</code>.</p>
-<div class="callout callout-style-simple callout-note callout-titled" title="Solution">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Solution
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-18" class="callout-18-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Appending <code>pictures/data/location/gps/*.dat</code> will match every file in <code>pictures/data/location/gps</code> that ends with <code>.dat</code>. The file <code>pictures/data/location/gps/info.txt</code> will not be ignored.</p>
-</div>
-</div>
-</div>
-</section>
-<section id="ignoring-all-data-files-in-the-repository" class="level2">
-<h2 class="anchored" data-anchor-id="ignoring-all-data-files-in-the-repository">Ignoring all data files in the repository</h2>
-<p>Let us assume you have many <code>.csv</code> files in different subdirectories of your repository. For example, you might have:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb131"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb131-1"><a href="#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="ex">results/a.csv</span></span>
-<span id="cb131-2"><a href="#cb131-2" aria-hidden="true" tabindex="-1"></a><span class="ex">data/experiment_1/b.csv</span></span>
-<span id="cb131-3"><a href="#cb131-3" aria-hidden="true" tabindex="-1"></a><span class="ex">data/experiment_2/c.csv</span></span>
-<span id="cb131-4"><a href="#cb131-4" aria-hidden="true" tabindex="-1"></a><span class="ex">data/experiment_2/variation_1/d.csv</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>How do you ignore all the <code>.csv</code> files, without explicitly listing the names of the corresponding folders?</p>
-<div class="callout callout-style-simple callout-note callout-titled" title="Solution">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Solution
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-19" class="callout-19-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>In the <code>.gitignore</code> file, write:</p>
-<pre class="output"><code>**/*.csv</code></pre>
-<p>This will ignore all the <code>.csv</code> files, regardless of their position in the directory tree. You can still include some specific exception with the exclamation point operator.</p>
-</div>
-</div>
-</div>
-</section>
-<section id="the-order-of-rules" class="level2">
-<h2 class="anchored" data-anchor-id="the-order-of-rules">The order of rules</h2>
-<p>Given a <code>.gitignore</code> file with the following contents:</p>
-<pre class="output"><code>*.csv
-!*.csv</code></pre>
-<p>What will be the result?</p>
-<div class="callout callout-style-simple callout-note callout-titled" title="Solution">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Solution
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-20" class="callout-20-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>The <code>!</code> modifier will negate an entry from a previously defined ignore pattern. Because the <code>!*.csv</code> entry negates all of the previous <code>.csv</code> files in the <code>.gitignore</code>, none of them will be ignored, and all <code>.csv</code> files will be tracked.</p>
-</div>
-</div>
-</div>
-</section>
-<section id="log-files" class="level2">
-<h2 class="anchored" data-anchor-id="log-files">Log files</h2>
-<p>You wrote a script that creates many intermediate log-files of the form <code>log_01</code>, <code>log_02</code>, <code>log_03</code>, etc. You want to keep them but you do not want to track them through <code>git</code>.</p>
-<ol type="1">
-<li>Write <strong>one</strong> <code>.gitignore</code> entry that excludes files of the form <code>log_01</code>, <code>log_02</code>, etc.</li>
-<li>Test your “ignore pattern” by creating some dummy files of the form <code>log_01</code>, etc.</li>
-<li>You find that the file <code>log_01</code> is very important after all, add it to the tracked files without changing the <code>.gitignore</code> again.</li>
-<li>Discuss with your neighbor what other types of files could reside in your directory that you do not want to track and thus would exclude via <code>.gitignore</code>.</li>
-</ol>
-<div class="callout callout-style-simple callout-note callout-titled" title="Solution">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Solution
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-21" class="callout-21-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<ol type="1">
-<li>Append either <code>log_*</code> or <code>log*</code> as a new entry in your <code>.gitignore</code></li>
-<li>Track <code>log_01</code> using <code>git add -f log_01</code></li>
-</ol>
+<p>Use either <code>log_*</code> or <code>log*</code> in <code>.gitignore</code>, then run <code>git add -f log_01</code> to override the ignore rule for that one file.</p>
 </div>
 </div>
 </div>
@@ -1370,9 +1186,9 @@ nothing to commit, working tree clean</code></pre>
 </div>
 </div>
 <p>As soon as the repository is created, GitHub displays a page with a URL and some information on how to configure your local repository. This effectively does the following on GitHub’s servers:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb134"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb134-1"><a href="#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> recipes</span>
-<span id="cb134-2"><a href="#cb134-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> recipes</span>
-<span id="cb134-3"><a href="#cb134-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb116"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> recipes</span>
+<span id="cb116-2"><a href="#cb116-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> recipes</span>
+<span id="cb116-3"><a href="#cb116-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>If you remember back to the earlier episode where we added and committed our work on <code>guacamole.md</code>, we had a diagram of the local repository. Now that we have two repositories, we need to connect them.</p>
 </section>
 <section id="connecting-local-to-remote-repository" class="level2">
@@ -1392,11 +1208,11 @@ nothing to commit, working tree clean</code></pre>
 </div>
 </div>
 <p>Copy that URL from the browser, go into the local <code>recipes</code> repository, and run this command:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb135"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb135-1"><a href="#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin git@github.com:alflin/recipes.git</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb117"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin git@github.com:alflin/recipes.git</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Make sure to use the URL for your repository rather than Alfredo’s: the only difference should be your username instead of <code>alflin</code>.</p>
 <p><code>origin</code> is a local name used to refer to the remote repository. It could be called anything, but <code>origin</code> is a convention that is often used by default in git and GitHub, so it’s helpful to stick with this unless there’s a reason not to.</p>
 <p>We can check that the command has worked by running <code>git remote -v</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb136"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb136-1"><a href="#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote <span class="at">-v</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb118"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote <span class="at">-v</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="git"><code>origin   git@github.com:alflin/recipes.git (fetch)
 origin   git@github.com:alflin/recipes.git (push)</code></pre>
 </section>
@@ -1419,7 +1235,7 @@ origin   git@github.com:alflin/recipes.git (push)</code></pre>
 </div>
 </div>
 <p>We will run the list command to check what key pairs already exist on your computer.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb138"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb138-1"><a href="#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-al</span> ~/.ssh</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb120"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-al</span> ~/.ssh</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Your output is going to look a little different depending on whether or not SSH has ever been set up on the computer you are using.</p>
 <p>If SSH has not been set up, your output is:</p>
 <pre class="output"><code>ls: cannot access '~/.ssh': No such file or directory</code></pre>
@@ -1428,9 +1244,9 @@ origin   git@github.com:alflin/recipes.git (push)</code></pre>
 <section id="creating-an-ssh-key-pair" class="level2">
 <h2 class="anchored" data-anchor-id="creating-an-ssh-key-pair">Creating an SSH key pair</h2>
 <p>To create an SSH key pair use this command, where the <code>-t</code> option specifies which type of algorithm to use and <code>-C</code> attaches a comment to the key (here, your email):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb140"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb140-1"><a href="#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> ed25519 <span class="at">-C</span> <span class="st">"a.linguini@ratatouille.fr"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb122"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> ed25519 <span class="at">-C</span> <span class="st">"a.linguini@ratatouille.fr"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>If you are using a legacy system that doesn’t support the Ed25519 algorithm, use:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb141"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb141-1"><a href="#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> rsa <span class="at">-b</span> 4096 <span class="at">-C</span> <span class="st">"your_email@example.com"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb123"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> rsa <span class="at">-b</span> 4096 <span class="at">-C</span> <span class="st">"your_email@example.com"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="output"><code>Generating public/private ed25519 key pair.
 Enter file in which to save the key (/c/Users/Alfredo/.ssh/id_ed25519):</code></pre>
 <p>We want to use the default file, so just press Enter.</p>
@@ -1457,7 +1273,7 @@ The key's randomart image is:
 +----[SHA256]-----+</code></pre>
 <p>The “identification” is actually the private key. You should never share it. The public key is appropriately named. The “key fingerprint” is a shorter version of a public key.</p>
 <p>Now that you have generated the SSH keys, you will find the SSH files when you check:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb146"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb146-1"><a href="#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-al</span> ~/.ssh</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb128"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb128-1"><a href="#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-al</span> ~/.ssh</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="output"><code>drwxr-xr-x 1 Alfredo   197121   0 Jul 16 14:48 ./
 drwxr-xr-x 1 Alfredo   197121   0 Jul 16 14:48 ../
 -rw-r--r-- 1 Alfredo   197121 419 Jul 16 14:48 id_ed25519
@@ -1466,7 +1282,7 @@ drwxr-xr-x 1 Alfredo   197121   0 Jul 16 14:48 ../
 <section id="copying-the-public-key-to-github" class="level2">
 <h2 class="anchored" data-anchor-id="copying-the-public-key-to-github">Copying the public key to GitHub</h2>
 <p>Now you have an SSH key pair and you can run this command to check if GitHub can read your authentication:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb148"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb148-1"><a href="#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> <span class="at">-T</span> git@github.com</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb130"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb130-1"><a href="#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> <span class="at">-T</span> git@github.com</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="output"><code>The authenticity of host 'github.com (192.30.255.112)' can't be established.
 RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.
 This key is not known by any other names
@@ -1475,18 +1291,18 @@ Warning: Permanently added 'github.com' (RSA) to the list of known hosts.
 git@github.com: Permission denied (publickey).</code></pre>
 <p>Right, we forgot that we need to give GitHub our public key!</p>
 <p>First, we need to copy the public key. Be sure to include the <code>.pub</code> at the end, otherwise you’re looking at the private key.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb150"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb150-1"><a href="#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> ~/.ssh/id_ed25519.pub</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb132"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb132-1"><a href="#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> ~/.ssh/id_ed25519.pub</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="output"><code>ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDmRA3d51X0uu9wXek559gfn6UFNF69yZjChyBIU2qKI a.linguini@ratatouille.fr</code></pre>
 <p>Now, going to GitHub.com, click on your profile icon in the top right corner to get the drop-down menu. Click “Settings”, then on the settings page, click “SSH and GPG keys” on the left side “Access” menu. Click the “New SSH key” button on the right side. Now, you can add the title (use something descriptive like “My Laptop” so you can remember where the original key pair files are located), paste your SSH key into the field, and click the “Add SSH key” to complete the setup.</p>
 <p>Now that you’ve set that up, let’s check your authentication again from the command line:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb152"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb152-1"><a href="#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> <span class="at">-T</span> git@github.com</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb134"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb134-1"><a href="#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> <span class="at">-T</span> git@github.com</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="output"><code>Hi Alfredo! You've successfully authenticated, but GitHub does not provide shell access.</code></pre>
 <p>Good! This output confirms that the SSH key works as intended. You are now ready to push your work to the remote repository.</p>
 </section>
 <section id="pushing-local-changes-to-a-remote" class="level2">
 <h2 class="anchored" data-anchor-id="pushing-local-changes-to-a-remote">Pushing local changes to a remote</h2>
 <p>Now that authentication is set up, we can return to the remote. This command will push the changes from our local repository to the repository on GitHub:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb154"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb154-1"><a href="#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb136"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb136-1"><a href="#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>If you set up a passphrase, it will prompt you for it. If you completed advanced settings for your authentication, it will not prompt for a passphrase.</p>
 <pre class="output"><code>Enumerating objects: 16, done.
 Counting objects: 100% (16/16), done.
@@ -1498,7 +1314,7 @@ remote: Resolving deltas: 100% (2/2), done.
 To https://github.com/alflin/recipes.git
  * [new branch]      main -&gt; main</code></pre>
 <p>We can pull changes from the remote repository to the local one as well:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb156"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb156-1"><a href="#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb138"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb138-1"><a href="#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="git"><code>From https://github.com/alflin/recipes
  * branch            main     -&gt; FETCH_HEAD
 Already up to date.</code></pre>
@@ -1508,7 +1324,7 @@ Already up to date.</code></pre>
 <h2 class="anchored" data-anchor-id="github-gui">GitHub GUI</h2>
 <p>Browse to your <code>recipes</code> repository on GitHub. Under the Code tab, find and click on the text that says “XX commits” (where “XX” is some number). Hover over, and click on, the three buttons to the right of each commit. What information can you gather/explore from these buttons? How would you get that same information in the shell?</p>
 <div class="callout callout-style-simple callout-note callout-titled" title="Solution">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-24-contents" aria-controls="callout-24" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1517,7 +1333,7 @@ Already up to date.</code></pre>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-24" class="callout-24-contents callout-collapse collapse">
+<div id="callout-20" class="callout-20-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>When you click on the left-most button, you’ll see all of the changes that were made in that particular commit. Green shaded lines indicate additions and red ones removals. In the shell we can do the same thing with <code>git diff</code>. In particular, <code>git diff ID1..ID2</code> where ID1 and ID2 are commit identifiers (e.g.&nbsp;<code>git diff a3bf1e5..041e637</code>) will show the differences between those two commits.</p>
 <p>The middle button (with the picture of two overlapping squares or pages) copies the full identifier of the commit to the clipboard. In the shell, <code>git log</code> will show you the full commit identifier for each commit.</p>
@@ -1530,7 +1346,7 @@ Already up to date.</code></pre>
 <h2 class="anchored" data-anchor-id="github-timestamp">GitHub timestamp</h2>
 <p>Create a remote repository on GitHub. Push the contents of your local repository to the remote. Make changes to your local repository and push these changes. Go to the repo you just created on GitHub and check the timestamps of the files. How does GitHub record times, and why?</p>
 <div class="callout callout-style-simple callout-note callout-titled" title="Solution">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-25-contents" aria-controls="callout-25" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1539,7 +1355,7 @@ Already up to date.</code></pre>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-25" class="callout-25-contents callout-collapse collapse">
+<div id="callout-21" class="callout-21-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>GitHub displays timestamps in a human readable relative format (i.e.&nbsp;“22 hours ago” or “three weeks ago”). However, if you hover over the timestamp, you can see the exact time at which the last change to the file occurred.</p>
 </div>
@@ -1550,7 +1366,7 @@ Already up to date.</code></pre>
 <h2 class="anchored" data-anchor-id="push-vs.-commit">Push vs.&nbsp;commit</h2>
 <p>In this episode, we introduced the <code>git push</code> command. How is <code>git push</code> different from <code>git commit</code>?</p>
 <div class="callout callout-style-simple callout-note callout-titled" title="Solution">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-26-contents" aria-controls="callout-26" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-22-contents" aria-controls="callout-22" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1559,7 +1375,7 @@ Already up to date.</code></pre>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-26" class="callout-26-contents callout-collapse collapse">
+<div id="callout-22" class="callout-22-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>When we push changes, we’re interacting with a remote repository to update it with the changes we’ve made locally (often this corresponds to sharing the changes we’ve made with others). Commit only updates your local repository.</p>
 </div>
@@ -1603,7 +1419,7 @@ Already up to date.</code></pre>
 <p>Next, the collaborator needs to download a copy of the owner’s repository to their machine. This is called “cloning a repo”.</p>
 <p>The collaborator doesn’t want to overwrite their own version of <code>recipes.git</code>, so they need to clone the owner’s repository to a different location than their own repository with the same name.</p>
 <p>To clone the owner’s repo into the home directory <code>~</code>, the collaborator enters:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb158"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb158-1"><a href="#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:alflin/recipes.git ~/alflin-recipes</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb140"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb140-1"><a href="#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:alflin/recipes.git ~/alflin-recipes</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Replace ‘alflin’ with the owner’s username.</p>
 <div class="callout callout-style-simple callout-note callout-titled" title="Important">
 <div class="callout-header d-flex align-content-center">
@@ -1622,21 +1438,21 @@ Already up to date.</code></pre>
 <section id="making-changes-as-a-collaborator" class="level2">
 <h2 class="anchored" data-anchor-id="making-changes-as-a-collaborator">Making changes as a collaborator</h2>
 <p>The collaborator can now make a change in their clone of the owner’s repository, exactly the same way as we’ve been doing before:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb159"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb159-1"><a href="#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/alflin-recipes</span>
-<span id="cb159-2"><a href="#cb159-2" aria-hidden="true" tabindex="-1"></a><span class="ex">code</span> hummus.md</span>
-<span id="cb159-3"><a href="#cb159-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> hummus.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb141"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb141-1"><a href="#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/alflin-recipes</span>
+<span id="cb141-2"><a href="#cb141-2" aria-hidden="true" tabindex="-1"></a><span class="ex">code</span> hummus.md</span>
+<span id="cb141-3"><a href="#cb141-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> hummus.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="output"><code># Hummus
 ## Ingredients
 * chickpeas
 * lemon
 * olive oil
 * salt</code></pre>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb161"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb161-1"><a href="#cb161-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add hummus.md</span>
-<span id="cb161-2"><a href="#cb161-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add ingredients for hummus"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb143"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb143-1"><a href="#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add hummus.md</span>
+<span id="cb143-2"><a href="#cb143-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add ingredients for hummus"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="output"><code> 1 file changed, 6 insertion(+)
  create mode 100644 hummus.md</code></pre>
 <p>Then push the change to the <em>owner’s repository</em> on GitHub:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb163"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb163-1"><a href="#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb145"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb145-1"><a href="#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="git"><code>Enumerating objects: 4, done.
 Counting objects: 4, done.
 Delta compression using up to 4 threads.
@@ -1655,7 +1471,7 @@ To https://github.com/alflin/recipes.git
 <section id="pulling-changes-from-a-collaborator" class="level2">
 <h2 class="anchored" data-anchor-id="pulling-changes-from-a-collaborator">Pulling changes from a collaborator</h2>
 <p>To download the collaborator’s changes from GitHub, the owner now enters:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb165"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb165-1"><a href="#cb165-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb147"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb147-1"><a href="#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="git"><code>remote: Enumerating objects: 4, done.
 remote: Counting objects: 100% (4/4), done.
 remote: Compressing objects: 100% (2/2), done.
@@ -1671,7 +1487,7 @@ Fast-forward
  create mode 100644 hummus.md</code></pre>
 <p>Now the three repositories (owner’s local, collaborator’s local, and owner’s on GitHub) are back in sync.</p>
 <div class="callout callout-style-simple callout-note callout-titled" title="A Basic Collaborative Workflow">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-29-contents" aria-controls="callout-29" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-25-contents" aria-controls="callout-25" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1680,7 +1496,7 @@ Fast-forward
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-29" class="callout-29-contents callout-collapse collapse">
+<div id="callout-25" class="callout-25-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>In practice, it is good to be sure that you have an updated version of the repository you are collaborating on, so you should <code>git pull</code> before making changes. The basic collaborative workflow would be:</p>
 <ul>
@@ -1702,7 +1518,7 @@ Fast-forward
 <h2 class="anchored" data-anchor-id="review-changes">Review changes</h2>
 <p>The owner pushed commits to the repository without giving any information to the collaborator. How can the collaborator find out what has changed with the command line? And on GitHub?</p>
 <div class="callout callout-style-simple callout-note callout-titled" title="Solution">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-30-contents" aria-controls="callout-30" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-26-contents" aria-controls="callout-26" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1711,7 +1527,7 @@ Fast-forward
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-30" class="callout-30-contents callout-collapse collapse">
+<div id="callout-26" class="callout-26-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>On the command line, the collaborator can use <code>git fetch origin main</code> to get the remote changes into the local repository, but without merging them. Then by running <code>git diff main origin/main</code> the collaborator will see the changes output in the terminal.</p>
 <p>On GitHub, the collaborator can go to the repository and click on “commits” to view the most recent commits pushed to the repository.</p>
@@ -1730,7 +1546,7 @@ Fast-forward
 <h1>Conflicts</h1>
 <p>As soon as people can work in parallel, they’ll likely step on each other’s toes. This will even happen with a single person: if we are working on a piece of software on both our laptop and a server in the lab, we could make different changes to each copy. Version control helps us manage these conflicts by giving us tools to resolve overlapping changes.</p>
 <p>To see how we can resolve conflicts, we must first create one. The file <code>guacamole.md</code> currently looks like this in both partners’ copies of our <code>recipes</code> repository:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb167"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb167-1"><a href="#cb167-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> guacamole.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb149"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb149-1"><a href="#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> guacamole.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="output"><code># Guacamole
 ## Ingredients
 * avocado
@@ -1738,8 +1554,8 @@ Fast-forward
 * salt
 ## Instructions</code></pre>
 <p>Let’s add a line to the collaborator’s copy only:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb169"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb169-1"><a href="#cb169-1" aria-hidden="true" tabindex="-1"></a><span class="ex">code</span> guacamole.md</span>
-<span id="cb169-2"><a href="#cb169-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> guacamole.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb151"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb151-1"><a href="#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="ex">code</span> guacamole.md</span>
+<span id="cb151-2"><a href="#cb151-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> guacamole.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="output"><code># Guacamole
 ## Ingredients
 * avocado
@@ -1748,11 +1564,11 @@ Fast-forward
 ## Instructions
 * put one avocado into a bowl.</code></pre>
 <p>and then push the change to GitHub:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb171"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb171-1"><a href="#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add guacamole.md</span>
-<span id="cb171-2"><a href="#cb171-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"First step on the instructions"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb153"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb153-1"><a href="#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add guacamole.md</span>
+<span id="cb153-2"><a href="#cb153-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"First step on the instructions"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="output"><code>[main 5ae9631] First step on the instructions
  1 file changed, 1 insertion(+)</code></pre>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb173"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb173-1"><a href="#cb173-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb155"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb155-1"><a href="#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="output"><code>Enumerating objects: 5, done.
 Counting objects: 100% (5/5), done.
 Delta compression using up to 8 threads
@@ -1763,8 +1579,8 @@ remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
 To https://github.com/alflin/recipes.git
    29aba7c..dabb4c8  main -&gt; main</code></pre>
 <p>Now let’s have the owner make a different change to their copy <em>without</em> updating from GitHub:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb175"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb175-1"><a href="#cb175-1" aria-hidden="true" tabindex="-1"></a><span class="ex">code</span> guacamole.md</span>
-<span id="cb175-2"><a href="#cb175-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> guacamole.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb157"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb157-1"><a href="#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="ex">code</span> guacamole.md</span>
+<span id="cb157-2"><a href="#cb157-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> guacamole.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="output"><code># Guacamole
 ## Ingredients
 * avocado
@@ -1773,12 +1589,12 @@ To https://github.com/alflin/recipes.git
 ## Instructions
 * peel the avocados</code></pre>
 <p>We can commit the change locally:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb177"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb177-1"><a href="#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add guacamole.md</span>
-<span id="cb177-2"><a href="#cb177-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add first step"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb159"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb159-1"><a href="#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add guacamole.md</span>
+<span id="cb159-2"><a href="#cb159-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add first step"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="output"><code>[main 07ebc69] Add first step
  1 file changed, 1 insertion(+)</code></pre>
 <p>but Git won’t let us push it to GitHub:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb179"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb179-1"><a href="#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb161"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb161-1"><a href="#cb161-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="git"><code>To https://github.com/alflin/recipes.git
  ! [rejected]        main -&gt; main (fetch first)
 error: failed to push some refs to 'https://github.com/alflin/recipes.git'
@@ -1788,7 +1604,7 @@ hint: to the same ref. You may want to first integrate the remote changes
 hint: (e.g., 'git pull ...') before pushing again.
 hint: See the 'Note about fast-forwards' in 'git push --help' for details.</code></pre>
 <p>Git rejects the push because it detects that the remote repository has new updates that have not been incorporated into the local branch. What we have to do is pull the changes from GitHub, merge them into the copy we’re currently working in, and then push that. Let’s start by pulling:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb181"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb181-1"><a href="#cb181-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb163"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb163-1"><a href="#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="git"><code>remote: Enumerating objects: 5, done.
 remote: Counting objects: 100% (5/5), done.
 remote: Compressing objects: 100% (1/1), done.
@@ -1801,7 +1617,7 @@ Auto-merging guacamole.md
 CONFLICT (content): Merge conflict in guacamole.md
 Automatic merge failed; fix conflicts and then commit the result.</code></pre>
 <p>The <code>git pull</code> command updates the local repository to include those changes already included in the remote repository. After the changes from remote branch have been fetched, Git detects that changes made to the local copy overlap with those made to the remote repository, and therefore refuses to merge the two versions to stop us from trampling on our previous work. The conflict is marked in the affected file:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb183"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb183-1"><a href="#cb183-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> guacamole.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb165"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb165-1"><a href="#cb165-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> guacamole.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="git"><code># Guacamole
 ## Ingredients
 * avocado
@@ -1815,8 +1631,8 @@ Automatic merge failed; fix conflicts and then commit the result.</code></pre>
 &gt;&gt;&gt;&gt;&gt;&gt;&gt; dabb4c8c450e8475aee9b14b4383acc99f42af1d</code></pre>
 <p>Our change is preceded by <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</code>. Git has then inserted <code>=======</code> as a separator between the conflicting changes and marked the end of the content downloaded from GitHub with <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code>. (The string of letters and digits after that marker identifies the commit we’ve just downloaded.)</p>
 <p>It is now up to us to edit this file to remove these markers and reconcile the changes. We can do anything we want: keep the change made in the local repository, keep the change made in the remote repository, write something new to replace both, or get rid of the change entirely. Let’s replace both so that the file looks like this:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb185"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb185-1"><a href="#cb185-1" aria-hidden="true" tabindex="-1"></a><span class="ex">code</span> guacamole.md</span>
-<span id="cb185-2"><a href="#cb185-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> guacamole.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb167"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb167-1"><a href="#cb167-1" aria-hidden="true" tabindex="-1"></a><span class="ex">code</span> guacamole.md</span>
+<span id="cb167-2"><a href="#cb167-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> guacamole.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="output"><code># Guacamole
 ## Ingredients
 * avocado
@@ -1825,8 +1641,8 @@ Automatic merge failed; fix conflicts and then commit the result.</code></pre>
 ## Instructions
 * peel the avocados and put them into a bowl.</code></pre>
 <p>To finish merging, we add <code>guacamole.md</code> to the changes being made by the merge and then commit:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb187"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb187-1"><a href="#cb187-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add guacamole.md</span>
-<span id="cb187-2"><a href="#cb187-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb169"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb169-1"><a href="#cb169-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add guacamole.md</span>
+<span id="cb169-2"><a href="#cb169-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="output"><code>On branch main
 All conflicts fixed but you are still merging.
   (use "git commit" to conclude merge)
@@ -1834,10 +1650,10 @@ All conflicts fixed but you are still merging.
 Changes to be committed:
 
     modified:   guacamole.md</code></pre>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb189"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb189-1"><a href="#cb189-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Merge changes from GitHub"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb171"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb171-1"><a href="#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Merge changes from GitHub"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="git"><code>[main 2abf2b1] Merge changes from GitHub</code></pre>
 <p>Now we can push our changes to GitHub:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb191"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb191-1"><a href="#cb191-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb173"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb173-1"><a href="#cb173-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="output"><code>Enumerating objects: 10, done.
 Counting objects: 100% (10/10), done.
 Delta compression using up to 4 threads
@@ -1848,7 +1664,7 @@ remote: Resolving deltas: 100% (4/4), completed with 2 local objects.
 To https://github.com/alflin/recipes.git
    dabb4c8..2abf2b1  main -&gt; main</code></pre>
 <p>Git keeps track of what we’ve merged with what, so we don’t have to fix things by hand again when the collaborator who made the first change pulls again:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb193"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb193-1"><a href="#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb175"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb175-1"><a href="#cb175-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="git"><code>remote: Enumerating objects: 10, done.
 remote: Counting objects: 100% (10/10), done.
 remote: Compressing objects: 100% (2/2), done.
@@ -1862,7 +1678,7 @@ Fast-forward
  guacamole.md | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)</code></pre>
 <p>We get the merged file:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb195"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb195-1"><a href="#cb195-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> guacamole.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb177"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb177-1"><a href="#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> guacamole.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="output"><code># Guacamole
 ## Ingredients
 * avocado

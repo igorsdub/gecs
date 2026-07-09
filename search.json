@@ -274,53 +274,11 @@
     "text": "Explore and summarize histories\nExploring history is an important part of Git, and often it is a challenge to find the right commit ID, especially if the commit is from several months ago.\nImagine the recipes project has more than 50 files. You would like to find a commit that modifies some specific text in guacamole.md. When you type git log, a very long list appeared. How can you narrow down the search?\nRecall that the git diff command allows us to explore one specific file, e.g., git diff guacamole.md. We can apply a similar idea here.\ngit log guacamole.md\nUnfortunately some of these commit messages are very ambiguous, e.g., update files. How can you search through these files?\nBoth git diff and git log are very useful and they summarize a different part of the history for you. Is it possible to combine both? Let’s try the following:\ngit log --patch guacamole.md\nYou should get a long list of output, and you should be able to see both commit messages and the difference between each commit.\nQuestion: What does the following command do?\ngit log --patch HEAD~9 *.md"
   },
   {
-    "objectID": "lessons/version-control.html#ignoring-nested-files",
-    "href": "lessons/version-control.html#ignoring-nested-files",
-    "title": "1. Version Control",
-    "section": "Ignoring nested files",
-    "text": "Ignoring nested files\nGiven a directory structure that looks like:\npictures/cake\npictures/pizza\nHow would you ignore only pictures/cake and not pictures/pizza?\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nIf you only want to ignore the contents of pictures/cake, you can change your .gitignore to ignore only the /cake/ subfolder by adding the following line to your .gitignore:\npictures/cake/\nThis line will ensure only the contents of pictures/cake is ignored, and not the contents of pictures/pizza.\nAs with most programming issues, there are a few alternative ways that one may ensure this ignore rule is followed. Further, the discussion pages have more detail on ignore rules."
-  },
-  {
-    "objectID": "lessons/version-control.html#including-specific-files",
-    "href": "lessons/version-control.html#including-specific-files",
-    "title": "1. Version Control",
-    "section": "Including specific files",
-    "text": "Including specific files\nHow would you ignore all .png files in your root directory except for final.png?\nHint: Find out what ! (the exclamation point operator) does\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nYou would add the following two lines to your .gitignore:\n*.png           # ignore all png files\n!final.png      # except final.png\nThe exclamation point operator will include a previously excluded entry.\nNote also that, if you’ve previously committed .png files in this lesson, they will not be ignored with this new rule. Only future additions of .png files to the root directory will be ignored."
-  },
-  {
-    "objectID": "lessons/version-control.html#ignoring-nested-files-variation",
-    "href": "lessons/version-control.html#ignoring-nested-files-variation",
-    "title": "1. Version Control",
-    "section": "Ignoring nested files: variation",
-    "text": "Ignoring nested files: variation\nGiven a directory structure that looks similar to the earlier Nested Files exercise, but with a slightly different directory structure:\npictures/cake\npictures/pizza\npictures/pie\npictures/brownie\nHow would you ignore all of the contents in the pictures folder, but not pictures/pie?\nHint: think a bit about how you created an exception with the ! operator before.\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nIf you want to ignore the contents of pictures/ but not those of pictures/pie/, you can change your .gitignore to ignore the contents of pictures folder, but create an exception for the contents of the pictures/pie subfolder. Your .gitignore would look like this:\npictures/*              # ignore everything in pictures folder\n!pictures/pie/          # do not ignore pictures/pie/ contents"
-  },
-  {
-    "objectID": "lessons/version-control.html#ignoring-all-data-files-in-a-directory",
-    "href": "lessons/version-control.html#ignoring-all-data-files-in-a-directory",
-    "title": "1. Version Control",
-    "section": "Ignoring all data files in a directory",
-    "text": "Ignoring all data files in a directory\nAssuming you have an empty .gitignore file, and given a directory structure that looks like:\npictures/data/location/gps/a.dat\npictures/data/location/gps/b.dat\npictures/data/location/gps/c.dat\npictures/data/location/gps/info.txt\npictures/plots\nWhat’s the shortest .gitignore rule you could write to ignore all .dat files in pictures/data/location/gps? Do not ignore the info.txt.\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nAppending pictures/data/location/gps/*.dat will match every file in pictures/data/location/gps that ends with .dat. The file pictures/data/location/gps/info.txt will not be ignored."
-  },
-  {
-    "objectID": "lessons/version-control.html#ignoring-all-data-files-in-the-repository",
-    "href": "lessons/version-control.html#ignoring-all-data-files-in-the-repository",
-    "title": "1. Version Control",
-    "section": "Ignoring all data files in the repository",
-    "text": "Ignoring all data files in the repository\nLet us assume you have many .csv files in different subdirectories of your repository. For example, you might have:\nresults/a.csv\ndata/experiment_1/b.csv\ndata/experiment_2/c.csv\ndata/experiment_2/variation_1/d.csv\nHow do you ignore all the .csv files, without explicitly listing the names of the corresponding folders?\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nIn the .gitignore file, write:\n**/*.csv\nThis will ignore all the .csv files, regardless of their position in the directory tree. You can still include some specific exception with the exclamation point operator."
-  },
-  {
-    "objectID": "lessons/version-control.html#the-order-of-rules",
-    "href": "lessons/version-control.html#the-order-of-rules",
-    "title": "1. Version Control",
-    "section": "The order of rules",
-    "text": "The order of rules\nGiven a .gitignore file with the following contents:\n*.csv\n!*.csv\nWhat will be the result?\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nThe ! modifier will negate an entry from a previously defined ignore pattern. Because the !*.csv entry negates all of the previous .csv files in the .gitignore, none of them will be ignored, and all .csv files will be tracked."
-  },
-  {
     "objectID": "lessons/version-control.html#log-files",
     "href": "lessons/version-control.html#log-files",
     "title": "1. Version Control",
     "section": "Log files",
-    "text": "Log files\nYou wrote a script that creates many intermediate log-files of the form log_01, log_02, log_03, etc. You want to keep them but you do not want to track them through git.\n\nWrite one .gitignore entry that excludes files of the form log_01, log_02, etc.\nTest your “ignore pattern” by creating some dummy files of the form log_01, etc.\nYou find that the file log_01 is very important after all, add it to the tracked files without changing the .gitignore again.\nDiscuss with your neighbor what other types of files could reside in your directory that you do not want to track and thus would exclude via .gitignore.\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\n\nAppend either log_* or log* as a new entry in your .gitignore\nTrack log_01 using git add -f log_01"
+    "text": "Log files\nYou wrote a script that creates temporary log files like log_01, log_02, and log_03. Add a .gitignore rule for them, then force-add log_01 if you decide that one file should be tracked after all.\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nUse either log_* or log* in .gitignore, then run git add -f log_01 to override the ignore rule for that one file."
   },
   {
     "objectID": "lessons/version-control.html#creating-a-remote-repository",
