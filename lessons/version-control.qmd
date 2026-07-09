@@ -79,24 +79,34 @@ A version control system is a tool that keeps track of these changes for us, eff
 
 # Setting Up Git
 
-Configure Git on a new computer. Git commands follow the pattern: `git verb options`. Here's the basic setup:
+The follwing commands are necessary to configure Git on a new computer even if you only will be using VS Code Source Control panel. 
+
+We will use the VS Code's terminal to do the setting up. To open the terminal select **View** \> **Terminal** from the menu bar, or by pressing the `` Ctrl/Cmd+` `` keyboard shortcut. A terminal window will open at the bottom.
+
+![](/images/paste-36.png)
+
+If you are a Windows user (I'm sorry...), be sure to select start WSL session. Either press `Ctrl+Shift+P` and type `WSL: New Window` or `WSL: Reopen Folder in WSL`, or click the green button in the bottom left corner of VS Code and select `New WSL Window`.
+
+![](/images/paste-32.png)
+
+Now, the time to type. Git commands follow the pattern: `git verb options`. Here's the basic setup:
 
 ``` bash
 git config --global user.name "Alfredo Linguini"
 git config --global user.email "a.linguini@ratatouille.fr"
 ```
 
-Use your own name and email address instead of Alfredo's. This user name and email will be associated with your subsequent Git activity, which means that any changes pushed to [GitHub](https://github.com/), [BitBucket](https://bitbucket.org/), [GitLab](https://gitlab.com/) or another Git host server after this lesson will include this information.
+Use your own name and email address instead of Alfredo's. This user name and email will be associated with your subsequent Git activity, which means that any changes pushed to [GitHub](https://github.com/), [BitBucket](https://bitbucket.org/), [GitLab](https://gitlab.com/) or another Git host server after this lesson will include this information. 
 
-For this lesson, we will be interacting with [GitHub](https://github.com/) and so the email address used should be the same as the one used when setting up your GitHub account. 
+For this lesson, we will be using [GitHub](https://github.com/). Therefore, the email address used should be the same as the one used when setting up your GitHub account. 
 
-::: {.callout-tip title="Keeping your email private"}
+::: {.callout-tip title="Keeping your email private" collapse="true"}
 If you are concerned about privacy, please review [GitHub's instructions for keeping your email address private](https://help.github.com/articles/keeping-your-email-address-private/).
 
 GitHub's no-reply email will look like this: `ID+username@users.noreply.github.com`.
 :::
 
-Alfredo also has to set his favorite text editor, following this table:
+Alfredo also has to set his favorite text editor. We, of course, will be using VS Code, but you can use any editor you like. The `--wait` option tells VS Code to wait until the file is closed before returning control to the terminal. 
 
 ``` bash
 git config --global core.editor "code --wait"
@@ -124,10 +134,10 @@ These commands only run once. Review your settings anytime with:
 git config --list --global
 ```
 
-::: {.callout-tip title="Git Help and Manual"}
+::: {.callout-tip title="Git help and manual"}
 Use `git <command> -h` for quick help or `git <command> --help` for full documentation.
 :::
-
+****
 # Creating a Repository
 
 Once Git is configured, we can start using it.
