@@ -546,21 +546,51 @@ VS Code's browser sign-in is simpler for most beginners, so that is our recommen
 
 # Collaborating
 
-Version control becomes much more valuable when more than one person is working on the same project.
+The grand finale: Version control becomes much more valuable when you work with another person. Now, you will collaborate on Quarto websites instead of a single recipe file.
 
-## Adding collaborators
+Quarto is a publishing system that can create websites, books, and reports from plain-text source files. It is built on Markdown and Pandoc, so it is easy to learn if you already know Markdown. It getting traction and I bet it will be the standard for the scienctific publishing in the future (no offece LaTeX). You can learn more about Quarto at <https://quarto.org>.
 
-The repository owner adds collaborators on GitHub from the repository settings. The invited person accepts the invitation from GitHub.
+You will first create and publish your own site. Then you will add your partner, clone each other's repositories, make website edits, and submit those edits for review.
 
-## Cloning a repository
+## Create and publish your Quarto website
 
-The collaborator should use VS Code, not the terminal, as the main entry point:
+Start by opening the template repository on GitHub and selecting **Use this template** to create your own website repository. Name it something like `recipe-website` and choose it to be public. Also, include all branches so you do not need to fiddle with Quarto.
 
-1. Open **Source Control**.
-2. Select **Clone Repository** or run `Git: Clone` from the Command Palette.
-3. Paste the GitHub repository URL, or choose **Clone from GitHub** if offered.
-4. Pick a local parent folder.
-5. Open the cloned repository in VS Code.
+<p>
+  <a href="https://github.com/igorsdub/quarto-website" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+    igorsdub/quarto-website
+  </a>
+</p>
+
+Nice, now you have your own website. Ain't taht cool?! Clone that repository to your computer in VS Code.  The main page of your website lives in the `index.qmd` file. 
+
+Default content of `index.qmd` is:
+```quarto
+---
+title: "quarto-website"
+---
+
+This is a Quarto website.
+
+To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+```
+
+You can add the guacamole recipe to your website by editing `index.qmd` and adding the following content or a receipe of your choice.
+
+::: {.callout-note title="Quarto files are plain text"}
+Quarto pages are still plain-text source files, just like the Markdown files you used earlier. The collaboration ideas are the same, even though the project is now a website instead of a recipe note.
+:::
+
+
+## Add each other as collaborators
+
+Once both websites are live, pair up and give each other access. Open your repository on GitHub, go to **Settings**, open **Collaborators** or **Collaborators and teams**, and invite your partner. Then switch to your partner's repository and accept their invitation before moving on.
+
+If the GitHub menus look a little different on your screen, use [GitHub's instructions for adding collaborators](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/repository-access-and-collaboration/inviting-collaborators-to-a-personal-repository).
+
+## Clone your partner's repository
+
+Now clone your partner's website repository in VS Code. Open **Source Control**, select **Clone Repository** or run `Git: Clone` from the Command Palette, paste your partner's repository URL, choose a local parent folder, and open the cloned repository in VS Code.
 
 When you clone, Git automatically connects the local copy to the remote repository.
 
@@ -568,55 +598,77 @@ When you clone, Git automatically connects the local copy to the remote reposito
 
 *Source: [VS Code Source Control Quickstart](https://code.visualstudio.com/docs/sourcecontrol/quickstart).*
 
-## Making changes as a collaborator
+## Make changes to your partner's website
 
-The collaborator now uses the same workflow as before:
+Now work on your partner's Quarto website rather than your own.
 
-1. Edit or create a file, for example `hummus.md`.
-2. Review the diff in **Source Control**.
-3. Stage the file.
-4. Commit with a clear message.
-5. Push or sync the change to GitHub.
+Good beginner changes include:
 
-After refreshing GitHub, the owner should be able to see the collaborator's commit.
+- updating text on `index.qmd`,
+- improving the `about.qmd` page,
+- adding a recipe section,
+- fixing navigation or headings in `_quarto.yml`.
 
-## Pulling changes from a collaborator
+Before you edit anything, pull or sync so your local copy is up to date.
 
-The owner can now use **Pull**, **Fetch**, or **Sync Changes** in VS Code to bring those updates into the local repository.
+For this exercise, make your changes on a **new branch** rather than directly on `main`. That makes review much clearer.
 
-Once the pull completes successfully, both people are back in sync.
+In VS Code, create a new branch from `main`, edit one or more `.qmd` or configuration files, review the diff in **Source Control**, stage the files, commit with a clear message, and push the branch to GitHub.
 
-::: {.callout-note title="A basic collaborative workflow" collapse="true"}
-For shared repositories, a good rhythm is:
+## Open a pull request for review
 
-1. Pull or sync before you start work.
-2. Make a small change.
-3. Review, stage, and commit it.
-4. Push or sync again.
+After you push the branch, open a pull request so your partner can review the website changes before they are merged.
 
-Smaller commits are easier to understand and easier to merge.
-:::
+In VS Code or GitHub, open the pull request creation flow, use your partner repository's `main` branch as the target, add a short title and description explaining the website edits, and submit the pull request.
 
-## Review changes
+![Create a pull request from VS Code.](/images/version-control_vscode_create-pull-request-view.png)
 
-If your collaborator pushed new work, there are several good places to inspect it:
+*Source: [VS Code Collaborate on GitHub](https://code.visualstudio.com/docs/sourcecontrol/github).*
 
-- **Source Control Graph** in VS Code
-- **Timeline** for a specific file
-- the **Commits** view on GitHub
+## Review, approve, or request changes
 
-## Comment changes in GitHub
+Now switch roles and review the proposed website changes. You can:
 
-GitHub also lets collaborators comment directly on commit diffs or pull requests. That is useful when you want to ask a question about a specific changed line.
+- inspect the changed `.qmd` files,
+- comment on specific lines,
+- request changes,
+- approve the pull request,
+- or reject it for now and ask for revisions.
+
+This is the key moment where collaboration becomes more than simple file sharing. GitHub records the proposed edits, comments, and review decision in one place.
+
+## Merge the approved changes and pull them locally
+
+If you approve the pull request, merge it on GitHub.
+
+After the merge, return to your local repository in VS Code, use **Pull** or **Sync Changes** to bring the merged updates into the local copy, and open the **Source Control Graph** to confirm that the merge created a branch history line that has now been merged back into `main`.
+
+This is a great visual payoff for the lesson: you can see that the collaboration happened on a branch, then ended as a merge in the history graph.
+
+## What to notice
+
+You should have seen all of these ideas in one workflow:
+
+- creating a repository from a template,
+- publishing a Quarto website,
+- cloning a partner's repository,
+- editing `.qmd` website files,
+- pushing a branch,
+- opening a pull request,
+- reviewing and approving or rejecting changes,
+- pulling the merged result locally,
+- inspecting the merge in the VS Code Graph.
 
 ::: {.callout-note title="Terminal equivalent" collapse="true"}
-The traditional terminal workflow uses commands like:
+The command-line version of this workflow usually includes commands like:
 
 ``` bash
-git clone https://github.com/USERNAME/recipes.git
+git clone https://github.com/USERNAME/WEBSITE-REPO.git
+#do some edits
+git add .
+git commit -m "Improve partner website homepage"
+git push -u origin partner-edit
 git pull origin main
-git push origin main
-git fetch origin main
 ```
 :::
 
