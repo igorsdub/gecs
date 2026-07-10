@@ -10,7 +10,7 @@ format: html
 Version control tracks changes to your files, lets you undo mistakes, and makes collaboration easy. Once you start using it, you'll wonder how you worked without it!
 
 ::: callout-important
-This tutorial was "stolen" from the [Version Control with Git by The Software Carpentries](https://swcarpentry.github.io/git-novice).
+This tutorial was stolen from the [Version Control with Git by The Software Carpentries](https://swcarpentry.github.io/git-novice) and [VS Code Source Control by Microsoft](https://code.visualstudio.com/docs/sourcecontrol/overview) lessons.
 :::
 
 # Overview
@@ -117,6 +117,8 @@ A *repository* is a folder whose history Git tracks. We will create one for Alfr
 
 ![Initialize a local repository in VS Code.](/images/version-control_vscode_initialize-repository_official.png)
 
+*Source: [VS Code Source Control Quickstart](https://code.visualstudio.com/docs/sourcecontrol/quickstart).*
+
 After that, VS Code should show that:
 
 - the folder is now a Git repository,
@@ -172,9 +174,13 @@ Click `guacamole.md` in **Source Control** to open the diff editor. Since this i
 
 ![The Source Control view showing changed files in VS Code.](/images/version-control_vscode_source-control_changes.png)
 
+*Source: [VS Code Source Control Quickstart](https://code.visualstudio.com/docs/sourcecontrol/quickstart).*
+
 Stage the file by hovering over it and selecting the `+` button. The file moves from **Changes** to **Staged Changes**. This is the key Git idea: staged changes are the ones that will go into the next commit.
 
 ![Stage changes in the VS Code Source Control view.](/images/version-control_vscode_stage-changes.png)
+
+*Source: [VS Code Staging and Committing](https://code.visualstudio.com/docs/sourcecontrol/staging-commits).*
 
 Type a commit message such as `Create starter guacamole recipe` in the Source Control message box and select **Commit**.
 
@@ -317,6 +323,8 @@ VS Code gives you two helpful history views:
 
 ![The Timeline view for file history in VS Code.](/images/version-control_vscode_timeline-view.png)
 
+*Source: [VS Code Source Control Overview](https://code.visualstudio.com/docs/sourcecontrol/overview).*
+
 To use them:
 
 1. Select `guacamole.md` in the Explorer and open the **Timeline** view.
@@ -326,6 +334,8 @@ To use them:
 This is much easier for beginners than memorizing commit IDs early on.
 
 ![The Source Control Graph view in VS Code.](/images/version-control_vscode_source-control-graph.png)
+
+*Source: [VS Code Source Control Overview](https://code.visualstudio.com/docs/sourcecontrol/overview).*
 
 ## Recovering older versions of a file
 
@@ -467,6 +477,8 @@ This is the simplest beginner path because VS Code handles both repository creat
 
 ![The GitHub sign-in prompt in VS Code.](/images/version-control_vscode_github-signin.png)
 
+*Source: [VS Code Collaborate on GitHub](https://code.visualstudio.com/docs/sourcecontrol/github).*
+
 ## Understanding remotes
 
 Once published, your repository has:
@@ -482,6 +494,8 @@ VS Code will show sync information in the status bar and in **Source Control**. 
 - **Sync Changes**: do the needed pull/push steps together
 
 ![Fetch, pull, and push controls in VS Code.](/images/version-control_vscode_sync-fetch-pull-push.png)
+
+*Source: [VS Code Repositories and Remotes](https://code.visualstudio.com/docs/sourcecontrol/repos-remotes).*
 
 ::: {.callout-note title="What is origin?"}
 `origin` is the default nickname Git gives to the main remote repository. You do not need to type it in VS Code, but you may still see the name in documentation and terminal examples.
@@ -551,6 +565,8 @@ The collaborator should use VS Code, not the terminal, as the main entry point:
 When you clone, Git automatically connects the local copy to the remote repository.
 
 ![Cloning a repository in VS Code.](/images/version-control_vscode_clone-repository.png)
+
+*Source: [VS Code Source Control Quickstart](https://code.visualstudio.com/docs/sourcecontrol/quickstart).*
 
 ## Making changes as a collaborator
 
@@ -629,6 +645,8 @@ When a conflict appears:
 8. Push or sync the repository.
 
 ![The Merge Editor in VS Code.](/images/version-control_vscode_merge-editor.png)
+
+*Source: [VS Code Merge Conflicts](https://code.visualstudio.com/docs/sourcecontrol/merge-conflicts).*
 
 For this lesson, a good final resolution for `guacamole.md` would be:
 
