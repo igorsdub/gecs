@@ -536,7 +536,7 @@ VS Code's browser sign-in is simpler for most beginners, so that is our recommen
 
 The grand finale: Version control becomes much more valuable when you work with another person. Now, you will collaborate on Quarto websites instead of a single recipe file.
 
-Quarto is a publishing system that can create websites, books, and reports from plain-text source files. It is built on Markdown and Pandoc, so it is easy to learn if you already know Markdown. It getting traction and I bet it will be the standard for the scienctific publishing in the future (no offence LaTeX). You can learn more about Quarto at <https://quarto.org>.
+Quarto is a publishing system that can create websites, books, and reports from plain-text source files. It is built on Markdown and Pandoc, so it is easy to learn if you already know Markdown. It getting traction and I bet it will be the standard for the scienctific publishing in the future (no **offence** LaTeX). You can learn more about Quarto at <https://quarto.org>.
 
 You will first create and publish your own site. Then you will add your partner, clone each other's repositories, make website edits, and submit those edits for review.
 
@@ -570,17 +570,17 @@ Quarto pages are still plain-text source files, just like the Markdown files you
 :::
 
 
-## Add each other as collaborators
+## Fork your partner's repository
 
-Once both websites are live, pair up and give each other access. Open your repository on GitHub, go to **Settings**, open **Collaborators** or **Collaborators and teams**, and invite your partner. Then switch to your partner's repository and accept their invitation before moving on.
+Instead of adding each other as collaborators, use a fork-based workflow. Open your partner's repository on GitHub and select **Fork** to create your own copy under your GitHub account.
 
-If the GitHub menus look a little different on your screen, use [GitHub's instructions for adding collaborators](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/repository-access-and-collaboration/inviting-collaborators-to-a-personal-repository).
+This is safer and closer to how open-source collaboration usually works. You can make changes freely in your fork, but you still need the original owner to review and merge them.
 
-## Clone your partner's repository
+## Clone your fork
 
-Now clone your partner's website repository in VS Code. Open **Source Control**, select **Clone Repository** or run `Git: Clone` from the Command Palette, paste your partner's repository URL, choose a local parent folder, and open the cloned repository in VS Code.
+Now clone **your fork** of your partner's website repository in VS Code. Open **Source Control**, select **Clone Repository** or run `Git: Clone` from the Command Palette, paste the URL of your fork, choose a local parent folder, and open the cloned repository in VS Code.
 
-When you clone, Git automatically connects the local copy to the remote repository.
+When you clone, Git automatically connects the local copy to your fork on GitHub.
 
 ![Cloning a repository in VS Code.](/images/version-control_vscode_clone-repository.png)
 
@@ -588,7 +588,7 @@ When you clone, Git automatically connects the local copy to the remote reposito
 
 ## Make changes to your partner's website
 
-Now work on your partner's Quarto website rather than your own.
+Now work on your fork of your partner's Quarto website.
 
 Good beginner changes include:
 
@@ -597,17 +597,22 @@ Good beginner changes include:
 - adding a recipe section,
 - fixing navigation or headings in `_quarto.yml`.
 
-Before you edit anything, pull or sync so your local copy is up to date.
+Before you edit anything, pull or sync so your local copy of the fork is up to date.
 
-For this exercise, make your changes on a **new branch** rather than directly on `main`. That makes review much clearer.
+For this exercise, make your changes on a **new branch** rather than directly on `main`. That keeps your work tidy and makes review much clearer.
 
-In VS Code, create a new branch from `main`, edit one or more `.qmd` or configuration files, review the diff in **Source Control**, stage the files, commit with a clear message, and push the branch to GitHub.
+In VS Code, create a new branch from `main`, edit one or more `.qmd` or configuration files, review the diff in **Source Control**, stage the files, commit with a clear message, and push the branch to your fork on GitHub.
 
 ## Open a pull request for review
 
 After you push the branch, open a pull request so your partner can review the website changes before they are merged.
 
-In VS Code or GitHub, open the pull request creation flow, use your partner repository's `main` branch as the target, add a short title and description explaining the website edits, and submit the pull request.
+You can do this in two ways:
+
+- use the GitHub Pull Requests extension in VS Code, or
+- open the pull request directly on GitHub after pushing to your fork.
+
+In either case, use your partner's original repository `main` branch as the target, add a short title and description explaining the website edits, and submit the pull request.
 
 ![Create a pull request from VS Code.](/images/version-control_vscode_create-pull-request-view.png)
 
@@ -625,11 +630,17 @@ Now switch roles and review the proposed website changes. You can:
 
 This is the key moment where collaboration becomes more than simple file sharing. GitHub records the proposed edits, comments, and review decision in one place.
 
+::: {.callout-tip title="When to add collaborators instead of forking"}
+If you add someone as a collaborator, they can push changes directly to your repository. Only do that if you trust them and you are happy for them to have that level of access.
+
+Forking is safer for this lesson because it keeps the original repository protected and makes the review step unavoidable.
+:::
+
 ## Merge the approved changes and pull them locally
 
 If you approve the pull request, merge it on GitHub.
 
-After the merge, return to your local repository in VS Code, use **Pull** or **Sync Changes** to bring the merged updates into the local copy, and open the **Source Control Graph** to confirm that the merge created a branch history line that has now been merged back into `main`.
+After the merge, return to your original local repository in VS Code, use **Pull** or **Sync Changes** to bring the merged updates into the local copy, and open the **Source Control Graph** to confirm that the pull request introduced a branch history line that has now been merged back into `main`.
 
 This is a great visual payoff for the lesson: you can see that the collaboration happened on a branch, then ended as a merge in the history graph.
 
@@ -639,9 +650,10 @@ You should have seen all of these ideas in one workflow:
 
 - creating a repository from a template,
 - publishing a Quarto website,
-- cloning a partner's repository,
+- forking a partner's repository,
+- cloning your fork,
 - editing `.qmd` website files,
-- pushing a branch,
+- pushing a branch to your fork,
 - opening a pull request,
 - reviewing and approving or rejecting changes,
 - pulling the merged result locally,
@@ -651,8 +663,9 @@ You should have seen all of these ideas in one workflow:
 The command-line version of this workflow usually includes commands like:
 
 ``` bash
-git clone https://github.com/USERNAME/WEBSITE-REPO.git
+git clone https://github.com/YOUR-USERNAME/PARTNER-WEBSITE-FORK.git
 #do some edits
+git switch -c partner-edit
 git add .
 git commit -m "Improve partner website homepage"
 git push -u origin partner-edit
