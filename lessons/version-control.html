@@ -171,6 +171,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../lessons/project-structure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project Structure</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../lessons/vs-code.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">VS Code</span></a>
   </div>
@@ -201,7 +207,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#commit-message" id="toc-commit-message" class="nav-link" data-scroll-target="#commit-message">Commit message</a></li>
   <li><a href="#committing-multiple-files" id="toc-committing-multiple-files" class="nav-link" data-scroll-target="#committing-multiple-files">Committing multiple files</a></li>
-  <li><a href="#biography-repository" id="toc-biography-repository" class="nav-link" data-scroll-target="#biography-repository"><code>biography</code> repository</a></li>
   </ul></li>
   <li><a href="#exploring-history" id="toc-exploring-history" class="nav-link" data-scroll-target="#exploring-history">Exploring History</a>
   <ul class="collapse">
@@ -618,32 +623,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="biography-repository" class="level2">
-<h2 class="anchored" data-anchor-id="biography-repository"><code>biography</code> repository</h2>
-<ul>
-<li>Create a new Git repository called <code>biography</code>.</li>
-<li>Write a three-line biography for yourself in <code>me.txt</code>.</li>
-<li>Commit it in VS Code.</li>
-<li>Modify one line and add a fourth line.</li>
-<li>Open the diff editor to compare the current version with the last committed version.</li>
-</ul>
-<div class="callout callout-style-simple callout-note callout-titled" title="Suggestion">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Suggestion
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-10" class="callout-10-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>This is good practice for repeating the same VS Code workflow in a fresh repository: open folder, initialize repository, edit, review, stage, commit.</p>
-</div>
-</div>
-</div>
-</section>
 </section>
 <section id="exploring-history" class="level1">
 <h1>Exploring History</h1>
@@ -695,7 +674,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>That restores the file to its most recently committed state.</p>
 <p>If you want to inspect older versions first, use the <strong>Timeline</strong> for that file and open previous entries before deciding what to restore.</p>
 <div class="callout callout-style-simple callout-note callout-titled" title="Advanced: HEAD in terminal">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -704,7 +683,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>On the command line, the most recent commit is called <code>HEAD</code>. The commit before it is <code>HEAD~1</code>, then <code>HEAD~2</code>, and so on.</p>
 <p>Examples:</p>
@@ -727,7 +706,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>After that, if you also want to throw away the edit entirely, use <strong>Discard Changes</strong>.</p>
 <div class="callout callout-style-simple callout-note callout-titled" title="Terminal equivalent">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -736,7 +715,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>The command-line version is:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> restore <span class="at">--staged</span> guacamole.md</span>
@@ -761,7 +740,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>If commit messages are vague, open the commit diff instead of guessing from the title alone.</p>
 <div class="callout callout-style-simple callout-note callout-titled" title="Terminal equivalent">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -770,7 +749,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Useful history commands include:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log guacamole.md</span>
@@ -811,7 +790,7 @@ pictures/</code></pre>
 <p>to <code>.gitignore</code>.</p>
 <p>If you later decide to track one of them anyway, that is an advanced case and is easier from the terminal.</p>
 <div class="callout callout-style-simple callout-note callout-titled" title="Terminal equivalent">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -820,7 +799,7 @@ pictures/</code></pre>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>You can override an ignore rule with:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add <span class="at">-f</span> log_01</span>
@@ -907,7 +886,7 @@ pictures/</code></pre>
 <h2 class="anchored" data-anchor-id="push-vs.-commit">Push vs.&nbsp;commit</h2>
 <p>A <strong>commit</strong> saves a snapshot in your local repository. A <strong>push</strong> sends your local commits to the remote repository on GitHub.</p>
 <div class="callout callout-style-simple callout-note callout-titled" title="Advanced: manual remote setup">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -916,7 +895,7 @@ pictures/</code></pre>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>If you ever need to add a remote by hand, the terminal version looks like this:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin https://github.com/USERNAME/recipes.git</span>
@@ -926,7 +905,7 @@ pictures/</code></pre>
 </div>
 </div>
 <div class="callout callout-style-simple callout-note callout-titled" title="Advanced: use SSH instead of VS Code sign-in">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -935,7 +914,7 @@ pictures/</code></pre>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-18" class="callout-18-contents callout-collapse collapse">
+<div id="callout-17" class="callout-17-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>This lesson does not require SSH.</p>
 <p>If you later want SSH, the usual flow is:</p>
@@ -1062,7 +1041,7 @@ To learn more about Quarto websites visit &lt;https://quarto.org/docs/websites&g
 <li>inspecting the merge in the VS Code Graph.</li>
 </ul>
 <div class="callout callout-style-simple callout-note callout-titled" title="Terminal equivalent">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1071,7 +1050,7 @@ To learn more about Quarto websites visit &lt;https://quarto.org/docs/websites&g
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-20" class="callout-20-contents callout-collapse collapse">
+<div id="callout-19" class="callout-19-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>The command-line version of this workflow usually includes commands like:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/USERNAME/WEBSITE-REPO.git</span>
@@ -1134,7 +1113,7 @@ To learn more about Quarto websites visit &lt;https://quarto.org/docs/websites&g
 &gt;&gt;&gt;&gt;&gt;&gt;&gt; incoming change</code></pre>
 <p>These markers are Git’s way of saying “I found two competing edits here.” VS Code’s merge tools help you resolve them without editing the markers by hand.</p>
 <div class="callout callout-style-simple callout-note callout-titled" title="Terminal equivalent">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1143,7 +1122,7 @@ To learn more about Quarto websites visit &lt;https://quarto.org/docs/websites&g
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-21" class="callout-21-contents callout-collapse collapse">
+<div id="callout-20" class="callout-20-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>The command-line version usually looks like:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull origin main</span>
