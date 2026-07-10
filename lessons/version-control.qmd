@@ -536,7 +536,7 @@ VS Code's browser sign-in is simpler for most beginners, so that is our recommen
 
 The grand finale: Version control becomes much more valuable when you work with another person. Now, you will collaborate on Quarto websites instead of a single recipe file.
 
-Quarto is a publishing system that can create websites, books, and reports from plain-text source files. It is built on Markdown and Pandoc, so it is easy to learn if you already know Markdown. It getting traction and I bet it will be the standard for the scienctific publishing in the future (no offece LaTeX). You can learn more about Quarto at <https://quarto.org>.
+Quarto is a publishing system that can create websites, books, and reports from plain-text source files. It is built on Markdown and Pandoc, so it is easy to learn if you already know Markdown. It getting traction and I bet it will be the standard for the scienctific publishing in the future (no offence LaTeX). You can learn more about Quarto at <https://quarto.org>.
 
 You will first create and publish your own site. Then you will add your partner, clone each other's repositories, make website edits, and submit those edits for review.
 
