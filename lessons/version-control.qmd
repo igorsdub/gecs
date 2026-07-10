@@ -64,208 +64,99 @@ If you don't already have a GitHub account, check the [Setting Up](setting-up.qm
 
 ## Installing Git
 
-You should have Git already installed in your distribution. Check it out by typing in your terminal:
+VS Code uses the Git installed on your computer. Check that Git is available:
 
 ``` bash
 git --version
 ```
 
-If you get an error, please see [this webpage](https://carpentries.github.io/workshop-template/install_instructions/#git) from The Software Carpentries for instructions on installing Git for various operating systems.
-
+If you get an error, please see [this webpage](https://carpentries.github.io/workshop-template/install_instructions/#git) from The Software Carpentries for installation steps.
 
 ## Setting up Git
 
-The follwing commands are necessary to configure Git on a new computer even if you only will be using VS Code Source Control panel.
+We will use VS Code as our main teaching interface, but Git still needs your name and email once on each computer.
 
-Start VS Code. By default will open in your home directory or in the last opened folder. If you want to work in a different directory, use the **File** \> **Open Folder** menu item to select a different folder. 
+Open VS Code. If needed, use **File** > **Open Folder** to choose the folder where you want to work.
 
 ::: {.callout-tip title="Open folder like a VS Coder"}
-You can use the Commnad Palette (`Ctrl/Cmd+Shift+P`) and type `Open Folder` to select a different folder. Although silly, this is a good way to learn the Command Palette, which is a very useful feature of VS Code.
-
-Alternatively, `Ctrl/Cmd + O` is the keyboard shortcut to open a file but you can open a folder as well.
+You can also open the Command Palette with `Ctrl/Cmd+Shift+P` and run `Open Folder`.
 :::
 
-We will use the VS Code's terminal to do the setting up. To open the terminal select **View** \> **Terminal** from the menu bar, or by pressing the `` Ctrl/Cmd+` `` keyboard shortcut. A terminal window will open at the bottom.
-
-![](/images/paste-36.png)
-
-::: {.callout-tip title="Windows users" collapse="true"}
-If you are a Windows user (I'm sorry...), be sure to select start WSL session. Either press `Ctrl+Shift+P` and type `WSL: New Window` or `WSL: Reopen Folder in WSL`, or click the green button in the bottom left corner of VS Code and select `New WSL Window`.
-
-![](/images/paste-32.png)
-:::
-
-Now, the time to type. Git commands follow the pattern: `git verb options`. Here's the basic setup:
+Open the terminal in VS Code with **View** > **Terminal** or ``Ctrl/Cmd+` `` and run:
 
 ``` bash
 git config --global user.name "Alfredo Linguini"
 git config --global user.email "a.linguini@ratatouille.fr"
-```
-
-Use your own name and email address instead of Alfredo's. This user name and email will be associated with your subsequent Git activity, which means that any changes pushed to [GitHub](https://github.com/), [BitBucket](https://bitbucket.org/), [GitLab](https://gitlab.com/) or another Git host server after this lesson will include this information. 
-
-For this lesson, we will be using [GitHub](https://github.com/). Therefore, the email address used should be the same as the one used when setting up your GitHub account. 
-
-::: {.callout-tip title="Keeping your email private" collapse="true"}
-If you are concerned about privacy, please review [GitHub's instructions for keeping your email address private](https://help.github.com/articles/keeping-your-email-address-private/).
-
-GitHub's no-reply email will look like this: `ID+username@users.noreply.github.com`.
-:::
-
-Alfredo also has to set his favorite text editor. We, of course, will be using VS Code, but you can use any editor you like. The `--wait` option tells VS Code to wait until the file is closed before returning control to the terminal. 
-
-``` bash
-git config --global core.editor "code --wait"
-```
-
-Git (2.28+) allows configuration of the name of the branch created when you initialize any new repository. Alfredo decides to use that feature to set it to `main` so it matches the cloud service he will eventually use.
-
-``` bash
 git config --global init.defaultBranch main
 ```
 
-::: {.callout-important}
-We will not be convering branch management in this lesson, but setting the default branch name to `main` now will help avoid confusion later. In short, a branch is a separate line of development in a repository. The default branch is the main line of development where the stable version of the project is maintained. 
+Use your own name and email instead of Alfredo's. For GitHub, it is easiest if this email matches your GitHub account.
 
-See Atlassion tutorial on [Git Branch](https://www.atlassian.com/git/tutorials/using-branches) for more information.
+::: {.callout-tip title="Keeping your email private" collapse="true"}
+If you prefer not to show your personal email in commits, GitHub provides a no-reply email address. See [GitHub's instructions for keeping your email private](https://help.github.com/articles/keeping-your-email-address-private/).
 :::
 
-::: {.callout-note title="How `master` became `main`" collapse="true"}
-Following the 2020 Black Lives Matter protests, the [Software Freedom Conservancy](https://sfconservancy.org/news/2020/jun/23/gitbranchname/) encouraged removing non-inclusive language in software, targeting the term "master". GitHub changed the default branch name for new repositories from `master` to `main` in October 2020. Other platforms followed suit.
-
-The same type of terminology has been changed in HPC jargon. Slave nodes are now called worker or compute nodes, and master nodes are now called controller or head nodes.
-:::
-
-These commands only run once. Review your settings anytime with:
+You can review these settings anytime with:
 
 ``` bash
 git config --list --global
 ```
 
-::: {.callout-tip title="Git help and manual"}
-Use `git <command> -h` for quick help or `git <command> --help` for full documentation.
+::: {.callout-tip title="Windows users" collapse="true"}
+If you are on Windows, doing this lesson inside WSL usually leads to fewer Git and shell problems. In VS Code, use `WSL: New Window` or `WSL: Reopen Folder in WSL`.
 :::
 
 # Creating a Repository
 
-Now, the meat of the lesson. We will be using Git to track changes to files in a project. A *repository* is a special directory that contains all the files and directories of a project, as well as the history of changes made to those files and directories.
+A *repository* is a folder whose history Git tracks. We will create one for Alfredo's recipes, but this time we will do it primarily through VS Code.
 
-We will help Alfredo with his new project, create a repository with all his recipes.
-
-First, let's create a new directory in the home directory `~` for our work and then change the current working directory to the newly created one:
-
-``` bash
-cd 
-mkdir recipes
-```
-
-Now, a bit annoying but necessary, we need to change the current working directory to the newly created one in VS Code. Use the **File** \> **Open Folder** menu item to select the `recipes` folder or any other method above.
-
-Once you are in the `recepies` (you can verify that by typying `pwd` in the terminal), we will initialize the repository. In terminal, type the following command:
-
-``` bash
-git init
-```
-
-In VS Code we can use **View** \> **Source Control** menu item to see the Source Control panel.
+1. Create a new folder called `recipes`.
+2. Open that folder in VS Code with **File** > **Open Folder**.
+3. Open the **Source Control** view.
+4. Select **Initialize Repository**.
 
 ![Initialize a local repository in VS Code.](/images/version-control_vs-code_intialize-repository.png)
 
-Press **Initialize Repository**. You should show that we are on the `main` branch and that there are no commits yet.
+After that, VS Code should show that:
 
-::: {.callout-note title="Nested repositories"}
-This creates a repository that tracks the entire directory and its subdirectories. There is no need to create nested repositories.
-:::
+- the folder is now a Git repository,
+- you are on the `main` branch,
+- there are no commits yet.
 
-If we use `ls` to show the directory's contents, it appears that nothing has changed:
-
-``` bash
-ls
-```
-
-But if we add the `-a` flag to show everything, we can see that Git has created a hidden directory within `recipes` called `.git`:
+::: {.callout-note title="Terminal equivalent" collapse="true"}
+The same setup from the terminal would be:
 
 ``` bash
-ls -a
-```
-
-``` output
-.   ..  .git
-```
-
-Git uses this special subdirectory to store all the information about the project, including the tracked files and sub-directories located within the project's directory. If we ever delete the `.git` subdirectory, we will lose the project's history.
-
-We can now start using one of the most important git commands, which is particularly helpful to beginners. `git status` tells us the status of our project, and better, a list of changes in the project and options on what to do with those changes. We can use it as often as we want, whenever we want to understand what is going on.
-
-``` bash
+mkdir recipes
+cd recipes
+git init
 git status
 ```
 
-``` git
-On branch main
-
-No commits yet
-
-nothing to commit (create/copy files and use "git add" to track)
-```
-
-You will notice that VS Code Source Control panel has changed to show that we are on the `main` branch and that there are no commits yet.
+Git also creates a hidden `.git` folder to store the repository history. If you delete `.git`, you delete the history of that repository.
+:::
 
 ## Places to create Git repositories
 
-Along with tracking information about recipes (the project we have already created), Alfredo would also like to track information about desserts specifically. Alfredo creates a `desserts` project inside his `recipes` project with the following sequence of commands:
+Usually you want one repository for one project folder. If `recipes` is already a Git repository, you do **not** need to create another repository inside `recipes/desserts` just to track dessert files. The main `recipes` repository will already track subfolders.
 
-``` bash
-cd              # return to the home directory
-cd recipes      # go into recipes directory, which is already a Git repository
-ls -a           # ensure the .git subdirectory is still present in the recipes directory
-mkdir desserts  # make a sub-directory recipes/desserts
-cd desserts     # go into desserts subdirectory
-git init        # make the desserts subdirectory a Git repository
-ls -a           # ensure the .git subdirectory is present indicating we have created a new Git repository
-```
-
-Is the `git init` command, run inside the `desserts` subdirectory, required for tracking files stored in the `desserts` subdirectory?
-
-::: {.callout-note title="Solution" collapse="true"}
-**No. Alfredo does not need to make the `desserts` subdirectory a Git repository because the `recipes` repository will track all files, sub-directories, and subdirectory files under the `recipes` directory. Thus, in order to track all information about desserts, Alfredo only needed to add the `desserts` subdirectory to the `recipes` directory.
-
-Right now, you have a "nested repository" is a Git repository that exists within the working directory of another Git repository. Each nested repository operates independently with its own history. Git is designed primarily to manage one repository per directory tree. When Git encounters a `.git` folder within a subdirectory of a parent repository, it treats the inner repository as a separate entity and usually ignores its contents within the parent's version control.
-
-To delete unwanted nested repositories, simply delete the `.git` subdirectory inside the unwanted repository while in the parent repository. For example, to delete the unwanted `desserts` repository, Alfredo would run:
-
-```bash
-cd desserts
-rm -rf .git
-git status
-```
-
-and then return to the `recipes` directory:
-
-``` bash
-cd ..
-```
-
+::: {.callout-note title="Nested repositories" collapse="true"}
+Nested repositories are usually confusing for beginners. If you accidentally run `git init` inside a subfolder, Git treats that inner folder as a separate repository with separate history.
 :::
 
 # Tracking Changes
 
-First let's make sure we're still in the right directory. You should be in the `recipes` directory.
+This section is the heart of the lesson. We will use five repeated actions in VS Code:
 
-``` bash
-cd
-cd recipes
-```
+1. Edit files
+2. Review changes
+3. Stage changes
+4. Commit changes
+5. Repeat
 
-Let's create a file called `guacamole.md` that contains the basic structure of our first recipe. We'll use VS Code to edit the file; you can use whatever editor you like.
+Start in the `recipes` folder.
 
-``` bash
-code guacamole.md
-```
-
-If `code` is not working via terminal, you can just use GUI to create a new file by pressing `Cmd/Ctrl+N`.
-
-Type the text below into the `guacamole.md` file:
+Create a new file called `guacamole.md` in the Explorer and add:
 
 ``` output
 # Guacamole
@@ -273,133 +164,17 @@ Type the text below into the `guacamole.md` file:
 ## Instructions
 ```
 
-Save the file and exit your editor.
+Save the file.
 
-::: {.callout-note title="Markdown" collapse="true"}
-[Markdown](https://en.wikipedia.org/wiki/Markdown) is a simple plain-text format. Use `*` for bullets, `1.` for numbering, `#` for headings. This website uses Markdown for formatting with [Quarto](https://quarto.org/).
+In **Source Control**, you should now see `guacamole.md` listed under **Changes** with a `U` marker for *untracked*. VS Code also shows these change markers in the Explorer and on editor tabs.
 
-Markdown files have the extension `.md` and is a friendlier then LaTeX for writing documents. You can convert Markdown files to other formats, such as PDF or HTML, even Microsoft Word.
+Click `guacamole.md` in **Source Control** to open the diff editor. Since this is a brand-new file, the entire file appears as a new addition.
 
-VS Code has extensions for previewing and working with Markdown files. One that we recommend is [Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one). You can open the preview of a Markdown file in VS Code by pressing `Cmd/Ctrl+K V` or selecting "Open Preview to the Side" from the Command Palette (`Cmd/Ctrl+Shift+P`). Or press the eye icon in the top right corner of the editor.
-:::
+Stage the file by hovering over it and selecting the `+` button. The file moves from **Changes** to **Staged Changes**. This is the key Git idea: staged changes are the ones that will go into the next commit.
 
-Let's verify that the file was properly created by running the list command (`ls`):
+Type a commit message such as `Create starter guacamole recipe` in the Source Control message box and select **Commit**.
 
-``` bash
-ls
-```
-
-``` output
-guacamole.md
-```
-
-`guacamole.md` contains three lines, which we can see by running:
-
-``` bash
-cat guacamole.md
-```
-
-``` output
-# Guacamole
-## Ingredients
-## Instructions
-```
-
-If we check the status of our project again, Git tells us that it's noticed the new file:
-
-``` bash
-git status
-```
-
-``` git
-On branch main
-
-No commits yet
-
-Untracked files:
-   (use "git add <file>..." to include in what will be committed)
-
-    guacamole.md
-
-nothing added to commit but untracked files present (use "git add" to track)
-```
-
-The "untracked files" message means that there's a file in the directory that Git isn't keeping track of. We can tell Git to track a file using `git add`:
-
-``` bash
-git add guacamole.md
-```
-
-and then check that the right thing happened:
-
-``` bash
-git status
-```
-
-``` git
-On branch main
-
-No commits yet
-
-Changes to be committed:
-  (use "git rm --cached <file>..." to unstage)
-
-    new file:   guacamole.md
-```
-
-Git now knows that it's supposed to keep track of `guacamole.md`, but it hasn't recorded these changes as a commit yet. To get it to do that, we need to run one more command:
-
-``` bash
-git commit -m "create initial structure for a Guacamole recipe"
-```
-
-``` git
-[main (root-commit) f22b25e] create initial structure for a Guacamole recipe
- 1 file changed, 1 insertion(+)
- create mode 100644 guacamole.md
-```
-
-When we run `git commit`, Git takes everything we have told it to save by using `git add` and stores a copy permanently inside the special `.git` directory. This permanent copy is called a commit (or revision) and its short identifier is `f22b25e`. Your commit may have another identifier.
-
-The `-m` flag records a message. Write a brief, descriptive commit message under 50 characters.
-
-If we run `git status` now:
-
-``` bash
-git status
-```
-
-``` git
-On branch main
-nothing to commit, working tree clean
-```
-
-it tells us everything is up to date. If we want to know what we've done recently, we can ask Git to show us the project's history using `git log`:
-
-``` bash
-git log
-```
-
-``` git
-commit f22b25e3233b4645dabd0d81e651fe074bd8e73b
-Author: Alfredo Linguini <a.linguini@ratatouille.fr>
-Date:   Thu Aug 22 09:51:46 2013 -0400
-
-    create initial structure for a Guacamole recipe
-```
-
-`git log` lists all commits made to a repository in reverse chronological order. The listing for each commit includes the commit's full identifier (which starts with the same characters as the short identifier printed by the `git commit` command earlier), the commit's author, when it was created, and the log message Git was given when the commit was created.
-
-::: {.callout-note title="Where Are My Changes?" collapse="true"}
-If we run `ls` at this point, we will still see just one file called `guacamole.md`. That's because Git saves information about files' history in the special `.git` directory mentioned earlier so that our filesystem doesn't become cluttered (and so that we can't accidentally edit or delete an old version).
-:::
-
-Now suppose Alfredo adds more information to the file. (Again, we'll edit with `code` and then `cat` the file to show its contents; you may use a different editor, and don't need to `cat`.)
-
-``` bash
-code guacamole.md
-cat guacamole.md
-```
+Now edit `guacamole.md` again so it looks like this:
 
 ``` output
 # Guacamole
@@ -410,90 +185,13 @@ cat guacamole.md
 ## Instructions
 ```
 
-When we run `git status` now, it tells us that a file it already knows about has been modified:
+Save the file and return to **Source Control**. You should now see `M` for *modified*.
 
-``` bash
-git status
-```
+Click the file again to review the diff. VS Code highlights additions and deletions line by line. This review step is important: get in the habit of checking what changed before you commit.
 
-``` git
-On branch main
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git restore <file>..." to discard changes in working directory)
+Stage `guacamole.md`, write a message such as `Add ingredients for basic guacamole`, and commit.
 
-    modified:   guacamole.md
-
-no changes added to commit (use "git add" and/or "git commit -a")
-```
-
-The last line is the key phrase: "no changes added to commit". We have changed this file, but we haven't told Git we will want to save those changes (which we do with `git add`) nor have we saved them (which we do with `git commit`). So let's do that now. It is good practice to always review our changes before saving them. We do this using `git diff`. This shows us the differences between the current state of the file and the most recently saved version:
-
-``` bash
-git diff
-```
-
-``` git
-diff --git a/guacamole.md b/guacamole.md
-index df0654a..315bf3a 100644
---- a/guacamole.md
-+++ b/guacamole.md
-@@ -1,3 +1,6 @@
- # Guacamole
- ## Ingredients
-+* avocado
-+* lemon
-+* salt
- ## Instructions
-```
-
-The output shows: - Lines with `+` are additions (new lines) - Lines with `-` are deletions (removed lines) - The file name and commit IDs are shown at the top
-
-After reviewing our change, it's time to commit it:
-
-``` bash
-git commit -m "add ingredients for basic guacamole"
-```
-
-``` git
-On branch main
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git restore <file>..." to discard changes in working directory)
-
-    modified:   guacamole.md
-
-no changes added to commit (use "git add" and/or "git commit -a")
-```
-
-Whoops: Git won't commit because we didn't use `git add` first. Let's fix that:
-
-``` bash
-git add guacamole.md
-git commit -m "add ingredients for basic guacamole"
-```
-
-``` git
-[main 34961b1] add ingredients for basic guacamole
- 1 file changed, 3 insertions(+)
-```
-
-Git insists that we add files to the set we want to commit before actually committing anything. This allows us to commit our changes in stages and capture changes in logical portions rather than only large batches. For example, suppose we're adding a few citations to relevant research to our thesis. We might want to commit those additions, and the corresponding bibliography entries, but *not* commit some of our work drafting the conclusion (which we haven't finished yet).
-
-To allow for this, Git has a special *staging area* where it keeps track of things that have been added to the current changeset but not yet committed.
-
-::: {.callout-note title="Staging Area"}
-`git add` stages files for the next commit. `git commit` creates a snapshot. Stage files manually to avoid accidentally committing unwanted changes.
-:::
-
-![The staging area in Git. From [Research Software Engineering with Python](https://third-bit.com/py-rse/git-cmdline.html). ](/images/paste-46.png)
-
-Let's watch as our changes to a file move from our editor to the staging area and into long-term storage. First, we'll improve our recipe by changing 'lemon' to 'lime':
-
-``` bash
-code guacamole.md
-cat guacamole.md
-```
+Now make one more change by replacing `lemon` with `lime`:
 
 ``` output
 # Guacamole
@@ -504,144 +202,62 @@ cat guacamole.md
 ## Instructions
 ```
 
-``` bash
-git diff
-```
+Save, review the diff, stage the change, and commit it with a message such as `Use lime in guacamole recipe`.
 
-``` git
-diff --git a/guacamole.md b/guacamole.md
-index 315bf3a..b36abfd 100644
---- a/guacamole.md
-+++ b/guacamole.md
-@@ -1,6 +1,6 @@
- # Guacamole
- ## Ingredients
- * avocado
--* lemon
-+* lime
- * salt
- ## Instructions
-```
+At this point you have used the full everyday workflow in VS Code:
 
-So far, so good: we've replaced one line (shown with a `-` in the first column) with a new line (shown with a `+` in the first column). Now let's put that change in the staging area and see what `git diff` reports:
+- edit in the editor,
+- review in the diff editor,
+- stage in **Source Control**,
+- commit from the message box.
 
-``` bash
-git add guacamole.md
-git diff
-```
+::: {.callout-note title="What U, M, and D mean"}
+- `U` means *untracked*: Git sees the file, but it is not included in version control yet.
+- `M` means *modified*: the file is tracked and has changed since the last commit.
+- `D` means *deleted*: the file was removed and Git noticed.
+:::
 
-There is no output: as far as Git can tell, there's no difference between what it's been asked to save permanently and what's currently in the directory. However, if we do this:
-
-``` bash
-git diff --staged
-```
-
-``` git
-diff --git a/guacamole.md b/guacamole.md
-index 315bf3a..b36abfd 100644
---- a/guacamole.md
-+++ b/guacamole.md
-@@ -1,6 +1,6 @@
- # Guacamole
- ## Ingredients
- * avocado
--* lemon
-+* lime
- * salt
- ## Instructions
-```
-
-it shows us the difference between the last committed change and what's in the staging area. Let's save our changes:
-
-``` bash
-git commit -m "modify guacamole to the traditional recipe"
-```
-
-``` git
-[main 005937f] modify guacamole to the traditional recipe
- 1 file changed, 1 insertion(+)
-```
-
-check our status:
+::: {.callout-note title="Terminal equivalent" collapse="true"}
+The matching command-line workflow is:
 
 ``` bash
 git status
-```
-
-``` git
-On branch main
-nothing to commit, working tree clean
-```
-
-and look at the history of what we've done so far:
-
-``` bash
+git add guacamole.md
+git commit -m "Create starter guacamole recipe"
+git diff
+git add guacamole.md
+git commit -m "Add ingredients for basic guacamole"
+git diff
+git add guacamole.md
+git commit -m "Use lime in guacamole recipe"
 git log
 ```
-
-``` git
-commit 005937fbe2a98fb83f0ade869025dc2636b4dad5 (HEAD -> main)
-Author: Alfredo Linguini <a.linguini@ratatouille.fr>
-Date:   Thu Aug 22 10:14:07 2013 -0400
-
-    modify guacamole to the traditional recipe
-
-commit 34961b159c27df3b475cfe4415d94a6d1fcd064d
-Author: Alfredo Linguini <a.linguini@ratatouille.fr>
-Date:   Thu Aug 22 10:07:21 2013 -0400
-
-    add ingredients for basic guacamole
-
-commit f22b25e3233b4645dabd0d81e651fe074bd8e73b
-Author: Alfredo Linguini <a.linguini@ratatouille.fr>
-Date:   Thu Aug 22 09:51:46 2013 -0400
-
-    create initial structure for a Guacamole recipe
-```
-
-To recap, when we want to add changes to our repository, we first need to add the changed files to the staging area (`git add`) and then commit the staged changes to the repository (`git commit`).
+:::
 
 ## Commit message
 
-Which of the following commit messages would be most appropriate for the last commit made to `guacamole.md`?
+Which of the following commit messages is most helpful?
 
-1.  "changes"
-2.  "change lemon for lime"
-3.  "modify guacamole to the traditional recipe"
-
-::: {.callout-note title="Solution" collapse="true"}
-Answer 3. Good commit messages are short, descriptive, and explain *why*, not just *what*.
-
-It's is nice to capitalize your messages, but not required. One less key to press is always good.
-:::
-
-## Committing changes to Git
-
-Which command(s) below would save the changes of `myfile.txt` to my local Git repository?
-
-1.  `git commit -m "my recent changes"`
-2.  `git init myfile.txt` then `git commit -m "my recent changes"`
-3.  `git add myfile.txt` then `git commit -m "my recent changes"`
-4.  `git commit -m myfile.txt "my recent changes"`
+1. `"changes"`
+2. `"change lemon for lime"`
+3. `"use lime in guacamole recipe"`
 
 ::: {.callout-note title="Solution" collapse="true"}
-Answer 3 is correct: `git add` stages the file, then `git commit` saves it.
+Answer 3 is best. Good commit messages are short, descriptive, and make the change easy to understand later.
 :::
 
 ## Committing multiple files
 
-You can group changes from multiple files into one commit. Use `git add file1.txt file2.txt` to stage multiple files, then commit them together.
+VS Code also makes it easy to commit related changes from multiple files together.
 
-1.  Add some text to `guacamole.md` noting the rough price of the ingredients.
-2.  Create a new file `groceries.md` with a list of products and their prices for different markets.
-3.  Add changes from both files to the staging area, and commit those changes.
+1. Add rough prices to `guacamole.md`.
+2. Create a new file `groceries.md` with ingredient prices from a market.
+3. Review both files in **Source Control**.
+4. Stage both files.
+5. Commit them together with one message.
 
-::: {.callout-note title="Solution" collapse="true"}
-First we make our changes to the `guacamole.md` and `groceries.md` files:
-
-``` bash
-cat guacamole.md
-```
+::: {.callout-note title="One possible result" collapse="true"}
+You might end up with something like:
 
 ``` output
 # Guacamole
@@ -649,992 +265,356 @@ cat guacamole.md
 * avocado (1.35)
 * lime (0.64)
 * salt (2)
+## Instructions
 ```
 
-``` bash
-cat groceries.md
-```
+and
 
 ``` output
 # Market A
-* avocado: 1.35 per unit.
+* avocado: 1.35 per unit
 * lime: 0.64 per unit
 * salt: 2 per kg
 ```
 
-Now you can add both files to the staging area. We can do that in one line:
-
-``` bash
-git add guacamole.md groceries.md
-```
-
-Or with multiple commands:
-
-``` bash
-git add guacamole.md
-git add groceries.md
-```
-
-Now the files are ready to commit. You can check that using `git status`. If you are ready to commit use:
-
-``` bash
-git commit -m "write prices for ingredients and their source"
-```
-
-``` git
-[main cc127c2]
- write prices for ingredients and their source
- 2 files changed, 7 insertions(+)
- create mode 100644 groceries.md
-```
+A good commit message would be `Add ingredient prices and market list`.
 :::
 
 ## `biography` repository
 
--   Create a new Git repository on your computer called `biography`.
--   Write a three-line biography for yourself in a file called `me.txt`, commit your changes
--   Modify one line, add a fourth line
--   Display the differences between its updated state and its original state.
+- Create a new Git repository called `biography`.
+- Write a three-line biography for yourself in `me.txt`.
+- Commit it in VS Code.
+- Modify one line and add a fourth line.
+- Open the diff editor to compare the current version with the last committed version.
 
-::: {.callout-note title="Solution" collapse="true"}
-If needed, move out of the `recipes` folder:
-
-``` bash
-cd ..
-```
-
-Create a new folder called `biography` and 'move' into it:
-
-``` bash
-mkdir biography
-cd biography
-```
-
-Change the current working directory to the newly created one in VS Code. Use the **File** \> **Open Folder** menu item to select the `biography` folder or any other method above.
-
-Initialise git:
-
-``` bash
-git init
-```
-
-Create your biography file `me.txt` using VS Code or another text editor. Once in place, add and commit it to the repository:
-
-``` bash
-git add me.txt
-git commit -m "add biography file"
-```
-
-Modify the file as described (modify one line, add a fourth line). To display the differences between its updated state and its original state, use `git diff`:
-
-``` bash
-git diff me.txt
-```
-
-To go back to the `recepies` folder, change folder in VS Code back with **File** \> **Open Folder** menu item to select the `recipes` folder or any other method above.
+::: {.callout-note title="Suggestion" collapse="true"}
+This is good practice for repeating the same VS Code workflow in a fresh repository: open folder, initialize repository, edit, review, stage, commit.
 :::
 
 # Exploring History
 
-We can refer to the *most recent commit* with `HEAD` pointer. It is a special code that points to the commit in the current branch. You can also use `HEAD~1` for the commit before that, `HEAD~2` for the one before that, and so on.
+Once you have a few commits, Git becomes more useful because you can *look backward*. In VS Code, history is mostly visual.
 
-Let's make a small change to `guacamole.md` and compare it with `HEAD`:
+## Compare your current file to the last commit
 
-``` bash
-code guacamole.md
-cat guacamole.md
-```
+Add one temporary line to `guacamole.md`, save the file, and open it from **Source Control**.
 
-``` output
-# Guacamole
-## Ingredients
-* avocado
-* lime
-* salt
-## Instructions
-An ill-considered change
-```
+The diff editor compares your current file with the last committed version. For most beginners, this is the most important history view to learn first.
 
-Now, let's see what we get.
+If you decide the change was a mistake, right-click the file in **Source Control** and choose **Discard Changes**.
 
-``` bash
-git diff HEAD guacamole.md
-```
+## View earlier commits
 
-``` git
-diff --git a/guacamole.md b/guacamole.md
-index b36abfd..0848c8d 100644
---- a/guacamole.md
-+++ b/guacamole.md
-@@ -4,3 +4,4 @@
- * lime
- * salt
- ## Instructions
-+An ill-considered change
-```
+VS Code gives you two helpful history views:
 
-`HEAD` is the default for `git diff`, so `git diff guacamole.md` gives the same result. If you want to compare against an earlier commit, use `HEAD~1` or another commit ID. Git also accepts shortened commit hashes when you need to refer to a specific older commit.
+- **Timeline**: shows the history of one file.
+- **Source Control Graph**: shows the history of the whole repository.
 
-All right! So we can save changes to files and see what we've changed. Now, how can we restore older versions of things? Let's suppose we change our mind about the last update to `guacamole.md` (the "ill-considered change").
+To use them:
 
-`git status` now tells us that the file has been changed, but those changes haven't been staged:
+1. Select `guacamole.md` in the Explorer and open the **Timeline** view.
+2. Browse older file versions and commit messages.
+3. Open the **Source Control Graph** to see the order of commits in the repository.
 
-``` bash
-git status
-```
-
-``` git
-On branch main
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git restore <file>..." to discard changes in working directory)
-    modified:   guacamole.md
-
-no changes added to commit (use "git add" and/or "git commit -a")
-```
-
-We can put things back the way they were by using `git restore`:
-
-``` bash
-git restore guacamole.md
-cat guacamole.md
-```
-
-``` output
-# Guacamole
-## Ingredients
-* avocado
-* lime
-* salt
-## Instructions
-```
-
-As you might guess from its name, `git restore` restores an old version of a file. By default, it recovers the version of the file recorded in `HEAD`, which is the last saved commit. If we want to go back even further, we can use a commit identifier instead, using `-s` option:
-
-``` bash
-git restore -s f22b25e guacamole.md
-cat guacamole.md
-```
-
-``` output
-# Guacamole
-## Ingredients
-## Instructions
-```
-
-``` bash
-git status
-```
-
-``` git
-On branch main
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git restore <file>..." to discard changes in working directory)
-    modified:   guacamole.md
-
-no changes added to commit (use "git add" and/or "git commit -a")
-```
-
-Notice that the changes are not currently in the staging area, and have not been committed. If we wished, we can put things back the way they were at the last commit by using `git restore` to overwrite the working copy with the last committed version:
-
-``` bash
-git restore guacamole.md
-cat guacamole.md
-```
-
-``` output
-# Guacamole
-## Ingredients
-* avocado
-* lime
-* salt
-## Instructions
-```
-
-It's important to remember that we must use the commit number that identifies the state of the repository *before* the change we're trying to undo. A common mistake is to use the number of the commit in which we made the change we're trying to discard. In the example below, we want to retrieve the state from before the most recent commit (`HEAD~1`), which is commit `f22b25e`. We use the `.` to mean all files:
-
-![](/images/03_version-control__git-restore.svg){alt="A diagram showing how git restore can be used to restore the previous version of two files"}
-
-So, to put it all together, here's how Git works in cartoon form:
-
-![](/images/03_version-control__git_staging.svg){alt="A diagram showing the entire git workflow: local changes are staged using git add, applied to the local repository using git commit, and can be restored from the repository using git restore"}
-
-The fact that files can be reverted one by one tends to change the way people organize their work. If everything is in one large document, it's hard (but not impossible) to undo changes to the introduction without also undoing changes made later to the conclusion. If the introduction and conclusion are stored in separate files, on the other hand, moving backward and forward in time becomes much easier.
+This is much easier for beginners than memorizing commit IDs early on.
 
 ## Recovering older versions of a file
 
-Jennifer has made changes to the Python script that she has been working on for weeks, and the modifications she made this morning "broke" the script and it no longer runs. She has spent approximately 1 hour trying to fix it, with no luck...
+Suppose you edited `guacamole.md` and want to get back to the last committed version.
 
-Luckily, she has been keeping track of her project's versions using Git! Which commands below will let her recover the last committed version of her Python script called `data_cruncher.py`?
+In VS Code:
 
-1.  `git restore`
-2.  `git restore data_cruncher.py`
-3.  `git restore -s HEAD~1 data_cruncher.py`
-4.  `git restore -s <unique ID of last commit> data_cruncher.py`
-5.  Both 2 and 4
+1. Open **Source Control**.
+2. Right-click `guacamole.md`.
+3. Choose **Discard Changes**.
 
-::: {.callout-note title="Solution" collapse="true"}
-The answer is (5) - Both 2 and 4.
+That restores the file to its most recently committed state.
 
-The `restore` command restores files from the repository, overwriting the files in your working directory. Answers 2 and 4 both restore the *latest* version *in the repository* of the file `data_cruncher.py`. Answer 2 uses `HEAD` to indicate the *latest*, whereas answer 4 uses the unique ID of the last commit, which is what `HEAD` means.
+If you want to inspect older versions first, use the **Timeline** for that file and open previous entries before deciding what to restore.
 
-Answer 3 gets the version of `data_cruncher.py` from the commit *before* `HEAD`, which is NOT what we wanted.
+::: {.callout-note title="Advanced: HEAD in terminal" collapse="true"}
+On the command line, the most recent commit is called `HEAD`. The commit before it is `HEAD~1`, then `HEAD~2`, and so on.
 
-Answer 1 results in an error. You need to specify a file to restore. If you want to restore all files you should use `git restore .`
-:::
-
-## Understanding workflow and history
-
-What is the output of the last command in the following sequence?
+Examples:
 
 ``` bash
-cd recipes
-echo "I like tomatoes, therefore I like ketchup" > ketchup.md
-git add ketchup.md
-echo "ketchup enhances pasta dishes" >> ketchup.md
-git commit -m "My opinions about the red sauce"
-git restore ketchup.md
-cat ketchup.md
+git diff HEAD guacamole.md
+git restore guacamole.md
+git restore -s HEAD~1 guacamole.md
 ```
 
-1.  
-
-    ``` output
-       ketchup enhances pasta dishes
-    ```
-
-2.  
-
-    ``` output
-       I like tomatoes, therefore I like ketchup
-    ```
-
-3.  
-
-    ``` output
-       I like tomatoes, therefore I like ketchup
-       ketchup enhances pasta dishes
-    ```
-
-4.  
-
-    ``` output
-       Error because you have changed ketchup.md without committing the changes
-    ```
-
-::: {.callout-note title="Solution" collapse="true"}
-The answer is 2.
-
-The changes to the file from the second `echo` command are only applied to the working copy, not the version in the staging area. The command `git add ketchup.md` places the current version of `ketchup.md` into the staging area.
-
-So, when `git commit -m "My opinions about the red sauce"` is executed, the version of `ketchup.md` committed to the repository is the one from the staging area and has only one line.
-
-At this time, the working copy still has the second line (and `git status` will show that the file is modified). However, `git restore ketchup.md` replaces the working copy with the most recently committed version of `ketchup.md`. So, `cat ketchup.md` will output:
-
-``` output
-I like tomatoes, therefore I like ketchup
-```
+You do not need this syntax for the main VS Code workflow in this lesson.
 :::
-
-## Understanding of `git diff`
-
-Consider this command: `git diff HEAD~9 guacamole.md`. What do you predict this command will do if you execute it? What happens when you do execute it? Why?
-
-Try another command, `git diff [ID] guacamole.md`, where \[ID\] is replaced with the unique identifier for your most recent commit. What do you think will happen, and what does happen?
 
 ## Getting rid of staged changes
 
-`git restore` can be used to restore a previous commit when unstaged changes have been made, but will it also work for changes that have been staged but not committed? Make a change to `guacamole.md`, add that change using `git add`, then use `git restore` to see if you can remove your change.
+What if you staged a file and then changed your mind before committing?
 
-::: {.callout-note title="Solution" collapse="true"}
-After adding a change, `git restore` cannot be used directly. Let's look at the output of `git status`:
+In VS Code, you can unstage it in several ways:
 
-``` git
-On branch main
-Changes to be committed:
-  (use "git restore --staged <file>..." to unstage)
-        modified:   guacamole.md
-```
+- click the `-` icon beside the file in **Staged Changes**,
+- right-click and choose **Unstage Changes**,
+- drag it back from **Staged Changes** to **Changes**.
 
-Note that if you don't have the same output, you may either have forgotten to change the file, or you have added it *and* committed it.
+After that, if you also want to throw away the edit entirely, use **Discard Changes**.
 
-Using the command `git restore guacamole.md` now does not give an error, but it does not restore the file either. Git helpfully tells us that we need to use `git restore --staged` first to unstage the file:
+::: {.callout-note title="Terminal equivalent" collapse="true"}
+The command-line version is:
 
 ``` bash
 git restore --staged guacamole.md
-```
-
-Now, `git status` gives us:
-
-``` bash
-git status
-```
-
-``` git
-On branch main
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git restore <file>..." to discard changes in working directory)
-        modified:   guacamole.md
-
-no changes added to commit (use "git add" and/or "git commit -a")
-```
-
-This means we can now use `git restore` to restore the file to the previous commit:
-
-``` bash
 git restore guacamole.md
-git status
-```
-
-``` git
-On branch main
-nothing to commit, working tree clean
 ```
 :::
 
 ## Explore and summarize histories
 
-Exploring history is an important part of Git, and often it is a challenge to find the right commit ID, especially if the commit is from several months ago.
+Imagine the `recipes` project has dozens of files and you want to answer questions like:
 
-Imagine the `recipes` project has more than 50 files. You would like to find a commit that modifies some specific text in `guacamole.md`. When you type `git log`, a very long list appeared. How can you narrow down the search?
+- Which commit changed `guacamole.md`?
+- When did the ingredient list change?
+- What changed in that commit?
 
-Recall that the `git diff` command allows us to explore one specific file, e.g., `git diff guacamole.md`. We can apply a similar idea here.
+In VS Code:
+
+1. Use **Timeline** for file-by-file history.
+2. Use **Source Control Graph** for repository history.
+3. Open commits on GitHub to inspect remote history and diffs.
+
+If commit messages are vague, open the commit diff instead of guessing from the title alone.
+
+::: {.callout-note title="Terminal equivalent" collapse="true"}
+Useful history commands include:
 
 ``` bash
 git log guacamole.md
-```
-
-Unfortunately some of these commit messages are very ambiguous, e.g., `update files`. How can you search through these files?
-
-Both `git diff` and `git log` are very useful and they summarize a different part of the history for you. Is it possible to combine both? Let's try the following:
-
-``` bash
 git log --patch guacamole.md
 ```
-
-You should get a long list of output, and you should be able to see both commit messages and the difference between each commit.
-
-Question: What does the following command do?
-
-``` bash
-git log --patch HEAD~9 *.md
-```
+:::
 
 # Ignoring Things
 
-> Ignorance is a bliss.
->
-> Common knowledge
+Some files should not be tracked, such as generated images, temporary logs, or output folders.
 
-What if we have files that we do not want Git to track for us, like backup files created by our editor or intermediate files created during data analysis? Let's create a few dummy files:
+Create a few files that you do **not** want in version control, for example some `.png` files and a `pictures/` directory. In VS Code, they will appear in **Source Control** as untracked files.
 
-``` bash
-mkdir pictures
-touch a.png b.png c.png pictures/cake1.jpg pictures/cake2.jpg
-```
-
-and see what Git says:
-
-``` bash
-git status
-```
-
-``` git
-On branch main
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-
-    a.png
-    b.png
-    c.png
-    pictures/
-
-nothing added to commit but untracked files present (use "git add" to track)
-```
-
-Putting these files under version control would be a waste of disk space. What's worse, having them all listed could distract us from changes that actually matter, so let's tell Git to ignore them.
-
-We do this by creating a file in the root directory of our project called `.gitignore`:
-
-``` bash
-code .gitignore
-```
-
-Type the text below into the `.gitignore` file:
+Now create a file called `.gitignore` in the root of the repository and add:
 
 ``` output
 *.png
 pictures/
 ```
 
-Save the file and exit your editor.
+Save the file. The noisy image files should disappear from **Source Control**, leaving only `.gitignore` to stage and commit.
 
-Verify that the file contains the files to ignore.
+This is one of the nicest beginner moments in Git: your change list becomes cleaner right away.
 
-``` bash
-cat .gitignore
-```
+Commit `.gitignore` so everyone using the repository shares the same ignore rules.
 
-``` output
-*.png
-pictures/
-```
-
-These patterns tell Git to ignore any file whose name ends in `.png` and everything in the `pictures` directory. (If any of these files were already being tracked, Git would continue to track them.)
-
-Once we have created this file, the output of `git status` is much cleaner:
-
-``` bash
-git status
-```
-
-``` git
-On branch main
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-
-    .gitignore
-
-nothing added to commit but untracked files present (use "git add" to track)
-```
-
-The only thing Git notices now is the newly-created `.gitignore` file. You might think we wouldn't want to track it, but everyone we're sharing our repository with will probably want to ignore the same things that we're ignoring. Let's add and commit `.gitignore`:
-
-``` bash
-git add .gitignore
-git commit -m "Ignore png files and the pictures folder."
-git status
-```
-
-``` git
-On branch main
-nothing to commit, working tree clean
-```
-
-As a bonus, using `.gitignore` helps us avoid accidentally adding files to the repository that we don't want to track:
-
-``` bash
-git add a.png
-```
-
-``` git
-The following paths are ignored by one of your .gitignore files:
-a.png
-Use -f if you really want to add them.
-```
-
-If we really want to override our ignore settings, we can use `git add -f` to force Git to add something. For example, `git add -f a.png`. We can also always see the status of ignored files if we want:
-
-``` bash
-git status --ignored
-```
-
-``` git
-On branch main
-Ignored files:
- (use "git add -f <file>..." to include in what will be committed)
-
-        a.png
-        b.png
-        c.png
-        pictures/
-
-nothing to commit, working tree clean
-```
+::: {.callout-note title="Tracked vs ignored"}
+Ignoring only affects files Git is not already tracking. If a file was committed earlier, adding it to `.gitignore` does not automatically remove it from version control.
+:::
 
 ## Log files
 
-You wrote a script that creates temporary log files like `log_01`, `log_02`, and `log_03`. Add a `.gitignore` rule for them, then force-add `log_01` if you decide that one file should be tracked after all.
+You wrote a script that creates temporary files like `log_01`, `log_02`, and `log_03`.
 
-::: {.callout-note title="Solution" collapse="true"}
-Use either `log_*` or `log*` in `.gitignore`, then run `git add -f log_01` to override the ignore rule for that one file.
+Add a rule such as:
+
+``` output
+log_*
+```
+
+to `.gitignore`.
+
+If you later decide to track one of them anyway, that is an advanced case and is easier from the terminal.
+
+::: {.callout-note title="Terminal equivalent" collapse="true"}
+You can override an ignore rule with:
+
+``` bash
+git add -f log_01
+git status --ignored
+```
 :::
 
 # Remotes in GitHub
 
-Version control really comes into its own when we begin to collaborate with other people. We already have most of the machinery we need to do this; the only thing missing is to copy changes from one repository to another.
+So far everything has happened on your computer. A *remote* is a copy of the repository stored somewhere else, usually on a service such as GitHub.
 
-Systems like Git allow us to move work between any two repositories. In practice, though, it's easiest to use one copy as a central hub, and to keep it on the web rather than on someone's laptop. Most programmers use hosting services like [GitHub](https://github.com), [Bitbucket](https://bitbucket.org), or [GitLab](https://gitlab.com/) to hold those main copies.
-
-Let's start by sharing the changes we've made to our current project with the world. To this end we are going to create a *remote* repository that will be linked to our *local* repository.
+For this lesson, we will use VS Code's built-in GitHub flow instead of teaching manual remote setup first.
 
 ## Creating a remote repository
 
-Log in to [GitHub](https://github.com), then click on the icon in the top right corner to create a new repository called `recipes`.
-
-Name your repository "recipes" and then click "Create Repository".
-
-::: {.callout-important}
-Create an empty repository on GitHub. Don't initialize it with a README or license.
-:::
-
-As soon as the repository is created, GitHub displays a page with a URL and some information on how to configure your local repository. This effectively does the following on GitHub's servers:
-
-``` bash
-mkdir recipes
-cd recipes
-git init
-```
-
-If you remember back to the earlier episode where we added and committed our work on `guacamole.md`, we had a diagram of the local repository. Now that we have two repositories, we need to connect them.
-
-## Connecting local to remote repository
-
-Now we connect the two repositories. We do this by making the GitHub repository a remote for the local repository. The home page of the repository on GitHub includes the URL string we need to identify it. Click on the 'SSH' link to change the protocol from HTTPS to SSH.
-
-::: {.callout-note title="HTTPS vs. SSH"}
-SSH is more secure. Use SSH for GitHub authentication.
-:::
-
-Copy that URL from the browser, go into the local `recipes` repository, and run this command:
-
-``` bash
-git remote add origin git@github.com:alflin/recipes.git
-```
-
-Make sure to use the URL for your repository rather than Alfredo's: the only difference should be your username instead of `alflin`.
-
-`origin` is a local name used to refer to the remote repository. It could be called anything, but `origin` is a convention that is often used by default in git and GitHub, so it's helpful to stick with this unless there's a reason not to.
-
-We can check that the command has worked by running `git remote -v`:
-
-``` bash
-git remote -v
-```
-
-``` git
-origin   git@github.com:alflin/recipes.git (fetch)
-origin   git@github.com:alflin/recipes.git (push)
-```
-
-## SSH background and setup
-
-SSH (Secure Shell Protocol) allows secure communication. SSH uses a key pair: a public key (like a padlock) shared with GitHub, and a private key (the only key to open it) kept on your computer. GitHub authenticates you using these keys.
-
-What we will do now is the minimum required to set up the SSH keys and add the public key to a GitHub account.
-
-The first thing we are going to do is check if this has already been done on the computer you're on. Because generally speaking, this setup only needs to happen once and then you can forget about it.
-
-::: {.callout-tip title="Keeping your keys secure"}
-Check your SSH keys periodically to ensure they're current and secure.
-:::
-
-We will run the list command to check what key pairs already exist on your computer.
-
-``` bash
-ls -al ~/.ssh
-```
-
-Your output is going to look a little different depending on whether or not SSH has ever been set up on the computer you are using.
-
-If SSH has not been set up, your output is:
-
-``` output
-ls: cannot access '~/.ssh': No such file or directory
-```
-
-If SSH has been set up on the computer you're using, the public and private key pairs will be listed. The file names are either `id_ed25519`/`id_ed25519.pub` or `id_rsa`/`id_rsa.pub` depending on how the key pairs were set up.
-
-## Creating an SSH key pair
-
-To create an SSH key pair use this command, where the `-t` option specifies which type of algorithm to use and `-C` attaches a comment to the key (here, your email):
-
-``` bash
-ssh-keygen -t ed25519 -C "a.linguini@ratatouille.fr"
-```
-
-If you are using a legacy system that doesn't support the Ed25519 algorithm, use:
-
-``` bash
-ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
-```
-
-``` output
-Generating public/private ed25519 key pair.
-Enter file in which to save the key (/c/Users/Alfredo/.ssh/id_ed25519):
-```
-
-We want to use the default file, so just press Enter.
-
-``` output
-Created directory '/c/Users/Alfredo/.ssh'.
-Enter passphrase (empty for no passphrase):
-```
-
-Now, it is prompting you for a passphrase. Since you might be using a shared laptop, you want to create a passphrase. Be sure to use something memorable or save your passphrase somewhere, as there is no "reset my password" option. Note that when typing a passphrase on a terminal, there won't be any visual feedback of your typing. This is normal: your passphrase will be recorded even if you see nothing changing on your screen.
-
-``` output
-Enter same passphrase again:
-```
-
-After entering the same passphrase a second time, you receive the confirmation:
-
-``` output
-Your identification has been saved in /c/Users/Alfredo/.ssh/id_ed25519
-Your public key has been saved in /c/Users/Alfredo/.ssh/id_ed25519.pub
-The key fingerprint is:
-SHA256:SMSPIStNyA00KPxuYu94KpZgRAYjgt9g4BA4kFy3g1o a.linguini@ratatouille.fr
-The key's randomart image is:
-+--[ED25519 256]--+
-|^B== o.          |
-|%*=.*.+          |
-|+=.E =.+         |
-| .=.+.o..        |
-|....  . S        |
-|.+ o             |
-|+ =              |
-|.o.o             |
-|oo+.             |
-+----[SHA256]-----+
-```
-
-The "identification" is actually the private key. You should never share it. The public key is appropriately named. The "key fingerprint" is a shorter version of a public key.
-
-Now that you have generated the SSH keys, you will find the SSH files when you check:
-
-``` bash
-ls -al ~/.ssh
-```
-
-``` output
-drwxr-xr-x 1 Alfredo   197121   0 Jul 16 14:48 ./
-drwxr-xr-x 1 Alfredo   197121   0 Jul 16 14:48 ../
--rw-r--r-- 1 Alfredo   197121 419 Jul 16 14:48 id_ed25519
--rw-r--r-- 1 Alfredo   197121 106 Jul 16 14:48 id_ed25519.pub
-```
-
-## Copying the public key to GitHub
-
-Now you have an SSH key pair and you can run this command to check if GitHub can read your authentication:
-
-``` bash
-ssh -T git@github.com
-```
-
-``` output
-The authenticity of host 'github.com (192.30.255.112)' can't be established.
-RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.
-This key is not known by any other names
-Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
-Warning: Permanently added 'github.com' (RSA) to the list of known hosts.
-git@github.com: Permission denied (publickey).
-```
-
-Right, we forgot that we need to give GitHub our public key!
-
-First, we need to copy the public key. Be sure to include the `.pub` at the end, otherwise you're looking at the private key.
-
-``` bash
-cat ~/.ssh/id_ed25519.pub
-```
-
-``` output
-ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDmRA3d51X0uu9wXek559gfn6UFNF69yZjChyBIU2qKI a.linguini@ratatouille.fr
-```
-
-Now, going to GitHub.com, click on your profile icon in the top right corner to get the drop-down menu. Click "Settings", then on the settings page, click "SSH and GPG keys" on the left side "Access" menu. Click the "New SSH key" button on the right side. Now, you can add the title (use something descriptive like "My Laptop" so you can remember where the original key pair files are located), paste your SSH key into the field, and click the "Add SSH key" to complete the setup.
-
-Now that you've set that up, let's check your authentication again from the command line:
-
-``` bash
-ssh -T git@github.com
-```
-
-``` output
-Hi Alfredo! You've successfully authenticated, but GitHub does not provide shell access.
-```
-
-Good! This output confirms that the SSH key works as intended. You are now ready to push your work to the remote repository.
-
-## Pushing local changes to a remote
-
-Now that authentication is set up, we can return to the remote. This command will push the changes from our local repository to the repository on GitHub:
-
-``` bash
-git push origin main
-```
-
-If you set up a passphrase, it will prompt you for it. If you completed advanced settings for your authentication, it will not prompt for a passphrase.
-
-``` output
-Enumerating objects: 16, done.
-Counting objects: 100% (16/16), done.
-Delta compression using up to 8 threads.
-Compressing objects: 100% (11/11), done.
-Writing objects: 100% (16/16), 1.45 KiB | 372.00 KiB/s, done.
-Total 16 (delta 2), reused 0 (delta 0)
-remote: Resolving deltas: 100% (2/2), done.
-To https://github.com/alflin/recipes.git
- * [new branch]      main -> main
-```
-
-We can pull changes from the remote repository to the local one as well:
-
-``` bash
-git pull origin main
-```
-
-``` git
-From https://github.com/alflin/recipes
- * branch            main     -> FETCH_HEAD
-Already up to date.
-```
-
-Pulling has no effect in this case because the two repositories are already synchronized. If someone else had pushed some changes to the repository on GitHub, though, this command would download them to our local repository.
-
-## GitHub GUI
-
-Browse to your `recipes` repository on GitHub. Under the Code tab, find and click on the text that says "XX commits" (where "XX" is some number). Hover over, and click on, the three buttons to the right of each commit. What information can you gather/explore from these buttons? How would you get that same information in the shell?
-
-::: {.callout-note title="Solution" collapse="true"}
-When you click on the left-most button, you'll see all of the changes that were made in that particular commit. Green shaded lines indicate additions and red ones removals. In the shell we can do the same thing with `git diff`. In particular, `git diff ID1..ID2` where ID1 and ID2 are commit identifiers (e.g. `git diff a3bf1e5..041e637`) will show the differences between those two commits.
-
-The middle button (with the picture of two overlapping squares or pages) copies the full identifier of the commit to the clipboard. In the shell, `git log` will show you the full commit identifier for each commit.
-
-The right-most button lets you view all of the files in the repository at the time of that commit. To do this in the shell, we'd need to checkout the repository at that particular time. We can do this with `git checkout ID` where ID is the identifier of the commit we want to look at. If we do this, we need to remember to put the repository back to the right state afterwards!
-:::
-
-## GitHub timestamp
-
-Create a remote repository on GitHub. Push the contents of your local repository to the remote. Make changes to your local repository and push these changes. Go to the repo you just created on GitHub and check the timestamps of the files. How does GitHub record times, and why?
-
-::: {.callout-note title="Solution" collapse="true"}
-GitHub displays timestamps in a human readable relative format (i.e. "22 hours ago" or "three weeks ago"). However, if you hover over the timestamp, you can see the exact time at which the last change to the file occurred.
-:::
-
-## Push vs. commit
-
-In this episode, we introduced the `git push` command. How is `git push` different from `git commit`?
-
-::: {.callout-note title="Solution" collapse="true"}
-When we push changes, we're interacting with a remote repository to update it with the changes we've made locally (often this corresponds to sharing the changes we've made with others). Commit only updates your local repository.
-:::
-
-## General workflow
-
-In one picture, here is the general workflow we have been following:
-
-![Commands included in basic Git workflows. From [Research Software Engineering with Python](https://third-bit.com/py-rse/git-cmdline.html).](/images/paste-47.png)
-
-
-# Collaborating
-
-Version control really shines when we collaborate with other people. We already have most of the machinery we need to do this; now we'll see how to use it effectively.
-
-::: {.callout-tip title="Practicing By Yourself"}
-Working alone? Open a second terminal to simulate a partner.
-:::
-
-## Adding collaborators
-
-The repository owner needs to give other people access. In your repository page on GitHub, click the "Settings" button on the right, select "Collaborators", click "Add people", and then enter your collaborator's username.
-
-To accept access to the owner's repository, the collaborator needs to go to <https://github.com/notifications> or check for email notification. Once there, they can accept access to the owner's repository.
-
-## Cloning a repository
-
-Next, the collaborator needs to download a copy of the owner's repository to their machine. This is called "cloning a repo".
-
-The collaborator doesn't want to overwrite their own version of `recipes.git`, so they need to clone the owner's repository to a different location than their own repository with the same name.
-
-To clone the owner's repo into the home directory `~`, the collaborator enters:
-
-``` bash
-git clone git@github.com:alflin/recipes.git ~/alflin-recipes
-```
-
-Replace 'alflin' with the owner's username.
-
-::: {.callout-note title="Important"}
-If you choose to clone without the clone path (`~/alflin-recipes`) specified at the end, you will clone inside your own recipes folder! Make sure to navigate to the home directory first.
-:::
-
-## Making changes as a collaborator
-
-The collaborator can now make a change in their clone of the owner's repository, exactly the same way as we've been doing before:
-
-``` bash
-cd ~/alflin-recipes
-code hummus.md
-cat hummus.md
-```
-
-``` output
-# Hummus
-## Ingredients
-* chickpeas
-* lemon
-* olive oil
-* salt
-```
-
-``` bash
-git add hummus.md
-git commit -m "Add ingredients for hummus"
-```
-
-``` output
- 1 file changed, 6 insertion(+)
- create mode 100644 hummus.md
-```
-
-Then push the change to the *owner's repository* on GitHub:
-
-``` bash
-git push origin main
-```
-
-``` git
-Enumerating objects: 4, done.
-Counting objects: 4, done.
-Delta compression using up to 4 threads.
-Compressing objects: 100% (2/2), done.
-Writing objects: 100% (3/3), 306 bytes, done.
-Total 3 (delta 0), reused 0 (delta 0)
-To https://github.com/alflin/recipes.git
-   9272da5..29aba7c  main -> main
-```
-
-Note that we didn't have to create a remote called `origin`: Git uses this name by default when we clone a repository. (This is why `origin` was a sensible choice earlier when we were setting up remotes by hand.)
-
-Take a look at the owner's repository on GitHub again, and you should be able to see the new commit made by the collaborator. You may need to refresh your browser to see the new commit.
+After you have a few local commits:
+
+1. Open **Source Control**.
+2. Choose **Publish to GitHub**.
+3. Sign in through the browser if VS Code prompts you.
+4. Choose whether the repository should be public or private.
+5. Let VS Code create the GitHub repository and push your existing commits.
+
+This is the simplest beginner path because VS Code handles both repository creation and the first push.
 
 ## Understanding remotes
 
-A remote is a copy of your repository hosted elsewhere (like GitHub). `origin` is the default remote name. Use `git remote -v` to list your remotes.
+Once published, your repository has:
+
+- a **local** copy on your computer,
+- a **remote** copy on GitHub.
+
+VS Code will show sync information in the status bar and in **Source Control**. The most important remote actions are:
+
+- **Fetch**: check for remote updates without changing your files
+- **Pull**: download and apply remote updates
+- **Push**: upload your local commits
+- **Sync Changes**: do the needed pull/push steps together
+
+::: {.callout-note title="What is origin?"}
+`origin` is the default nickname Git gives to the main remote repository. You do not need to type it in VS Code, but you may still see the name in documentation and terminal examples.
+:::
+
+## Pushing local changes to a remote
+
+Make one more local commit in VS Code. After committing, VS Code should show that you have outgoing changes.
+
+Use **Sync Changes** or **Push** to send them to GitHub. Then refresh the repository page on GitHub and confirm that the new commit appears there.
+
+## GitHub view of history
+
+On GitHub, open the repository and explore the commits list. You can:
+
+- open a commit to view its diff,
+- inspect when changes were made,
+- review history without leaving the browser.
+
+This complements the VS Code Graph and Timeline views nicely.
+
+## Push vs. commit
+
+A **commit** saves a snapshot in your local repository. A **push** sends your local commits to the remote repository on GitHub.
+
+::: {.callout-note title="Advanced: manual remote setup" collapse="true"}
+If you ever need to add a remote by hand, the terminal version looks like this:
+
+``` bash
+git remote add origin https://github.com/USERNAME/recipes.git
+git push -u origin main
+git remote -v
+```
+:::
+
+::: {.callout-note title="Advanced: use SSH instead of VS Code sign-in" collapse="true"}
+This lesson does not require SSH.
+
+If you later want SSH, the usual flow is:
+
+1. Create a key pair with `ssh-keygen`.
+2. Copy the public key from `~/.ssh/id_ed25519.pub`.
+3. Add it to GitHub under **Settings** > **SSH and GPG keys**.
+4. Use an SSH remote such as `git@github.com:USERNAME/recipes.git`.
+
+VS Code's browser sign-in is simpler for most beginners, so that is our recommended default.
+:::
+
+# Collaborating
+
+Version control becomes much more valuable when more than one person is working on the same project.
+
+## Adding collaborators
+
+The repository owner adds collaborators on GitHub from the repository settings. The invited person accepts the invitation from GitHub.
+
+## Cloning a repository
+
+The collaborator should use VS Code, not the terminal, as the main entry point:
+
+1. Open **Source Control**.
+2. Select **Clone Repository** or run `Git: Clone` from the Command Palette.
+3. Paste the GitHub repository URL, or choose **Clone from GitHub** if offered.
+4. Pick a local parent folder.
+5. Open the cloned repository in VS Code.
+
+When you clone, Git automatically connects the local copy to the remote repository.
+
+## Making changes as a collaborator
+
+The collaborator now uses the same workflow as before:
+
+1. Edit or create a file, for example `hummus.md`.
+2. Review the diff in **Source Control**.
+3. Stage the file.
+4. Commit with a clear message.
+5. Push or sync the change to GitHub.
+
+After refreshing GitHub, the owner should be able to see the collaborator's commit.
 
 ## Pulling changes from a collaborator
 
-To download the collaborator's changes from GitHub, the owner now enters:
+The owner can now use **Pull**, **Fetch**, or **Sync Changes** in VS Code to bring those updates into the local repository.
 
-``` bash
-git pull origin main
-```
+Once the pull completes successfully, both people are back in sync.
 
-``` git
-remote: Enumerating objects: 4, done.
-remote: Counting objects: 100% (4/4), done.
-remote: Compressing objects: 100% (2/2), done.
-remote: Total 3 (delta 0), reused 3 (delta 0), pack-reused 0
-Unpacking objects: 100% (3/3), done.
-From https://github.com/alflin/recipes
- * branch            main     -> FETCH_HEAD
-   9272da5..29aba7c  main     -> origin/main
-Updating 9272da5..29aba7c
-Fast-forward
- hummus.md | 5 +
- 1 file changed, 5 insertion(+)
- create mode 100644 hummus.md
-```
+::: {.callout-note title="A basic collaborative workflow" collapse="true"}
+For shared repositories, a good rhythm is:
 
-Now the three repositories (owner's local, collaborator's local, and owner's on GitHub) are back in sync.
+1. Pull or sync before you start work.
+2. Make a small change.
+3. Review, stage, and commit it.
+4. Push or sync again.
 
-::: {.callout-note title="A Basic Collaborative Workflow" collapse="true"}
-In practice, it is good to be sure that you have an updated version of the repository you are collaborating on, so you should `git pull` before making changes. The basic collaborative workflow would be:
-
--   update your local repo with `git pull origin main`,
--   make your changes and stage them with `git add`,
--   commit your changes with `git commit -m`, and
--   upload the changes to GitHub with `git push origin main`
-
-It is better to make many commits with smaller changes rather than one commit with massive changes: small commits are easier to read and review.
+Smaller commits are easier to understand and easier to merge.
 :::
-
-## Switch roles and repeat
-
-Switch roles with your partner and repeat the whole process. One person should now be the collaborator making changes to the other person's repository.
 
 ## Review changes
 
-The owner pushed commits to the repository without giving any information to the collaborator. How can the collaborator find out what has changed with the command line? And on GitHub?
+If your collaborator pushed new work, there are several good places to inspect it:
 
-::: {.callout-note title="Solution" collapse="true"}
-On the command line, the collaborator can use `git fetch origin main` to get the remote changes into the local repository, but without merging them. Then by running `git diff main origin/main` the collaborator will see the changes output in the terminal.
-
-On GitHub, the collaborator can go to the repository and click on "commits" to view the most recent commits pushed to the repository.
-:::
+- **Source Control Graph** in VS Code
+- **Timeline** for a specific file
+- the **Commits** view on GitHub
 
 ## Comment changes in GitHub
 
-The collaborator has some questions about one line change made by the owner and has some suggestions to propose.
+GitHub also lets collaborators comment directly on commit diffs or pull requests. That is useful when you want to ask a question about a specific changed line.
 
-With GitHub, it is possible to comment on the diff of a commit. Over the line of code to comment, a blue comment icon appears to open a comment window.
+::: {.callout-note title="Terminal equivalent" collapse="true"}
+The traditional terminal workflow uses commands like:
 
-The collaborator posts their comments and suggestions using the GitHub interface.
-
+``` bash
+git clone https://github.com/USERNAME/recipes.git
+git pull origin main
+git push origin main
+git fetch origin main
+```
+:::
 
 # Conflicts
 
-As soon as people can work in parallel, they'll likely step on each other's toes. This will even happen with a single person: if we are working on a piece of software on both our laptop and a server in the lab, we could make different changes to each copy. Version control helps us manage these conflicts by giving us tools to resolve overlapping changes.
+Conflicts happen when two people change the same part of the same file before syncing.
 
-To see how we can resolve conflicts, we must first create one. The file `guacamole.md` currently looks like this in both partners' copies of our `recipes` repository:
+For example:
 
-``` bash
-cat guacamole.md
-```
+- collaborator A adds `* put one avocado into a bowl.`
+- collaborator B adds `* peel the avocados`
 
-``` output
-# Guacamole
-## Ingredients
-* avocado
-* lime
-* salt
-## Instructions
-```
+If one person pushes first, the second person may be forced to pull before pushing. If Git cannot combine the edits safely, VS Code will mark the file as conflicted.
 
-Let's add a line to the collaborator's copy only:
+## Resolving conflicts in VS Code
 
-``` bash
-code guacamole.md
-cat guacamole.md
-```
+When a conflict appears:
 
-``` output
-# Guacamole
-## Ingredients
-* avocado
-* lime
-* salt
-## Instructions
-* put one avocado into a bowl.
-```
+1. Open **Source Control** and select the conflicted file.
+2. Open the **Merge Editor**.
+3. Compare the current change and incoming change.
+4. Use VS Code's buttons to accept one side, accept both, or edit a combined result manually.
+5. Save the file.
+6. Stage the resolved file.
+7. Commit the merge result.
+8. Push or sync the repository.
 
-and then push the change to GitHub:
-
-``` bash
-git add guacamole.md
-git commit -m "First step on the instructions"
-```
-
-``` output
-[main 5ae9631] First step on the instructions
- 1 file changed, 1 insertion(+)
-```
-
-``` bash
-git push origin main
-```
-
-``` output
-Enumerating objects: 5, done.
-Counting objects: 100% (5/5), done.
-Delta compression using up to 8 threads
-Compressing objects: 100% (3/3), done.
-Writing objects: 100% (3/3), 331 bytes | 331.00 KiB/s, done.
-Total 3 (delta 2), reused 0 (delta 0)
-remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
-To https://github.com/alflin/recipes.git
-   29aba7c..dabb4c8  main -> main
-```
-
-Now let's have the owner make a different change to their copy *without* updating from GitHub:
-
-``` bash
-code guacamole.md
-cat guacamole.md
-```
+For this lesson, a good final resolution for `guacamole.md` would be:
 
 ``` output
 # Guacamole
@@ -1643,188 +623,55 @@ cat guacamole.md
 * lime
 * salt
 ## Instructions
-* peel the avocados
+* peel the avocados and put them into a bowl.
 ```
 
-We can commit the change locally:
+This merge-editor workflow is much friendlier than trying to memorize conflict markers immediately.
 
-``` bash
-git add guacamole.md
-git commit -m "Add first step"
-```
+## Understanding the conflict markers
 
-``` output
-[main 07ebc69] Add first step
- 1 file changed, 1 insertion(+)
-```
-
-but Git won't let us push it to GitHub:
-
-``` bash
-git push origin main
-```
+If you ever open the raw file before resolving it, Git may insert markers like:
 
 ``` git
-To https://github.com/alflin/recipes.git
- ! [rejected]        main -> main (fetch first)
-error: failed to push some refs to 'https://github.com/alflin/recipes.git'
-hint: Updates were rejected because the remote contains work that you do
-hint: not have locally. This is usually caused by another repository pushing
-hint: to the same ref. You may want to first integrate the remote changes
-hint: (e.g., 'git pull ...') before pushing again.
-hint: See the 'Note about fast-forwards' in 'git push --help' for details.
-```
-
-Git rejects the push because it detects that the remote repository has new updates that have not been incorporated into the local branch. What we have to do is pull the changes from GitHub, merge them into the copy we're currently working in, and then push that. Let's start by pulling:
-
-``` bash
-git pull origin main
-```
-
-``` git
-remote: Enumerating objects: 5, done.
-remote: Counting objects: 100% (5/5), done.
-remote: Compressing objects: 100% (1/1), done.
-remote: Total 3 (delta 2), reused 3 (delta 2), pack-reused 0
-Unpacking objects: 100% (3/3), done.
-From https://github.com/alflin/recipes
- * branch            main     -> FETCH_HEAD
-    29aba7c..dabb4c8  main     -> origin/main
-Auto-merging guacamole.md
-CONFLICT (content): Merge conflict in guacamole.md
-Automatic merge failed; fix conflicts and then commit the result.
-```
-
-The `git pull` command updates the local repository to include those changes already included in the remote repository. After the changes from remote branch have been fetched, Git detects that changes made to the local copy overlap with those made to the remote repository, and therefore refuses to merge the two versions to stop us from trampling on our previous work. The conflict is marked in the affected file:
-
-``` bash
-cat guacamole.md
-```
-
-``` git
-# Guacamole
-## Ingredients
-* avocado
-* lime
-* salt
-## Instructions
 <<<<<<< HEAD
 * peel the avocados
 =======
 * put one avocado into a bowl.
->>>>>>> dabb4c8c450e8475aee9b14b4383acc99f42af1d
+>>>>>>> incoming change
 ```
 
-Our change is preceded by `<<<<<<< HEAD`. Git has then inserted `=======` as a separator between the conflicting changes and marked the end of the content downloaded from GitHub with `>>>>>>>`. (The string of letters and digits after that marker identifies the commit we've just downloaded.)
+These markers are Git's way of saying "I found two competing edits here." VS Code's merge tools help you resolve them without editing the markers by hand.
 
-It is now up to us to edit this file to remove these markers and reconcile the changes. We can do anything we want: keep the change made in the local repository, keep the change made in the remote repository, write something new to replace both, or get rid of the change entirely. Let's replace both so that the file looks like this:
-
-``` bash
-code guacamole.md
-cat guacamole.md
-```
-
-``` output
-# Guacamole
-## Ingredients
-* avocado
-* lime
-* salt
-## Instructions
-* peel the avocados and put them into a bowl.
-```
-
-To finish merging, we add `guacamole.md` to the changes being made by the merge and then commit:
-
-``` bash
-git add guacamole.md
-git status
-```
-
-``` output
-On branch main
-All conflicts fixed but you are still merging.
-  (use "git commit" to conclude merge)
-
-Changes to be committed:
-
-    modified:   guacamole.md
-```
-
-``` bash
-git commit -m "Merge changes from GitHub"
-```
-
-``` git
-[main 2abf2b1] Merge changes from GitHub
-```
-
-Now we can push our changes to GitHub:
-
-``` bash
-git push origin main
-```
-
-``` output
-Enumerating objects: 10, done.
-Counting objects: 100% (10/10), done.
-Delta compression using up to 4 threads
-Compressing objects: 100% (6/6), done.
-Writing objects: 100% (6/6), 645 bytes | 645.00 KiB/s, done.
-Total 6 (delta 4), reused 0 (delta 0)
-remote: Resolving deltas: 100% (4/4), completed with 2 local objects.
-To https://github.com/alflin/recipes.git
-   dabb4c8..2abf2b1  main -> main
-```
-
-Git keeps track of what we've merged with what, so we don't have to fix things by hand again when the collaborator who made the first change pulls again:
+::: {.callout-note title="Terminal equivalent" collapse="true"}
+The command-line version usually looks like:
 
 ``` bash
 git pull origin main
+git add guacamole.md
+git commit -m "Merge changes from GitHub"
+git push origin main
 ```
+:::
 
-``` git
-remote: Enumerating objects: 10, done.
-remote: Counting objects: 100% (10/10), done.
-remote: Compressing objects: 100% (2/2), done.
-remote: Total 6 (delta 4), reused 6 (delta 4), pack-reused 0
-Unpacking objects: 100% (6/3), done.
-From https://github.com/alflin/recipes
- * branch            main     -> FETCH_HEAD
-    dabb4c8..2abf2b1  main     -> origin/main
-Updating dabb4c8..2abf2b1
-Fast-forward
- guacamole.md | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-```
+After the merge commit is pushed, other collaborators can pull normally and receive the already-resolved version.
 
-We get the merged file:
+To minimize conflicts:
 
-``` bash
-cat guacamole.md
-```
-
-``` output
-# Guacamole
-## Ingredients
-* avocado
-* lime
-* salt
-## Instructions
-* peel the avocados and put them into a bowl.
-```
-
-We don't need to merge again because Git knows someone has already done that.
-
-To minimize conflicts: - Pull frequently from the remote repository - Communicate with teammates about who's working on what - Make smaller, focused commits
+- Pull frequently from the remote repository.
+- Communicate with teammates about who is working on what.
+- Make smaller, focused commits.
 
 # Licensing
 
 A `LICENSE` file specifies how others can use your code and data. Without one, default copyright laws apply. Choose a license from the start—even for private repositories—since adding one later requires approval from all contributors who hold copyright.
 
-Use [choosealicense.com](https://choosealicense.com/) to find a license. Key considerations: - Patent rights protection - Whether derivative works must share source code - Whether you're licensing source code
+Use [choosealicense.com](https://choosealicense.com/) to find a license. Key considerations include:
 
-GitHub allows you to easily to add a license in their web browser explained [here](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/adding-a-license-to-a-repository).
+- patent rights protection,
+- whether derivative works must share source code,
+- whether you are licensing code, data, or both.
+
+GitHub also lets you add a license from the browser, as explained [here](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/adding-a-license-to-a-repository).
 
 # Citation
 
