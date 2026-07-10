@@ -1,5 +1,5 @@
 ---
-title: "0. Terminal"
+title: "Terminal"
 format: html
 ---
 

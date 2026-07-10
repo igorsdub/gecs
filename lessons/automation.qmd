@@ -1,5 +1,5 @@
 ---
-title: "4. Automation"
+title: "Automation"
 format: html
 ---
 
