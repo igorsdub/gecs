@@ -180,203 +180,290 @@
     "href": "lessons/version-control.html",
     "title": "Version Control",
     "section": "",
-    "text": "If I could turn back time\nCher, If I Could Turn Back Time 1989\nVersion control tracks changes to your files, lets you undo mistakes, and makes collaboration easy. Once you start using it, you’ll wonder how you worked without it!"
+    "text": "If I could turn back time\nCher, If I Could Turn Back Time 1989\nVersion control tracks changes to your files, lets you undo mistakes, and makes collaboration easy. Once you start using it, you’ll wonder how you worked without it!",
+    "crumbs": [
+      "Version Control"
+    ]
   },
   {
     "objectID": "lessons/version-control.html#creating-github-account",
     "href": "lessons/version-control.html#creating-github-account",
     "title": "Version Control",
     "section": "Creating GitHub account",
-    "text": "Creating GitHub account\nIf you don’t already have a GitHub account, check the Setting Up section."
+    "text": "Creating GitHub account\nIf you don’t already have a GitHub account, check the Setting Up section.",
+    "crumbs": [
+      "Version Control"
+    ]
   },
   {
     "objectID": "lessons/version-control.html#installing-git",
     "href": "lessons/version-control.html#installing-git",
     "title": "Version Control",
     "section": "Installing Git",
-    "text": "Installing Git\nVS Code uses the Git installed on your computer. Check that Git is available:\ngit --version\nIf you get an error, please see this webpage from The Software Carpentries for installation steps."
+    "text": "Installing Git\nVS Code uses the Git installed on your computer. Check that Git is available:\ngit --version\nIf you get an error, please see this webpage from The Software Carpentries for installation steps.",
+    "crumbs": [
+      "Version Control"
+    ]
   },
   {
     "objectID": "lessons/version-control.html#setting-up-git",
     "href": "lessons/version-control.html#setting-up-git",
     "title": "Version Control",
     "section": "Setting up Git",
-    "text": "Setting up Git\nWe will use VS Code as our main teaching interface, but Git still needs your name and email once on each computer.\nOpen VS Code. If needed, use File &gt; Open Folder to choose the folder where you want to work.\n\n\n\n\n\n\nTipOpen folder like a VS Coder\n\n\n\nYou can also open the Command Palette with Ctrl/Cmd+Shift+P and run Open Folder.\n\n\nOpen the terminal in VS Code with View &gt; Terminal or Ctrl/Cmd+` and run:\ngit config --global user.name \"Alfredo Linguini\"\ngit config --global user.email \"a.linguini@ratatouille.fr\"\ngit config --global init.defaultBranch main\nUse your own name and email instead of Alfredo’s. For GitHub, it is easiest if this email matches your GitHub account.\n\n\n\n\n\n\nTipKeeping your email private\n\n\n\n\n\nIf you prefer not to show your personal email in commits, GitHub provides a no-reply email address. See GitHub’s instructions for keeping your email private.\n\n\n\nYou can review these settings anytime with:\ngit config --list --global\n\n\n\n\n\n\nTipWindows users\n\n\n\n\n\nIf you are on Windows, doing this lesson inside WSL usually leads to fewer Git and shell problems. In VS Code, use WSL: New Window or WSL: Reopen Folder in WSL."
+    "text": "Setting up Git\nWe will use VS Code as our main teaching interface, but Git still needs your name and email once on each computer.\nOpen VS Code. If needed, use File &gt; Open Folder to choose the folder where you want to work.\n\n\n\n\n\n\nTipOpen folder like a VS Coder\n\n\n\nYou can also open the Command Palette with Ctrl/Cmd+Shift+P and run Open Folder.\n\n\nOpen the terminal in VS Code with View &gt; Terminal or Ctrl/Cmd+` and run:\ngit config --global user.name \"Alfredo Linguini\"\ngit config --global user.email \"a.linguini@ratatouille.fr\"\ngit config --global init.defaultBranch main\nUse your own name and email instead of Alfredo’s. For GitHub, it is easiest if this email matches your GitHub account.\n\n\n\n\n\n\nTipKeeping your email private\n\n\n\n\n\nIf you prefer not to show your personal email in commits, GitHub provides a no-reply email address. See GitHub’s instructions for keeping your email private.\n\n\n\nYou can review these settings anytime with:\ngit config --list --global\n\n\n\n\n\n\nTipWindows users\n\n\n\n\n\nIf you are on Windows, doing this lesson inside WSL usually leads to fewer Git and shell problems. In VS Code, use WSL: New Window or WSL: Reopen Folder in WSL.",
+    "crumbs": [
+      "Version Control"
+    ]
   },
   {
     "objectID": "lessons/version-control.html#places-to-create-git-repositories",
     "href": "lessons/version-control.html#places-to-create-git-repositories",
     "title": "Version Control",
     "section": "Places to create Git repositories",
-    "text": "Places to create Git repositories\nUsually you want one repository for one project folder. If recipes is already a Git repository, you do not need to create another repository inside recipes/desserts just to track dessert files. The main recipes repository will already track subfolders.\n\n\n\n\n\n\nNoteNested repositories\n\n\n\n\n\nNested repositories are usually confusing for beginners. If you accidentally run git init inside a subfolder, Git treats that inner folder as a separate repository with separate history."
+    "text": "Places to create Git repositories\nUsually you want one repository for one project folder. If recipes is already a Git repository, you do not need to create another repository inside recipes/desserts just to track dessert files. The main recipes repository will already track subfolders.\n\n\n\n\n\n\nNoteNested repositories\n\n\n\n\n\nNested repositories are usually confusing for beginners. If you accidentally run git init inside a subfolder, Git treats that inner folder as a separate repository with separate history.",
+    "crumbs": [
+      "Version Control"
+    ]
   },
   {
     "objectID": "lessons/version-control.html#commit-message",
     "href": "lessons/version-control.html#commit-message",
     "title": "Version Control",
     "section": "Commit message",
-    "text": "Commit message\nWhich of the following commit messages is most helpful?\n\n\"changes\"\n\"change lemon for lime\"\n\"use lime in guacamole recipe\"\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nAnswer 3 is best. Good commit messages are short, descriptive, and make the change easy to understand later."
+    "text": "Commit message\nWhich of the following commit messages is most helpful?\n\n\"changes\"\n\"change lemon for lime\"\n\"use lime in guacamole recipe\"\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nAnswer 3 is best. Good commit messages are short, descriptive, and make the change easy to understand later.",
+    "crumbs": [
+      "Version Control"
+    ]
   },
   {
     "objectID": "lessons/version-control.html#committing-multiple-files",
     "href": "lessons/version-control.html#committing-multiple-files",
     "title": "Version Control",
     "section": "Committing multiple files",
-    "text": "Committing multiple files\nVS Code also makes it easy to commit related changes from multiple files together.\n\nAdd rough prices to guacamole.md.\nCreate a new file groceries.md with ingredient prices from a market.\nReview both files in Source Control.\nStage both files.\nCommit them together with one message.\n\n\n\n\n\n\n\nNoteOne possible result\n\n\n\n\n\nYou might end up with something like:\n# Guacamole\n## Ingredients\n* avocado (1.35)\n* lime (0.64)\n* salt (2)\n## Instructions\nand\n# Market A\n* avocado: 1.35 per unit\n* lime: 0.64 per unit\n* salt: 2 per kg\nA good commit message would be Add ingredient prices and market list."
+    "text": "Committing multiple files\nVS Code also makes it easy to commit related changes from multiple files together.\n\nAdd rough prices to guacamole.md.\nCreate a new file groceries.md with ingredient prices from a market.\nReview both files in Source Control.\nStage both files.\nCommit them together with one message.\n\n\n\n\n\n\n\nNoteOne possible result\n\n\n\n\n\nYou might end up with something like:\n# Guacamole\n## Ingredients\n* avocado (1.35)\n* lime (0.64)\n* salt (2)\n## Instructions\nand\n# Market A\n* avocado: 1.35 per unit\n* lime: 0.64 per unit\n* salt: 2 per kg\nA good commit message would be Add ingredient prices and market list.",
+    "crumbs": [
+      "Version Control"
+    ]
   },
   {
     "objectID": "lessons/version-control.html#biography-repository",
     "href": "lessons/version-control.html#biography-repository",
     "title": "Version Control",
     "section": "biography repository",
-    "text": "biography repository\n\nCreate a new Git repository called biography.\nWrite a three-line biography for yourself in me.txt.\nCommit it in VS Code.\nModify one line and add a fourth line.\nOpen the diff editor to compare the current version with the last committed version.\n\n\n\n\n\n\n\nNoteSuggestion\n\n\n\n\n\nThis is good practice for repeating the same VS Code workflow in a fresh repository: open folder, initialize repository, edit, review, stage, commit."
+    "text": "biography repository\n\nCreate a new Git repository called biography.\nWrite a three-line biography for yourself in me.txt.\nCommit it in VS Code.\nModify one line and add a fourth line.\nOpen the diff editor to compare the current version with the last committed version.\n\n\n\n\n\n\n\nNoteSuggestion\n\n\n\n\n\nThis is good practice for repeating the same VS Code workflow in a fresh repository: open folder, initialize repository, edit, review, stage, commit.",
+    "crumbs": [
+      "Version Control"
+    ]
   },
   {
     "objectID": "lessons/version-control.html#compare-your-current-file-to-the-last-commit",
     "href": "lessons/version-control.html#compare-your-current-file-to-the-last-commit",
     "title": "Version Control",
     "section": "Compare your current file to the last commit",
-    "text": "Compare your current file to the last commit\nAdd one temporary line to guacamole.md, save the file, and open it from Source Control.\nThe diff editor compares your current file with the last committed version. For most beginners, this is the most important history view to learn first.\nIf you decide the change was a mistake, right-click the file in Source Control and choose Discard Changes."
+    "text": "Compare your current file to the last commit\nAdd one temporary line to guacamole.md, save the file, and open it from Source Control.\nThe diff editor compares your current file with the last committed version. For most beginners, this is the most important history view to learn first.\nIf you decide the change was a mistake, right-click the file in Source Control and choose Discard Changes.",
+    "crumbs": [
+      "Version Control"
+    ]
   },
   {
     "objectID": "lessons/version-control.html#view-earlier-commits",
     "href": "lessons/version-control.html#view-earlier-commits",
     "title": "Version Control",
     "section": "View earlier commits",
-    "text": "View earlier commits\nVS Code gives you two helpful history views:\n\nTimeline: shows the history of one file.\nSource Control Graph: shows the history of the whole repository.\n\n\n\n\nThe Timeline view for file history in VS Code.\n\n\nSource: VS Code Source Control Overview.\nTo use them:\n\nSelect guacamole.md in the Explorer and open the Timeline view.\nBrowse older file versions and commit messages.\nOpen the Source Control Graph to see the order of commits in the repository.\n\nThis is much easier for beginners than memorizing commit IDs early on.\n\n\n\nThe Source Control Graph view in VS Code.\n\n\nSource: VS Code Source Control Overview."
+    "text": "View earlier commits\nVS Code gives you two helpful history views:\n\nTimeline: shows the history of one file.\nSource Control Graph: shows the history of the whole repository.\n\n\n\n\nThe Timeline view for file history in VS Code.\n\n\nSource: VS Code Source Control Overview.\nTo use them:\n\nSelect guacamole.md in the Explorer and open the Timeline view.\nBrowse older file versions and commit messages.\nOpen the Source Control Graph to see the order of commits in the repository.\n\nThis is much easier for beginners than memorizing commit IDs early on.\n\n\n\nThe Source Control Graph view in VS Code.\n\n\nSource: VS Code Source Control Overview.",
+    "crumbs": [
+      "Version Control"
+    ]
   },
   {
     "objectID": "lessons/version-control.html#recovering-older-versions-of-a-file",
     "href": "lessons/version-control.html#recovering-older-versions-of-a-file",
     "title": "Version Control",
     "section": "Recovering older versions of a file",
-    "text": "Recovering older versions of a file\nSuppose you edited guacamole.md and want to get back to the last committed version.\nIn VS Code:\n\nOpen Source Control.\nRight-click guacamole.md.\nChoose Discard Changes.\n\nThat restores the file to its most recently committed state.\nIf you want to inspect older versions first, use the Timeline for that file and open previous entries before deciding what to restore.\n\n\n\n\n\n\nNoteAdvanced: HEAD in terminal\n\n\n\n\n\nOn the command line, the most recent commit is called HEAD. The commit before it is HEAD~1, then HEAD~2, and so on.\nExamples:\ngit diff HEAD guacamole.md\ngit restore guacamole.md\ngit restore -s HEAD~1 guacamole.md\nYou do not need this syntax for the main VS Code workflow in this lesson."
+    "text": "Recovering older versions of a file\nSuppose you edited guacamole.md and want to get back to the last committed version.\nIn VS Code:\n\nOpen Source Control.\nRight-click guacamole.md.\nChoose Discard Changes.\n\nThat restores the file to its most recently committed state.\nIf you want to inspect older versions first, use the Timeline for that file and open previous entries before deciding what to restore.\n\n\n\n\n\n\nNoteAdvanced: HEAD in terminal\n\n\n\n\n\nOn the command line, the most recent commit is called HEAD. The commit before it is HEAD~1, then HEAD~2, and so on.\nExamples:\ngit diff HEAD guacamole.md\ngit restore guacamole.md\ngit restore -s HEAD~1 guacamole.md\nYou do not need this syntax for the main VS Code workflow in this lesson.",
+    "crumbs": [
+      "Version Control"
+    ]
   },
   {
     "objectID": "lessons/version-control.html#getting-rid-of-staged-changes",
     "href": "lessons/version-control.html#getting-rid-of-staged-changes",
     "title": "Version Control",
     "section": "Getting rid of staged changes",
-    "text": "Getting rid of staged changes\nWhat if you staged a file and then changed your mind before committing?\nIn VS Code, you can unstage it in several ways:\n\nclick the - icon beside the file in Staged Changes,\nright-click and choose Unstage Changes,\ndrag it back from Staged Changes to Changes.\n\nAfter that, if you also want to throw away the edit entirely, use Discard Changes.\n\n\n\n\n\n\nNoteTerminal equivalent\n\n\n\n\n\nThe command-line version is:\ngit restore --staged guacamole.md\ngit restore guacamole.md"
+    "text": "Getting rid of staged changes\nWhat if you staged a file and then changed your mind before committing?\nIn VS Code, you can unstage it in several ways:\n\nclick the - icon beside the file in Staged Changes,\nright-click and choose Unstage Changes,\ndrag it back from Staged Changes to Changes.\n\nAfter that, if you also want to throw away the edit entirely, use Discard Changes.\n\n\n\n\n\n\nNoteTerminal equivalent\n\n\n\n\n\nThe command-line version is:\ngit restore --staged guacamole.md\ngit restore guacamole.md",
+    "crumbs": [
+      "Version Control"
+    ]
   },
   {
     "objectID": "lessons/version-control.html#explore-and-summarize-histories",
     "href": "lessons/version-control.html#explore-and-summarize-histories",
     "title": "Version Control",
     "section": "Explore and summarize histories",
-    "text": "Explore and summarize histories\nImagine the recipes project has dozens of files and you want to answer questions like:\n\nWhich commit changed guacamole.md?\nWhen did the ingredient list change?\nWhat changed in that commit?\n\nIn VS Code:\n\nUse Timeline for file-by-file history.\nUse Source Control Graph for repository history.\nOpen commits on GitHub to inspect remote history and diffs.\n\nIf commit messages are vague, open the commit diff instead of guessing from the title alone.\n\n\n\n\n\n\nNoteTerminal equivalent\n\n\n\n\n\nUseful history commands include:\ngit log guacamole.md\ngit log --patch guacamole.md"
+    "text": "Explore and summarize histories\nImagine the recipes project has dozens of files and you want to answer questions like:\n\nWhich commit changed guacamole.md?\nWhen did the ingredient list change?\nWhat changed in that commit?\n\nIn VS Code:\n\nUse Timeline for file-by-file history.\nUse Source Control Graph for repository history.\nOpen commits on GitHub to inspect remote history and diffs.\n\nIf commit messages are vague, open the commit diff instead of guessing from the title alone.\n\n\n\n\n\n\nNoteTerminal equivalent\n\n\n\n\n\nUseful history commands include:\ngit log guacamole.md\ngit log --patch guacamole.md",
+    "crumbs": [
+      "Version Control"
+    ]
   },
   {
     "objectID": "lessons/version-control.html#log-files",
     "href": "lessons/version-control.html#log-files",
     "title": "Version Control",
     "section": "Log files",
-    "text": "Log files\nYou wrote a script that creates temporary files like log_01, log_02, and log_03.\nAdd a rule such as:\nlog_*\nto .gitignore.\nIf you later decide to track one of them anyway, that is an advanced case and is easier from the terminal.\n\n\n\n\n\n\nNoteTerminal equivalent\n\n\n\n\n\nYou can override an ignore rule with:\ngit add -f log_01\ngit status --ignored"
+    "text": "Log files\nYou wrote a script that creates temporary files like log_01, log_02, and log_03.\nAdd a rule such as:\nlog_*\nto .gitignore.\nIf you later decide to track one of them anyway, that is an advanced case and is easier from the terminal.\n\n\n\n\n\n\nNoteTerminal equivalent\n\n\n\n\n\nYou can override an ignore rule with:\ngit add -f log_01\ngit status --ignored",
+    "crumbs": [
+      "Version Control"
+    ]
   },
   {
     "objectID": "lessons/version-control.html#creating-a-remote-repository",
     "href": "lessons/version-control.html#creating-a-remote-repository",
     "title": "Version Control",
     "section": "Creating a remote repository",
-    "text": "Creating a remote repository\nAfter you have a few local commits:\n\nOpen Source Control.\nChoose Publish to GitHub.\nSign in through the browser if VS Code prompts you.\nChoose whether the repository should be public or private.\nLet VS Code create the GitHub repository and push your existing commits.\n\nThis is the simplest beginner path because VS Code handles both repository creation and the first push.\n\n\n\nThe GitHub sign-in prompt in VS Code.\n\n\nSource: VS Code Collaborate on GitHub."
+    "text": "Creating a remote repository\nAfter you have a few local commits:\n\nOpen Source Control.\nChoose Publish to GitHub.\nSign in through the browser if VS Code prompts you.\nChoose whether the repository should be public or private.\nLet VS Code create the GitHub repository and push your existing commits.\n\nThis is the simplest beginner path because VS Code handles both repository creation and the first push.\n\n\n\nThe GitHub sign-in prompt in VS Code.\n\n\nSource: VS Code Collaborate on GitHub.",
+    "crumbs": [
+      "Version Control"
+    ]
   },
   {
     "objectID": "lessons/version-control.html#understanding-remotes",
     "href": "lessons/version-control.html#understanding-remotes",
     "title": "Version Control",
     "section": "Understanding remotes",
-    "text": "Understanding remotes\nOnce published, your repository has:\n\na local copy on your computer,\na remote copy on GitHub.\n\nVS Code will show sync information in the status bar and in Source Control. The most important remote actions are:\n\nFetch: check for remote updates without changing your files\nPull: download and apply remote updates\nPush: upload your local commits\nSync Changes: do the needed pull/push steps together\n\n\n\n\nFetch, pull, and push controls in VS Code.\n\n\nSource: VS Code Repositories and Remotes.\n\n\n\n\n\n\nNoteWhat is origin?\n\n\n\norigin is the default nickname Git gives to the main remote repository. You do not need to type it in VS Code, but you may still see the name in documentation and terminal examples."
+    "text": "Understanding remotes\nOnce published, your repository has:\n\na local copy on your computer,\na remote copy on GitHub.\n\nVS Code will show sync information in the status bar and in Source Control. The most important remote actions are:\n\nFetch: check for remote updates without changing your files\nPull: download and apply remote updates\nPush: upload your local commits\nSync Changes: do the needed pull/push steps together\n\n\n\n\nFetch, pull, and push controls in VS Code.\n\n\nSource: VS Code Repositories and Remotes.\n\n\n\n\n\n\nNoteWhat is origin?\n\n\n\norigin is the default nickname Git gives to the main remote repository. You do not need to type it in VS Code, but you may still see the name in documentation and terminal examples.",
+    "crumbs": [
+      "Version Control"
+    ]
   },
   {
     "objectID": "lessons/version-control.html#pushing-local-changes-to-a-remote",
     "href": "lessons/version-control.html#pushing-local-changes-to-a-remote",
     "title": "Version Control",
     "section": "Pushing local changes to a remote",
-    "text": "Pushing local changes to a remote\nMake one more local commit in VS Code. After committing, VS Code should show that you have outgoing changes.\nUse Sync Changes or Push to send them to GitHub. Then refresh the repository page on GitHub and confirm that the new commit appears there."
+    "text": "Pushing local changes to a remote\nMake one more local commit in VS Code. After committing, VS Code should show that you have outgoing changes.\nUse Sync Changes or Push to send them to GitHub. Then refresh the repository page on GitHub and confirm that the new commit appears there.",
+    "crumbs": [
+      "Version Control"
+    ]
   },
   {
     "objectID": "lessons/version-control.html#github-view-of-history",
     "href": "lessons/version-control.html#github-view-of-history",
     "title": "Version Control",
     "section": "GitHub view of history",
-    "text": "GitHub view of history\nOn GitHub, open the repository and explore the commits list. You can:\n\nopen a commit to view its diff,\ninspect when changes were made,\nreview history without leaving the browser.\n\nThis complements the VS Code Graph and Timeline views nicely."
+    "text": "GitHub view of history\nOn GitHub, open the repository and explore the commits list. You can:\n\nopen a commit to view its diff,\ninspect when changes were made,\nreview history without leaving the browser.\n\nThis complements the VS Code Graph and Timeline views nicely.",
+    "crumbs": [
+      "Version Control"
+    ]
   },
   {
     "objectID": "lessons/version-control.html#push-vs.-commit",
     "href": "lessons/version-control.html#push-vs.-commit",
     "title": "Version Control",
     "section": "Push vs. commit",
-    "text": "Push vs. commit\nA commit saves a snapshot in your local repository. A push sends your local commits to the remote repository on GitHub.\n\n\n\n\n\n\nNoteAdvanced: manual remote setup\n\n\n\n\n\nIf you ever need to add a remote by hand, the terminal version looks like this:\ngit remote add origin https://github.com/USERNAME/recipes.git\ngit push -u origin main\ngit remote -v\n\n\n\n\n\n\n\n\n\nNoteAdvanced: use SSH instead of VS Code sign-in\n\n\n\n\n\nThis lesson does not require SSH.\nIf you later want SSH, the usual flow is:\n\nCreate a key pair with ssh-keygen.\nCopy the public key from ~/.ssh/id_ed25519.pub.\nAdd it to GitHub under Settings &gt; SSH and GPG keys.\nUse an SSH remote such as git@github.com:USERNAME/recipes.git.\n\nVS Code’s browser sign-in is simpler for most beginners, so that is our recommended default."
+    "text": "Push vs. commit\nA commit saves a snapshot in your local repository. A push sends your local commits to the remote repository on GitHub.\n\n\n\n\n\n\nNoteAdvanced: manual remote setup\n\n\n\n\n\nIf you ever need to add a remote by hand, the terminal version looks like this:\ngit remote add origin https://github.com/USERNAME/recipes.git\ngit push -u origin main\ngit remote -v\n\n\n\n\n\n\n\n\n\nNoteAdvanced: use SSH instead of VS Code sign-in\n\n\n\n\n\nThis lesson does not require SSH.\nIf you later want SSH, the usual flow is:\n\nCreate a key pair with ssh-keygen.\nCopy the public key from ~/.ssh/id_ed25519.pub.\nAdd it to GitHub under Settings &gt; SSH and GPG keys.\nUse an SSH remote such as git@github.com:USERNAME/recipes.git.\n\nVS Code’s browser sign-in is simpler for most beginners, so that is our recommended default.",
+    "crumbs": [
+      "Version Control"
+    ]
   },
   {
     "objectID": "lessons/version-control.html#create-and-publish-your-quarto-website",
     "href": "lessons/version-control.html#create-and-publish-your-quarto-website",
     "title": "Version Control",
     "section": "Create and publish your Quarto website",
-    "text": "Create and publish your Quarto website\nStart by opening the template repository on GitHub and selecting Use this template to create your own website repository. Name it something like recipe-website and choose it to be public. Also, include all branches so you do not need to fiddle with Quarto.\n\n igorsdub/quarto-website \n\nNice, now you have your own website. Ain’t taht cool?! Clone that repository to your computer in VS Code. The main page of your website lives in the index.qmd file.\nDefault content of index.qmd is:\n---\ntitle: \"quarto-website\"\n---\n\nThis is a Quarto website.\n\nTo learn more about Quarto websites visit &lt;https://quarto.org/docs/websites&gt;.\nYou can add the guacamole recipe to your website by editing index.qmd and adding the following content or a receipe of your choice.\n\n\n\n\n\n\nNoteQuarto files are plain text\n\n\n\nQuarto pages are still plain-text source files, just like the Markdown files you used earlier. The collaboration ideas are the same, even though the project is now a website instead of a recipe note."
+    "text": "Create and publish your Quarto website\nStart by opening the template repository on GitHub and selecting Use this template to create your own website repository. Name it something like recipe-website and choose it to be public. Also, include all branches so you do not need to fiddle with Quarto.\n\n igorsdub/quarto-website \n\nNice, now you have your own website. Ain’t taht cool?! Clone that repository to your computer in VS Code. The main page of your website lives in the index.qmd file.\nDefault content of index.qmd is:\n---\ntitle: \"quarto-website\"\n---\n\nThis is a Quarto website.\n\nTo learn more about Quarto websites visit &lt;https://quarto.org/docs/websites&gt;.\nYou can add the guacamole recipe to your website by editing index.qmd and adding the following content or a receipe of your choice.\n\n\n\n\n\n\nNoteQuarto files are plain text\n\n\n\nQuarto pages are still plain-text source files, just like the Markdown files you used earlier. The collaboration ideas are the same, even though the project is now a website instead of a recipe note.",
+    "crumbs": [
+      "Version Control"
+    ]
   },
   {
     "objectID": "lessons/version-control.html#add-each-other-as-collaborators",
     "href": "lessons/version-control.html#add-each-other-as-collaborators",
     "title": "Version Control",
     "section": "Add each other as collaborators",
-    "text": "Add each other as collaborators\nOnce both websites are live, pair up and give each other access. Open your repository on GitHub, go to Settings, open Collaborators or Collaborators and teams, and invite your partner. Then switch to your partner’s repository and accept their invitation before moving on.\nIf the GitHub menus look a little different on your screen, use GitHub’s instructions for adding collaborators."
+    "text": "Add each other as collaborators\nOnce both websites are live, pair up and give each other access. Open your repository on GitHub, go to Settings, open Collaborators or Collaborators and teams, and invite your partner. Then switch to your partner’s repository and accept their invitation before moving on.\nIf the GitHub menus look a little different on your screen, use GitHub’s instructions for adding collaborators.",
+    "crumbs": [
+      "Version Control"
+    ]
   },
   {
     "objectID": "lessons/version-control.html#clone-your-partners-repository",
     "href": "lessons/version-control.html#clone-your-partners-repository",
     "title": "Version Control",
     "section": "Clone your partner’s repository",
-    "text": "Clone your partner’s repository\nNow clone your partner’s website repository in VS Code. Open Source Control, select Clone Repository or run Git: Clone from the Command Palette, paste your partner’s repository URL, choose a local parent folder, and open the cloned repository in VS Code.\nWhen you clone, Git automatically connects the local copy to the remote repository.\n\n\n\nCloning a repository in VS Code.\n\n\nSource: VS Code Source Control Quickstart."
+    "text": "Clone your partner’s repository\nNow clone your partner’s website repository in VS Code. Open Source Control, select Clone Repository or run Git: Clone from the Command Palette, paste your partner’s repository URL, choose a local parent folder, and open the cloned repository in VS Code.\nWhen you clone, Git automatically connects the local copy to the remote repository.\n\n\n\nCloning a repository in VS Code.\n\n\nSource: VS Code Source Control Quickstart.",
+    "crumbs": [
+      "Version Control"
+    ]
   },
   {
     "objectID": "lessons/version-control.html#make-changes-to-your-partners-website",
     "href": "lessons/version-control.html#make-changes-to-your-partners-website",
     "title": "Version Control",
     "section": "Make changes to your partner’s website",
-    "text": "Make changes to your partner’s website\nNow work on your partner’s Quarto website rather than your own.\nGood beginner changes include:\n\nupdating text on index.qmd,\nimproving the about.qmd page,\nadding a recipe section,\nfixing navigation or headings in _quarto.yml.\n\nBefore you edit anything, pull or sync so your local copy is up to date.\nFor this exercise, make your changes on a new branch rather than directly on main. That makes review much clearer.\nIn VS Code, create a new branch from main, edit one or more .qmd or configuration files, review the diff in Source Control, stage the files, commit with a clear message, and push the branch to GitHub."
+    "text": "Make changes to your partner’s website\nNow work on your partner’s Quarto website rather than your own.\nGood beginner changes include:\n\nupdating text on index.qmd,\nimproving the about.qmd page,\nadding a recipe section,\nfixing navigation or headings in _quarto.yml.\n\nBefore you edit anything, pull or sync so your local copy is up to date.\nFor this exercise, make your changes on a new branch rather than directly on main. That makes review much clearer.\nIn VS Code, create a new branch from main, edit one or more .qmd or configuration files, review the diff in Source Control, stage the files, commit with a clear message, and push the branch to GitHub.",
+    "crumbs": [
+      "Version Control"
+    ]
   },
   {
     "objectID": "lessons/version-control.html#open-a-pull-request-for-review",
     "href": "lessons/version-control.html#open-a-pull-request-for-review",
     "title": "Version Control",
     "section": "Open a pull request for review",
-    "text": "Open a pull request for review\nAfter you push the branch, open a pull request so your partner can review the website changes before they are merged.\nIn VS Code or GitHub, open the pull request creation flow, use your partner repository’s main branch as the target, add a short title and description explaining the website edits, and submit the pull request.\n\n\n\nCreate a pull request from VS Code.\n\n\nSource: VS Code Collaborate on GitHub."
+    "text": "Open a pull request for review\nAfter you push the branch, open a pull request so your partner can review the website changes before they are merged.\nIn VS Code or GitHub, open the pull request creation flow, use your partner repository’s main branch as the target, add a short title and description explaining the website edits, and submit the pull request.\n\n\n\nCreate a pull request from VS Code.\n\n\nSource: VS Code Collaborate on GitHub.",
+    "crumbs": [
+      "Version Control"
+    ]
   },
   {
     "objectID": "lessons/version-control.html#review-approve-or-request-changes",
     "href": "lessons/version-control.html#review-approve-or-request-changes",
     "title": "Version Control",
     "section": "Review, approve, or request changes",
-    "text": "Review, approve, or request changes\nNow switch roles and review the proposed website changes. You can:\n\ninspect the changed .qmd files,\ncomment on specific lines,\nrequest changes,\napprove the pull request,\nor reject it for now and ask for revisions.\n\nThis is the key moment where collaboration becomes more than simple file sharing. GitHub records the proposed edits, comments, and review decision in one place."
+    "text": "Review, approve, or request changes\nNow switch roles and review the proposed website changes. You can:\n\ninspect the changed .qmd files,\ncomment on specific lines,\nrequest changes,\napprove the pull request,\nor reject it for now and ask for revisions.\n\nThis is the key moment where collaboration becomes more than simple file sharing. GitHub records the proposed edits, comments, and review decision in one place.",
+    "crumbs": [
+      "Version Control"
+    ]
   },
   {
     "objectID": "lessons/version-control.html#merge-the-approved-changes-and-pull-them-locally",
     "href": "lessons/version-control.html#merge-the-approved-changes-and-pull-them-locally",
     "title": "Version Control",
     "section": "Merge the approved changes and pull them locally",
-    "text": "Merge the approved changes and pull them locally\nIf you approve the pull request, merge it on GitHub.\nAfter the merge, return to your local repository in VS Code, use Pull or Sync Changes to bring the merged updates into the local copy, and open the Source Control Graph to confirm that the merge created a branch history line that has now been merged back into main.\nThis is a great visual payoff for the lesson: you can see that the collaboration happened on a branch, then ended as a merge in the history graph."
+    "text": "Merge the approved changes and pull them locally\nIf you approve the pull request, merge it on GitHub.\nAfter the merge, return to your local repository in VS Code, use Pull or Sync Changes to bring the merged updates into the local copy, and open the Source Control Graph to confirm that the merge created a branch history line that has now been merged back into main.\nThis is a great visual payoff for the lesson: you can see that the collaboration happened on a branch, then ended as a merge in the history graph.",
+    "crumbs": [
+      "Version Control"
+    ]
   },
   {
     "objectID": "lessons/version-control.html#what-to-notice",
     "href": "lessons/version-control.html#what-to-notice",
     "title": "Version Control",
     "section": "What to notice",
-    "text": "What to notice\nYou should have seen all of these ideas in one workflow:\n\ncreating a repository from a template,\npublishing a Quarto website,\ncloning a partner’s repository,\nediting .qmd website files,\npushing a branch,\nopening a pull request,\nreviewing and approving or rejecting changes,\npulling the merged result locally,\ninspecting the merge in the VS Code Graph.\n\n\n\n\n\n\n\nNoteTerminal equivalent\n\n\n\n\n\nThe command-line version of this workflow usually includes commands like:\ngit clone https://github.com/USERNAME/WEBSITE-REPO.git\n#do some edits\ngit add .\ngit commit -m \"Improve partner website homepage\"\ngit push -u origin partner-edit\ngit pull origin main"
+    "text": "What to notice\nYou should have seen all of these ideas in one workflow:\n\ncreating a repository from a template,\npublishing a Quarto website,\ncloning a partner’s repository,\nediting .qmd website files,\npushing a branch,\nopening a pull request,\nreviewing and approving or rejecting changes,\npulling the merged result locally,\ninspecting the merge in the VS Code Graph.\n\n\n\n\n\n\n\nNoteTerminal equivalent\n\n\n\n\n\nThe command-line version of this workflow usually includes commands like:\ngit clone https://github.com/USERNAME/WEBSITE-REPO.git\n#do some edits\ngit add .\ngit commit -m \"Improve partner website homepage\"\ngit push -u origin partner-edit\ngit pull origin main",
+    "crumbs": [
+      "Version Control"
+    ]
   },
   {
     "objectID": "lessons/version-control.html#resolving-conflicts-in-vs-code",
     "href": "lessons/version-control.html#resolving-conflicts-in-vs-code",
     "title": "Version Control",
     "section": "Resolving conflicts in VS Code",
-    "text": "Resolving conflicts in VS Code\nWhen a conflict appears:\n\nOpen Source Control and select the conflicted file.\nOpen the Merge Editor.\nCompare the current change and incoming change.\nUse VS Code’s buttons to accept one side, accept both, or edit a combined result manually.\nSave the file.\nStage the resolved file.\nCommit the merge result.\nPush or sync the repository.\n\n\n\n\nThe Merge Editor in VS Code.\n\n\nSource: VS Code Merge Conflicts.\nFor this lesson, a good final resolution for guacamole.md would be:\n# Guacamole\n## Ingredients\n* avocado\n* lime\n* salt\n## Instructions\n* peel the avocados and put them into a bowl.\nThis merge-editor workflow is much friendlier than trying to memorize conflict markers immediately."
+    "text": "Resolving conflicts in VS Code\nWhen a conflict appears:\n\nOpen Source Control and select the conflicted file.\nOpen the Merge Editor.\nCompare the current change and incoming change.\nUse VS Code’s buttons to accept one side, accept both, or edit a combined result manually.\nSave the file.\nStage the resolved file.\nCommit the merge result.\nPush or sync the repository.\n\n\n\n\nThe Merge Editor in VS Code.\n\n\nSource: VS Code Merge Conflicts.\nFor this lesson, a good final resolution for guacamole.md would be:\n# Guacamole\n## Ingredients\n* avocado\n* lime\n* salt\n## Instructions\n* peel the avocados and put them into a bowl.\nThis merge-editor workflow is much friendlier than trying to memorize conflict markers immediately.",
+    "crumbs": [
+      "Version Control"
+    ]
   },
   {
     "objectID": "lessons/version-control.html#understanding-the-conflict-markers",
     "href": "lessons/version-control.html#understanding-the-conflict-markers",
     "title": "Version Control",
     "section": "Understanding the conflict markers",
-    "text": "Understanding the conflict markers\nIf you ever open the raw file before resolving it, Git may insert markers like:\n&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD\n* peel the avocados\n=======\n* put one avocado into a bowl.\n&gt;&gt;&gt;&gt;&gt;&gt;&gt; incoming change\nThese markers are Git’s way of saying “I found two competing edits here.” VS Code’s merge tools help you resolve them without editing the markers by hand.\n\n\n\n\n\n\nNoteTerminal equivalent\n\n\n\n\n\nThe command-line version usually looks like:\ngit pull origin main\ngit add guacamole.md\ngit commit -m \"Merge changes from GitHub\"\ngit push origin main\n\n\n\nAfter the merge commit is pushed, other collaborators can pull normally and receive the already-resolved version.\nTo minimize conflicts:\n\nPull frequently from the remote repository.\nCommunicate with teammates about who is working on what.\nMake smaller, focused commits."
+    "text": "Understanding the conflict markers\nIf you ever open the raw file before resolving it, Git may insert markers like:\n&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD\n* peel the avocados\n=======\n* put one avocado into a bowl.\n&gt;&gt;&gt;&gt;&gt;&gt;&gt; incoming change\nThese markers are Git’s way of saying “I found two competing edits here.” VS Code’s merge tools help you resolve them without editing the markers by hand.\n\n\n\n\n\n\nNoteTerminal equivalent\n\n\n\n\n\nThe command-line version usually looks like:\ngit pull origin main\ngit add guacamole.md\ngit commit -m \"Merge changes from GitHub\"\ngit push origin main\n\n\n\nAfter the merge commit is pushed, other collaborators can pull normally and receive the already-resolved version.\nTo minimize conflicts:\n\nPull frequently from the remote repository.\nCommunicate with teammates about who is working on what.\nMake smaller, focused commits.",
+    "crumbs": [
+      "Version Control"
+    ]
   },
   {
     "objectID": "lessons/automation.html",
