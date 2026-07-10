@@ -13,13 +13,14 @@ Version control tracks changes to your files, lets you undo mistakes, and makes 
 This tutorial was "stolen" from the [Version Control with Git by The Software Carpentries](https://swcarpentry.github.io/git-novice).
 :::
 
-# Summary
+# Overview
 
 ![Two examples of project history management. (*Left*) A stack of ambiguously named files. You need to be careful not to make the stack crumble when accessing a specific version. (*Right*) In contrast, a system that tracks version history is like a dial. You can switch betwen version without breaking the stack.](https://raw.githubusercontent.com/the-turing-way/the-turing-way/refs/heads/main/book/figures/project-history.svg)
 
-You will work on code with other people in your academic career at some point. You can pass the code between people via email or flash drives. However, quickly you will find out that that the 
+You will work on code with other people in your academic career at some point. You can pass the code between people via email or flash drives. However, quickly you will find out that that the email and flash drive method is not very efficient. You will have to keep track of who has the latest version, and you will have to be careful not to overwrite each other's changes.
 
- Jimmy and Alfredo have been hired by Ratatouille restaurant to investigate if it is possible to make the best recipes archive ever. They want to be able to work on indexing the prices at the same time, but they have run into problems doing this in the past. If they take turns, each one will spend a lot of time waiting for the other to finish, but if they work on their own copies and email changes back and forth things will be lost, overwritten, or duplicated.
+Imagine a follwing (corny) scenario:
+    Jimmy and Alfredo have been hired by Ratatouille restaurant to investigate if it is possible to make the best recipes archive ever. They want to be able to work on indexing the prices at the same time, but they have run into problems doing this in the past. If they take turns, each one will spend a lot of time waiting for the other to finish, but if they work on their own copies and email changes back and forth things will be lost, overwritten, or duplicated.
 
 Version control is better than mailing files back and forth:
 
@@ -32,28 +33,6 @@ Version control is better than mailing files back and forth:
 Teams are not the only ones to benefit from version control: lone researchers can benefit immensely. Keeping a record of what was changed, when, and why is extremely useful for all researchers if they ever need to come back to the project later on (e.g., a year later, when memory has faded).
 
 **Version control is the lab notebook of the digital world**: professionals use it to track changes and work together. Whether you're coding, writing, or managing data, version control is essential.
-
-## Installing Git
-
-You should have Git already installed in your distribution. Check it out by typing in your terminal:
-
-``` bash
-git --version
-```
-
-If you get an error, please see [this webpage](https://carpentries.github.io/workshop-template/install_instructions/#git) from The Software Carpentries for instructions on installing Git for various operating systems.
-
-## Creating GitHub account
-
-If you don't already have a GitHub account, check the [Setting Up](setting-up.qmd) section.
-
-## Preparing your working directory
-
-You can choose which directory you want to work in. If you have no preference, move to your home directory:
-
-``` bash
-cd
-```
 
 # Automated Version Control
 
@@ -77,7 +56,24 @@ Unless multiple users make changes to the same section of the document - a confl
 
 A version control system is a tool that keeps track of these changes for us, effectively creating different versions of our files. It allows us to decide which changes will be made to the next version (each record of these changes is called a commit), and keeps useful metadata about them, such as who made the change. The complete history of commits for a particular project and their metadata make up a repository. Repositories can be kept in sync across different computers, facilitating collaboration among different people.
 
-# Setting Up Git
+# Setting Up
+
+## Creating GitHub account
+
+If you don't already have a GitHub account, check the [Setting Up](setting-up.qmd) section.
+
+## Installing Git
+
+You should have Git already installed in your distribution. Check it out by typing in your terminal:
+
+``` bash
+git --version
+```
+
+If you get an error, please see [this webpage](https://carpentries.github.io/workshop-template/install_instructions/#git) from The Software Carpentries for instructions on installing Git for various operating systems.
+
+
+## Setting up Git
 
 The follwing commands are necessary to configure Git on a new computer even if you only will be using VS Code Source Control panel.
 
@@ -93,9 +89,11 @@ We will use the VS Code's terminal to do the setting up. To open the terminal se
 
 ![](/images/paste-36.png)
 
+::: {.callout-tip title="Windows users" collapse="true"}
 If you are a Windows user (I'm sorry...), be sure to select start WSL session. Either press `Ctrl+Shift+P` and type `WSL: New Window` or `WSL: Reopen Folder in WSL`, or click the green button in the bottom left corner of VS Code and select `New WSL Window`.
 
 ![](/images/paste-32.png)
+:::
 
 Now, the time to type. Git commands follow the pattern: `git verb options`. Here's the basic setup:
 
@@ -150,7 +148,7 @@ Use `git <command> -h` for quick help or `git <command> --help` for full documen
 
 # Creating a Repository
 
-Once Git is configured, we can start using it.
+Now, the meat of the lesson. We will be using Git to track changes to files in a project. A *repository* is a special directory that contains all the files and directories of a project, as well as the history of changes made to those files and directories.
 
 We will help Alfredo with his new project, create a repository with all his recipes.
 
@@ -603,7 +601,7 @@ Date:   Thu Aug 22 09:51:46 2013 -0400
 
 To recap, when we want to add changes to our repository, we first need to add the changed files to the staging area (`git add`) and then commit the staged changes to the repository (`git commit`).
 
-## Choosing a commit message
+## Commit message
 
 Which of the following commit messages would be most appropriate for the last commit made to `guacamole.md`?
 
