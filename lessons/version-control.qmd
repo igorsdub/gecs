@@ -290,18 +290,6 @@ and
 A good commit message would be `Add ingredient prices and market list`.
 :::
 
-## `biography` repository
-
-- Create a new Git repository called `biography`.
-- Write a three-line biography for yourself in `me.txt`.
-- Commit it in VS Code.
-- Modify one line and add a fourth line.
-- Open the diff editor to compare the current version with the last committed version.
-
-::: {.callout-note title="Suggestion" collapse="true"}
-This is good practice for repeating the same VS Code workflow in a fresh repository: open folder, initialize repository, edit, review, stage, commit.
-:::
-
 # Exploring History
 
 Once you have a few commits, Git becomes more useful because you can *look backward*. In VS Code, history is mostly visual.
