@@ -115,7 +115,7 @@ A *repository* is a folder whose history Git tracks. We will create one for Alfr
 3. Open the **Source Control** view.
 4. Select **Initialize Repository**.
 
-![Initialize a local repository in VS Code.](/images/version-control_vs-code_intialize-repository.png)
+![Initialize a local repository in VS Code.](/images/version-control_vscode_initialize-repository_official.png)
 
 After that, VS Code should show that:
 
@@ -170,7 +170,11 @@ In **Source Control**, you should now see `guacamole.md` listed under **Changes*
 
 Click `guacamole.md` in **Source Control** to open the diff editor. Since this is a brand-new file, the entire file appears as a new addition.
 
+![The Source Control view showing changed files in VS Code.](/images/version-control_vscode_source-control_changes.png)
+
 Stage the file by hovering over it and selecting the `+` button. The file moves from **Changes** to **Staged Changes**. This is the key Git idea: staged changes are the ones that will go into the next commit.
+
+![Stage changes in the VS Code Source Control view.](/images/version-control_vscode_stage-changes.png)
 
 Type a commit message such as `Create starter guacamole recipe` in the Source Control message box and select **Commit**.
 
@@ -311,6 +315,8 @@ VS Code gives you two helpful history views:
 - **Timeline**: shows the history of one file.
 - **Source Control Graph**: shows the history of the whole repository.
 
+![The Timeline view for file history in VS Code.](/images/version-control_vscode_timeline-view.png)
+
 To use them:
 
 1. Select `guacamole.md` in the Explorer and open the **Timeline** view.
@@ -318,6 +324,8 @@ To use them:
 3. Open the **Source Control Graph** to see the order of commits in the repository.
 
 This is much easier for beginners than memorizing commit IDs early on.
+
+![The Source Control Graph view in VS Code.](/images/version-control_vscode_source-control-graph.png)
 
 ## Recovering older versions of a file
 
@@ -457,6 +465,8 @@ After you have a few local commits:
 
 This is the simplest beginner path because VS Code handles both repository creation and the first push.
 
+![The GitHub sign-in prompt in VS Code.](/images/version-control_vscode_github-signin.png)
+
 ## Understanding remotes
 
 Once published, your repository has:
@@ -470,6 +480,8 @@ VS Code will show sync information in the status bar and in **Source Control**. 
 - **Pull**: download and apply remote updates
 - **Push**: upload your local commits
 - **Sync Changes**: do the needed pull/push steps together
+
+![Fetch, pull, and push controls in VS Code.](/images/version-control_vscode_sync-fetch-pull-push.png)
 
 ::: {.callout-note title="What is origin?"}
 `origin` is the default nickname Git gives to the main remote repository. You do not need to type it in VS Code, but you may still see the name in documentation and terminal examples.
@@ -537,6 +549,8 @@ The collaborator should use VS Code, not the terminal, as the main entry point:
 5. Open the cloned repository in VS Code.
 
 When you clone, Git automatically connects the local copy to the remote repository.
+
+![Cloning a repository in VS Code.](/images/version-control_vscode_clone-repository.png)
 
 ## Making changes as a collaborator
 
@@ -613,6 +627,8 @@ When a conflict appears:
 6. Stage the resolved file.
 7. Commit the merge result.
 8. Push or sync the repository.
+
+![The Merge Editor in VS Code.](/images/version-control_vscode_merge-editor.png)
 
 For this lesson, a good final resolution for `guacamole.md` would be:
 
