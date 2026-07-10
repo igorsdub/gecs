@@ -387,21 +387,21 @@
     ]
   },
   {
-    "objectID": "lessons/version-control.html#add-each-other-as-collaborators",
-    "href": "lessons/version-control.html#add-each-other-as-collaborators",
+    "objectID": "lessons/version-control.html#fork-your-partners-repository",
+    "href": "lessons/version-control.html#fork-your-partners-repository",
     "title": "Version Control",
-    "section": "Add each other as collaborators",
-    "text": "Add each other as collaborators\nOnce both websites are live, pair up and give each other access. Open your repository on GitHub, go to Settings, open Collaborators or Collaborators and teams, and invite your partner. Then switch to your partner’s repository and accept their invitation before moving on.\nIf the GitHub menus look a little different on your screen, use GitHub’s instructions for adding collaborators.",
+    "section": "Fork your partner’s repository",
+    "text": "Fork your partner’s repository\nInstead of adding each other as collaborators, use a fork-based workflow. Open your partner’s repository on GitHub and select Fork to create your own copy under your GitHub account.\nThis is safer and closer to how open-source collaboration usually works. You can make changes freely in your fork, but you still need the original owner to review and merge them.",
     "crumbs": [
       "Version Control"
     ]
   },
   {
-    "objectID": "lessons/version-control.html#clone-your-partners-repository",
-    "href": "lessons/version-control.html#clone-your-partners-repository",
+    "objectID": "lessons/version-control.html#clone-your-fork",
+    "href": "lessons/version-control.html#clone-your-fork",
     "title": "Version Control",
-    "section": "Clone your partner’s repository",
-    "text": "Clone your partner’s repository\nNow clone your partner’s website repository in VS Code. Open Source Control, select Clone Repository or run Git: Clone from the Command Palette, paste your partner’s repository URL, choose a local parent folder, and open the cloned repository in VS Code.\nWhen you clone, Git automatically connects the local copy to the remote repository.\n\n\n\nCloning a repository in VS Code.\n\n\nSource: VS Code Source Control Quickstart.",
+    "section": "Clone your fork",
+    "text": "Clone your fork\nNow clone your fork of your partner’s website repository in VS Code. Open Source Control, select Clone Repository or run Git: Clone from the Command Palette, paste the URL of your fork, choose a local parent folder, and open the cloned repository in VS Code.\nWhen you clone, Git automatically connects the local copy to your fork on GitHub.\n\n\n\nCloning a repository in VS Code.\n\n\nSource: VS Code Source Control Quickstart.",
     "crumbs": [
       "Version Control"
     ]
@@ -411,7 +411,7 @@
     "href": "lessons/version-control.html#make-changes-to-your-partners-website",
     "title": "Version Control",
     "section": "Make changes to your partner’s website",
-    "text": "Make changes to your partner’s website\nNow work on your partner’s Quarto website rather than your own.\nGood beginner changes include:\n\nupdating text on index.qmd,\nimproving the about.qmd page,\nadding a recipe section,\nfixing navigation or headings in _quarto.yml.\n\nBefore you edit anything, pull or sync so your local copy is up to date.\nFor this exercise, make your changes on a new branch rather than directly on main. That makes review much clearer.\nIn VS Code, create a new branch from main, edit one or more .qmd or configuration files, review the diff in Source Control, stage the files, commit with a clear message, and push the branch to GitHub.",
+    "text": "Make changes to your partner’s website\nNow work on your fork of your partner’s Quarto website.\nGood beginner changes include:\n\nupdating text on index.qmd,\nimproving the about.qmd page,\nadding a recipe section,\nfixing navigation or headings in _quarto.yml.\n\nBefore you edit anything, pull or sync so your local copy of the fork is up to date.\nFor this exercise, make your changes on a new branch rather than directly on main. That keeps your work tidy and makes review much clearer.\nIn VS Code, create a new branch from main, edit one or more .qmd or configuration files, review the diff in Source Control, stage the files, commit with a clear message, and push the branch to your fork on GitHub.",
     "crumbs": [
       "Version Control"
     ]
@@ -421,7 +421,7 @@
     "href": "lessons/version-control.html#open-a-pull-request-for-review",
     "title": "Version Control",
     "section": "Open a pull request for review",
-    "text": "Open a pull request for review\nAfter you push the branch, open a pull request so your partner can review the website changes before they are merged.\nIn VS Code or GitHub, open the pull request creation flow, use your partner repository’s main branch as the target, add a short title and description explaining the website edits, and submit the pull request.\n\n\n\nCreate a pull request from VS Code.\n\n\nSource: VS Code Collaborate on GitHub.",
+    "text": "Open a pull request for review\nAfter you push the branch, open a pull request so your partner can review the website changes before they are merged.\nYou can do this in two ways:\n\nuse the GitHub Pull Requests extension in VS Code, or\nopen the pull request directly on GitHub after pushing to your fork.\n\nIn either case, use your partner’s original repository main branch as the target, add a short title and description explaining the website edits, and submit the pull request.\n\n\n\nCreate a pull request from VS Code.\n\n\nSource: VS Code Collaborate on GitHub.",
     "crumbs": [
       "Version Control"
     ]
@@ -431,7 +431,7 @@
     "href": "lessons/version-control.html#review-approve-or-request-changes",
     "title": "Version Control",
     "section": "Review, approve, or request changes",
-    "text": "Review, approve, or request changes\nNow switch roles and review the proposed website changes. You can:\n\ninspect the changed .qmd files,\ncomment on specific lines,\nrequest changes,\napprove the pull request,\nor reject it for now and ask for revisions.\n\nThis is the key moment where collaboration becomes more than simple file sharing. GitHub records the proposed edits, comments, and review decision in one place.",
+    "text": "Review, approve, or request changes\nNow switch roles and review the proposed website changes. You can:\n\ninspect the changed .qmd files,\ncomment on specific lines,\nrequest changes,\napprove the pull request,\nor reject it for now and ask for revisions.\n\nThis is the key moment where collaboration becomes more than simple file sharing. GitHub records the proposed edits, comments, and review decision in one place.\n\n\n\n\n\n\nTipWhen to add collaborators instead of forking\n\n\n\nIf you add someone as a collaborator, they can push changes directly to your repository. Only do that if you trust them and you are happy for them to have that level of access.\nForking is safer for this lesson because it keeps the original repository protected and makes the review step unavoidable.",
     "crumbs": [
       "Version Control"
     ]
@@ -441,7 +441,7 @@
     "href": "lessons/version-control.html#merge-the-approved-changes-and-pull-them-locally",
     "title": "Version Control",
     "section": "Merge the approved changes and pull them locally",
-    "text": "Merge the approved changes and pull them locally\nIf you approve the pull request, merge it on GitHub.\nAfter the merge, return to your local repository in VS Code, use Pull or Sync Changes to bring the merged updates into the local copy, and open the Source Control Graph to confirm that the merge created a branch history line that has now been merged back into main.\nThis is a great visual payoff for the lesson: you can see that the collaboration happened on a branch, then ended as a merge in the history graph.",
+    "text": "Merge the approved changes and pull them locally\nIf you approve the pull request, merge it on GitHub.\nAfter the merge, return to your original local repository in VS Code, use Pull or Sync Changes to bring the merged updates into the local copy, and open the Source Control Graph to confirm that the pull request introduced a branch history line that has now been merged back into main.\nThis is a great visual payoff for the lesson: you can see that the collaboration happened on a branch, then ended as a merge in the history graph.",
     "crumbs": [
       "Version Control"
     ]
@@ -451,7 +451,7 @@
     "href": "lessons/version-control.html#what-to-notice",
     "title": "Version Control",
     "section": "What to notice",
-    "text": "What to notice\nYou should have seen all of these ideas in one workflow:\n\ncreating a repository from a template,\npublishing a Quarto website,\ncloning a partner’s repository,\nediting .qmd website files,\npushing a branch,\nopening a pull request,\nreviewing and approving or rejecting changes,\npulling the merged result locally,\ninspecting the merge in the VS Code Graph.\n\n\n\n\n\n\n\nNoteTerminal equivalent\n\n\n\n\n\nThe command-line version of this workflow usually includes commands like:\ngit clone https://github.com/USERNAME/WEBSITE-REPO.git\n#do some edits\ngit add .\ngit commit -m \"Improve partner website homepage\"\ngit push -u origin partner-edit\ngit pull origin main",
+    "text": "What to notice\nYou should have seen all of these ideas in one workflow:\n\ncreating a repository from a template,\npublishing a Quarto website,\nforking a partner’s repository,\ncloning your fork,\nediting .qmd website files,\npushing a branch to your fork,\nopening a pull request,\nreviewing and approving or rejecting changes,\npulling the merged result locally,\ninspecting the merge in the VS Code Graph.\n\n\n\n\n\n\n\nNoteTerminal equivalent\n\n\n\n\n\nThe command-line version of this workflow usually includes commands like:\ngit clone https://github.com/YOUR-USERNAME/PARTNER-WEBSITE-FORK.git\n#do some edits\ngit switch -c partner-edit\ngit add .\ngit commit -m \"Improve partner website homepage\"\ngit push -u origin partner-edit\ngit pull origin main",
     "crumbs": [
       "Version Control"
     ]
