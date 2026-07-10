@@ -3,3 +3,6 @@ title: "Testing"
 format: html
 ---
 
+> Smash first, analyze later.
+>
+> Dating advice from a CERN researcher
