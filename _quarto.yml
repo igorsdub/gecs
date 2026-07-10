@@ -21,8 +21,8 @@ website:
         href: lessons/setting-up.qmd
       - text: "Terminal"
         href: lessons/terminal.qmd
-      # - text: "Version Control"
-      #   href: lessons/version-control.qmd
+      - text: "Version Control"
+        href: lessons/version-control.qmd
       # - text: "Project Structure"
       #   href: lessons/project-structure.qmd
       # - text: "Virtual Environments"
