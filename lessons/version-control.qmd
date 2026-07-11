@@ -64,13 +64,17 @@ If you don't already have a GitHub account, check the [Setting Up](setting-up.qm
 
 ## Installing Git
 
-VS Code uses the Git installed on your computer. Check that Git is available:
+VS Code uses the Git installed on your computer.
+
+::: {.callout-note title="Terminal equivalent" collapse="true"}
+Check that Git is available with:
 
 ``` bash
 git --version
 ```
 
 If you get an error, please see [this webpage](https://carpentries.github.io/workshop-template/install_instructions/#git) from The Software Carpentries for installation steps.
+:::
 
 ## Setting up Git
 
@@ -82,6 +86,9 @@ Open VS Code. If needed, use **File** > **Open Folder** to choose the folder whe
 You can also open the Command Palette with `Ctrl/Cmd+Shift+P` and run `Open Folder`.
 :::
 
+Use your own name and email instead of Alfredo's. For GitHub, it is easiest if this email matches your GitHub account.
+
+::: {.callout-note title="Terminal equivalent" collapse="true"}
 Open the terminal in VS Code with **View** > **Terminal** or ``Ctrl/Cmd+` `` and run:
 
 ``` bash
@@ -89,18 +96,19 @@ git config --global user.name "Alfredo Linguini"
 git config --global user.email "a.linguini@ratatouille.fr"
 git config --global init.defaultBranch main
 ```
-
-Use your own name and email instead of Alfredo's. For GitHub, it is easiest if this email matches your GitHub account.
+:::
 
 ::: {.callout-tip title="Keeping your email private" collapse="true"}
 If you prefer not to show your personal email in commits, GitHub provides a no-reply email address. See [GitHub's instructions for keeping your email private](https://help.github.com/articles/keeping-your-email-address-private/).
 :::
 
-You can review these settings anytime with:
+::: {.callout-note title="Terminal equivalent" collapse="true"}
+Review these settings anytime with:
 
 ``` bash
 git config --list --global
 ```
+:::
 
 ::: {.callout-tip title="Windows users" collapse="true"}
 If you are on Windows, doing this lesson inside WSL usually leads to fewer Git and shell problems. In VS Code, use `WSL: New Window` or `WSL: Reopen Folder in WSL`.
@@ -302,6 +310,15 @@ The diff editor compares your current file with the last committed version. For 
 
 If you decide the change was a mistake, right-click the file in **Source Control** and choose **Discard Changes**.
 
+::: {.callout-note title="Terminal equivalent" collapse="true"}
+From the terminal, you would usually inspect and discard the change like this:
+
+``` bash
+git diff guacamole.md
+git restore guacamole.md
+```
+:::
+
 ## View earlier commits
 
 VS Code gives you two helpful history views:
@@ -324,6 +341,15 @@ This is much easier for beginners than memorizing commit IDs early on.
 ![The Source Control Graph view in VS Code.](/images/version-control_vscode_source-control-graph.png)
 
 *Source: [VS Code Source Control Overview](https://code.visualstudio.com/docs/sourcecontrol/overview).*
+
+::: {.callout-note title="Terminal equivalent" collapse="true"}
+The terminal version of these history views is:
+
+``` bash
+git log
+git log guacamole.md
+```
+:::
 
 ## Recovering older versions of a file
 
@@ -422,6 +448,19 @@ Commit `.gitignore` so everyone using the repository shares the same ignore rule
 Ignoring only affects files Git is not already tracking. If a file was committed earlier, adding it to `.gitignore` does not automatically remove it from version control.
 :::
 
+::: {.callout-note title="Terminal equivalent" collapse="true"}
+The same workflow from the terminal would be:
+
+``` bash
+mkdir pictures
+touch a.png b.png c.png pictures/cake1.jpg pictures/cake2.jpg
+printf "*.png\npictures/\n" > .gitignore
+git status
+git add .gitignore
+git commit -m "Ignore generated image files"
+```
+:::
+
 ## Log files
 
 You wrote a script that creates temporary files like `log_01`, `log_02`, and `log_03`.
@@ -467,6 +506,15 @@ This is the simplest beginner path because VS Code handles both repository creat
 
 *Source: [VS Code Collaborate on GitHub](https://code.visualstudio.com/docs/sourcecontrol/github).*
 
+::: {.callout-note title="Terminal equivalent" collapse="true"}
+The closest terminal-based setup is:
+
+``` bash
+git remote add origin https://github.com/USERNAME/recipes.git
+git push -u origin main
+```
+:::
+
 ## Understanding remotes
 
 Once published, your repository has:
@@ -494,6 +542,15 @@ VS Code will show sync information in the status bar and in **Source Control**. 
 Make one more local commit in VS Code. After committing, VS Code should show that you have outgoing changes.
 
 Use **Sync Changes** or **Push** to send them to GitHub. Then refresh the repository page on GitHub and confirm that the new commit appears there.
+
+::: {.callout-note title="Terminal equivalent" collapse="true"}
+In the terminal, you would usually do:
+
+``` bash
+git push origin main
+git pull origin main
+```
+:::
 
 ## GitHub view of history
 
@@ -538,7 +595,7 @@ The grand finale: Version control becomes much more valuable when you work with 
 
 Quarto is a publishing system that can create websites, books, and reports from plain-text source files. It is built on Markdown and Pandoc, so it is easy to learn if you already know Markdown. It getting traction and I bet it will be the standard for the scienctific publishing in the future (no **offence** LaTeX). You can learn more about Quarto at <https://quarto.org>.
 
-You will first create and publish your own site. Then you will add your partner, clone each other's repositories, make website edits, and submit those edits for review.
+You will first create and publish your own site. Then you will fork your partner's repository, make website edits in your fork, and submit those edits for review.
 
 ## Create and publish your Quarto website
 
@@ -569,12 +626,32 @@ You can add the guacamole recipe to your website by editing `index.qmd` and addi
 Quarto pages are still plain-text source files, just like the Markdown files you used earlier. The collaboration ideas are the same, even though the project is now a website instead of a recipe note.
 :::
 
+::: {.callout-note title="Terminal equivalent" collapse="true"}
+If you prefer the terminal for setup and publishing, a common flow is:
+
+``` bash
+git clone https://github.com/YOUR-USERNAME/recipe-website.git
+cd recipe-website
+quarto preview
+quarto publish gh-pages
+```
+:::
+
 
 ## Fork your partner's repository
 
 Instead of adding each other as collaborators, use a fork-based workflow. Open your partner's repository on GitHub and select **Fork** to create your own copy under your GitHub account.
 
 This is safer and closer to how open-source collaboration usually works. You can make changes freely in your fork, but you still need the original owner to review and merge them.
+
+::: {.callout-note title="Terminal equivalent" collapse="true"}
+If you use GitHub CLI, a fork-and-clone flow can look like this:
+
+``` bash
+gh repo fork PARTNER-USERNAME/recipe-website --clone
+cd recipe-website
+```
+:::
 
 ## Clone your fork
 
@@ -585,6 +662,15 @@ When you clone, Git automatically connects the local copy to your fork on GitHub
 ![Cloning a repository in VS Code.](/images/version-control_vscode_clone-repository.png)
 
 *Source: [VS Code Source Control Quickstart](https://code.visualstudio.com/docs/sourcecontrol/quickstart).*
+
+::: {.callout-note title="Terminal equivalent" collapse="true"}
+Clone your fork with:
+
+``` bash
+git clone https://github.com/YOUR-USERNAME/recipe-website.git
+cd recipe-website
+```
+:::
 
 ## Make changes to your partner's website
 
@@ -603,6 +689,18 @@ For this exercise, make your changes on a **new branch** rather than directly on
 
 In VS Code, create a new branch from `main`, edit one or more `.qmd` or configuration files, review the diff in **Source Control**, stage the files, commit with a clear message, and push the branch to your fork on GitHub.
 
+::: {.callout-note title="Terminal equivalent" collapse="true"}
+The terminal version usually looks like:
+
+``` bash
+git switch -c partner-edit
+# edit files
+git add .
+git commit -m "Improve partner website homepage"
+git push -u origin partner-edit
+```
+:::
+
 ## Open a pull request for review
 
 After you push the branch, open a pull request so your partner can review the website changes before they are merged.
@@ -618,6 +716,14 @@ In either case, use your partner's original repository `main` branch as the targ
 
 *Source: [VS Code Collaborate on GitHub](https://code.visualstudio.com/docs/sourcecontrol/github).*
 
+::: {.callout-note title="Terminal equivalent" collapse="true"}
+If you use GitHub CLI, you can open the pull request with:
+
+``` bash
+gh pr create --repo PARTNER-USERNAME/recipe-website --base main --head YOUR-USERNAME:partner-edit
+```
+:::
+
 ## Review, approve, or request changes
 
 Now switch roles and review the proposed website changes. You can:
@@ -629,6 +735,16 @@ Now switch roles and review the proposed website changes. You can:
 - or reject it for now and ask for revisions.
 
 This is the key moment where collaboration becomes more than simple file sharing. GitHub records the proposed edits, comments, and review decision in one place.
+
+::: {.callout-note title="Terminal equivalent" collapse="true"}
+If you use GitHub CLI, you can review a pull request with commands like:
+
+``` bash
+gh pr checkout NUMBER
+gh pr review NUMBER --approve
+gh pr review NUMBER --request-changes --body "Please revise the homepage text."
+```
+:::
 
 ::: {.callout-tip title="When to add collaborators instead of forking"}
 If you add someone as a collaborator, they can push changes directly to your repository. Only do that if you trust them and you are happy for them to have that level of access.
@@ -643,6 +759,16 @@ If you approve the pull request, merge it on GitHub.
 After the merge, return to your original local repository in VS Code, use **Pull** or **Sync Changes** to bring the merged updates into the local copy, and open the **Source Control Graph** to confirm that the pull request introduced a branch history line that has now been merged back into `main`.
 
 This is a great visual payoff for the lesson: you can see that the collaboration happened on a branch, then ended as a merge in the history graph.
+
+::: {.callout-note title="Terminal equivalent" collapse="true"}
+Back in your original repository, you would usually run:
+
+``` bash
+git checkout main
+git pull origin main
+git log --graph --oneline --decorate
+```
+:::
 
 ## What to notice
 
