@@ -447,6 +447,25 @@ If you want an extra-isolated throwaway environment, you can also use:
 uvx --isolated ruff check .
 ```
 
+Less serious but more fun.
+
+```bash
+uvx pycowsay hello
+```
+
+or try some classic games from `freegames` pacakage:
+
+```bash
+uvx freegames play snake
+```
+This command will download the `freegames` package, run the `snake` game, and then remove the package again when you exit the game.
+
+For the list of available games, run:
+```bash
+uvx freegames list
+```
+or check the [freegames documentation](https://pypi.org/project/freegames/).
+
 This is handy when you just want to explore a tool, run a one-off check, or try something quickly without making your project environment bigger.
 
 ## The book project
