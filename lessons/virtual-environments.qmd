@@ -109,13 +109,16 @@ uv init gecs-uv
 Initialized project `gecs-uv` at <working-directory>/gecs-uv
 ```
 
-This creates the directory `gecs-uv` for you. If you already had a project folder and wanted to initialize it in place, you could first `cd` into it and then run:
+This creates the directory `gecs-uv` for you. 
+
+::: {.callout-note collapse="true" title="uv init flags"}
+If you already had a project folder and wanted to initialize it in place, you could first `cd` into it and then run:
 
 ``` bash
 uv init .
 ```
+:::
 
-One more nice detail: `uv init` also initializes a Git repository by default, so you do **not** need to run `git init` yourself afterward.
 
 If you are curious about the other project templates and flags that `uv` supports, take a look at:
 
@@ -140,6 +143,8 @@ README.md
 main.py
 pyproject.toml
 ```
+
+`uv init` also initializes a Git repository by default, so you do **not** need to run `git init` yourself afterward.
 
 At this point there is still no `.venv` and no `uv.lock`. Those appear when `uv` actually has to resolve and install an environment.
 
@@ -283,7 +288,7 @@ Since `uv.lock` is now part of the project state, commit that change too:
 
 ``` bash
 git add uv.lock
-git commit -m "Lock initial environment"
+git commit -m "lock initial environment"
 ```
 
 ## Activate the environment
@@ -319,7 +324,7 @@ deactivate
 Before we move on to marimo, let's install the packages we want available in this project:
 
 ``` bash
-uv add marimo numpy matplotlib
+uv add numpy matplotlib
 ```
 
 `uv` updates both `pyproject.toml` and `uv.lock`, then installs the packages into `.venv`.
@@ -328,7 +333,7 @@ Commit those dependency changes:
 
 ``` bash
 git add pyproject.toml uv.lock
-git commit -m "Add marimo and plotting dependencies"
+git commit -m "add plotting dependencies"
 ```
 
 To view the installed dependency tree, use:
@@ -347,6 +352,20 @@ uv tree --universal
 
 This is another reproducibility tool: one project manifest, one lock file, and one dependency graph that `uv` can recreate consistently across machines.
 
+::: {.callout-tip collapse="true" title="Platform-specific dependencies"}
+
+`uv` records a universal lock file and supports platform-specific dependencies through standard Python environment markers.
+
+For example, if you needed a package only on Windows, you could write:
+
+``` bash
+uv add "pywin32; sys_platform == 'win32'"
+```
+
+If that changed your project's dependency set, you would again commit the updated `pyproject.toml` and `uv.lock`.
+
+:::
+
 ## marimo
 
 ![marimo vs Jupyter](/images/virtual-environments_marimoVsJupyter.png)
@@ -361,42 +380,37 @@ For this course, marimo has a few advantages:
 
 That last point is especially important: you can use Git to track changes in a marimo notebook just like any other Python file.
 
+Let's add marimo to the project:
+``` bash
+uv add marimo
+```
+and check the dependency tree again:
+``` bash
+uv tree
+```
+
+Finally, commit the changes to the project:
+``` bash
+git add pyproject.toml uv.lock
+git commit -m "add marimo"
+```
+
 ## Running commands without activation
 
 One of the nicest parts of `uv` is that you usually do not need to activate the environment manually. Instead, run commands through `uv run`.
 
-To explore marimo's built-in plotting tutorial:
+First, activate the environment
+``` bash
+source .venv/bin/activate
+```
+
+Now, we can explore marimo's built-in plotting tutorial:
 
 ``` bash
-uv run marimo tutorial plots
+marimo tutorial plots
 ```
+This will open a browser window with the tutorial. To run the tutorial, press **Play button** in the bottom right corner or press **Ctrl/Cmd+ Shift + R** to run all cells.
 
-You can also open a Python interpreter in the project environment:
-
-``` bash
-uv run python
-```
-
-``` output
-Python 3.13.x (...)
->>>
-```
-
-This keeps your shell clean while still making the project dependencies available to the command you want to run.
-
-::: {.callout-tip collapse="true" title="Platform-specific dependencies"}
-
-`uv` records a universal lock file and supports platform-specific dependencies through standard Python environment markers.
-
-For example, if you needed a package only on Windows, you could write:
-
-``` bash
-uv add "pywin32; sys_platform == 'win32'"
-```
-
-If that changed your project's dependency set, you would again commit the updated `pyproject.toml` and `uv.lock`.
-
-:::
 
 ## Global tools
 
@@ -440,12 +454,13 @@ If you want to lint the current project with Ruff without installing Ruff into t
 ``` bash
 uvx ruff check .
 ```
-
-If you want an extra-isolated throwaway environment, you can also use:
+::: {.callout-tip collapse="true" title="Need extra isolation?"}
+If you want an extra-isolated throwaway environment that does not interact with already installed packages, you can also use:
 
 ``` bash
 uvx --isolated ruff check .
 ```
+:::
 
 Less serious but more fun.
 
