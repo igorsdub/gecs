@@ -411,6 +411,8 @@ marimo tutorial plots
 ```
 This will open a browser window with the tutorial. To run the tutorial, press **Play button** in the bottom right corner or press **Ctrl/Cmd+ Shift + R** to run all cells.
 
+Once you are done, you can exit the tutorial and deactivate the environment by presing **Red cross** button (Shutdown) in the top-right corner of the browser page or **Ctrl/Cmd + C** in the terminal.
+
 
 ## Global tools
 
