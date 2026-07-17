@@ -210,7 +210,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#package-manager" id="toc-package-manager" class="nav-link" data-scroll-target="#package-manager">Package Manager</a>
   <ul class="collapse">
-  <li><a href="#pixi" id="toc-pixi" class="nav-link" data-scroll-target="#pixi">Pixi</a></li>
+  <li><a href="#uv" id="toc-uv" class="nav-link" data-scroll-target="#uv">uv</a></li>
   </ul></li>
   <li><a href="#developer-platform" id="toc-developer-platform" class="nav-link" data-scroll-target="#developer-platform">Developer Platform</a>
   <ul class="collapse">
@@ -539,11 +539,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="package-manager" class="level1">
 <h1>Package Manager</h1>
-<p>An out-of-box UNIX-based OS has limited amount of tools. For this course we will use various open-source tools which need to be downloaded, installed, updated and keeping track of. Package manager is a tool to manage tools. We will use Pixi package manager in this course and will dive deep into it in <a href="../lessons/virtual-environments.html">the Virtual Environments session.</a></p>
-<section id="pixi" class="level2">
-<h2 class="anchored" data-anchor-id="pixi">Pixi</h2>
-<p><a href="https://pixi.prefix.dev/latest/">Pixi</a> is the latest package manager and unlike its competition (e.g.&nbsp;Conda, Mamba, uv) supports many programming languages besides Python and is gaining momentum among software developers and scientist.</p>
-<p>Here we will have to use a terminal since Pixi can not be installed using a visual application, say by downloading an <code>.exe</code> file for Windows or <code>.dmg</code> for macOS.</p>
+<p>An out-of-box UNIX-based OS has limited amount of tools. For this course we will use various open-source tools which need to be downloaded, installed, updated and kept track of. A package manager is a tool that helps with that. For this course we will use <a href="https://docs.astral.sh/uv/"><code>uv</code></a>, and we will dive deeper into it in <a href="../lessons/virtual-environments.html">the Virtual Environments session</a>.</p>
+<section id="uv" class="level2">
+<h2 class="anchored" data-anchor-id="uv">uv</h2>
+<p><a href="https://docs.astral.sh/uv/"><code>uv</code></a> is a modern Python package and project manager. It helps us create isolated environments, install dependencies, lock exact package versions, and even manage Python itself when needed.</p>
+<p>Here we will use the terminal because <code>uv</code> is typically installed from the command line rather than through a graphical installer.</p>
 <div class="callout callout-style-simple callout-note">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -554,17 +554,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>We will use the VS Code’s terminal to do the installation. To open the terminal select <strong>View</strong> &gt; <strong>Terminal</strong> from the menu bar, or by pressing the <code>Ctrl/Cmd+`</code> keyboard shortcut. A terminal window will open at the bottom.</p>
+<p>We will use the VS Code terminal to do the installation. To open the terminal select <strong>View</strong> &gt; <strong>Terminal</strong> from the menu bar, or press the <code>Ctrl/Cmd+`</code> keyboard shortcut. A terminal window will open at the bottom.</p>
 <p><img src="../images/paste-36.png" class="img-fluid"></p>
-<p>To install Pixi run the following command in your terminal:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-fsSL</span> https://pixi.sh/install.sh <span class="kw">|</span> <span class="fu">sh</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>To verify that Pixi got installed successfully restart the terminal. There are two ways to do so. Easy way is to kill it and open a new terminal window. Another way is to type the following for Ubuntu users:</p>
+<p>To install <code>uv</code>, run the following command in your terminal:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-LsSf</span> https://astral.sh/uv/install.sh <span class="kw">|</span> <span class="fu">sh</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>To verify that <code>uv</code> got installed successfully, restart the terminal. An easy way is to close it and open a new one. Another way is to type the following for Ubuntu users:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~/.bashrc</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>macOS user need to type:</p>
+<p>macOS users need to type:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~/.zshrc</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>OK, now that the terminal is reset, type:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span> pixi</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>You will see something like <code>/Users/username/.pixi/bin/pixi</code> printed, where <code>username</code> is your chosen username.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span> uv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>You will see a path to the <code>uv</code> executable, often something like <code>/Users/username/.local/bin/uv</code>, where <code>username</code> is your chosen username.</p>
 </section>
 </section>
 <section id="developer-platform" class="level1">
@@ -644,8 +644,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="package-managers" class="level3">
 <h3 class="anchored" data-anchor-id="package-managers">Package Managers</h3>
 <ul>
-<li><a href="https://pixi.prefix.dev/latest/">Pixi Official Documentation</a></li>
-<li><a href="https://pixi.prefix.dev/latest/installation/">Pixi Installation Guide</a></li>
+<li><a href="https://docs.astral.sh/uv/">uv Documentation</a></li>
+<li><a href="https://docs.astral.sh/uv/getting-started/installation/">uv Installation Guide</a></li>
 </ul>
 </section>
 <section id="shell-customization" class="level3">
