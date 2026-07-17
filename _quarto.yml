@@ -25,8 +25,8 @@ website:
         href: lessons/version-control.qmd
       - text: "Project Structure"
         href: lessons/project-structure.qmd
-      # - text: "Virtual Environments"
-      #   href: lessons/virtual-environments.qmd
+      - text: "Virtual Environments"
+        href: lessons/virtual-environments.qmd
       # - text: "Automation"
       #   href: lessons/automation.qmd
       - text: "VS Code"
