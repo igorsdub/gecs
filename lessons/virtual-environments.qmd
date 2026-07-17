@@ -3,7 +3,38 @@ title: "Virtual Environments"
 format: html
 ---
 
-> This lesson is adapted from [Reproducible Machine Learning Workflows for Scientists](https://carpentries-incubator.github.io/reproducible-ml-workflows/) by the Carpentries Incubator and rewritten here to use [uv](https://docs.astral.sh/uv/).
+> This lesson is adapted from [Reproducible Machine Learning Workflows for Scientists](https://carpentries-incubator.github.io/reproducible-ml-workflows/) by the Carpentries Incubator and rewritten to use [uv](https://docs.astral.sh/uv/).
+
+![Python Environment by [xkcd](https://xkcd.com/1987/)](https://imgs.xkcd.com/comics/python_environment.png)
+
+## What is a virtual environment?
+
+A virtual environment is a self-contained directory that contains a Python installation and all the packages required for a specific project. It lets us keep different projects separate, even when they need different package versions.
+
+This separation is a key part of reproducible research. If we record exactly which Python version and packages a project uses, then other people can rebuild the same environment on their own machines.
+
+## Package managers
+
+Python ships with `venv` and `pip`, and those tools still work. However, modern projects often need more than a manually managed virtual environment. We usually also want:
+
+-   a clear project file that records dependencies
+-   a lock file with exact resolved versions
+-   a simple way to run commands inside the project environment
+-   a convenient way to keep the environment reproducible
+
+There are several tools for this job, including Conda, Mamba, Poetry, and `uv`. In this course we will use `uv`.
+
+### Why uv?
+
+ `uv` is an blazingly fast Python package and project manager. If you used Conda or Poetry before, you will feel the difference. It has a few advantages that make it a good fit for this course:
+
+-   **Fast**: dependency resolution and installation are much faster than with older Python tooling.
+-   **Project-local**: each project gets its own `.venv`, which keeps dependencies isolated.
+-   **Python-aware**: `uv` can use an existing Python installation or download a managed one when needed.
+-   **Reproducible**: it creates a `uv.lock` lock file with exact resolved package versions.
+-   **Convenient**: it lets us run project commands without manually activating the environment every time.
+
+You can read more in the [official documentation](https://docs.astral.sh/uv/).
 
 ## Installing uv
 
@@ -41,35 +72,6 @@ which uv
 
 You should see the installed version or the path to the `uv` executable.
 
-## What is a virtual environment?
-
-A virtual environment is a self-contained directory that contains a Python installation and all the packages required for a specific project. It lets us keep different projects separate, even when they need different package versions.
-
-This separation is a key part of reproducible research. If we record exactly which Python version and packages a project uses, then other people can rebuild the same environment on their own machines.
-
-## Package managers
-
-Python ships with `venv` and `pip`, and those tools still work. However, modern projects often need more than a manually managed virtual environment. We usually also want:
-
--   a clear project file that records dependencies
--   a lock file with exact resolved versions
--   a simple way to run commands inside the project environment
--   support for installing or pinning Python itself
-
-There are several tools for this job, including Conda, Mamba, Poetry, and `uv`. In this course we will use `uv`.
-
-### Why uv?
-
-To quote the official website, `uv` is "an extremely fast Python package and project manager".
-
--   **Fast**: dependency resolution and installation are much faster than with older Python tooling.
--   **Project-local**: each project gets its own `.venv`, which keeps dependencies isolated.
--   **Python-aware**: `uv` can use an existing Python installation or download a managed one when needed.
--   **Reproducible**: it creates a `uv.lock` lock file with exact resolved package versions.
--   **Convenient**: it lets us run project commands without manually activating the environment every time.
-
-For this course, that combination makes `uv` a good default. You can read more in the [official documentation](https://docs.astral.sh/uv/).
-
 ## Project-based workflows
 
 `uv` works well with a project-based workflow. That means the project's dependencies, Python requirements, and virtual environment all live alongside the project files.
@@ -84,10 +86,18 @@ For this course, that combination makes `uv` a good default. You can read more i
 
 -   Each project keeps its own environment, so repeated packages may use more disk space than a fully shared setup.
 -   You still need to think carefully about which dependencies belong in the project.
+-   It only supports Python projects.
 
-## uv project files
+## Starting a project with `uv init`
 
-Let's create our first `uv` project.
+The word `init` shows up in many developer tools. You already saw it in `git init`. It usually means "set up the basic files needed to start here."
+
+With `uv`, `init` can do two related things:
+
+-   create a brand new project directory for you
+-   initialize a project in a directory that already exists
+
+Let's start by creating a new project directory:
 
 ``` bash
 uv init gecs-uv
@@ -97,7 +107,21 @@ uv init gecs-uv
 Initialized project `gecs-uv` at <working-directory>/gecs-uv
 ```
 
-Now move into the project directory and inspect its contents.
+This creates the directory `gecs-uv` for you. If you already had a project folder and wanted to initialize it in place, you could first `cd` into it and then run:
+
+``` bash
+uv init .
+```
+
+One more nice detail: `uv init` also initializes a Git repository by default, so you do **not** need to run `git init` yourself afterward.
+
+If you are curious about the other project templates and flags that `uv` supports, take a look at:
+
+``` bash
+uv init --help
+```
+
+Now move into the new project directory and inspect its contents:
 
 ``` bash
 cd gecs-uv
@@ -115,9 +139,13 @@ main.py
 pyproject.toml
 ```
 
-Notice that there is no `.venv` or `uv.lock` yet. `uv` creates those lazily the first time a project command needs them.
+At this point there is still no `.venv` and no `uv.lock`. Those appear when `uv` actually has to resolve and install an environment.
 
-Let's inspect the project manifest:
+`uv` also created a `.python-version` file for us. That file pins the default Python version request for this project.
+
+## The project manifest
+
+Let's inspect the main project file:
 
 ``` bash
 cat pyproject.toml
@@ -133,7 +161,7 @@ requires-python = ">=3.13"
 dependencies = []
 ```
 
-Open `.python-version` as well:
+And if you inspect `.python-version`:
 
 ``` bash
 cat .python-version
@@ -143,36 +171,77 @@ cat .python-version
 3.13
 ```
 
-The project starts with two important files:
+The most important fields here are:
 
--   **`pyproject.toml`**: the main project manifest. It stores the project metadata, Python requirement, and dependency list.
--   **`.python-version`**: the default Python version that `uv` should use for this project.
+-   **`[project]`**: metadata about the project as a whole
+-   **`requires-python`**: which Python versions the project supports
+-   **`dependencies`**: which Python packages belong in the project
+-   **`.python-version`**: the default Python version `uv` should use for this project
 
-The most important fields in `pyproject.toml` for us are:
+::: {.callout-note collapse="true" title="TOML files"}
+`pyproject.toml` uses the **TOML** format. The name stands for **Tom's Obvious, Minimal Language**, after Tom Preston-Werner, one of the creators of the format.
 
--   **`[project]`**: metadata about the project as a whole.
--   **`requires-python`**: the Python versions the project supports.
--   **`dependencies`**: the packages that should be installed for the project.
+TOML became popular because it is much easier for humans to read and edit than many older configuration formats. Python's packaging ecosystem now uses it heavily, so you will keep seeing `.toml` files in modern projects.
+:::
 
-If you want to change the pinned Python version later, you can do so with:
+## Edit the description
 
-``` bash
-uv python pin 3.13
-```
+Right now the project description is still the placeholder text. Let's fix that.
 
-## Creating the environment
-
-Right now the project exists, but its environment has not been created yet. One simple way to trigger that is to run the starter program:
+Open the file in VS Code:
 
 ``` bash
-uv run main.py
+code pyproject.toml
 ```
 
-``` output
-Hello from gecs-uv!
+If the `code` command is not available in your terminal, you can also open `pyproject.toml` directly from the VS Code Explorer.
+
+Replace the description line with something meaningful, for example:
+
+``` toml
+description = "A small reproducible project managed with uv"
 ```
 
-Now inspect the directory again:
+Your `pyproject.toml` should now look like this:
+
+``` toml
+[project]
+name = "gecs-uv"
+version = "0.1.0"
+description = "A small reproducible project managed with uv"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = []
+```
+
+## Version-control the project from the start
+
+Because `uv init` already initialized Git for us, we can start tracking changes immediately:
+
+``` bash
+git status --short
+```
+
+You should see the newly created files as untracked. Add them and make the first commit:
+
+``` bash
+git add .
+git commit -m "Initialize uv project"
+```
+
+This is a good habit. Instead of waiting until the very end, we will keep committing as the environment changes.
+
+## Create the environment
+
+Now let's ask `uv` to create the environment explicitly:
+
+``` bash
+uv sync
+```
+
+This command resolves the project's dependencies, creates the virtual environment, and makes sure the installed packages match the lock file.
+
+Check the directory again:
 
 ``` bash
 ls -a
@@ -193,78 +262,27 @@ uv.lock
 
 Two important things appeared:
 
--   **`.venv/`**: the project's virtual environment
--   **`uv.lock`**: the lock file with the exact resolved package set
+-   **`.venv/`**: this is the virtual environment itself. It contains the Python executable, installed package files, and all the other moving parts that make the environment run. This is the meat of the environment.
+-   **`uv.lock`**: this is the lock file. It is like taking a snapshot of your environment's package versions at this moment in time.
 
-The lock file is cross-platform, which means it records the full dependency resolution in a way that can be reproduced on other machines. In practice, you normally let `uv` manage this file automatically.
+When someone else clones your repository and runs `uv sync`, `uv` uses that snapshot to rebuild the environment as closely as possible.
 
-## Locking and syncing
-
-In `uv`, locking and syncing are closely related:
-
--   **Locking** means resolving your dependencies and writing them to `uv.lock`.
--   **Syncing** means installing the locked packages into `.venv`.
-
-Many `uv` commands do this automatically. For example, `uv run` will update the lock file and project environment before running the command. You can also do it explicitly with:
+Let's also confirm that the starter program runs:
 
 ``` bash
-uv sync
-```
-
-This is especially useful when you open the project in VS Code and want to make sure the editor sees the correct environment immediately.
-
-## Adding dependencies
-
-Let's extend the project with a numerical library and a few notebook tools:
-
-``` bash
-uv add numpy notebook jupyterlab
-```
-
-`uv` updates both `pyproject.toml` and `uv.lock`, then installs the packages into `.venv`.
-
-If you inspect `pyproject.toml` again, you will see that the `dependencies` list is no longer empty. `uv` writes compatible version constraints for the packages you added.
-
-## Inspecting installed packages
-
-To view the installed dependency tree, use:
-
-``` bash
-uv tree
-```
-
-This is often more helpful than a flat package list because it shows which packages depend on which others.
-
-If you want to inspect the lockfile in a platform-independent way, use:
-
-``` bash
-uv tree --universal
-```
-
-That is a good way to think about reproducibility across machines: one project manifest, one lock file, and one dependency graph that `uv` can recreate consistently.
-
-## Running commands without activation
-
-One of the nicest parts of `uv` is that you usually do not need to activate the environment manually. Instead, run commands through `uv run`.
-
-To start Jupyter Lab inside the project environment:
-
-``` bash
-uv run jupyter lab
-```
-
-You can also open a Python interpreter in the project environment:
-
-``` bash
-uv run python
+uv run main.py
 ```
 
 ``` output
-Python 3.13.x (...)
->>>
+Hello from gecs-uv!
 ```
 
-This keeps your shell clean while still making the project dependencies available to the command you want to run.
+Since `uv.lock` is now part of the project state, commit that change too:
+
+``` bash
+git add uv.lock
+git commit -m "Lock initial environment"
+```
 
 ## Activating the environment
 
@@ -282,7 +300,7 @@ Then activate it:
 source .venv/bin/activate
 ```
 
-Your shell prompt will usually change and show something like `(.venv)` at the beginning. You can now run the project tools directly:
+Your shell prompt will usually change and show something like `(.venv)` at the beginning. You can now run project tools directly:
 
 ``` bash
 python
@@ -294,9 +312,79 @@ To leave the environment, run:
 deactivate
 ```
 
+## Add project packages
+
+Before we move on to marimo, let's install the packages we want available in this project:
+
+``` bash
+uv add marimo numpy matplotlib
+```
+
+`uv` updates both `pyproject.toml` and `uv.lock`, then installs the packages into `.venv`.
+
+Commit those dependency changes:
+
+``` bash
+git add pyproject.toml uv.lock
+git commit -m "Add marimo and plotting dependencies"
+```
+
+## Inspecting installed packages
+
+To view the installed dependency tree, use:
+
+``` bash
+uv tree
+```
+
+This is often more helpful than a flat package list because it shows which packages depend on which others.
+
+If you want to inspect the dependency graph in a platform-independent way, use:
+
+``` bash
+uv tree --universal
+```
+
+That is another reproducibility tool: one project manifest, one lock file, and one dependency graph that `uv` can recreate consistently across machines.
+
+## marimo
+
+For data analysis, Jupyter notebooks have been the default for a long time. In this course, we will use [marimo](https://docs.marimo.io/) instead.
+
+For this course, marimo has a few advantages:
+
+-   it is **reactive**, so dependent cells stay in sync
+-   it avoids a lot of **hidden state** problems that make notebooks hard to reproduce
+-   marimo notebooks are stored as plain **`.py` files**, which makes them much friendlier to Git
+
+That last point is especially important: you can use Git to track changes in a marimo notebook just like any other Python file.
+
+## Running commands without activation
+
+One of the nicest parts of `uv` is that you usually do not need to activate the environment manually. Instead, run commands through `uv run`.
+
+To explore marimo's built-in plotting tutorial:
+
+``` bash
+uv run marimo tutorial plots
+```
+
+You can also open a Python interpreter in the project environment:
+
+``` bash
+uv run python
+```
+
+``` output
+Python 3.13.x (...)
+>>>
+```
+
+This keeps your shell clean while still making the project dependencies available to the command you want to run.
+
 ## Platform-specific dependencies
 
-Unlike some other tools, `uv` does not use a separate command to add supported platforms to the project. Instead, it records a universal lock file and allows platform-specific dependencies through standard Python environment markers.
+`uv` records a universal lock file and supports platform-specific dependencies through standard Python environment markers.
 
 For example, if you needed a package only on Windows, you could write:
 
@@ -304,7 +392,7 @@ For example, if you needed a package only on Windows, you could write:
 uv add "pywin32; sys_platform == 'win32'"
 ```
 
-Most of the time, though, you can simply rely on `uv.lock` plus `uv tree --universal` to keep the project reproducible across systems.
+If that changed your project's dependency set, you would again commit the updated `pyproject.toml` and `uv.lock`.
 
 ## Global tools
 
@@ -336,29 +424,52 @@ uv tool uninstall bat
 
 These tools are isolated from your project environments, which keeps your system utilities separate from your project dependencies.
 
-## Version controlling the project
+## `uvx` for quick sandboxes
 
-Now we can version control the project with Git.
+Sometimes you do not want to create or grow a full project environment. You might just want to try a tool quickly in an isolated sandbox.
+
+That is what `uvx` is for. It runs a command from a package in a temporary environment without adding that package to your project's dependencies.
+
+For example, you could try marimo like this:
 
 ``` bash
-git init
-git add pyproject.toml uv.lock .python-version .gitignore
-git commit -m "first commit"
+uvx marimo tutorial intro
 ```
 
-The important idea is that you commit the project manifest and the lock file, but not the `.venv/` directory itself.
+If you want an extra-isolated throwaway environment, you can also use:
+
+``` bash
+uvx --isolated marimo tutorial intro
+```
+
+This is handy when you just want to explore a tool, check whether you like it, or run something once without making your project environment bigger.
+
+## The book project
+
+Throughout this lesson, we built a `uv` project from scratch. If you'd like to see a complete example project, you can access it on GitHub at <https://github.com/igorsdub/gecs-venv>.
+
+To use this example project on your machine:
+
+``` bash
+cd ~
+git clone https://github.com/igorsdub/gecs-venv.git
+cd gecs-venv
+```
+
+Then follow the instructions in the `README.md` file to set up the project.
 
 ## Recap
 
 In this lesson, you:
 
 -   installed `uv`
--   created a project with `uv init`
--   learned the role of `pyproject.toml`, `.python-version`, `.venv`, and `uv.lock`
--   added dependencies with `uv add`
--   inspected the environment with `uv tree`
--   ran commands with `uv run`
--   installed a global tool with `uv tool install`
+-   used `uv init` to start a project
+-   edited `pyproject.toml`
+-   created `.venv` and `uv.lock` with `uv sync`
+-   learned that `uv.lock` is a snapshot of package versions
+-   added `marimo`, `numpy`, and `matplotlib`
+-   ran the marimo plotting tutorial
+-   committed the project in small steps as it evolved
 
 That is already enough to build a small, reproducible Python project that others can recreate on their own machines.
 
@@ -366,5 +477,5 @@ That is already enough to build a small, reproducible Python project that others
 
 -   [uv documentation](https://docs.astral.sh/uv/)
 -   [Installation guide](https://docs.astral.sh/uv/getting-started/installation/)
--   [Working on projects](https://docs.astral.sh/uv/guides/projects/)
--   [Locking and syncing](https://docs.astral.sh/uv/concepts/projects/sync/)
+-   [Creating projects with uv](https://docs.astral.sh/uv/concepts/projects/init/)
+-   [marimo gallery](https://marimo.io/gallery)
