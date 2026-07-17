@@ -568,140 +568,200 @@
     "href": "lessons/virtual-environments.html",
     "title": "Virtual Environments",
     "section": "",
-    "text": "This lesson is adapted from Reproducible Machine Learning Workflows for Scientists by the Carpentries Incubator and rewritten to use uv."
+    "text": "This lesson is adapted from Reproducible Machine Learning Workflows for Scientists by the Carpentries Incubator and rewritten to use uv.",
+    "crumbs": [
+      "Virtual Environments"
+    ]
   },
   {
     "objectID": "lessons/virtual-environments.html#what-is-a-virtual-environment",
     "href": "lessons/virtual-environments.html#what-is-a-virtual-environment",
     "title": "Virtual Environments",
     "section": "What is a virtual environment?",
-    "text": "What is a virtual environment?\nA virtual environment is a self-contained directory that contains a Python installation and all the packages required for a specific project. It lets us keep different projects separate, even when they need different package versions.\nThis separation is a key part of reproducible research. If we record exactly which Python version and packages a project uses, then other people can rebuild the same environment on their own machines."
+    "text": "What is a virtual environment?\nA virtual environment is a self-contained directory that contains a Python installation and all the packages required for a specific project. It lets us keep different projects separate, even when they need different package versions.\nThis separation is a key part of reproducible research. If we record exactly which Python version and packages a project uses, then other people can rebuild the same environment on their own machines.",
+    "crumbs": [
+      "Virtual Environments"
+    ]
   },
   {
     "objectID": "lessons/virtual-environments.html#package-managers",
     "href": "lessons/virtual-environments.html#package-managers",
     "title": "Virtual Environments",
     "section": "Package managers",
-    "text": "Package managers\nPython ships with venv and pip, and those tools still work. However, modern projects often need more than a manually managed virtual environment. We usually also want:\n\na clear project file that records dependencies\na lock file with exact resolved versions\na simple way to run commands inside the project environment\na convenient way to keep the environment reproducible\n\nThere are several tools for this job, including Conda, Mamba, Poetry, and uv. In this course we will use uv.\n\nWhy uv?\n\n\n\nuv by Astral\n\n\nuv is a blazingly fast Python package and project manager. If you have used Conda or Poetry before, you will feel the difference. It has a few advantages that make it a good fit for this course:\n\nFast: dependency resolution and installation are much faster than with older Python tooling.\nProject-local: each project gets its own .venv, which keeps dependencies isolated.\nPython-aware: uv can use an existing Python installation or download a managed one when needed.\nReproducible: it creates a uv.lock lock file with exact resolved package versions.\nConvenient: it lets us run project commands without manually activating the environment every time.\n\nYou can read more in the official documentation."
+    "text": "Package managers\nPython ships with venv and pip, and those tools still work. However, modern projects often need more than a manually managed virtual environment. We usually also want:\n\na clear project file that records dependencies\na lock file with exact resolved versions\na simple way to run commands inside the project environment\na convenient way to keep the environment reproducible\n\nThere are several tools for this job, including Conda, Mamba, Poetry, and uv. In this course we will use uv.\n\nWhy uv?\n\n\n\nuv by Astral\n\n\nuv is a blazingly fast Python package and project manager. If you have used Conda or Poetry before, you will feel the difference. It has a few advantages that make it a good fit for this course:\n\nFast: dependency resolution and installation are much faster than with older Python tooling.\nProject-local: each project gets its own .venv, which keeps dependencies isolated.\nPython-aware: uv can use an existing Python installation or download a managed one when needed.\nReproducible: it creates a uv.lock lock file with exact resolved package versions.\nConvenient: it lets us run project commands without manually activating the environment every time.\n\nYou can read more in the official documentation.",
+    "crumbs": [
+      "Virtual Environments"
+    ]
   },
   {
     "objectID": "lessons/virtual-environments.html#installing-uv",
     "href": "lessons/virtual-environments.html#installing-uv",
     "title": "Virtual Environments",
     "section": "Installing uv",
-    "text": "Installing uv\nIf you did not install uv during setup, do that first. On macOS, Linux, and Ubuntu under WSL, run:\ncurl -LsSf https://astral.sh/uv/install.sh | sh\nAfter installation, restart the terminal. You can also reload your shell manually.\nUbuntu users:\nsource ~/.bashrc\nmacOS users:\nsource ~/.zshrc\nTo verify that uv is available, run either:\nuv --version\nor\nwhich uv\nYou should see the installed version or the path to the uv executable."
+    "text": "Installing uv\nIf you did not install uv during setup, do that first. On macOS, Linux, and Ubuntu under WSL, run:\ncurl -LsSf https://astral.sh/uv/install.sh | sh\nAfter installation, restart the terminal. You can also reload your shell manually.\nUbuntu users:\nsource ~/.bashrc\nmacOS users:\nsource ~/.zshrc\nTo verify that uv is available, run either:\nuv --version\nor\nwhich uv\nYou should see the installed version or the path to the uv executable.",
+    "crumbs": [
+      "Virtual Environments"
+    ]
   },
   {
     "objectID": "lessons/virtual-environments.html#project-based-workflows",
     "href": "lessons/virtual-environments.html#project-based-workflows",
     "title": "Virtual Environments",
     "section": "Project-based workflows",
-    "text": "Project-based workflows\nuv works well with a project-based workflow. That means the project’s dependencies, Python requirements, and virtual environment all live alongside the project files.\nPros\n\nEach project is isolated and does not interfere with software used by other projects.\nThe project can be recreated from a small set of tracked files, especially pyproject.toml and uv.lock.\nEditors like VS Code can easily discover the project’s .venv.\n\nCons\n\nEach project keeps its own environment, so repeated packages may use more disk space than a fully shared setup.\nYou still need to think carefully about which dependencies belong in the project.\nIt only supports Python projects."
+    "text": "Project-based workflows\nuv works well with a project-based workflow. That means the project’s dependencies, Python requirements, and virtual environment all live alongside the project files.\nPros\n\nEach project is isolated and does not interfere with software used by other projects.\nThe project can be recreated from a small set of tracked files, especially pyproject.toml and uv.lock.\nEditors like VS Code can easily discover the project’s .venv.\n\nCons\n\nEach project keeps its own environment, so repeated packages may use more disk space than a fully shared setup.\nYou still need to think carefully about which dependencies belong in the project.\nIt only supports Python projects.",
+    "crumbs": [
+      "Virtual Environments"
+    ]
   },
   {
     "objectID": "lessons/virtual-environments.html#starting-a-project-with-uv-init",
     "href": "lessons/virtual-environments.html#starting-a-project-with-uv-init",
     "title": "Virtual Environments",
     "section": "Starting a project with uv init",
-    "text": "Starting a project with uv init\nThe word init shows up in many developer tools. You already saw it in git init. It usually means “set up the basic files needed to start here.”\nWith uv, init can do two related things:\n\ncreate a brand new project directory for you\ninitialize a project in a directory that already exists\n\nLet’s start by creating a new project directory:\nuv init gecs-uv\nInitialized project `gecs-uv` at &lt;working-directory&gt;/gecs-uv\nThis creates the directory gecs-uv for you. If you already had a project folder and wanted to initialize it in place, you could first cd into it and then run:\nuv init .\nOne more nice detail: uv init also initializes a Git repository by default, so you do not need to run git init yourself afterward.\nIf you are curious about the other project templates and flags that uv supports, take a look at:\nuv init --help\nNow move into the new project directory and inspect its contents:\ncd gecs-uv\nls -a\n./\n../\n.git/\n.gitignore\n.python-version\nREADME.md\nmain.py\npyproject.toml\nAt this point there is still no .venv and no uv.lock. Those appear when uv actually has to resolve and install an environment.\nuv also created a .python-version file for us. That file pins the default Python version for this project."
+    "text": "Starting a project with uv init\nThe word init shows up in many developer tools. You already saw it in git init. It usually means “set up the basic files needed to start here.”\nWith uv, init can do two related things:\n\ncreate a brand new project directory for you\ninitialize a project in a directory that already exists\n\nLet’s start by creating a new project directory:\nuv init gecs-uv\nInitialized project `gecs-uv` at &lt;working-directory&gt;/gecs-uv\nThis creates the directory gecs-uv for you. If you already had a project folder and wanted to initialize it in place, you could first cd into it and then run:\nuv init .\nOne more nice detail: uv init also initializes a Git repository by default, so you do not need to run git init yourself afterward.\nIf you are curious about the other project templates and flags that uv supports, take a look at:\nuv init --help\nNow move into the new project directory and inspect its contents:\ncd gecs-uv\nls -a\n./\n../\n.git/\n.gitignore\n.python-version\nREADME.md\nmain.py\npyproject.toml\nAt this point there is still no .venv and no uv.lock. Those appear when uv actually has to resolve and install an environment.\nuv also created a .python-version file for us. That file pins the default Python version for this project.",
+    "crumbs": [
+      "Virtual Environments"
+    ]
   },
   {
     "objectID": "lessons/virtual-environments.html#the-project-manifest",
     "href": "lessons/virtual-environments.html#the-project-manifest",
     "title": "Virtual Environments",
     "section": "The project manifest",
-    "text": "The project manifest\nLet’s inspect the main project file:\ncat pyproject.toml\n[project]\nname = \"gecs-uv\"\nversion = \"0.1.0\"\ndescription = \"Add your description here\"\nreadme = \"README.md\"\nrequires-python = \"&gt;=3.13\"\ndependencies = []\nAnd if you inspect .python-version:\ncat .python-version\n3.13\nThe most important fields here are:\n\n[project]: metadata about the project as a whole\nrequires-python: which Python versions the project supports\ndependencies: which Python packages belong in the project\n.python-version: the default Python version uv should use for this project\n\n\n\n\n\n\n\nNoteTOML files\n\n\n\n\n\npyproject.toml uses the TOML format. The name stands for Tom’s Obvious, Minimal Language, after Tom Preston-Werner, one of the creators of the format.\nTOML became popular because it is much easier for humans to read and edit than many older configuration formats. Python’s packaging ecosystem now uses it heavily, so you will keep seeing .toml files in modern projects."
+    "text": "The project manifest\nLet’s inspect the main project file:\ncat pyproject.toml\n[project]\nname = \"gecs-uv\"\nversion = \"0.1.0\"\ndescription = \"Add your description here\"\nreadme = \"README.md\"\nrequires-python = \"&gt;=3.13\"\ndependencies = []\nAnd if you inspect .python-version:\ncat .python-version\n3.13\nThe most important fields here are:\n\n[project]: metadata about the project as a whole\nrequires-python: which Python versions the project supports\ndependencies: which Python packages belong in the project\n.python-version: the default Python version uv should use for this project\n\n\n\n\n\n\n\nNoteTOML files\n\n\n\n\n\npyproject.toml uses the TOML format. The name stands for Tom’s Obvious, Minimal Language, after Tom Preston-Werner, one of the creators of the format.\nTOML became popular because it is much easier for humans to read and edit than many older configuration formats. Python’s packaging ecosystem now uses it heavily, so you will keep seeing .toml files in modern projects.",
+    "crumbs": [
+      "Virtual Environments"
+    ]
   },
   {
     "objectID": "lessons/virtual-environments.html#edit-the-description",
     "href": "lessons/virtual-environments.html#edit-the-description",
     "title": "Virtual Environments",
     "section": "Edit the description",
-    "text": "Edit the description\nRight now the project description is still the placeholder text. Let’s fix that.\nOpen the file in VS Code:\ncode pyproject.toml\nIf the code command is not available in your terminal, you can also open pyproject.toml directly from the VS Code Explorer.\nReplace the description line with something meaningful, for example:\ndescription = \"A small reproducible project managed with uv\"\nYour pyproject.toml should now look like this:\n[project]\nname = \"gecs-uv\"\nversion = \"0.1.0\"\ndescription = \"A small reproducible project managed with uv\"\nreadme = \"README.md\"\nrequires-python = \"&gt;=3.13\"\ndependencies = []"
+    "text": "Edit the description\nRight now the project description is still the placeholder text. Let’s fix that.\nOpen the file in VS Code:\ncode pyproject.toml\nIf the code command is not available in your terminal, you can also open pyproject.toml directly from the VS Code Explorer.\nReplace the description line with something meaningful, for example:\ndescription = \"A small reproducible project managed with uv\"\nYour pyproject.toml should now look like this:\n[project]\nname = \"gecs-uv\"\nversion = \"0.1.0\"\ndescription = \"A small reproducible project managed with uv\"\nreadme = \"README.md\"\nrequires-python = \"&gt;=3.13\"\ndependencies = []",
+    "crumbs": [
+      "Virtual Environments"
+    ]
   },
   {
     "objectID": "lessons/virtual-environments.html#version-control-from-the-start",
     "href": "lessons/virtual-environments.html#version-control-from-the-start",
     "title": "Virtual Environments",
     "section": "Version control from the start",
-    "text": "Version control from the start\nBecause uv init already initialized Git for us, we can start tracking changes immediately:\ngit status --short\nYou should see the newly created files as untracked. Add them and make the first commit:\ngit add .\ngit commit -m \"Initialize uv project\"\nThis is a good habit. Instead of waiting until the very end, we will keep committing as the environment changes."
+    "text": "Version control from the start\nBecause uv init already initialized Git for us, we can start tracking changes immediately:\ngit status --short\nYou should see the newly created files as untracked. Add them and make the first commit:\ngit add .\ngit commit -m \"Initialize uv project\"\nThis is a good habit. Instead of waiting until the very end, we will keep committing as the environment changes.",
+    "crumbs": [
+      "Virtual Environments"
+    ]
   },
   {
     "objectID": "lessons/virtual-environments.html#create-the-environment",
     "href": "lessons/virtual-environments.html#create-the-environment",
     "title": "Virtual Environments",
     "section": "Create the environment",
-    "text": "Create the environment\nNow let’s ask uv to create the environment explicitly:\nuv sync\nThis command resolves the project’s dependencies, creates the virtual environment, and makes sure the installed packages match the lock file.\nCheck the directory again:\nls -a\n./\n../\n.git/\n.gitignore\n.python-version\n.venv/\nREADME.md\nmain.py\npyproject.toml\nuv.lock\nTwo important things appeared:\n\n.venv/: this is the virtual environment itself. It contains the Python executable, installed package files, and all the other moving parts that make the environment run. This is the meat of the environment.\nuv.lock: this is the lock file. It is like taking a snapshot of your environment’s package versions at this moment in time.\n\nWhen someone else clones your repository and runs uv sync, uv uses that snapshot to rebuild the environment as closely as possible.\nLet’s also confirm that the starter program runs:\nuv run main.py\nHello from gecs-uv!\nSince uv.lock is now part of the project state, commit that change too:\ngit add uv.lock\ngit commit -m \"Lock initial environment\""
+    "text": "Create the environment\nNow let’s ask uv to create the environment explicitly:\nuv sync\nThis command resolves the project’s dependencies, creates the virtual environment, and makes sure the installed packages match the lock file.\nCheck the directory again:\nls -a\n./\n../\n.git/\n.gitignore\n.python-version\n.venv/\nREADME.md\nmain.py\npyproject.toml\nuv.lock\nTwo important things appeared:\n\n.venv/: this is the virtual environment itself. It contains the Python executable, installed package files, and all the other moving parts that make the environment run. This is the meat of the environment.\nuv.lock: this is the lock file. It is like taking a snapshot of your environment’s package versions at this moment in time.\n\nWhen someone else clones your repository and runs uv sync, uv uses that snapshot to rebuild the environment as closely as possible.\nLet’s also confirm that the starter program runs:\nuv run main.py\nHello from gecs-uv!\nSince uv.lock is now part of the project state, commit that change too:\ngit add uv.lock\ngit commit -m \"Lock initial environment\"",
+    "crumbs": [
+      "Virtual Environments"
+    ]
   },
   {
     "objectID": "lessons/virtual-environments.html#activate-the-environment",
     "href": "lessons/virtual-environments.html#activate-the-environment",
     "title": "Virtual Environments",
     "section": "Activate the environment",
-    "text": "Activate the environment\nSometimes it is still convenient to activate the environment directly, for example if you want to run several commands in a row without prefixing each one with uv run.\nFirst make sure the environment is up to date:\nuv sync\nThen activate it:\nsource .venv/bin/activate\nYour shell prompt will usually change and show something like (.venv) at the beginning. You can now run project tools directly:\npython\nTo leave the environment, run:\ndeactivate"
+    "text": "Activate the environment\nSometimes it is still convenient to activate the environment directly, for example if you want to run several commands in a row without prefixing each one with uv run.\nFirst make sure the environment is up to date:\nuv sync\nThen activate it:\nsource .venv/bin/activate\nYour shell prompt will usually change and show something like (.venv) at the beginning. You can now run project tools directly:\npython\nTo leave the environment, run:\ndeactivate",
+    "crumbs": [
+      "Virtual Environments"
+    ]
   },
   {
     "objectID": "lessons/virtual-environments.html#add-packages",
     "href": "lessons/virtual-environments.html#add-packages",
     "title": "Virtual Environments",
     "section": "Add packages",
-    "text": "Add packages\nBefore we move on to marimo, let’s install the packages we want available in this project:\nuv add marimo numpy matplotlib\nuv updates both pyproject.toml and uv.lock, then installs the packages into .venv.\nCommit those dependency changes:\ngit add pyproject.toml uv.lock\ngit commit -m \"Add marimo and plotting dependencies\"\nTo view the installed dependency tree, use:\nuv tree\nThis is often more helpful than a flat package list because it shows which packages depend on which other packages.\nIf you want to inspect the dependency graph in a platform-independent way, use:\nuv tree --universal\nThis is another reproducibility tool: one project manifest, one lock file, and one dependency graph that uv can recreate consistently across machines."
+    "text": "Add packages\nBefore we move on to marimo, let’s install the packages we want available in this project:\nuv add marimo numpy matplotlib\nuv updates both pyproject.toml and uv.lock, then installs the packages into .venv.\nCommit those dependency changes:\ngit add pyproject.toml uv.lock\ngit commit -m \"Add marimo and plotting dependencies\"\nTo view the installed dependency tree, use:\nuv tree\nThis is often more helpful than a flat package list because it shows which packages depend on which other packages.\nIf you want to inspect the dependency graph in a platform-independent way, use:\nuv tree --universal\nThis is another reproducibility tool: one project manifest, one lock file, and one dependency graph that uv can recreate consistently across machines.",
+    "crumbs": [
+      "Virtual Environments"
+    ]
   },
   {
     "objectID": "lessons/virtual-environments.html#marimo",
     "href": "lessons/virtual-environments.html#marimo",
     "title": "Virtual Environments",
     "section": "marimo",
-    "text": "marimo\n\n\n\nmarimo vs Jupyter\n\n\nFor data analysis, Jupyter notebooks have been the default for a long time. In this course, we will use marimo instead.\nFor this course, marimo has a few advantages:\n\nit is reactive, so dependent cells stay in sync\nit avoids a lot of hidden state problems that make notebooks hard to reproduce\nmarimo notebooks are stored as plain .py files, which makes them much friendlier to Git\n\nThat last point is especially important: you can use Git to track changes in a marimo notebook just like any other Python file."
+    "text": "marimo\n\n\n\nmarimo vs Jupyter\n\n\nFor data analysis, Jupyter notebooks have been the default for a long time. In this course, we will use marimo instead.\nFor this course, marimo has a few advantages:\n\nit is reactive, so dependent cells stay in sync\nit avoids a lot of hidden state problems that make notebooks hard to reproduce\nmarimo notebooks are stored as plain .py files, which makes them much friendlier to Git\n\nThat last point is especially important: you can use Git to track changes in a marimo notebook just like any other Python file.",
+    "crumbs": [
+      "Virtual Environments"
+    ]
   },
   {
     "objectID": "lessons/virtual-environments.html#running-commands-without-activation",
     "href": "lessons/virtual-environments.html#running-commands-without-activation",
     "title": "Virtual Environments",
     "section": "Running commands without activation",
-    "text": "Running commands without activation\nOne of the nicest parts of uv is that you usually do not need to activate the environment manually. Instead, run commands through uv run.\nTo explore marimo’s built-in plotting tutorial:\nuv run marimo tutorial plots\nYou can also open a Python interpreter in the project environment:\nuv run python\nPython 3.13.x (...)\n&gt;&gt;&gt;\nThis keeps your shell clean while still making the project dependencies available to the command you want to run.\n\n\n\n\n\n\nTipPlatform-specific dependencies\n\n\n\n\n\nuv records a universal lock file and supports platform-specific dependencies through standard Python environment markers.\nFor example, if you needed a package only on Windows, you could write:\nuv add \"pywin32; sys_platform == 'win32'\"\nIf that changed your project’s dependency set, you would again commit the updated pyproject.toml and uv.lock."
+    "text": "Running commands without activation\nOne of the nicest parts of uv is that you usually do not need to activate the environment manually. Instead, run commands through uv run.\nTo explore marimo’s built-in plotting tutorial:\nuv run marimo tutorial plots\nYou can also open a Python interpreter in the project environment:\nuv run python\nPython 3.13.x (...)\n&gt;&gt;&gt;\nThis keeps your shell clean while still making the project dependencies available to the command you want to run.\n\n\n\n\n\n\nTipPlatform-specific dependencies\n\n\n\n\n\nuv records a universal lock file and supports platform-specific dependencies through standard Python environment markers.\nFor example, if you needed a package only on Windows, you could write:\nuv add \"pywin32; sys_platform == 'win32'\"\nIf that changed your project’s dependency set, you would again commit the updated pyproject.toml and uv.lock.",
+    "crumbs": [
+      "Virtual Environments"
+    ]
   },
   {
     "objectID": "lessons/virtual-environments.html#global-tools",
     "href": "lessons/virtual-environments.html#global-tools",
     "title": "Virtual Environments",
     "section": "Global tools",
-    "text": "Global tools\nuv can also install command-line tools into isolated environments and expose them on your PATH.\nFor example, to install bat, a nicer version of cat, run:\nuv tool install bat\nIf this is the first tool you install, uv may suggest adding its tool directory to your PATH. If needed, follow that suggestion with:\nuv tool update-shell\nTo list globally installed tools:\nuv tool list\nTo remove the tool again:\nuv tool uninstall bat\nThese tools are isolated from your project environments, which keeps your system utilities separate from your project dependencies."
+    "text": "Global tools\nuv can also install command-line tools into isolated environments and expose them on your PATH.\nFor example, to install bat, a nicer version of cat, run:\nuv tool install bat\nIf this is the first tool you install, uv may suggest adding its tool directory to your PATH. If needed, follow that suggestion with:\nuv tool update-shell\nTo list globally installed tools:\nuv tool list\nTo remove the tool again:\nuv tool uninstall bat\nThese tools are isolated from your project environments, which keeps your system utilities separate from your project dependencies.",
+    "crumbs": [
+      "Virtual Environments"
+    ]
   },
   {
     "objectID": "lessons/virtual-environments.html#sandbox-with-uvx",
     "href": "lessons/virtual-environments.html#sandbox-with-uvx",
     "title": "Virtual Environments",
     "section": "Sandbox with uvx",
-    "text": "Sandbox with uvx\nSometimes you do not want to create or grow a full project environment. You might just want to try a tool quickly in an isolated sandbox.\nThat is what uvx is for. It runs a command from a package in a temporary environment without adding that package to your project’s dependencies.\nLet’s introduce another tool by Astral called Ruff. Ruff is a fast Python linter that can help you find and fix code issues. Linter are special tools that analyze your code for potential errors, style violations, and other issues. If you want to lint the current project with Ruff without installing Ruff into the project environment. You can run:\nuvx ruff check .\nIf you want an extra-isolated throwaway environment, you can also use:\nuvx --isolated ruff check .\nLess serious but more fun.\nuvx pycowsay hello\nor try some classic games from freegames pacakage:\nuvx freegames play snake\nThis command will download the freegames package, run the snake game, and then remove the package again when you exit the game.\nFor the list of available games, run:\nuvx freegames list\nor check the freegames documentation.\nThis is handy when you just want to explore a tool, run a one-off check, or try something quickly without making your project environment bigger."
+    "text": "Sandbox with uvx\nSometimes you do not want to create or grow a full project environment. You might just want to try a tool quickly in an isolated sandbox.\nThat is what uvx is for. It runs a command from a package in a temporary environment without adding that package to your project’s dependencies.\nLet’s introduce another tool by Astral called Ruff. Ruff is a fast Python linter that can help you find and fix code issues. Linter are special tools that analyze your code for potential errors, style violations, and other issues. If you want to lint the current project with Ruff without installing Ruff into the project environment. You can run:\nuvx ruff check .\nIf you want an extra-isolated throwaway environment, you can also use:\nuvx --isolated ruff check .\nLess serious but more fun.\nuvx pycowsay hello\nor try some classic games from freegames pacakage:\nuvx freegames play snake\nThis command will download the freegames package, run the snake game, and then remove the package again when you exit the game.\nFor the list of available games, run:\nuvx freegames list\nor check the freegames documentation.\nThis is handy when you just want to explore a tool, run a one-off check, or try something quickly without making your project environment bigger.",
+    "crumbs": [
+      "Virtual Environments"
+    ]
   },
   {
     "objectID": "lessons/virtual-environments.html#the-book-project",
     "href": "lessons/virtual-environments.html#the-book-project",
     "title": "Virtual Environments",
     "section": "The book project",
-    "text": "The book project\nThroughout this lesson, we built a uv project from scratch. If you’d like to see a complete example project, you can access it on GitHub at https://github.com/igorsdub/gecs-venv.\nTo use this example project on your machine:\ncd ~\ngit clone https://github.com/igorsdub/gecs-venv.git\ncd gecs-venv\nThen follow the instructions in the README.md file to set up the project."
+    "text": "The book project\nThroughout this lesson, we built a uv project from scratch. If you’d like to see a complete example project, you can access it on GitHub at https://github.com/igorsdub/gecs-venv.\nTo use this example project on your machine:\ncd ~\ngit clone https://github.com/igorsdub/gecs-venv.git\ncd gecs-venv\nThen follow the instructions in the README.md file to set up the project.",
+    "crumbs": [
+      "Virtual Environments"
+    ]
   },
   {
     "objectID": "lessons/virtual-environments.html#your-turn",
     "href": "lessons/virtual-environments.html#your-turn",
     "title": "Virtual Environments",
     "section": "Your turn",
-    "text": "Your turn\nNow it’s your turn! Create a new project with uv init, add some dependencies, and run a small Python program. Make sure to commit your changes as you go.\nThen publish your project to GitHub and share the link with your classmates and see if they can recreate your environment with uv sync.\nLet them to modify your code and create pull requests. You can then review their changes and merge them into your project.\nPull the changes from your classmates, run uv sync to update your environment with their changes, and see if everything still works as expected."
+    "text": "Your turn\nNow it’s your turn! Create a new project with uv init, add some dependencies, and run a small Python program. Make sure to commit your changes as you go.\nThen publish your project to GitHub and share the link with your classmates and see if they can recreate your environment with uv sync.\nLet them to modify your code and create pull requests. You can then review their changes and merge them into your project.\nPull the changes from your classmates, run uv sync to update your environment with their changes, and see if everything still works as expected.",
+    "crumbs": [
+      "Virtual Environments"
+    ]
   },
   {
     "objectID": "lessons/virtual-environments.html#recap",
     "href": "lessons/virtual-environments.html#recap",
     "title": "Virtual Environments",
     "section": "Recap",
-    "text": "Recap\nIn this lesson, you:\n\ninstalled uv\nused uv init to start a project\nedited pyproject.toml\ncreated .venv and uv.lock with uv sync\nlearned that uv.lock is a snapshot of package versions\nadded marimo, numpy, and matplotlib\nran the marimo plotting tutorial\ncommitted the project in small steps as it evolved\n\nThat is already enough to build a small, reproducible Python project that others can recreate on their own machines."
+    "text": "Recap\nIn this lesson, you:\n\ninstalled uv\nused uv init to start a project\nedited pyproject.toml\ncreated .venv and uv.lock with uv sync\nlearned that uv.lock is a snapshot of package versions\nadded marimo, numpy, and matplotlib\nran the marimo plotting tutorial\ncommitted the project in small steps as it evolved\n\nThat is already enough to build a small, reproducible Python project that others can recreate on their own machines.",
+    "crumbs": [
+      "Virtual Environments"
+    ]
   },
   {
     "objectID": "lessons/virtual-environments.html#further-reading",
     "href": "lessons/virtual-environments.html#further-reading",
     "title": "Virtual Environments",
     "section": "Further reading",
-    "text": "Further reading\n\nuv documentation\nInstallation guide\nCreating projects with uv\nmarimo gallery"
+    "text": "Further reading\n\nuv documentation\nInstallation guide\nCreating projects with uv\nmarimo gallery",
+    "crumbs": [
+      "Virtual Environments"
+    ]
   },
   {
     "objectID": "lessons/vs-code.html",
