@@ -249,35 +249,35 @@ Accept any installations or suggestions offered by extensions. Now, you are read
 
 # Package Manager
 
-An out-of-box UNIX-based OS has limited amount of tools. For this course we will use various open-source tools which need to be downloaded, installed, updated and keeping track of. Package manager is a tool to manage tools. We will use Pixi package manager in this course and will dive deep into it in [the Virtual Environments session.](virtual-environments.qmd)
+An out-of-box UNIX-based OS has limited amount of tools. For this course we will use various open-source tools which need to be downloaded, installed, updated and kept track of. A package manager is a tool that helps with that. For this course we will use [`uv`](https://docs.astral.sh/uv/), and we will dive deeper into it in [the Virtual Environments session](virtual-environments.qmd).
 
-## Pixi
+## uv
 
-[Pixi](https://pixi.prefix.dev/latest/) is the latest package manager and unlike its competition (e.g. Conda, Mamba, uv) supports many programming languages besides Python and is gaining momentum among software developers and scientist.
+[`uv`](https://docs.astral.sh/uv/) is a modern Python package and project manager. It helps us create isolated environments, install dependencies, lock exact package versions, and even manage Python itself when needed.
 
-Here we will have to use a terminal since Pixi can not be installed using a visual application, say by downloading an `.exe` file for Windows or `.dmg` for macOS.
+Here we will use the terminal because `uv` is typically installed from the command line rather than through a graphical installer.
 
 ::: {.callout-note appearance="simple"}
 That's the reason we went to such lengths to install Ubuntu on Windows. Now, you are able to access a much larger range of applications which are inaccessible to graphical user interface (GUI) users.
 :::
 
-We will use the VS Code's terminal to do the installation. To open the terminal select **View** \> **Terminal** from the menu bar, or by pressing the `` Ctrl/Cmd+` `` keyboard shortcut. A terminal window will open at the bottom.
+We will use the VS Code terminal to do the installation. To open the terminal select **View** \> **Terminal** from the menu bar, or press the `` Ctrl/Cmd+` `` keyboard shortcut. A terminal window will open at the bottom.
 
 ![](/images/paste-36.png)
 
-To install Pixi run the following command in your terminal:
+To install `uv`, run the following command in your terminal:
 
 ``` bash
-curl -fsSL https://pixi.sh/install.sh | sh
+curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-To verify that Pixi got installed successfully restart the terminal. There are two ways to do so. Easy way is to kill it and open a new terminal window. Another way is to type the following for Ubuntu users:
+To verify that `uv` got installed successfully, restart the terminal. An easy way is to close it and open a new one. Another way is to type the following for Ubuntu users:
 
 ```bash
 source ~/.bashrc
 ```
 
-macOS user need to type:
+macOS users need to type:
 
 ```zsh
 source ~/.zshrc
@@ -286,10 +286,10 @@ source ~/.zshrc
 OK, now that the terminal is reset, type:
 
 ``` bash
-which pixi
+which uv
 ```
 
-You will see something like `/Users/username/.pixi/bin/pixi` printed, where `username` is your chosen username.
+You will see a path to the `uv` executable, often something like `/Users/username/.local/bin/uv`, where `username` is your chosen username.
 
 # Developer Platform
 
@@ -369,8 +369,8 @@ After you restart the terminal, close it and open a new one, you should see the 
 
 ### Package Managers
 
--   [Pixi Official Documentation](https://pixi.prefix.dev/latest/)
--   [Pixi Installation Guide](https://pixi.prefix.dev/latest/installation/)
+-   [uv Documentation](https://docs.astral.sh/uv/)
+-   [uv Installation Guide](https://docs.astral.sh/uv/getting-started/installation/)
 
 ### Shell Customization
 
