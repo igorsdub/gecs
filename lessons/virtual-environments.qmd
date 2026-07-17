@@ -485,6 +485,11 @@ or check the [freegames documentation](https://pypi.org/project/freegames/).
 
 This is handy when you just want to explore a tool, run a one-off check, or try something quickly without making your project environment bigger.
 
+Once you are done playing, to deactivate the lessson's environment, run:
+``` bash
+deactivate
+```
+
 ## The book project
 
 Throughout this lesson, we built a `uv` project from scratch. If you'd like to see a complete example project, you can access it on GitHub at <https://github.com/igorsdub/gecs-venv>.
