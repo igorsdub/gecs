@@ -11,13 +11,22 @@ Software projects can be messy. Imagine you join a lab and your supervisor hands
 
 ![https://datacarpentry.github.io/rr-organization1/fig/files_messy_tidy.png](/images/paste-44.png)
 
-OK, probably not as extreme. Still, it is common for a newcomer to data science to put everything into a single folder: data, scripts, figures, tables. That can work if you only need to do analysis once and no one else will ever do it again, including yourself. That is far from truth in research be it academia or industry. In this tutorial we will see quick fixes you can do to help others and the future you to understand what does a project do. Let's get organized.
+OK, probably not that extreme. Still, it is common for a newcomer to data science to put everything into a single folder: data, scripts, figures, tables. That can work if you only need to do analysis once and no one else will ever do it again, including yourself. That is far from truth in research be it academia or industry. In this tutorial we will see quick fixes you can do to help others and the future you to understand what does a project do. Let's get organized.
 
 # Lost Book Project
 
 We will look at two project structures: messy and structured - to see what works and what does not in short and long term projects.
 
 ## Messy project
+
+Clone the project from GitHub:
+
+```bash
+git clone https://github.com/igorsdub/gecs-messy-project.git
+```
+and open the directory with VS Code. 
+
+You will see a project structure like this:
 
 ``` text
 .
@@ -35,15 +44,7 @@ We will look at two project structures: messy and structured - to see what works
 
 First, try to make sense what the project is about and how to use it.
 
-[DOWNLOAD HERE](https://github.com/igorsdub/gecs-02-project_structure/archive/refs/heads/2025-02_messy-dir.zip)
 
-If you want to practice your terminal skills, you can unzip the file with `unzip` program:
-
-``` bash
-unzip gecs-02-project_structure-2025-02_messy-dir
-```
-
-Once unzipped, open the directory with VS Code (`Cmd+O`).
 
 ## Structured project
 
