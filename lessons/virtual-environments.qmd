@@ -26,7 +26,9 @@ There are several tools for this job, including Conda, Mamba, Poetry, and `uv`. 
 
 ### Why uv?
 
- `uv` is an blazingly fast Python package and project manager. If you used Conda or Poetry before, you will feel the difference. It has a few advantages that make it a good fit for this course:
+![uv by [Astral](https://astral.sh/)](/images/virtual-environments_UV.png)
+
+`uv` is a blazingly fast Python package and project manager. If you have used Conda or Poetry before, you will feel the difference. It has a few advantages that make it a good fit for this course:
 
 -   **Fast**: dependency resolution and installation are much faster than with older Python tooling.
 -   **Project-local**: each project gets its own `.venv`, which keeps dependencies isolated.
@@ -141,7 +143,7 @@ pyproject.toml
 
 At this point there is still no `.venv` and no `uv.lock`. Those appear when `uv` actually has to resolve and install an environment.
 
-`uv` also created a `.python-version` file for us. That file pins the default Python version request for this project.
+`uv` also created a `.python-version` file for us. That file pins the default Python version for this project.
 
 ## The project manifest
 
@@ -214,7 +216,7 @@ requires-python = ">=3.13"
 dependencies = []
 ```
 
-## Version-control the project from the start
+## Version control from the start
 
 Because `uv init` already initialized Git for us, we can start tracking changes immediately:
 
@@ -284,7 +286,7 @@ git add uv.lock
 git commit -m "Lock initial environment"
 ```
 
-## Activating the environment
+## Activate the environment
 
 Sometimes it is still convenient to activate the environment directly, for example if you want to run several commands in a row without prefixing each one with `uv run`.
 
@@ -312,7 +314,7 @@ To leave the environment, run:
 deactivate
 ```
 
-## Add project packages
+## Add packages
 
 Before we move on to marimo, let's install the packages we want available in this project:
 
@@ -329,15 +331,13 @@ git add pyproject.toml uv.lock
 git commit -m "Add marimo and plotting dependencies"
 ```
 
-## Inspecting installed packages
-
 To view the installed dependency tree, use:
 
 ``` bash
 uv tree
 ```
 
-This is often more helpful than a flat package list because it shows which packages depend on which others.
+This is often more helpful than a flat package list because it shows which packages depend on which other packages.
 
 If you want to inspect the dependency graph in a platform-independent way, use:
 
@@ -345,9 +345,11 @@ If you want to inspect the dependency graph in a platform-independent way, use:
 uv tree --universal
 ```
 
-That is another reproducibility tool: one project manifest, one lock file, and one dependency graph that `uv` can recreate consistently across machines.
+This is another reproducibility tool: one project manifest, one lock file, and one dependency graph that `uv` can recreate consistently across machines.
 
 ## marimo
+
+![marimo vs Jupyter](/images/virtual-environments_marimoVsJupyter.png)
 
 For data analysis, Jupyter notebooks have been the default for a long time. In this course, we will use [marimo](https://docs.marimo.io/) instead.
 
@@ -382,7 +384,7 @@ Python 3.13.x (...)
 
 This keeps your shell clean while still making the project dependencies available to the command you want to run.
 
-## Platform-specific dependencies
+::: {.callout-tip collapse="true" title="Platform-specific dependencies"}
 
 `uv` records a universal lock file and supports platform-specific dependencies through standard Python environment markers.
 
@@ -393,6 +395,8 @@ uv add "pywin32; sys_platform == 'win32'"
 ```
 
 If that changed your project's dependency set, you would again commit the updated `pyproject.toml` and `uv.lock`.
+
+:::
 
 ## Global tools
 
@@ -424,25 +428,26 @@ uv tool uninstall bat
 
 These tools are isolated from your project environments, which keeps your system utilities separate from your project dependencies.
 
-## `uvx` for quick sandboxes
+## Sandbox with `uvx`
 
 Sometimes you do not want to create or grow a full project environment. You might just want to try a tool quickly in an isolated sandbox.
 
 That is what `uvx` is for. It runs a command from a package in a temporary environment without adding that package to your project's dependencies.
 
-For example, you could try marimo like this:
+Let's introduce another tool by Astral called [Ruff](https://docs.astral.sh/ruff/). Ruff is a fast Python linter that can help you find and fix code issues. Linter are special tools that analyze your code for potential errors, style violations, and other issues.
+If you want to lint the current project with Ruff without installing Ruff into the project environment. You can run:
 
 ``` bash
-uvx marimo tutorial intro
+uvx ruff check .
 ```
 
 If you want an extra-isolated throwaway environment, you can also use:
 
 ``` bash
-uvx --isolated marimo tutorial intro
+uvx --isolated ruff check .
 ```
 
-This is handy when you just want to explore a tool, check whether you like it, or run something once without making your project environment bigger.
+This is handy when you just want to explore a tool, run a one-off check, or try something quickly without making your project environment bigger.
 
 ## The book project
 
