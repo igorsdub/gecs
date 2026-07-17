@@ -683,6 +683,13 @@
     "text": "The book project\nThroughout this lesson, we built a uv project from scratch. If you’d like to see a complete example project, you can access it on GitHub at https://github.com/igorsdub/gecs-venv.\nTo use this example project on your machine:\ncd ~\ngit clone https://github.com/igorsdub/gecs-venv.git\ncd gecs-venv\nThen follow the instructions in the README.md file to set up the project."
   },
   {
+    "objectID": "lessons/virtual-environments.html#your-turn",
+    "href": "lessons/virtual-environments.html#your-turn",
+    "title": "Virtual Environments",
+    "section": "Your turn",
+    "text": "Your turn\nNow it’s your turn! Create a new project with uv init, add some dependencies, and run a small Python program. Make sure to commit your changes as you go.\nThen publish your project to GitHub and share the link with your classmates and see if they can recreate your environment with uv sync.\nLet them to modify your code and create pull requests. You can then review their changes and merge them into your project.\nPull the changes from your classmates, run uv sync to update your environment with their changes, and see if everything still works as expected."
+  },
+  {
     "objectID": "lessons/virtual-environments.html#recap",
     "href": "lessons/virtual-environments.html#recap",
     "title": "Virtual Environments",
