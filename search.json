@@ -698,7 +698,7 @@
     "href": "lessons/virtual-environments.html#running-commands-without-activation",
     "title": "Virtual Environments",
     "section": "Running commands without activation",
-    "text": "Running commands without activation\nOne of the nicest parts of uv is that you usually do not need to activate the environment manually. Instead, run commands through uv run.\nFirst, activate the environment\nsource .venv/bin/activate\nNow, we can explore marimo’s built-in plotting tutorial:\nmarimo tutorial plots\nThis will open a browser window with the tutorial. To run the tutorial, press Play button in the bottom right corner or press Ctrl/Cmd+ Shift + R to run all cells.",
+    "text": "Running commands without activation\nOne of the nicest parts of uv is that you usually do not need to activate the environment manually. Instead, run commands through uv run.\nFirst, activate the environment\nsource .venv/bin/activate\nNow, we can explore marimo’s built-in plotting tutorial:\nmarimo tutorial plots\nThis will open a browser window with the tutorial. To run the tutorial, press Play button in the bottom right corner or press Ctrl/Cmd+ Shift + R to run all cells.\nOnce you are done, you can exit the tutorial and deactivate the environment by presing Red cross button (Shutdown) in the top-right corner of the browser page or Ctrl/Cmd + C in the terminal.",
     "crumbs": [
       "Virtual Environments"
     ]
