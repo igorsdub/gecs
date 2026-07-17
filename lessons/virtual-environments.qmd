@@ -482,6 +482,16 @@ cd gecs-venv
 
 Then follow the instructions in the `README.md` file to set up the project.
 
+## Your turn
+
+Now it's your turn! Create a new project with `uv init`, add some dependencies, and run a small Python program. Make sure to commit your changes as you go.
+
+Then publish your project to GitHub and share the link with your classmates and see if they can recreate your environment with `uv sync`.
+
+Let them to modify your code and create pull requests. You can then review their changes and merge them into your project.
+
+Pull the changes from your classmates, run `uv sync` to update your environment with their changes, and see if everything still works as expected.
+
 ## Recap
 
 In this lesson, you:
