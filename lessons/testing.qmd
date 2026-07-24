@@ -306,7 +306,7 @@ def test_small_book_workflow(tmp_path):
     assert figure_path.with_suffix(".png").exists()
 ```
 
-This test follows the same path as the real workflow: book → count file → plot. It calls `plot_word_counts()`, so it requires Selenium and a locally available browser for PNG export.
+This test follows the same path as the real workflow: book → count file → plot. It calls `plot_word_counts()`, which uses Altair for the interactive HTML chart and `vl-convert-python` for PNG export, so it does not require a locally available browser.
 
 ## Run the tests
 
