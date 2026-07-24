@@ -54,7 +54,17 @@
     "href": "lessons/project-structure.html",
     "title": "Project Structure",
     "section": "",
-    "text": "If you get hit by a bus today, will your colleagues be able to run your project tomorrow?\nThe Bus Factor\nSoftware projects can be messy. Imagine you join a lab and your supervisor hands a project folder left by a previous postdoc. It usually looks like this:\nOK, probably not as extreme. Still, it is common for a newcomer to data science to put everything into a single folder: data, scripts, figures, tables. That can work if you only need to do analysis once and no one else will ever do it again, including yourself. That is far from truth in research be it academia or industry. In this tutorial we will see quick fixes you can do to help others and the future you to understand what does a project do. Let’s get organized.",
+    "text": "If you get hit by a bus today, will your colleagues be able to run your project tomorrow?\nThe Bus Factor\nSoftware projects can be messy. Imagine joining a lab and receiving a project folder left by a previous postdoc. It might look something like this:\nOK, probably not as extreme. Still, newcomers to data science often put everything into a single folder: data, scripts, figures, and tables. That can work if you only need to run an analysis once and no one else will ever need to repeat it, including yourself. That is rarely true in research, whether in academia or industry. In this lesson, we will look at practical ways to help colleagues—and your future self—understand and run a project. Let’s get organized.",
+    "crumbs": [
+      "Project Structure"
+    ]
+  },
+  {
+    "objectID": "lessons/project-structure.html#learning-objectives",
+    "href": "lessons/project-structure.html#learning-objectives",
+    "title": "Project Structure",
+    "section": "Learning objectives",
+    "text": "Learning objectives\nBy the end of this lesson, you should be able to:\n\nrecognize common problems in an unstructured project;\norganize files into meaningful directories;\napply consistent, portable naming conventions; and\ncreate a README that enables someone else to run the project.",
     "crumbs": [
       "Project Structure"
     ]
@@ -64,7 +74,7 @@
     "href": "lessons/project-structure.html#messy-project",
     "title": "Project Structure",
     "section": "Messy project",
-    "text": "Messy project\n.\n├── analysis.sh\n├── book1.txt\n├── book102.txt\n├── book2.txt\n├── book3.txt\n├── book5.txt\n├── book55.txt\n├── book79.txt\n├── plot.sh\n└── summary.sh\nFirst, try to make sense what the project is about and how to use it.\nDOWNLOAD HERE\nIf you want to practice your terminal skills, you can unzip the file with unzip program:\nunzip gecs-02-project_structure-2025-02_messy-dir\nOnce unzipped, open the directory with VS Code (Cmd+O).",
+    "text": "Messy project\n.\n├── analysis.sh\n├── book1.txt\n├── book102.txt\n├── book2.txt\n├── book3.txt\n├── book5.txt\n├── book55.txt\n├── book79.txt\n├── plot.sh\n└── summary.sh\nFirst, try to make sense of what the project is about and how to use it.\nOpen the messy project on GitHub\nYou can inspect the files directly on GitHub, or clone the repository if you want to run the scripts locally:\ngit clone https://github.com/igorsdub/gecs-messy-project.git\nOpen the cloned directory with VS Code (Cmd+O). Before reading the explanation below, inspect the files and try to answer these questions:\n\nWhat is this project trying to do?\nWhich files are inputs, scripts, and outputs?\nIn what order should the scripts be run?\nWhat would make this project difficult for a colleague to continue?",
     "crumbs": [
       "Project Structure"
     ]
@@ -74,7 +84,7 @@
     "href": "lessons/project-structure.html#structured-project",
     "title": "Project Structure",
     "section": "Structured project",
-    "text": "Structured project\n.\n├── books                           &lt;-- Text files of books used for analysis\n│   ├── dracula.txt\n│   ├── frankenstein.txt\n│   ├── jane_eyre.txt\n│   ├── moby_dick.txt\n│   ├── README.md                   &lt;-- README for the book files\n│   ├── sense_and_sensibility.txt\n│   ├── sherlock_holmes.txt\n│   └── time_machine.txt\n├── counts                          &lt;-- Word count .tsv data\n├── figures                         &lt;-- Bar plots of word counts\n├── README.md                       &lt;-- README for the project\n└── scripts                         &lt;-- Scripts directory\n    ├── count_words.sh              &lt;-- Counts occurences of word in a books\n    ├── get_summary.sh              &lt;-- Gets a book summary\n    └── plot_counts.sh              &lt;-- Plots count histogram in terminal window\nThis is the same project but organized.\nDOWNLOAD HERE\nOnce downloaded and unzipped, open the directory with VS Code.",
+    "text": "Structured project\n.\n├── books                           &lt;-- Text files of books used for analysis\n│   ├── dracula.txt\n│   ├── frankenstein.txt\n│   ├── jane_eyre.txt\n│   ├── moby_dick.txt\n│   ├── README.md                   &lt;-- README for the book files\n│   ├── sense_and_sensibility.txt\n│   ├── sherlock_holmes.txt\n│   └── time_machine.txt\n├── counts                          &lt;-- Word count .tsv data\n├── figures                         &lt;-- Bar plots of word counts\n├── README.md                       &lt;-- README for the project\n└── scripts                         &lt;-- Scripts directory\n    ├── count_words.sh              &lt;-- Counts occurrences of a word in books\n    ├── get_summary.sh              &lt;-- Gets a book summary\n    └── plot_counts.sh              &lt;-- Plots count histogram in terminal window\nThis is the same project, but organized.\nOpen the structured project on GitHub\nCompare this repository with the messy version. Look for improvements in directory names, file names, documentation, and the separation of inputs, scripts, and generated outputs. If you cloned the messy project, clone this repository as well and open both directories in VS Code.",
     "crumbs": [
       "Project Structure"
     ]
@@ -84,7 +94,7 @@
     "href": "lessons/project-structure.html#directory-structure",
     "title": "Project Structure",
     "section": "Directory structure",
-    "text": "Directory structure\nHere is a minimal directory structure adapted from bvreede on GitHub. There are larger.\nThe directory structure distinguishes three kinds of folders:\n\nRead-only (RO): not edited by either code or researcher\nHuman-writeable (HW): edited by the researcher only.\nProject-generated (PG): folders generated when running the code; these folders can be deleted or emptied and will be completely reconstituted as the project is run.\n\n.\n├── README.md          &lt;- Description and how to run the project (HW)\n├── requirements.txt   &lt;- System requirements for running the project (HW)\n├── processed_data     &lt;- Processed data ready for analysis (PG)\n├── raw_data           &lt;- The original, immutable data dump (RO)\n├── scripts            &lt;- Scripts for this project (HW)\n└── results            &lt;- Project results: tables, figures, etc. (PG)",
+    "text": "Directory structure\nHere is a minimal directory structure adapted from bvreede on GitHub. More elaborate structures exist, but this is a useful starting point for many projects.\nThe directory structure distinguishes three kinds of folders:\n\nRead-only (RO): not edited by either code or researcher. For example, raw_data should preserve the original data exactly as received.\nHuman-writeable (HW): edited by the researcher only, such as scripts and project documentation.\nProject-generated (PG): folders generated when running the code. These folders can be deleted or emptied and should be completely reconstituted when the project is run again.\n\n.\n├── README.md          &lt;- Description and how to run the project (HW)\n├── requirements.txt   &lt;- Python package requirements (HW)\n├── environment.yml    &lt;- Optional environment specification (HW)\n├── processed_data     &lt;- Processed data ready for analysis (PG)\n├── raw_data           &lt;- The original, immutable data dump (RO)\n├── scripts            &lt;- Scripts for this project (HW)\n└── results            &lt;- Project results: tables, figures, etc. (PG)",
     "crumbs": [
       "Project Structure"
     ]
@@ -94,7 +104,7 @@
     "href": "lessons/project-structure.html#naming-files-and-directories",
     "title": "Project Structure",
     "section": "Naming files and directories",
-    "text": "Naming files and directories\nJenny Bryan from The Carpentiries has shared an online slides to show how to and how to not name files and directories. The presentation can be summarized as follows.\n\nKISS (Keep It Simple Stupid): use simple and consistent file names\n\nMachine readable\nHuman readable\nOrders well in a directory\n\nNo special characters and no spaces!\nUse YYYY-MM-DD date format\nUse - to delimit words and _ to delimit sections\n\ni.e. 2019-01-19_my-data.csv\n\nLeft-pad numbers\n\ni.e. 01_my-data.csv vs 1_my-data.csv\nIf you don’t, file orders get messed up when you get to double-digits\n\n\nYou can use a variation of the above as long as you are consistent within a project.",
+    "text": "Naming files and directories\nJenny Bryan from The Carpentries has shared online slides showing how to name—and how not to name—files and directories. The presentation can be summarized as follows.\n\nKISS (Keep It Simple Stupid): use simple and consistent file names\n\nMachine readable\nHuman readable\nOrders well in a directory\n\nAvoid special characters and spaces where possible, especially if files will be used across different operating systems or tools.\nUse YYYY-MM-DD date format\nUse - to delimit words and _ to delimit sections\n\ni.e. 2019-01-19_my-data.csv\n\nLeft-pad numbers\n\ni.e. 01_my-data.csv vs 1_my-data.csv\nIf you don’t, file orders get messed up when you get to double-digits\n\n\nYou can use a variation of the above as long as you are consistent within a project.",
     "crumbs": [
       "Project Structure"
     ]
@@ -104,7 +114,7 @@
     "href": "lessons/project-structure.html#readme",
     "title": "Project Structure",
     "section": "README",
-    "text": "README\nREADME, or README.md since Markdown language is the standard now, is the most important file in your project. It grants the power to the new users to execute your project and, remember, your future self. Without it, almost no one will get through your project without a considerable struggle (again, including future you).\nMake a README does a great job in conveying this message in a single webpage. Check it out!",
+    "text": "README\nREADME, or README.md since Markdown is widely used for project documentation, is one of the most important files in your project. It enables new users—and your future self—to understand and run the project without a considerable struggle.\nA useful README should explain:\n\nthe purpose of the project;\nhow to install or activate the required environment;\nhow to run the analysis;\nwhat inputs the project expects;\nwhere it writes tables, figures, and other outputs; and\nwho created or maintains the project.\n\nMake a README does a great job in conveying this message in a single webpage. Check it out!",
     "crumbs": [
       "Project Structure"
     ]
@@ -114,7 +124,17 @@
     "href": "lessons/project-structure.html#project-template",
     "title": "Project Structure",
     "section": "Project template",
-    "text": "Project template\nInstead of creating project directory with all its supplementary files, software developers came up with a boilerplate structure that can be created in minutes. Cookie Cutter Data Science project is one of those. Although, the default template is aimed towards machine learning / data science researchers, you can find a simpler one shared by other researchers online. Another option, to create your own template that suits your needs.\n\nAlso, check out their Opinions page for project management tips.",
+    "text": "Project template\nInstead of creating project directory with all its supplementary files, software developers came up with a boilerplate structure that can be created in minutes. Cookie Cutter Data Science project is one of those. Although, the default template is aimed towards machine learning / data science researchers, you can find a simpler one shared by other researchers online. Another option, to create your own template that suits your needs.\n\nAlso, check out their Opinions page for project management tips. For reproducibility, record the software environment in a file such as requirements.txt, environment.yml, or a lockfile such as uv.lock or poetry.lock.",
+    "crumbs": [
+      "Project Structure"
+    ]
+  },
+  {
+    "objectID": "lessons/project-structure.html#project-organization-checklist",
+    "href": "lessons/project-structure.html#project-organization-checklist",
+    "title": "Project Structure",
+    "section": "Project organization checklist",
+    "text": "Project organization checklist\nBefore sharing a project, check that:\n\nthe README explains the purpose, setup, inputs, commands, and outputs;\nraw data is clearly separated from processed data and is not overwritten;\nscripts are grouped in one place and can be run in a clear order;\ngenerated results can be deleted and recreated; and\nfile and directory names are simple, descriptive, and consistent.",
     "crumbs": [
       "Project Structure"
     ]
