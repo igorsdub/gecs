@@ -1,5 +1,5 @@
 ---
-title: "Testing with pytest"
+title: "Testing"
 format: html
 ---
 
@@ -12,12 +12,20 @@ Testing gives us a way to check that code behaves as expected. In this lesson we
 The basic development loop is:
 
 ```{mermaid}
+%%{init: {"flowchart": {"curve": "basis"}, "theme": "base", "themeVariables": {"primaryColor": "#dbeafe", "primaryBorderColor": "#2563eb", "lineColor": "#64748b", "fontFamily": "Arial"}}}%%
 flowchart LR
-    A[Write code] --> B[Run tests]
-    B --> C[Read failures]
-    C --> D[Fix code]
-    D --> A
+    A(Write code):::step edge1@==> B(Run tests):::step
+    edge1@{ animate: slow }
+    B edge2@==> C(Read failures):::step
+    edge2@{ animate: slow }
+    C edge3@==> D(Fix code):::step
+    edge3@{ animate: slow }
+    D edge4@==> A
+    edge4@{ animate: slow }
+    classDef step fill:#cfe9e5,stroke:transparent,color:#000
 ```
+
+The moving arrows show the repeated development loop.
 
 ## Work on a branch
 
@@ -52,6 +60,22 @@ git branch --show-current
 The second command should print `testing`.
 
 :::
+
+The branch story looks like this:
+
+```{mermaid}
+%%{init: {"theme": "base", "themeVariables": {"git0": "#2563eb", "git1": "#db2777", "gitBranchLabel0": "#ffffff", "gitBranchLabel1": "#ffffff", "commitLabelColor": "#111827", "commitLabelBackground": "#f8fafc"}}}%%
+gitGraph LR:
+    commit id: "start" tag: "main"
+    commit id: "setup"
+    branch testing
+    commit id: "tests"
+    commit id: "fixes" type: HIGHLIGHT
+    checkout main
+    commit id: "main-work"
+```
+
+The blue line is `main`. The pink line is `testing`, where we can add tests and make changes without disturbing `main`.
 
 ## Set up the project
 
@@ -91,13 +115,15 @@ The first units we will test are:
 The relationship looks like this:
 
 ```{mermaid}
+%%{init: {"flowchart": {"curve": "basis"}, "theme": "base", "themeVariables": {"primaryColor": "#ecfdf5", "primaryBorderColor": "#16a34a", "lineColor": "#64748b", "fontFamily": "Arial"}}}%%
 flowchart LR
-    C[count_words.py] --> T[tests/test_count_words.py]
-    P[plot_counts.py] --> U[tests/test_plot_counts.py]
-    T --> T1[lowercasing]
-    T --> T2[punctuation]
-    T --> T3[file output]
-    U --> U1[count-file parsing]
+    C[count_words.py]:::unit --> T[tests/test_count_words.py]:::unit
+    P[plot_counts.py]:::unit --> U[tests/test_plot_counts.py]:::unit
+    T --> T1[lowercasing]:::unit
+    T --> T2[punctuation]:::unit
+    T --> T3[file output]:::unit
+    U --> U1[count-file parsing]:::unit
+    classDef unit fill:#e6dff1,stroke:transparent,color:#000
 ```
 
 ## Write a first test
@@ -224,11 +250,36 @@ Unit tests check individual pieces. An integration test checks that two or more 
 In this project, a small book is passed to `count_word_frequencies()`. That creates a count file, which is then read by `parse_counts_file()`:
 
 ```{mermaid}
+%%{init: {"flowchart": {"curve": "basis"}, "theme": "base", "themeVariables": {"primaryColor": "#fff7ed", "primaryBorderColor": "#ea580c", "lineColor": "#64748b", "fontFamily": "Arial"}}}%%
+flowchart LR
+    subgraph units[Unit tests]
+        direction TB
+        U1["count_word_frequencies()"]:::part
+        U2["parse_counts_file()"]:::part
+    end
+    subgraph integration[Integration test]
+        direction TB
+        I[small-book workflow]:::part
+        R[combined result]:::part
+        I --> R
+    end
+    U1 --> I
+    U2 --> I
+    classDef part fill:#f2d6c9,stroke:transparent,color:#000
+```
+
+An integration test brings tested pieces together. Here, the integration test uses the two units `count_word_frequencies()` and `parse_counts_file()` and checks the combined result.
+
+In this project, a small book is passed to `count_word_frequencies()`. That creates a count file, which is then read by `parse_counts_file()`:
+
+```{mermaid}
+%%{init: {"flowchart": {"curve": "basis"}, "theme": "base", "themeVariables": {"primaryColor": "#fff7ed", "primaryBorderColor": "#ea580c", "lineColor": "#64748b", "fontFamily": "Arial"}}}%%
 flowchart TD
-    A[Mini book] --> B[count_word_frequencies()]
-    B --> C[Count file]
-    C --> D[parse_counts_file()]
-    D --> E[Words and counts]
+    A[Mini book]:::step --> B["count_word_frequencies()"]:::step
+    B --> C[Count file]:::step
+    C --> D["parse_counts_file()"]:::step
+    D --> E[Words and counts]:::step
+    classDef step fill:#f2d6c9,stroke:transparent,color:#000
 ```
 
 Create `tests/test_workflow.py`:
@@ -254,6 +305,27 @@ def test_small_book_workflow(tmp_path):
 
 The two words with a count of `2` are ordered alphabetically, so `cat` comes before `the`. This test does not call `plot_word_counts()`, because PNG export requires Selenium and a local browser. That browser-dependent step can be checked separately.
 
+## Test-driven development
+
+> Smash first, analyze later.
+>
+> Dating advice from a CERN researcher
+
+This is also a useful way to think about **test-driven development**, or TDD. Before writing the implementation, write a test that describes the behavior you want. The test should fail at first because the code does not do that thing yet. Then write the smallest amount of code needed to make the test pass.
+
+``` text
+write a failing test → write code → run the test → improve the code
+```
+
+For example, before adding a new behavior to `extract_words()`, write the expected result:
+
+``` python
+def test_extract_words_handles_a_new_case():
+    assert extract_words("Hello") == ["hello"]
+```
+
+Run the test. If the behavior does not exist yet, that failure is useful: it tells us what to implement. After the test passes, we can analyze and improve the implementation while keeping the test as a safety net.
+
 ## Run the tests
 
 Use these commands from the repository root:
@@ -273,6 +345,36 @@ uv run pytest -v
 ```
 
 The important habit is to run the tests whenever you change the code. Tests make the development loop visible and help protect the behavior of the analysis.
+
+## Open a pull request
+
+When the tests pass, save the work on the `testing` branch and ask for it to be reviewed before it becomes part of `main`.
+
+In VS Code:
+
+1. Open **Source Control** and review the changes.
+2. Enter a message such as `Add pytest examples` and select **Commit**.
+3. Select **Publish Branch** or **Sync Changes** to push `testing` to GitHub.
+4. Open the repository on GitHub and choose **Compare & pull request**.
+5. Set `main` as the base branch and `testing` as the compare branch.
+6. Describe the lesson changes, then create the pull request.
+
+The final shape of the work is:
+
+```{mermaid}
+%%{init: {"theme": "base", "themeVariables": {"git0": "#2563eb", "git1": "#db2777", "gitBranchLabel0": "#ffffff", "gitBranchLabel1": "#ffffff", "commitLabelColor": "#111827", "commitLabelBackground": "#f8fafc"}}}%%
+gitGraph LR:
+    commit id: "start" tag: "main"
+    commit id: "setup"
+    branch testing
+    commit id: "tests"
+    commit id: "fixes" type: HIGHLIGHT
+    checkout main
+    commit id: "main-work"
+    merge testing
+```
+
+The pink `testing` branch contains the new work. The pull request reviews that work, and the merge commit brings it back into the blue `main` branch.
 
 ## Summary
 
