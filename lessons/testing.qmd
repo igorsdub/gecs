@@ -25,7 +25,7 @@ flowchart LR
     classDef step fill:#cfe9e5,stroke:transparent,color:#000
 ```
 
-The moving arrows show the repeated development loop.
+It is a big expectation to adhere to this loop, but it is a good goal. Let's start by writing a few tests for the existing code.
 
 ## Work on a branch
 
@@ -61,22 +61,6 @@ The second command should print `testing`.
 
 :::
 
-The branch story looks like this:
-
-```{mermaid}
-%%{init: {"theme": "base", "themeVariables": {"git0": "#2563eb", "git1": "#db2777", "gitBranchLabel0": "#ffffff", "gitBranchLabel1": "#ffffff", "commitLabelColor": "#111827", "commitLabelBackground": "#f8fafc"}}}%%
-gitGraph LR:
-    commit id: "start" tag: "main"
-    commit id: "setup"
-    branch testing
-    commit id: "tests"
-    commit id: "fixes" type: HIGHLIGHT
-    checkout main
-    commit id: "main-work"
-```
-
-The blue line is `main`. The pink line is `testing`, where we can add tests and make changes without disturbing `main`.
-
 ## Set up the project
 
 The project contains books, analysis scripts, and generated word-count files and plots:
@@ -89,10 +73,16 @@ scripts/plot_counts.py         creates plots
 scripts/run_book_analysis.py   combines the workflow
 ```
 
-Install the project dependencies and add `pytest` for development:
+The project uses a virtual environment to isolate its dependencies. We will use the `uv` command from the `gecs-venv` project to manage the environment. If you have not intialized the environment yet, run:
 
 ``` bash
 uv sync
+```
+
+
+Right now, we only missing `pytest` for testing. Add `pytest` for development:
+
+``` bash
 uv add --dev pytest
 ```
 
@@ -125,6 +115,32 @@ flowchart LR
     U --> U1[count-file parsing]:::unit
     classDef unit fill:#e6dff1,stroke:transparent,color:#000
 ```
+
+## Test-driven development
+
+> Smash first, analyze later.
+>
+> Dating advice from a CERN researcher
+
+This is also a useful way to think about **test-driven development**, or TDD. Before writing the implementation, write a test that describes the behavior you want. The test should fail at first because the code does not do that thing yet. Then write the smallest amount of code needed to make the test pass.
+
+``` text
+write a failing test → write code → run the test → improve the code
+```
+
+For example, the current regular expression does not support accented words. Write a test for the behavior we would like to add:
+
+``` python
+from scripts.count_words import extract_words
+
+
+def test_extract_words_handles_accented_words():
+    assert extract_words("café") == ["café"]
+```
+
+Add this test to `tests/test_count_words.py` and run it. It should fail because the current pattern only matches ASCII letters and numbers. That failure is useful: it tells us what behavior to implement. After the test passes, we can improve the implementation while keeping the test as a safety net.
+
+Now return to the simpler tests below. They describe behavior that the current implementation already supports.
 
 ## Write a first test
 
@@ -261,6 +277,10 @@ flowchart LR
     classDef part fill:#f2d6c9,stroke:transparent,color:#000
 ```
 
+::: {.callout-caution}
+The diagram is misaligning the unit tests but I could not fix it 😢.
+:::
+
 The unit tests sit outside the Integration test box and check one script each. The Integration test evaluates both scripts together, with the output of Script 1 becoming the input to Script 2.
 
 Create `tests/test_workflow.py`:
@@ -288,27 +308,6 @@ def test_small_book_workflow(tmp_path):
 
 This test follows the same path as the real workflow: book → count file → plot. It calls `plot_word_counts()`, so it requires Selenium and a locally available browser for PNG export.
 
-## Test-driven development
-
-> Smash first, analyze later.
->
-> Dating advice from a CERN researcher
-
-This is also a useful way to think about **test-driven development**, or TDD. Before writing the implementation, write a test that describes the behavior you want. The test should fail at first because the code does not do that thing yet. Then write the smallest amount of code needed to make the test pass.
-
-``` text
-write a failing test → write code → run the test → improve the code
-```
-
-For example, before adding a new behavior to `extract_words()`, write the expected result:
-
-``` python
-def test_extract_words_handles_a_new_case():
-    assert extract_words("Hello") == ["hello"]
-```
-
-Run the test. If the behavior does not exist yet, that failure is useful: it tells us what to implement. After the test passes, we can analyze and improve the implementation while keeping the test as a safety net.
-
 ## Run the tests
 
 Use these commands from the repository root:
@@ -329,9 +328,11 @@ uv run pytest -v
 
 The important habit is to run the tests whenever you change the code. Tests make the development loop visible and help protect the behavior of the analysis.
 
-## Open a pull request
+When all tests pass, the `testing` branch is ready to be committed and reviewed.
 
-When the tests pass, save the work on the `testing` branch and ask for it to be reviewed before it becomes part of `main`.
+## Wrapping up
+
+Save the work on the `testing` branch and ask for it to be reviewed before it becomes part of `main`.
 
 In VS Code:
 
@@ -363,4 +364,4 @@ The pink `testing` branch contains the new work. The pull request reviews that w
 
 Pytest tests are ordinary Python functions with names beginning with `test_`. Assertions describe expected behavior, `tmp_path` provides safe temporary files, and one test can be run with several examples.
 
-For this project, begin by testing individual functions. Then add a small integration test to check that the word-counting and count-file-reading units work together.
+For this project, begin by testing individual functions. Then add an integration test to check that `count_words.py` creates the count-file output consumed by `plot_counts.py`.
