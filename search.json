@@ -50,181 +50,291 @@
     ]
   },
   {
-    "objectID": "lessons/project-structure.html",
-    "href": "lessons/project-structure.html",
-    "title": "Project Structure",
+    "objectID": "lessons/vs-code.html",
+    "href": "lessons/vs-code.html",
+    "title": "VS Code",
     "section": "",
-    "text": "If you get hit by a bus today, will your colleagues be able to run your project tomorrow?\nThe Bus Factor\nSoftware projects can be messy. Imagine joining a lab and receiving a project folder left by a previous postdoc. It might look something like this:\nOK, probably not as extreme. Still, newcomers to data science often put everything into a single folder: data, scripts, figures, and tables. That can work if you only need to run an analysis once and no one else will ever need to repeat it, including yourself. That is rarely true in research, whether in academia or industry. In this lesson, we will look at practical ways to help colleagues—and your future self—understand and run a project. Let’s get organized.",
+    "text": "In this tutorial you will get familiar with the functionality of VS Code. A powerful IDE as it is, VS Code has a lot of features. However, even if you know the basics it will get you a long way. This tutorial is heavily based on the official Tutorial: Get started with Visual Studio Code.\n\nStart Up\n\nOpen Visual Studio Code. Then open a folder with File &gt; Open Folder… or Cmd+O. On Linux/WSL users, you will first have to start a remote WSL session. With the WSL extension installed, you will see a new Status bar item at the far left.\n\nThe Remote Status bar item can quickly show you in which context VS Code is running (local or remote) and clicking on the item will bring up the WSL extension commands.\n\n\n\n\n\n\n\nAlternatively, WSL users can open their Linux terminal, create a directory in their Linux distribution file system, change their directory and open it in VS Code WSL remote with code .:\ncd\nmkdir vscode101\ncd vscode101\ncode .\nNote the . in front of code. You need to tell VS Code what you are opening. Later, we will see that you can open any file or directory with this command.\n\n\n\nSelect New Folder and create a new folder named vscode101. Then select Select Folder (Open on macOS) to open the folder in VS Code.\nOn the Workspace Trust dialog, select Yes, I trust the authors to enable all features in the workspace. If you do not see this dialog, then you probably have already opened this area before.\n\n\n\n\n\n\nWorkspace Trust lets you decide whether code in your project folder can be executed by VS Code. When you download code from the internet, you should first review it to make sure it’s safe to run. Get more info about Workspace Trust.\n\n\n\n\n\n\nYou should now see the Explorer view on the left, showing the name of the folder. Alongside terminal commands like ls, tree, and other commands, you can use the Explorer view to view and manage the files and folders in your workspace.\n\n\n\n\n\n\n\nWhen you open a folder in VS Code, VS Code can restore the UI state for that folder, such as the open files, the active view, and the layout of the editor. You can also configure settings that only apply to that folder, or define debug configurations. Get more info about workspaces.\n\n\n\n\nVS Code now considers the folder you’ve opened a workspace. You can also use code . in your terminal, especially for WSL users, to start a WSL remote session.\n\n\nInterface and Layout\n\nSidebar\nCode editor\nTerminal\n\n\n\nSettings\n\nAutosave\nWord wrap\nTheme customization\nGECS profile configuration\n\n\n\nSearching and Replacing\n\nSearch in a file\nSearch across files\n\n\n\nShortcuts\n\nLayout: Cmd+B for the Sidebar, Ctrl+` for the Terminal\nCode editor: Cmd+D for selecting the expression, Opt+Up/Down to move a line, Opt+Shift+F to format a document\nGeneral: Cmd+Shift+P for the Command Palette, Cmd+P for the File and Open Editors search bar\n\n\n\nReferences\n\nhttps://code.visualstudio.com/docs/getstarted/getting-started\nhttps://code.visualstudio.com/docs/remote/wsl-tutorial",
     "crumbs": [
-      "Project Structure"
+      "VS Code"
     ]
   },
   {
-    "objectID": "lessons/project-structure.html#learning-objectives",
-    "href": "lessons/project-structure.html#learning-objectives",
-    "title": "Project Structure",
-    "section": "Learning objectives",
-    "text": "Learning objectives\nBy the end of this lesson, you should be able to:\n\nrecognize common problems in an unstructured project;\norganize files into meaningful directories;\napply consistent, portable naming conventions; and\ncreate a README that enables someone else to run the project.",
-    "crumbs": [
-      "Project Structure"
-    ]
-  },
-  {
-    "objectID": "lessons/project-structure.html#messy-project",
-    "href": "lessons/project-structure.html#messy-project",
-    "title": "Project Structure",
-    "section": "Messy project",
-    "text": "Messy project\n.\n├── analysis.sh\n├── book1.txt\n├── book102.txt\n├── book2.txt\n├── book3.txt\n├── book5.txt\n├── book55.txt\n├── book79.txt\n├── plot.sh\n└── summary.sh\nFirst, try to make sense of what the project is about and how to use it.\nOpen the messy project on GitHub\nYou can inspect the files directly on GitHub, or clone the repository if you want to run the scripts locally:\ngit clone https://github.com/igorsdub/gecs-messy-project.git\nOpen the cloned directory with VS Code (Cmd+O). Before reading the explanation below, inspect the files and try to answer these questions:\n\nWhat is this project trying to do?\nWhich files are inputs, scripts, and outputs?\nIn what order should the scripts be run?\nWhat would make this project difficult for a colleague to continue?",
-    "crumbs": [
-      "Project Structure"
-    ]
-  },
-  {
-    "objectID": "lessons/project-structure.html#structured-project",
-    "href": "lessons/project-structure.html#structured-project",
-    "title": "Project Structure",
-    "section": "Structured project",
-    "text": "Structured project\n.\n├── books                           &lt;-- Text files of books used for analysis\n│   ├── dracula.txt\n│   ├── frankenstein.txt\n│   ├── jane_eyre.txt\n│   ├── moby_dick.txt\n│   ├── README.md                   &lt;-- README for the book files\n│   ├── sense_and_sensibility.txt\n│   ├── sherlock_holmes.txt\n│   └── time_machine.txt\n├── counts                          &lt;-- Word count .tsv data\n├── figures                         &lt;-- Bar plots of word counts\n├── README.md                       &lt;-- README for the project\n└── scripts                         &lt;-- Scripts directory\n    ├── count_words.sh              &lt;-- Counts occurrences of a word in books\n    ├── get_summary.sh              &lt;-- Gets a book summary\n    └── plot_counts.sh              &lt;-- Plots count histogram in terminal window\nThis is the same project, but organized.\nOpen the structured project on GitHub\nCompare this repository with the messy version. Look for improvements in directory names, file names, documentation, and the separation of inputs, scripts, and generated outputs. If you cloned the messy project, clone this repository as well and open both directories in VS Code.",
-    "crumbs": [
-      "Project Structure"
-    ]
-  },
-  {
-    "objectID": "lessons/project-structure.html#directory-structure",
-    "href": "lessons/project-structure.html#directory-structure",
-    "title": "Project Structure",
-    "section": "Directory structure",
-    "text": "Directory structure\nHere is a minimal directory structure adapted from bvreede on GitHub. More elaborate structures exist, but this is a useful starting point for many projects.\nThe directory structure distinguishes three kinds of folders:\n\nRead-only (RO): not edited by either code or researcher. For example, raw_data should preserve the original data exactly as received.\nHuman-writeable (HW): edited by the researcher only, such as scripts and project documentation.\nProject-generated (PG): folders generated when running the code. These folders can be deleted or emptied and should be completely reconstituted when the project is run again.\n\n.\n├── README.md          &lt;- Description and how to run the project (HW)\n├── requirements.txt   &lt;- Python package requirements (HW)\n├── environment.yml    &lt;- Optional environment specification (HW)\n├── processed_data     &lt;- Processed data ready for analysis (PG)\n├── raw_data           &lt;- The original, immutable data dump (RO)\n├── scripts            &lt;- Scripts for this project (HW)\n└── results            &lt;- Project results: tables, figures, etc. (PG)",
-    "crumbs": [
-      "Project Structure"
-    ]
-  },
-  {
-    "objectID": "lessons/project-structure.html#naming-files-and-directories",
-    "href": "lessons/project-structure.html#naming-files-and-directories",
-    "title": "Project Structure",
-    "section": "Naming files and directories",
-    "text": "Naming files and directories\nJenny Bryan from The Carpentries has shared online slides showing how to name—and how not to name—files and directories. The presentation can be summarized as follows.\n\nKISS (Keep It Simple Stupid): use simple and consistent file names\n\nMachine readable\nHuman readable\nOrders well in a directory\n\nAvoid special characters and spaces where possible, especially if files will be used across different operating systems or tools.\nUse YYYY-MM-DD date format\nUse - to delimit words and _ to delimit sections\n\ni.e. 2019-01-19_my-data.csv\n\nLeft-pad numbers\n\ni.e. 01_my-data.csv vs 1_my-data.csv\nIf you don’t, file orders get messed up when you get to double-digits\n\n\nYou can use a variation of the above as long as you are consistent within a project.",
-    "crumbs": [
-      "Project Structure"
-    ]
-  },
-  {
-    "objectID": "lessons/project-structure.html#readme",
-    "href": "lessons/project-structure.html#readme",
-    "title": "Project Structure",
-    "section": "README",
-    "text": "README\nREADME, or README.md since Markdown is widely used for project documentation, is one of the most important files in your project. It enables new users—and your future self—to understand and run the project without a considerable struggle.\nA useful README should explain:\n\nthe purpose of the project;\nhow to install or activate the required environment;\nhow to run the analysis;\nwhat inputs the project expects;\nwhere it writes tables, figures, and other outputs; and\nwho created or maintains the project.\n\nMake a README does a great job in conveying this message in a single webpage. Check it out!",
-    "crumbs": [
-      "Project Structure"
-    ]
-  },
-  {
-    "objectID": "lessons/project-structure.html#project-template",
-    "href": "lessons/project-structure.html#project-template",
-    "title": "Project Structure",
-    "section": "Project template",
-    "text": "Project template\nInstead of creating project directory with all its supplementary files, software developers came up with a boilerplate structure that can be created in minutes. Cookie Cutter Data Science project is one of those. Although, the default template is aimed towards machine learning / data science researchers, you can find a simpler one shared by other researchers online. Another option, to create your own template that suits your needs.\n\nAlso, check out their Opinions page for project management tips. For reproducibility, record the software environment in a file such as requirements.txt, environment.yml, or a lockfile such as uv.lock or poetry.lock.",
-    "crumbs": [
-      "Project Structure"
-    ]
-  },
-  {
-    "objectID": "lessons/project-structure.html#project-organization-checklist",
-    "href": "lessons/project-structure.html#project-organization-checklist",
-    "title": "Project Structure",
-    "section": "Project organization checklist",
-    "text": "Project organization checklist\nBefore sharing a project, check that:\n\nthe README explains the purpose, setup, inputs, commands, and outputs;\nraw data is clearly separated from processed data and is not overwritten;\nscripts are grouped in one place and can be run in a clear order;\ngenerated results can be deleted and recreated; and\nfile and directory names are simple, descriptive, and consistent.",
-    "crumbs": [
-      "Project Structure"
-    ]
-  },
-  {
-    "objectID": "lessons/setting-up.html",
-    "href": "lessons/setting-up.html",
-    "title": "Setting Up",
+    "objectID": "lessons/automation.html",
+    "href": "lessons/automation.html",
+    "title": "Automation",
     "section": "",
-    "text": "This section will equip your computer with all necessary tools for this course. The motivation behind each tool will be explained in the later sessions. For now, just follow the instructions and prepare to awe (and, at times, get frustrated) with power of computing.\nAlthough the course advertises itself as programming language agnostic, Python will be used to provide ‘meat’ for coding examples. See a Justin Bois’s note on “superiority” of one programming language over another below.",
-    "crumbs": [
-      "Setting Up"
-    ]
+    "text": "This tutorial was adapted from the Automation and Make lesson by The Software Carpentries and reworked to match the project structure in gecs-make/.\nAutomation is what turns a one-off analysis into a repeatable workflow. In the gecs-make project, we already have a useful pipeline: take a book from books/, count the words into counts/, and turn those counts into an interactive plot in figures/.\nThe problem is not that the commands are hard to run. The problem is that they are still hard-coded around a single example, dracula.txt. As soon as we want to repeat the same workflow for six or seven books, the process becomes repetitive, error-prone, and annoying to maintain.\nThis is exactly the kind of problem make is good at solving."
   },
   {
-    "objectID": "lessons/setting-up.html#wsl-windows-users-only",
-    "href": "lessons/setting-up.html#wsl-windows-users-only",
-    "title": "Setting Up",
-    "section": "WSL (Windows users only)",
-    "text": "WSL (Windows users only)\nBeing a popular operating system doesn’t make Windows easy to use for software development. Windows Subsystem for Linux (WSL) circumvents this problem by creating a separate environment on your computer to run Linux, a free UNIX-like OS. We will install Linux with a particular flavour called Ubuntu. Right now, we will not go into details. All you need to know is that by the end of this installation you will be free to use a vast majority of scientific software available on the web.\n\nInstallation\nThere are two ways to install WSL with Ubuntu: graphical and terminal. The graphical method uses the Microsoft Store and should be straightforward. The terminal method uses PowerShell and is less user-friendly but more robust to errors. Choose whichever suits you best.\n\n\n\n\n\n\nNoteTroubleshooting WSL\n\n\n\n\n\nIf you’re experiencing some troubles with installation, it is worth:\n\nUpdating your Windows version. Open Windows Settings, go to ‘Updates and Security’ and hit ‘Check for Updates’.\nEnable WSL on your Windows manually.\n\nClick on the Start Menu and search for “Turn Windows features on or off”.\nOpen the result. A new window will appear with a list of Windows features.\nScroll down and check the following two boxes:\n\n‘Windows Subsystem for Linux’ ✅\n‘Virtual Machine Platform’ ✅\n\nClick OK. Windows will apply the changes and may ask you to restart your computer.\nAfter restarting, WSL will be enabled on your system.\n\n\n\n\n\n\nOpen the Start Menu, and search for “PowerShell”.\nRight-click and choose “Run as administrator”.\nEnter the following command to install WSL and hit Enter:\nwsl --install\n\n\n\n\n\n\n\n\nYou need to restart your computer after installing WSL.\n\n\n\n\nOnce restarted, open PowerShell again in the administartive mode and type:\nwsl --install\nBy default, Ubuntu will be installed as the main Linux distribution.\n\n\n\nCreating a Default UNIX User Account\nNow, that you have Ubuntu installed, you need to create an account in order to start using it. Generally it is called a “UNIX User Account” but a “Ubuntu account” would do as well.\n\n\n\n\n\n\nBefore you set a username on your computer, sign up for a GitHub account (see Section 4.1) and check if that username is available. This unity in names will make it easier for you to orient your files and folder,as well establish a virtual nickname that you can use consistently in the future projects.\n\n\n\n\n\n\n\n\n\n\nTipUsername and password suggestions\n\n\n\n\n\nFor a username: - Use only lower-case letters and numbers. - Start with a letter. - Be short and descriptive.\nIf your name is John Derek Smith you can try: jsmith, jdsmith, or johnsmith. Any other imaginary name is permissible as long as it meets the criteria above. D&D, MTG, LoL, and WoW nicknames, if that’s is publically appropriate.\nFor a password, you can set the same one you have for your OIST account to make it easier to remember. It will be used for login and authentication but, more importantly, commands like sudo that grant administrative priviledges. If not sure what makes a strong password consult XKCD.\n\n\n\n\nLaunch Ubuntu terminal.\n\n\n\nYou will be prompted to enter a username.\n\n\nEnter your chosen username and hit Enter. If you make a mistake in typing your username, you can close the window and open it again. In this example, tunkert is the username.\n\n\n\n\n\n\nIf you closed the terminal window or made a mistake while typying your username or password do not worry. Ubuntu is already installed on your computer and you can open it from the Command Promt application.\n\n\n\n\n\nChoose a password. You will not see it as you type due to default UNIX security reasons. If not sure what you entered is correct, hold Backspace for a couple of seconds or hit Ctrl+U. That will erase everything you have written. After making sure you have entered the correct password, hit Enter. If unsure, write the password down.\n\n\n\nRe-type the chosen password and hit Enter.\n\n\n\nOnce both username and password are entered, you will see a welcome message from Ubuntu.\n\n\n\n\n\n\n\n\nThe typing line takes the new form of tunkert@LAPTOP-JU9CGB60:~$. Can you guess what the name after @ means? We will talk about what each symbol means in the terminal section.\n\n\n\n\nTo ensure that Ubuntu is up-to-date, type the following and press Enter:\n\nsudo apt update && sudo apt upgrade -y\n\n\n\n\n\n\nWe will understand the logic behind this command later in the next section as well.\n\n\n\n\n\nYou will be prompted to enter the password (Do you remember?). Enter the password—you will not see it—and press Enter.\n\n\n\nThe update will begin. In the end, you will have an empty typing line with the latest Ubuntu.\n\n\n\n\n\n\n\n\nTipDefault Command Prompt settings\n\n\n\nI suggest you make Ubuntu your Default profile. Command Promt &gt; Settings &gt; Start-up &gt; Default profile, choose Ubuntu and press Save.\n\n\nYou are now set and ready to install all the wonderful programming tools that have been developed over the past 50 or so years by the developer’s community. As you might guess, there are hundreds of thousands of programs out there, and ideally, we would like to keep track of what we install. That will be our next installation.",
-    "crumbs": [
-      "Setting Up"
-    ]
+    "objectID": "lessons/automation.html#the-book-project",
+    "href": "lessons/automation.html#the-book-project",
+    "title": "Automation",
+    "section": "The book project",
+    "text": "The book project\nIf you do not have the example project yet, clone it from GitHub first:\ngit clone https://github.com/igorsdub/gecs-make\ncd gecs-make\nIf you already cloned it earlier, move into the project directory:\ncd gecs-make\nThis tutorial assumes you are running the commands below from inside that repository.\nThe gecs-make project has this structure:\nbooks/      raw text files\ncounts/     generated word-count tables\nfigures/    generated HTML plots\nscripts/    Python analysis scripts\npixi.toml   project dependencies and tasks\nThe README already shows the manual workflow for one book:\npython scripts/get_summary.py books/dracula.txt\npython scripts/count_words.py books/dracula.txt counts/dracula.tsv\npython scripts/plot_counts.py counts/dracula.tsv figures/dracula.html\nThe first command, get_summary.py, is useful for inspecting metadata, but it is not part of the main file-generation pipeline. The core workflow we want to automate is the one that produces files:\nbooks/*.txt -&gt; counts/*.tsv -&gt; figures/*.html\nThere are also Pixi tasks for the same book:\npixi run summarize\npixi run count\npixi run plot\npixi run all\nThat is a nice start, but the tasks in pixi.toml are still hard coded to dracula.txt. make lets us describe the dependency structure once and then apply it to every book in the project.\nBefore going further, make sure make is available:\nmake --version\nIf that command fails, install make first:\n\nmacOS: if you use Homebrew, run brew install make. Depending on your shell setup, you may then need to use gmake instead of make, because the GNU version from Homebrew is often installed under that name.\nWSL: run sudo apt update and then sudo apt install make. Installing build-essential is also common if you want the standard Unix build tools as a group.\nPixi Global: if you already use Pixi, you can also install GNU Make with pixi global install make and then use it from your shell."
   },
   {
-    "objectID": "lessons/setting-up.html#visual-studio-code",
-    "href": "lessons/setting-up.html#visual-studio-code",
-    "title": "Setting Up",
-    "section": "Visual Studio Code",
-    "text": "Visual Studio Code\nVisual Studio Code, aka VS Code, has the following useful features:\n\na way to run your code interactively (line-by-line) or all at once\na way to debug (look for errors) in your code\na quick way to access helpful information about commonly used software packages\nautomatic code formatting, so that your code follows best practice guidelines\nauto-completion of your code when you hit TAB\nautomatic code checking for basic errors\ncoloring your brackets in pairs so you can keep track of the logical order of execution of your code!\n\n\n\nInstallation\nInstall VS Code from the official website (it will determine which version of the installer to use) or download installer manually here.\n\n\n\n\n\n\n\nNoteVS Code WSL extension\n\n\n\n\n\nWindows users will be promted to install the VS Code WSL extension. Agree and see Section 2.1.2.1.\n\n\n\n\n\nExtensions\nThe biggest power of VS Code lies in its extensions. They are ubiquitous allowing you to boost your IDE simply by installing what others have solved for you. You can browse them by clicking on the four cube icon on the side bar or by pressing Cmd/Ctrl+Shift+X.\n\nThere are certain basic extensions that almost every VS Code user will have installed but it can be cumbersome to manually select all those one by one. That’s how VS Code Profiles have been created.\n\nWSL Extenison (Windows users only)\nWindows user will need one more step before they can start using VS Code at its full potential. Right now, you open VS Code and all files and computation is done in Windows environment. We want VS Code to use Ubuntu that lives in WSL. Using the Visual Studio Code WSL extension VS Code will integrate Ubuntu into its environment.\nOnce the extension is installed you need to open VS Code with Ubuntu as the main environment. To do that, locate a button in the left-bottom corner of the VS Code window consisting of two stacked arrow symbols ‘&gt;’ and ‘&lt;’. Click on it.\n\nAfter clicking on this button, a promt line will appear on the top of the window. Select WSL: New WSL Window and press Enter.\n\nA new window will open. This time, notice that the corner button has changed. Now, we are running on Ubuntu.\n\nWindows users will use this environment for the course.\n\n\n\nProfiles\n\nProfiles can be used to customize VS Code for students to ease the use in a classroom setting. Profiles allow educators to quickly share a customized VS Code setup with students.\nVS Code manual\n\n\nYou can access the Profiles editor in either of the following ways: - From the Code &gt; Settings &gt; Profiles menu item\n\nFrom the Manage gear button in the bottom of the Activity Bar.\n\n\nYou will see that the Default profile is in use. We will import the GECS profile for this course. The profile file is stored on GitHub (one of its nice features). That code is shown below.\n\nHowever, you don’t need to copy it, only need the link.\nhttps://gist.github.com/igorsdub/04f6a1191dde8e09091a1099fe87d5be\nImport the GECS profile from the Profiles editor by selecting the Import Profile… button in the dropdown actions of the New Profile button.\n\nWhen you select Import Profile…, you are prompted for the URL of a GitHub gist or the file location of a profile via an Import Profile dialog. Paste the link above and click Create button below.\n\nAccept any installations or suggestions offered by extensions. Now, you are ready to go!",
-    "crumbs": [
-      "Setting Up"
-    ]
+    "objectID": "lessons/automation.html#makefile",
+    "href": "lessons/automation.html#makefile",
+    "title": "Automation",
+    "section": "Makefile",
+    "text": "Makefile\nmake reads instructions from a file called Makefile. Create a new file named Makefile in the root of the gecs-make repository, next to books/, counts/, figures/, and scripts/. Then add the first rule below to that file.\nIf you want to use a different filename, for example workflow.mk, you can tell make which file to read with the -f option:\nmake -f workflow.mk counts/dracula.tsv\nFor the rest of this lesson, we will assume the file is named Makefile. Let us start by automating one real step from the project: generating a count table for Dracula.\ncounts/dracula.tsv : books/dracula.txt scripts/count_words.py\n    python scripts/count_words.py books/dracula.txt counts/dracula.tsv\nThis rule has three important parts:\n\nTarget: counts/dracula.tsv is the file we want to create.\nDependencies: books/dracula.txt and scripts/count_words.py are the things needed to build the target.\nRecipe: the indented command tells make how to build the target.\n\nThe indentation matters. Recipe lines must start with a TAB character, not spaces.\n\n\n\n\n\n\nWarningTabs vs spaces in Makefiles\n\n\n\nRecipe lines in a Makefile must begin with a TAB. If you indent a recipe with four spaces instead, make will usually fail with an error like:\nMakefile:&lt;line-number&gt;: *** missing separator.  Stop.\nIf that happens, check the start of the recipe line carefully and replace the spaces with a TAB character.\n\n\nIf we run:\nmake counts/dracula.tsv\nthen make checks whether counts/dracula.tsv exists and whether either dependency is newer. If the target is missing or out of date, it runs the recipe.\nThat gives us our first big improvement over a shell script: make knows what output file a command is supposed to create, and it can decide when the command actually needs to run.\nAnother way to say this is that make helps us follow the DRY principle: Don’t Repeat Yourself. Instead of copying the same filenames and command patterns in lots of places, we describe the workflow once and reuse that description."
   },
   {
-    "objectID": "lessons/setting-up.html#uv",
-    "href": "lessons/setting-up.html#uv",
-    "title": "Setting Up",
-    "section": "uv",
-    "text": "uv\nuv is a modern Python package and project manager. It helps us create isolated environments, install dependencies, lock exact package versions, and even manage Python itself when needed.\nHere we will use the terminal because uv is typically installed from the command line rather than through a graphical installer.\n\n\n\n\n\n\nThat’s the reason we went to such lengths to install Ubuntu on Windows. Now, you are able to access a much larger range of applications which are inaccessible to graphical user interface (GUI) users.\n\n\n\nWe will use the VS Code terminal to do the installation. To open the terminal select View &gt; Terminal from the menu bar, or press the Ctrl/Cmd+` keyboard shortcut. A terminal window will open at the bottom.\n\nTo install uv, run the following command in your terminal:\ncurl -LsSf https://astral.sh/uv/install.sh | sh\nTo verify that uv got installed successfully, restart the terminal. An easy way is to close it and open a new one. Another way is to type the following for Ubuntu users:\nsource ~/.bashrc\nmacOS users need to type:\nsource ~/.zshrc\nOK, now that the terminal is reset, type:\nwhich uv\nYou will see a path to the uv executable, often something like /Users/username/.local/bin/uv, where username is your chosen username.",
-    "crumbs": [
-      "Setting Up"
-    ]
+    "objectID": "lessons/automation.html#chaining-steps-together",
+    "href": "lessons/automation.html#chaining-steps-together",
+    "title": "Automation",
+    "section": "Chaining steps together",
+    "text": "Chaining steps together\nThe workflow in gecs-make has a second stage: turning counts into an HTML figure.\ncounts/dracula.tsv : books/dracula.txt scripts/count_words.py\n    python scripts/count_words.py books/dracula.txt counts/dracula.tsv\n\nfigures/dracula.html : counts/dracula.tsv scripts/plot_counts.py\n    python scripts/plot_counts.py counts/dracula.tsv figures/dracula.html\nNow the dependencies form a chain:\nbooks/dracula.txt -&gt; counts/dracula.tsv -&gt; figures/dracula.html\nIf we ask for the final output,\nmake figures/dracula.html\nmake will build counts/dracula.tsv first if needed, then build the figure.\nThis is the core idea behind make: we describe how files depend on each other, and make figures out the correct order.\nThis dependency structure is often described as a Directed Acyclic Graph, or DAG:\n\nDirected means the dependencies point in one direction, from inputs to outputs.\nAcyclic means the graph cannot contain loops such as “A depends on B and B depends on A”.\nGraph means we are really dealing with a network of connected files and build steps, not just one long shell script.\n\nFor this project, the DAG is simple:\nbooks/dracula.txt -&gt; counts/dracula.tsv -&gt; figures/dracula.html\nAs the project grows to many books, the graph gets wider, but the idea stays the same. make works well because it can walk that DAG and rebuild only the parts that are affected by a change.\n\nPhony Targets\nSometimes we want a target that stands for an action rather than a real file. For example:\n.PHONY : all\nall : figures/dracula.html\nNow make all is a convenient alias for building the Dracula plot.\nCleanup is another common phony target:\n.PHONY : clean\nclean :\n    rm -f counts/*.tsv figures/*.html\nThen we can run:\nmake clean\n\n\n\n\n\n\nNoteWhy use .PHONY?\n\n\n\nIf a file named clean or all ever appears in the project, make might think the target is already up to date and skip the recipe. Marking those names as .PHONY tells make they are commands, not output files."
   },
   {
-    "objectID": "lessons/setting-up.html#sec-github",
-    "href": "lessons/setting-up.html#sec-github",
-    "title": "Setting Up",
-    "section": "GitHub",
-    "text": "GitHub\nGitHub is a widely used platform to store, manage, share, and collaborate with others on software projects. An account is free and you can upgrade to Pro for free as a student (see the tip below). Sign up here.\n\n\n\n\n\n\nTipGitHub Education\n\n\n\n\n\nAs a student, you can get a free GitHub Pro account as part of GitHub Education alongside other perks. Once you have a basic account, follow this link.\nYou can use a photo of your student ID card (both-sides) or other eligible documents listed on here.\n\n\n\n\nMulti-factor Authentication\nSince 2023, GitHub requires all accounts to have multi-factor authentication (2FA) for extra security. Here are the recommended options:\nRecommended: Passkeys\nPasskeys are the most secure and convenient option. They work on most devices and browsers without requiring a separate app.\nOther 2FA Options:\n\nAuthenticator App (e.g., Google Authenticator, Duo Mobile) - Install on your smartphone and add GitHub\nText Message (SMS) - Receive authentication codes via text (check if your country is supported)\nHardware Security Key - Use devices like YubiKey or Google Titan\n\nFor detailed setup instructions, see GitHub’s 2FA configuration guide.",
-    "crumbs": [
-      "Setting Up"
-    ]
+    "objectID": "lessons/automation.html#automatic-variables",
+    "href": "lessons/automation.html#automatic-variables",
+    "title": "Automation",
+    "section": "Automatic variables",
+    "text": "Automatic variables\nThe two rules above repeat the same filenames in the target line and the recipe. That is easy to write for one example, but it becomes tedious quickly.\nmake provides automatic variables to reduce duplication:\n\n$@ means the current target\n$^ means all dependencies for the current rule\n$&lt; means the first dependency\n\nWe can rewrite the rules like this:\ncounts/dracula.tsv : books/dracula.txt scripts/count_words.py\n    python scripts/count_words.py $&lt; $@\n\nfigures/dracula.html : counts/dracula.tsv scripts/plot_counts.py\n    python scripts/plot_counts.py $&lt; $@\nIn both cases, the scripts take the first dependency as input and write to the target path. This makes the recipes shorter and keeps the filenames consistent with the rule declaration.\nThat is another DRY win: the target and dependency names already appear in the rule header, so automatic variables let us reuse them instead of typing them again in the recipe.\n\nCode is a Dependency\nNotice that the rules depend not only on data files, but also on scripts.\ncounts/dracula.tsv : books/dracula.txt scripts/count_words.py\nThat means if scripts/count_words.py changes, make knows it should regenerate counts/dracula.tsv. This is a very important idea in computational work: code changes can invalidate outputs just as much as data changes do."
   },
   {
-    "objectID": "lessons/setting-up.html#starship",
-    "href": "lessons/setting-up.html#starship",
-    "title": "Setting Up",
-    "section": "Starship",
-    "text": "Starship\nStarship is by far the most widely used shell prompt. It is a customizable prompt that controls how your terminal looks when you type a command. It is pretty and versatile.\n\nTo install Starship open VS Code terminal by selecting View &gt; Terminal from the menu bar, or by pressing the Ctrl/Cmd+` keyboard shortcut. A terminal window will open at the bottom. Then type:\ncurl -sS https://starship.rs/install.sh | sh\nNext, you will need to tell the terminal to start Starship every time you open a new terminal. This is similar to how Windows or macOS asks you if you want to run a program every time you start your computer.\nWindows/Ubuntu users must execute in their terminal the following:\necho 'eval \"$(starship init bash)\"' &gt;&gt; ~/.bashrc\nmacOS users have a very similar command:\necho 'eval \"$(starship init zsh)\"' &gt;&gt; ~/.zshrc\nAfter you restart the terminal, close it and open a new one, you should see the change in how it looks like. You can explore all the different looks you can access with Starship here.",
-    "crumbs": [
-      "Setting Up"
-    ]
+    "objectID": "lessons/automation.html#variables-in-makefiles",
+    "href": "lessons/automation.html#variables-in-makefiles",
+    "title": "Automation",
+    "section": "Variables in makefiles",
+    "text": "Variables in makefiles\nAs the workflow grows, we start repeating commands and script paths. Variables help make the Makefile easier to read and easier to update.\nFor example:\nPYTHON=python\nCOUNT_SCRIPT=scripts/count_words.py\nPLOT_SCRIPT=scripts/plot_counts.py\nWe can then use those variables in our rules:\nPYTHON=python\nCOUNT_SCRIPT=scripts/count_words.py\nPLOT_SCRIPT=scripts/plot_counts.py\n\ncounts/dracula.tsv : books/dracula.txt $(COUNT_SCRIPT)\n    $(PYTHON) $(COUNT_SCRIPT) $&lt; $@\n\nfigures/dracula.html : counts/dracula.tsv $(PLOT_SCRIPT)\n    $(PYTHON) $(PLOT_SCRIPT) $&lt; $@\nThis is especially helpful when several rules use the same script or command. If something changes later, we update the variable once instead of hunting through the whole file.\nVariables are one of the simplest ways to make a Makefile more DRY. They let us keep shared information in one place instead of repeating it across many rules."
   },
   {
-    "objectID": "lessons/setting-up.html#setup-and-installation-guides",
-    "href": "lessons/setting-up.html#setup-and-installation-guides",
-    "title": "Setting Up",
-    "section": "Setup and installation guides",
-    "text": "Setup and installation guides\n\nHow to Install Ubuntu on Windows (Step-by-Step Guide for Beginners) by Subha Mondal\nWindows Subsystem for Linux Documentation",
-    "crumbs": [
-      "Setting Up"
-    ]
+    "objectID": "lessons/automation.html#pattern-rules",
+    "href": "lessons/automation.html#pattern-rules",
+    "title": "Automation",
+    "section": "Pattern rules",
+    "text": "Pattern rules\nAt this point, the workflow still only handles Dracula. But the project contains many books:\nbooks/dracula.txt\nbooks/frankenstein.txt\nbooks/jane_eyre.txt\nbooks/moby_dick.txt\nbooks/sense_and_sensibility.txt\nbooks/sherlock_holmes.txt\nbooks/time_machine.txt\nThe filenames change, but the workflow shape stays the same. That is exactly what pattern rules are for.\nPYTHON=python\nCOUNT_SCRIPT=scripts/count_words.py\nPLOT_SCRIPT=scripts/plot_counts.py\n\ncounts/%.tsv : books/%.txt $(COUNT_SCRIPT)\n    $(PYTHON) $(COUNT_SCRIPT) $&lt; $@\n\nfigures/%.html : counts/%.tsv $(PLOT_SCRIPT)\n    $(PYTHON) $(PLOT_SCRIPT) $&lt; $@\nThe % symbol is a wildcard stem. With these two rules, make now knows how to build:\n\ncounts/dracula.tsv from books/dracula.txt\ncounts/frankenstein.tsv from books/frankenstein.txt\nfigures/moby_dick.html from counts/moby_dick.tsv\nand so on\n\nThat means we no longer need one handwritten rule per book.\nPattern rules are one of the biggest DRY improvements in make. We replace many nearly identical rules with one general rule that captures the shared structure of the workflow.\nWe can still ask for a specific target:\nmake figures/jane_eyre.html\nand make will fill in the pattern automatically."
   },
   {
-    "objectID": "lessons/setting-up.html#tools-and-platforms",
-    "href": "lessons/setting-up.html#tools-and-platforms",
-    "title": "Setting Up",
-    "section": "Tools and platforms",
-    "text": "Tools and platforms\n\nVisual Studio Code\n\nVisual Studio Code Official Website\nVS Code WSL Extension Guide\nVS Code Remote WSL Documentation\nVS Code Terminal Getting Started\n\n\n\nPackage Managers\n\nuv Documentation\nuv Installation Guide\n\n\n\nShell Customization\n\nStarship Shell Prompt\nStarship Presets",
-    "crumbs": [
-      "Setting Up"
-    ]
+    "objectID": "lessons/automation.html#functions",
+    "href": "lessons/automation.html#functions",
+    "title": "Automation",
+    "section": "Functions",
+    "text": "Functions\nPattern rules tell make how to build matching files. Functions help us build lists of files.\nThe most useful starting point here is wildcard, which finds filenames that match a pattern:\nBOOK_FILES=$(wildcard books/*.txt)\nIn gecs-make, that expands to all the .txt files in books/.\nNext, we can use patsubst to transform those input filenames into the output files we want:\nBOOK_FILES=$(wildcard books/*.txt)\nCOUNT_FILES=$(patsubst books/%.txt,counts/%.tsv,$(BOOK_FILES))\nFIGURE_FILES=$(patsubst books/%.txt,figures/%.html,$(BOOK_FILES))\nNow we have three connected lists:\n\nBOOK_FILES for raw texts\nCOUNT_FILES for generated count tables\nFIGURE_FILES for generated plots\n\nThis is what allows make to scale from one hard-coded book to the entire project.\n\nBuilding Everything\nOnce we have those lists, we can define a proper all target:\nPYTHON=python\nCOUNT_SCRIPT=scripts/count_words.py\nPLOT_SCRIPT=scripts/plot_counts.py\n\nBOOK_FILES=$(wildcard books/*.txt)\nCOUNT_FILES=$(patsubst books/%.txt,counts/%.tsv,$(BOOK_FILES))\nFIGURE_FILES=$(patsubst books/%.txt,figures/%.html,$(BOOK_FILES))\n\n.PHONY : all\nall : $(FIGURE_FILES)\n\ncounts/%.tsv : books/%.txt $(COUNT_SCRIPT)\n    $(PYTHON) $(COUNT_SCRIPT) $&lt; $@\n\nfigures/%.html : counts/%.tsv $(PLOT_SCRIPT)\n    $(PYTHON) $(PLOT_SCRIPT) $&lt; $@\n\n.PHONY : clean\nclean :\n    rm -f counts/*.tsv figures/*.html\nRunning\nmake all\nwill now build the complete set of figures for all books in the repository.\n\n\n\n\n\n\nTipFrom Pixi tasks to make targets\n\n\n\nPixi tasks are still useful for environment management and for a few convenient commands. The advantage of make here is that it expresses file dependencies directly and scales naturally from one example book to a whole directory of inputs."
   },
   {
-    "objectID": "lessons/testing.html",
-    "href": "lessons/testing.html",
-    "title": "Testing",
+    "objectID": "lessons/automation.html#self-documenting-makefile",
+    "href": "lessons/automation.html#self-documenting-makefile",
+    "title": "Automation",
+    "section": "Self-documenting Makefile",
+    "text": "Self-documenting Makefile\nAs Makefiles grow, it becomes useful to advertise the main entry points. A simple way to do that is to add a help target.\n.PHONY : help\nhelp :\n    @echo \"Available targets:\"\n    @echo \"  make all                  Build all figures\"\n    @echo \"  make clean                Remove generated counts and figures\"\n    @echo \"  make figures/dracula.html Build one specific figure\"\nFor a slightly more polished version, we can annotate targets with comments and extract them automatically:\n.DEFAULT_GOAL := help\n\n## Show available targets\n.PHONY : help\nhelp:\n    @echo \"Available rules:\"\n    @grep -E '^## |^[a-zA-Z0-9_.\\/%\\-]+ *:' $(MAKEFILE_LIST) | \\\n    awk 'BEGIN {FS = \" *:.*\"} \\\n    /^## / {desc = substr($$0, 4); next} \\\n    /^[a-zA-Z0-9_.\\/%\\-]+ *:/ {printf \"%-22s %s\\n\", $$1, desc}'\n\n## Build figures for all books\n.PHONY : all\nall : $(FIGURE_FILES)\n\n## Remove generated counts and figures\n.PHONY : clean\nclean :\n    rm -f counts/*.tsv figures/*.html\nHere $(MAKEFILE_LIST) is a built-in make variable. It expands to the makefiles that were read during the current run, so we do not have to define it ourselves. In this version, grep and awk read the Makefile and pair comments such as ## Build figures for all books with the target that appears immediately below them.\nThen:\nmake help\nprints a short summary of the workflow."
+  },
+  {
+    "objectID": "lessons/automation.html#complete-example",
+    "href": "lessons/automation.html#complete-example",
+    "title": "Automation",
+    "section": "Complete example",
+    "text": "Complete example\nPutting everything together, a Makefile for gecs-make could look like this:\nPYTHON=python\nCOUNT_SCRIPT=scripts/count_words.py\nPLOT_SCRIPT=scripts/plot_counts.py\n\nBOOK_FILES=$(wildcard books/*.txt)\nCOUNT_FILES=$(patsubst books/%.txt,counts/%.tsv,$(BOOK_FILES))\nFIGURE_FILES=$(patsubst books/%.txt,figures/%.html,$(BOOK_FILES))\n\n.DEFAULT_GOAL := help\n\n## Show available targets\n.PHONY : help\nhelp:\n    @echo \"Available rules:\"\n    @grep -E '^## |^[a-zA-Z0-9_.\\/%\\-]+ *:' $(MAKEFILE_LIST) | \\\n    awk 'BEGIN {FS = \" *:.*\"} \\\n    /^## / {desc = substr($$0, 4); next} \\\n    /^[a-zA-Z0-9_.\\/%\\-]+ *:/ {printf \"%-22s %s\\n\", $$1, desc}'\n\n## Build figures for all books\n.PHONY : all\nall : $(FIGURE_FILES)\n\n## Build count tables for all books\ncounts : $(COUNT_FILES)\n\ncounts/%.tsv : books/%.txt $(COUNT_SCRIPT)\n    $(PYTHON) $(COUNT_SCRIPT) $&lt; $@\n\nfigures/%.html : counts/%.tsv $(PLOT_SCRIPT)\n    $(PYTHON) $(PLOT_SCRIPT) $&lt; $@\n\n## Remove generated counts and figures\n.PHONY : clean\nclean :\n    rm -f counts/*.tsv figures/*.html\nThis Makefile captures the real project workflow:\n\ntext files in books/ are inputs\ncount tables in counts/ are intermediate outputs\nplots in figures/ are final outputs\nthe Python scripts in scripts/ are part of the dependency graph\n\nMost importantly, the Makefile is no longer hard coded to Dracula. Add another .txt file to books/, and the workflow can pick it up automatically."
+  },
+  {
+    "objectID": "lessons/automation.html#final-words",
+    "href": "lessons/automation.html#final-words",
+    "title": "Automation",
+    "section": "Final words",
+    "text": "Final words\nmake is useful when your work produces files from other files. Instead of rerunning commands by hand, we describe the dependency structure once and let make handle the ordering and incremental rebuilds.\nIn this project, the key ideas are:\n\nA rule has a target, dependencies, and a recipe.\nmake models the workflow as a DAG, a dependency graph with no cycles.\n.PHONY is for targets like all, clean, and help that are not real files.\nAutomatic variables such as $@ and $&lt; reduce duplication.\nVariables, automatic variables, and pattern rules help us keep the Makefile DRY.\nPattern rules such as counts/%.tsv : books/%.txt generalize the workflow across many books.\nFunctions such as wildcard and patsubst let us build dynamic file lists from the real project structure.\n\nPixi remains useful for managing the environment. make adds the missing piece: a reusable, dependency-aware way to automate the actual analysis pipeline."
+  },
+  {
+    "objectID": "lessons/virtual-environments.html",
+    "href": "lessons/virtual-environments.html",
+    "title": "Virtual Environments",
     "section": "",
-    "text": "Smash first, analyze later.\nDating advice from a CERN researcher"
+    "text": "This lesson is adapted from Reproducible Machine Learning Workflows for Scientists by the Carpentries Incubator and rewritten to use uv.",
+    "crumbs": [
+      "Virtual Environments"
+    ]
+  },
+  {
+    "objectID": "lessons/virtual-environments.html#what-is-a-virtual-environment",
+    "href": "lessons/virtual-environments.html#what-is-a-virtual-environment",
+    "title": "Virtual Environments",
+    "section": "What is a virtual environment?",
+    "text": "What is a virtual environment?\nA virtual environment is a self-contained directory that contains a Python installation and all the packages required for a specific project. It lets us keep different projects separate, even when they need different package versions.\nThis separation is a key part of reproducible research. If we record exactly which Python version and packages a project uses, then other people can rebuild the same environment on their own machines.",
+    "crumbs": [
+      "Virtual Environments"
+    ]
+  },
+  {
+    "objectID": "lessons/virtual-environments.html#package-managers",
+    "href": "lessons/virtual-environments.html#package-managers",
+    "title": "Virtual Environments",
+    "section": "Package managers",
+    "text": "Package managers\nPython ships with venv and pip, and those tools still work. However, modern projects often need more than a manually managed virtual environment. We usually also want:\n\na clear project file that records dependencies\na lock file with exact resolved versions\na simple way to run commands inside the project environment\na convenient way to keep the environment reproducible\n\nThere are several tools for this job, including Conda, Mamba, Poetry, and uv. In this course we will use uv.\n\nWhy uv?\n\n\n\nuv by Astral\n\n\nuv is a blazingly fast Python package and project manager. If you have used Conda or Poetry before, you will feel the difference. It has a few advantages that make it a good fit for this course:\n\nFast: dependency resolution and installation are much faster than with older Python tooling.\nProject-local: each project gets its own .venv, which keeps dependencies isolated.\nPython-aware: uv can use an existing Python installation or download a managed one when needed.\nReproducible: it creates a uv.lock lock file with exact resolved package versions.\nConvenient: it lets us run project commands without manually activating the environment every time.\n\nYou can read more in the official documentation.",
+    "crumbs": [
+      "Virtual Environments"
+    ]
+  },
+  {
+    "objectID": "lessons/virtual-environments.html#installing-uv",
+    "href": "lessons/virtual-environments.html#installing-uv",
+    "title": "Virtual Environments",
+    "section": "Installing uv",
+    "text": "Installing uv\nIf you did not install uv during setup, do that first. On macOS, Linux, and Ubuntu under WSL, run:\ncurl -LsSf https://astral.sh/uv/install.sh | sh\nAfter installation, restart the terminal. You can also reload your shell manually.\nUbuntu users:\nsource ~/.bashrc\nmacOS users:\nsource ~/.zshrc\nTo verify that uv is available, run either:\nuv --version\nor\nwhich uv\nYou should see the installed version or the path to the uv executable.",
+    "crumbs": [
+      "Virtual Environments"
+    ]
+  },
+  {
+    "objectID": "lessons/virtual-environments.html#project-based-workflows",
+    "href": "lessons/virtual-environments.html#project-based-workflows",
+    "title": "Virtual Environments",
+    "section": "Project-based workflows",
+    "text": "Project-based workflows\nuv works well with a project-based workflow. That means the project’s dependencies, Python requirements, and virtual environment all live alongside the project files.\nPros\n\nEach project is isolated and does not interfere with software used by other projects.\nThe project can be recreated from a small set of tracked files, especially pyproject.toml and uv.lock.\nEditors like VS Code can easily discover the project’s .venv.\n\nCons\n\nEach project keeps its own environment, so repeated packages may use more disk space than a fully shared setup.\nYou still need to think carefully about which dependencies belong in the project.\nIt only supports Python projects.",
+    "crumbs": [
+      "Virtual Environments"
+    ]
+  },
+  {
+    "objectID": "lessons/virtual-environments.html#starting-a-project-with-uv-init",
+    "href": "lessons/virtual-environments.html#starting-a-project-with-uv-init",
+    "title": "Virtual Environments",
+    "section": "Starting a project with uv init",
+    "text": "Starting a project with uv init\nThe word init shows up in many developer tools. You already saw it in git init. It usually means “set up the basic files needed to start here.”\nWith uv, init can do two related things:\n\ncreate a brand new project directory for you\ninitialize a project in a directory that already exists\n\nLet’s start by creating a new project directory:\nuv init gecs-uv\nInitialized project `gecs-uv` at &lt;working-directory&gt;/gecs-uv\nThis creates the directory gecs-uv for you.\n\n\n\n\n\n\nNoteuv init flags\n\n\n\n\n\nIf you already had a project folder and wanted to initialize it in place, you could first cd into it and then run:\nuv init .\n\n\n\nIf you are curious about the other project templates and flags that uv supports, take a look at:\nuv init --help\nNow move into the new project directory and inspect its contents:\ncd gecs-uv\nls -a\n./\n../\n.git/\n.gitignore\n.python-version\nREADME.md\nmain.py\npyproject.toml\nuv init also initializes a Git repository by default, so you do not need to run git init yourself afterward.\nAt this point there is still no .venv and no uv.lock. Those appear when uv actually has to resolve and install an environment.\nuv also created a .python-version file for us. That file pins the default Python version for this project.",
+    "crumbs": [
+      "Virtual Environments"
+    ]
+  },
+  {
+    "objectID": "lessons/virtual-environments.html#the-project-manifest",
+    "href": "lessons/virtual-environments.html#the-project-manifest",
+    "title": "Virtual Environments",
+    "section": "The project manifest",
+    "text": "The project manifest\nLet’s inspect the main project file:\ncat pyproject.toml\n[project]\nname = \"gecs-uv\"\nversion = \"0.1.0\"\ndescription = \"Add your description here\"\nreadme = \"README.md\"\nrequires-python = \"&gt;=3.13\"\ndependencies = []\nAnd if you inspect .python-version:\ncat .python-version\n3.13\nThe most important fields here are:\n\n[project]: metadata about the project as a whole\nrequires-python: which Python versions the project supports\ndependencies: which Python packages belong in the project\n.python-version: the default Python version uv should use for this project\n\n\n\n\n\n\n\nNoteTOML files\n\n\n\n\n\npyproject.toml uses the TOML format. The name stands for Tom’s Obvious, Minimal Language, after Tom Preston-Werner, one of the creators of the format.\nTOML became popular because it is much easier for humans to read and edit than many older configuration formats. Python’s packaging ecosystem now uses it heavily, so you will keep seeing .toml files in modern projects.",
+    "crumbs": [
+      "Virtual Environments"
+    ]
+  },
+  {
+    "objectID": "lessons/virtual-environments.html#edit-the-description",
+    "href": "lessons/virtual-environments.html#edit-the-description",
+    "title": "Virtual Environments",
+    "section": "Edit the description",
+    "text": "Edit the description\nRight now the project description is still the placeholder text. Let’s fix that.\nOpen the file in VS Code:\ncode pyproject.toml\nIf the code command is not available in your terminal, you can also open pyproject.toml directly from the VS Code Explorer.\nReplace the description line with something meaningful, for example:\ndescription = \"A small reproducible project managed with uv\"\nYour pyproject.toml should now look like this:\n[project]\nname = \"gecs-uv\"\nversion = \"0.1.0\"\ndescription = \"A small reproducible project managed with uv\"\nreadme = \"README.md\"\nrequires-python = \"&gt;=3.13\"\ndependencies = []",
+    "crumbs": [
+      "Virtual Environments"
+    ]
+  },
+  {
+    "objectID": "lessons/virtual-environments.html#version-control-from-the-start",
+    "href": "lessons/virtual-environments.html#version-control-from-the-start",
+    "title": "Virtual Environments",
+    "section": "Version control from the start",
+    "text": "Version control from the start\nBecause uv init already initialized Git for us, we can start tracking changes immediately:\ngit status --short\nYou should see the newly created files as untracked. Add them and make the first commit:\ngit add .\ngit commit -m \"Initialize uv project\"\nThis is a good habit. Instead of waiting until the very end, we will keep committing as the environment changes.",
+    "crumbs": [
+      "Virtual Environments"
+    ]
+  },
+  {
+    "objectID": "lessons/virtual-environments.html#create-the-environment",
+    "href": "lessons/virtual-environments.html#create-the-environment",
+    "title": "Virtual Environments",
+    "section": "Create the environment",
+    "text": "Create the environment\nNow let’s ask uv to create the environment explicitly:\nuv sync\nThis command resolves the project’s dependencies, creates the virtual environment, and makes sure the installed packages match the lock file.\nCheck the directory again:\nls -a\n./\n../\n.git/\n.gitignore\n.python-version\n.venv/\nREADME.md\nmain.py\npyproject.toml\nuv.lock\nTwo important things appeared:\n\n.venv/: this is the virtual environment itself. It contains the Python executable, installed package files, and all the other moving parts that make the environment run. This is the meat of the environment.\nuv.lock: this is the lock file. It is like taking a snapshot of your environment’s package versions at this moment in time.\n\nWhen someone else clones your repository and runs uv sync, uv uses that snapshot to rebuild the environment as closely as possible.\nLet’s also confirm that the starter program runs:\nuv run main.py\nHello from gecs-uv!\nSince uv.lock is now part of the project state, commit that change too:\ngit add uv.lock\ngit commit -m \"lock initial environment\"",
+    "crumbs": [
+      "Virtual Environments"
+    ]
+  },
+  {
+    "objectID": "lessons/virtual-environments.html#activate-the-environment",
+    "href": "lessons/virtual-environments.html#activate-the-environment",
+    "title": "Virtual Environments",
+    "section": "Activate the environment",
+    "text": "Activate the environment\nSometimes it is still convenient to activate the environment directly, for example if you want to run several commands in a row without prefixing each one with uv run.\nFirst make sure the environment is up to date:\nuv sync\nThen activate it:\nsource .venv/bin/activate\nYour shell prompt will usually change and show something like (.venv) at the beginning. You can now run project tools directly:\npython\nTo leave the environment, run:\ndeactivate",
+    "crumbs": [
+      "Virtual Environments"
+    ]
+  },
+  {
+    "objectID": "lessons/virtual-environments.html#add-packages",
+    "href": "lessons/virtual-environments.html#add-packages",
+    "title": "Virtual Environments",
+    "section": "Add packages",
+    "text": "Add packages\nBefore we move on to marimo, let’s install the packages we want available in this project:\nuv add numpy matplotlib\nuv updates both pyproject.toml and uv.lock, then installs the packages into .venv.\nCommit those dependency changes:\ngit add pyproject.toml uv.lock\ngit commit -m \"add plotting dependencies\"\nTo view the installed dependency tree, use:\nuv tree\nThis is often more helpful than a flat package list because it shows which packages depend on which other packages.\nIf you want to inspect the dependency graph in a platform-independent way, use:\nuv tree --universal\nThis is another reproducibility tool: one project manifest, one lock file, and one dependency graph that uv can recreate consistently across machines.\n\n\n\n\n\n\nTipPlatform-specific dependencies\n\n\n\n\n\nuv records a universal lock file and supports platform-specific dependencies through standard Python environment markers.\nFor example, if you needed a package only on Windows, you could write:\nuv add \"pywin32; sys_platform == 'win32'\"\nIf that changed your project’s dependency set, you would again commit the updated pyproject.toml and uv.lock.",
+    "crumbs": [
+      "Virtual Environments"
+    ]
+  },
+  {
+    "objectID": "lessons/virtual-environments.html#marimo",
+    "href": "lessons/virtual-environments.html#marimo",
+    "title": "Virtual Environments",
+    "section": "marimo",
+    "text": "marimo\n\n\n\nmarimo vs Jupyter\n\n\nFor data analysis, Jupyter notebooks have been the default for a long time. In this course, we will use marimo instead.\nFor this course, marimo has a few advantages:\n\nit is reactive, so dependent cells stay in sync\nit avoids a lot of hidden state problems that make notebooks hard to reproduce\nmarimo notebooks are stored as plain .py files, which makes them much friendlier to Git\n\nThat last point is especially important: you can use Git to track changes in a marimo notebook just like any other Python file.\nLet’s add marimo to the project:\nuv add marimo\nand check the dependency tree again:\nuv tree\nFinally, commit the changes to the project:\ngit add pyproject.toml uv.lock\ngit commit -m \"add marimo\"",
+    "crumbs": [
+      "Virtual Environments"
+    ]
+  },
+  {
+    "objectID": "lessons/virtual-environments.html#running-commands-without-activation",
+    "href": "lessons/virtual-environments.html#running-commands-without-activation",
+    "title": "Virtual Environments",
+    "section": "Running commands without activation",
+    "text": "Running commands without activation\nOne of the nicest parts of uv is that you usually do not need to activate the environment manually. Instead, run commands through uv run.\nFirst, activate the environment\nsource .venv/bin/activate\nNow, we can explore marimo’s built-in plotting tutorial:\nmarimo tutorial plots\nThis will open a browser window with the tutorial. To run the tutorial, press Play button in the bottom right corner or press Ctrl/Cmd+ Shift + R to run all cells.\nOnce you are done, you can exit the tutorial and deactivate the environment by presing Red cross button (Shutdown) in the top-right corner of the browser page or Ctrl/Cmd + C in the terminal.",
+    "crumbs": [
+      "Virtual Environments"
+    ]
+  },
+  {
+    "objectID": "lessons/virtual-environments.html#global-tools",
+    "href": "lessons/virtual-environments.html#global-tools",
+    "title": "Virtual Environments",
+    "section": "Global tools",
+    "text": "Global tools\nuv can also install command-line tools into isolated environments and expose them on your PATH.\nFor example, to install bat, a nicer version of cat, run:\nuv tool install bat\nIf this is the first tool you install, uv may suggest adding its tool directory to your PATH. If needed, follow that suggestion with:\nuv tool update-shell\nTo list globally installed tools:\nuv tool list\nTo remove the tool again:\nuv tool uninstall bat\nThese tools are isolated from your project environments, which keeps your system utilities separate from your project dependencies.",
+    "crumbs": [
+      "Virtual Environments"
+    ]
+  },
+  {
+    "objectID": "lessons/virtual-environments.html#sandbox-with-uvx",
+    "href": "lessons/virtual-environments.html#sandbox-with-uvx",
+    "title": "Virtual Environments",
+    "section": "Sandbox with uvx",
+    "text": "Sandbox with uvx\nSometimes you do not want to create or grow a full project environment. You might just want to try a tool quickly in an isolated sandbox.\nThat is what uvx is for. It runs a command from a package in a temporary environment without adding that package to your project’s dependencies.\nLet’s introduce another tool by Astral called Ruff. Ruff is a fast Python linter that can help you find and fix code issues. Linter are special tools that analyze your code for potential errors, style violations, and other issues. If you want to lint the current project with Ruff without installing Ruff into the project environment. You can run:\nuvx ruff check .\n\n\n\n\n\n\nTipNeed extra isolation?\n\n\n\n\n\nIf you want an extra-isolated throwaway environment that does not interact with already installed packages, you can also use:\nuvx --isolated ruff check .\n\n\n\nLess serious but more fun.\nuvx pycowsay hello\nor try some classic games from freegames pacakage:\nuvx freegames play snake\nThis command will download the freegames package, run the snake game, and then remove the package again when you exit the game.\nFor the list of available games, run:\nuvx freegames list\nor check the freegames documentation.\nThis is handy when you just want to explore a tool, run a one-off check, or try something quickly without making your project environment bigger.\nOnce you are done playing, to deactivate the lessson’s environment, run:\ndeactivate",
+    "crumbs": [
+      "Virtual Environments"
+    ]
+  },
+  {
+    "objectID": "lessons/virtual-environments.html#the-book-project",
+    "href": "lessons/virtual-environments.html#the-book-project",
+    "title": "Virtual Environments",
+    "section": "The book project",
+    "text": "The book project\nThroughout this lesson, we built a uv project from scratch. If you’d like to see a complete example project, you can access it on GitHub at https://github.com/igorsdub/gecs-venv.\nTo use this example project on your machine:\ncd ~\ngit clone https://github.com/igorsdub/gecs-venv.git\ncd gecs-venv\nThen follow the instructions in the README.md file to set up the project.",
+    "crumbs": [
+      "Virtual Environments"
+    ]
+  },
+  {
+    "objectID": "lessons/virtual-environments.html#your-turn",
+    "href": "lessons/virtual-environments.html#your-turn",
+    "title": "Virtual Environments",
+    "section": "Your turn",
+    "text": "Your turn\nNow it’s your turn! Create a new project with uv init, add some dependencies, and run a small Python program. Make sure to commit your changes as you go.\nThen publish your project to GitHub and share the link with your classmates and see if they can recreate your environment with uv sync.\nLet them to modify your code and create pull requests. You can then review their changes and merge them into your project.\nPull the changes from your classmates, run uv sync to update your environment with their changes, and see if everything still works as expected.",
+    "crumbs": [
+      "Virtual Environments"
+    ]
+  },
+  {
+    "objectID": "lessons/virtual-environments.html#recap",
+    "href": "lessons/virtual-environments.html#recap",
+    "title": "Virtual Environments",
+    "section": "Recap",
+    "text": "Recap\nIn this lesson, you:\n\ninstalled uv\nused uv init to start a project\nedited pyproject.toml\ncreated .venv and uv.lock with uv sync\nlearned that uv.lock is a snapshot of package versions\nadded marimo, numpy, and matplotlib\nran the marimo plotting tutorial\ncommitted the project in small steps as it evolved\n\nThat is already enough to build a small, reproducible Python project that others can recreate on their own machines.",
+    "crumbs": [
+      "Virtual Environments"
+    ]
+  },
+  {
+    "objectID": "lessons/virtual-environments.html#further-reading",
+    "href": "lessons/virtual-environments.html#further-reading",
+    "title": "Virtual Environments",
+    "section": "Further reading",
+    "text": "Further reading\n\nuv documentation\nInstallation guide\nCreating projects with uv\nmarimo gallery",
+    "crumbs": [
+      "Virtual Environments"
+    ]
   },
   {
     "objectID": "lessons/version-control.html",
@@ -507,290 +617,180 @@
     ]
   },
   {
-    "objectID": "lessons/automation.html",
-    "href": "lessons/automation.html",
-    "title": "Automation",
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
     "section": "",
-    "text": "This tutorial was adapted from the Automation and Make lesson by The Software Carpentries and reworked to match the project structure in gecs-make/.\nAutomation is what turns a one-off analysis into a repeatable workflow. In the gecs-make project, we already have a useful pipeline: take a book from books/, count the words into counts/, and turn those counts into an interactive plot in figures/.\nThe problem is not that the commands are hard to run. The problem is that they are still hard-coded around a single example, dracula.txt. As soon as we want to repeat the same workflow for six or seven books, the process becomes repetitive, error-prone, and annoying to maintain.\nThis is exactly the kind of problem make is good at solving."
+    "text": "flowchart LR\n  A[Data] --&gt; B[Clean] --&gt; C[Analysis] --&gt; D[Results] --&gt; E[Figures] --&gt; F[Paper]\n\n  subgraph GECS[GECS]\n    direction LR\n    B\n    C\n    D\n    E\n  end\n\n  style GECS fill:#eef,stroke:#66f,stroke-width:2px\n\n\n\n\n\n\n\n\n\n\n\n\nflowchart LR\n  subgraph GECS\n    direction TB\n    B1 --&gt; B2 --&gt; B3 --&gt; B1\n  end\n  A(Raw Data) --&gt; GECS --&gt; Z(Paper)"
   },
   {
-    "objectID": "lessons/automation.html#the-book-project",
-    "href": "lessons/automation.html#the-book-project",
-    "title": "Automation",
-    "section": "The book project",
-    "text": "The book project\nIf you do not have the example project yet, clone it from GitHub first:\ngit clone https://github.com/igorsdub/gecs-make\ncd gecs-make\nIf you already cloned it earlier, move into the project directory:\ncd gecs-make\nThis tutorial assumes you are running the commands below from inside that repository.\nThe gecs-make project has this structure:\nbooks/      raw text files\ncounts/     generated word-count tables\nfigures/    generated HTML plots\nscripts/    Python analysis scripts\npixi.toml   project dependencies and tasks\nThe README already shows the manual workflow for one book:\npython scripts/get_summary.py books/dracula.txt\npython scripts/count_words.py books/dracula.txt counts/dracula.tsv\npython scripts/plot_counts.py counts/dracula.tsv figures/dracula.html\nThe first command, get_summary.py, is useful for inspecting metadata, but it is not part of the main file-generation pipeline. The core workflow we want to automate is the one that produces files:\nbooks/*.txt -&gt; counts/*.tsv -&gt; figures/*.html\nThere are also Pixi tasks for the same book:\npixi run summarize\npixi run count\npixi run plot\npixi run all\nThat is a nice start, but the tasks in pixi.toml are still hard coded to dracula.txt. make lets us describe the dependency structure once and then apply it to every book in the project.\nBefore going further, make sure make is available:\nmake --version\nIf that command fails, install make first:\n\nmacOS: if you use Homebrew, run brew install make. Depending on your shell setup, you may then need to use gmake instead of make, because the GNU version from Homebrew is often installed under that name.\nWSL: run sudo apt update and then sudo apt install make. Installing build-essential is also common if you want the standard Unix build tools as a group.\nPixi Global: if you already use Pixi, you can also install GNU Make with pixi global install make and then use it from your shell."
-  },
-  {
-    "objectID": "lessons/automation.html#makefile",
-    "href": "lessons/automation.html#makefile",
-    "title": "Automation",
-    "section": "Makefile",
-    "text": "Makefile\nmake reads instructions from a file called Makefile. Create a new file named Makefile in the root of the gecs-make repository, next to books/, counts/, figures/, and scripts/. Then add the first rule below to that file.\nIf you want to use a different filename, for example workflow.mk, you can tell make which file to read with the -f option:\nmake -f workflow.mk counts/dracula.tsv\nFor the rest of this lesson, we will assume the file is named Makefile. Let us start by automating one real step from the project: generating a count table for Dracula.\ncounts/dracula.tsv : books/dracula.txt scripts/count_words.py\n    python scripts/count_words.py books/dracula.txt counts/dracula.tsv\nThis rule has three important parts:\n\nTarget: counts/dracula.tsv is the file we want to create.\nDependencies: books/dracula.txt and scripts/count_words.py are the things needed to build the target.\nRecipe: the indented command tells make how to build the target.\n\nThe indentation matters. Recipe lines must start with a TAB character, not spaces.\n\n\n\n\n\n\nWarningTabs vs spaces in Makefiles\n\n\n\nRecipe lines in a Makefile must begin with a TAB. If you indent a recipe with four spaces instead, make will usually fail with an error like:\nMakefile:&lt;line-number&gt;: *** missing separator.  Stop.\nIf that happens, check the start of the recipe line carefully and replace the spaces with a TAB character.\n\n\nIf we run:\nmake counts/dracula.tsv\nthen make checks whether counts/dracula.tsv exists and whether either dependency is newer. If the target is missing or out of date, it runs the recipe.\nThat gives us our first big improvement over a shell script: make knows what output file a command is supposed to create, and it can decide when the command actually needs to run.\nAnother way to say this is that make helps us follow the DRY principle: Don’t Repeat Yourself. Instead of copying the same filenames and command patterns in lots of places, we describe the workflow once and reuse that description."
-  },
-  {
-    "objectID": "lessons/automation.html#chaining-steps-together",
-    "href": "lessons/automation.html#chaining-steps-together",
-    "title": "Automation",
-    "section": "Chaining steps together",
-    "text": "Chaining steps together\nThe workflow in gecs-make has a second stage: turning counts into an HTML figure.\ncounts/dracula.tsv : books/dracula.txt scripts/count_words.py\n    python scripts/count_words.py books/dracula.txt counts/dracula.tsv\n\nfigures/dracula.html : counts/dracula.tsv scripts/plot_counts.py\n    python scripts/plot_counts.py counts/dracula.tsv figures/dracula.html\nNow the dependencies form a chain:\nbooks/dracula.txt -&gt; counts/dracula.tsv -&gt; figures/dracula.html\nIf we ask for the final output,\nmake figures/dracula.html\nmake will build counts/dracula.tsv first if needed, then build the figure.\nThis is the core idea behind make: we describe how files depend on each other, and make figures out the correct order.\nThis dependency structure is often described as a Directed Acyclic Graph, or DAG:\n\nDirected means the dependencies point in one direction, from inputs to outputs.\nAcyclic means the graph cannot contain loops such as “A depends on B and B depends on A”.\nGraph means we are really dealing with a network of connected files and build steps, not just one long shell script.\n\nFor this project, the DAG is simple:\nbooks/dracula.txt -&gt; counts/dracula.tsv -&gt; figures/dracula.html\nAs the project grows to many books, the graph gets wider, but the idea stays the same. make works well because it can walk that DAG and rebuild only the parts that are affected by a change.\n\nPhony Targets\nSometimes we want a target that stands for an action rather than a real file. For example:\n.PHONY : all\nall : figures/dracula.html\nNow make all is a convenient alias for building the Dracula plot.\nCleanup is another common phony target:\n.PHONY : clean\nclean :\n    rm -f counts/*.tsv figures/*.html\nThen we can run:\nmake clean\n\n\n\n\n\n\nNoteWhy use .PHONY?\n\n\n\nIf a file named clean or all ever appears in the project, make might think the target is already up to date and skip the recipe. Marking those names as .PHONY tells make they are commands, not output files."
-  },
-  {
-    "objectID": "lessons/automation.html#automatic-variables",
-    "href": "lessons/automation.html#automatic-variables",
-    "title": "Automation",
-    "section": "Automatic variables",
-    "text": "Automatic variables\nThe two rules above repeat the same filenames in the target line and the recipe. That is easy to write for one example, but it becomes tedious quickly.\nmake provides automatic variables to reduce duplication:\n\n$@ means the current target\n$^ means all dependencies for the current rule\n$&lt; means the first dependency\n\nWe can rewrite the rules like this:\ncounts/dracula.tsv : books/dracula.txt scripts/count_words.py\n    python scripts/count_words.py $&lt; $@\n\nfigures/dracula.html : counts/dracula.tsv scripts/plot_counts.py\n    python scripts/plot_counts.py $&lt; $@\nIn both cases, the scripts take the first dependency as input and write to the target path. This makes the recipes shorter and keeps the filenames consistent with the rule declaration.\nThat is another DRY win: the target and dependency names already appear in the rule header, so automatic variables let us reuse them instead of typing them again in the recipe.\n\nCode is a Dependency\nNotice that the rules depend not only on data files, but also on scripts.\ncounts/dracula.tsv : books/dracula.txt scripts/count_words.py\nThat means if scripts/count_words.py changes, make knows it should regenerate counts/dracula.tsv. This is a very important idea in computational work: code changes can invalidate outputs just as much as data changes do."
-  },
-  {
-    "objectID": "lessons/automation.html#variables-in-makefiles",
-    "href": "lessons/automation.html#variables-in-makefiles",
-    "title": "Automation",
-    "section": "Variables in makefiles",
-    "text": "Variables in makefiles\nAs the workflow grows, we start repeating commands and script paths. Variables help make the Makefile easier to read and easier to update.\nFor example:\nPYTHON=python\nCOUNT_SCRIPT=scripts/count_words.py\nPLOT_SCRIPT=scripts/plot_counts.py\nWe can then use those variables in our rules:\nPYTHON=python\nCOUNT_SCRIPT=scripts/count_words.py\nPLOT_SCRIPT=scripts/plot_counts.py\n\ncounts/dracula.tsv : books/dracula.txt $(COUNT_SCRIPT)\n    $(PYTHON) $(COUNT_SCRIPT) $&lt; $@\n\nfigures/dracula.html : counts/dracula.tsv $(PLOT_SCRIPT)\n    $(PYTHON) $(PLOT_SCRIPT) $&lt; $@\nThis is especially helpful when several rules use the same script or command. If something changes later, we update the variable once instead of hunting through the whole file.\nVariables are one of the simplest ways to make a Makefile more DRY. They let us keep shared information in one place instead of repeating it across many rules."
-  },
-  {
-    "objectID": "lessons/automation.html#pattern-rules",
-    "href": "lessons/automation.html#pattern-rules",
-    "title": "Automation",
-    "section": "Pattern rules",
-    "text": "Pattern rules\nAt this point, the workflow still only handles Dracula. But the project contains many books:\nbooks/dracula.txt\nbooks/frankenstein.txt\nbooks/jane_eyre.txt\nbooks/moby_dick.txt\nbooks/sense_and_sensibility.txt\nbooks/sherlock_holmes.txt\nbooks/time_machine.txt\nThe filenames change, but the workflow shape stays the same. That is exactly what pattern rules are for.\nPYTHON=python\nCOUNT_SCRIPT=scripts/count_words.py\nPLOT_SCRIPT=scripts/plot_counts.py\n\ncounts/%.tsv : books/%.txt $(COUNT_SCRIPT)\n    $(PYTHON) $(COUNT_SCRIPT) $&lt; $@\n\nfigures/%.html : counts/%.tsv $(PLOT_SCRIPT)\n    $(PYTHON) $(PLOT_SCRIPT) $&lt; $@\nThe % symbol is a wildcard stem. With these two rules, make now knows how to build:\n\ncounts/dracula.tsv from books/dracula.txt\ncounts/frankenstein.tsv from books/frankenstein.txt\nfigures/moby_dick.html from counts/moby_dick.tsv\nand so on\n\nThat means we no longer need one handwritten rule per book.\nPattern rules are one of the biggest DRY improvements in make. We replace many nearly identical rules with one general rule that captures the shared structure of the workflow.\nWe can still ask for a specific target:\nmake figures/jane_eyre.html\nand make will fill in the pattern automatically."
-  },
-  {
-    "objectID": "lessons/automation.html#functions",
-    "href": "lessons/automation.html#functions",
-    "title": "Automation",
-    "section": "Functions",
-    "text": "Functions\nPattern rules tell make how to build matching files. Functions help us build lists of files.\nThe most useful starting point here is wildcard, which finds filenames that match a pattern:\nBOOK_FILES=$(wildcard books/*.txt)\nIn gecs-make, that expands to all the .txt files in books/.\nNext, we can use patsubst to transform those input filenames into the output files we want:\nBOOK_FILES=$(wildcard books/*.txt)\nCOUNT_FILES=$(patsubst books/%.txt,counts/%.tsv,$(BOOK_FILES))\nFIGURE_FILES=$(patsubst books/%.txt,figures/%.html,$(BOOK_FILES))\nNow we have three connected lists:\n\nBOOK_FILES for raw texts\nCOUNT_FILES for generated count tables\nFIGURE_FILES for generated plots\n\nThis is what allows make to scale from one hard-coded book to the entire project.\n\nBuilding Everything\nOnce we have those lists, we can define a proper all target:\nPYTHON=python\nCOUNT_SCRIPT=scripts/count_words.py\nPLOT_SCRIPT=scripts/plot_counts.py\n\nBOOK_FILES=$(wildcard books/*.txt)\nCOUNT_FILES=$(patsubst books/%.txt,counts/%.tsv,$(BOOK_FILES))\nFIGURE_FILES=$(patsubst books/%.txt,figures/%.html,$(BOOK_FILES))\n\n.PHONY : all\nall : $(FIGURE_FILES)\n\ncounts/%.tsv : books/%.txt $(COUNT_SCRIPT)\n    $(PYTHON) $(COUNT_SCRIPT) $&lt; $@\n\nfigures/%.html : counts/%.tsv $(PLOT_SCRIPT)\n    $(PYTHON) $(PLOT_SCRIPT) $&lt; $@\n\n.PHONY : clean\nclean :\n    rm -f counts/*.tsv figures/*.html\nRunning\nmake all\nwill now build the complete set of figures for all books in the repository.\n\n\n\n\n\n\nTipFrom Pixi tasks to make targets\n\n\n\nPixi tasks are still useful for environment management and for a few convenient commands. The advantage of make here is that it expresses file dependencies directly and scales naturally from one example book to a whole directory of inputs."
-  },
-  {
-    "objectID": "lessons/automation.html#self-documenting-makefile",
-    "href": "lessons/automation.html#self-documenting-makefile",
-    "title": "Automation",
-    "section": "Self-documenting Makefile",
-    "text": "Self-documenting Makefile\nAs Makefiles grow, it becomes useful to advertise the main entry points. A simple way to do that is to add a help target.\n.PHONY : help\nhelp :\n    @echo \"Available targets:\"\n    @echo \"  make all                  Build all figures\"\n    @echo \"  make clean                Remove generated counts and figures\"\n    @echo \"  make figures/dracula.html Build one specific figure\"\nFor a slightly more polished version, we can annotate targets with comments and extract them automatically:\n.DEFAULT_GOAL := help\n\n## Show available targets\n.PHONY : help\nhelp:\n    @echo \"Available rules:\"\n    @grep -E '^## |^[a-zA-Z0-9_.\\/%\\-]+ *:' $(MAKEFILE_LIST) | \\\n    awk 'BEGIN {FS = \" *:.*\"} \\\n    /^## / {desc = substr($$0, 4); next} \\\n    /^[a-zA-Z0-9_.\\/%\\-]+ *:/ {printf \"%-22s %s\\n\", $$1, desc}'\n\n## Build figures for all books\n.PHONY : all\nall : $(FIGURE_FILES)\n\n## Remove generated counts and figures\n.PHONY : clean\nclean :\n    rm -f counts/*.tsv figures/*.html\nHere $(MAKEFILE_LIST) is a built-in make variable. It expands to the makefiles that were read during the current run, so we do not have to define it ourselves. In this version, grep and awk read the Makefile and pair comments such as ## Build figures for all books with the target that appears immediately below them.\nThen:\nmake help\nprints a short summary of the workflow."
-  },
-  {
-    "objectID": "lessons/automation.html#complete-example",
-    "href": "lessons/automation.html#complete-example",
-    "title": "Automation",
-    "section": "Complete example",
-    "text": "Complete example\nPutting everything together, a Makefile for gecs-make could look like this:\nPYTHON=python\nCOUNT_SCRIPT=scripts/count_words.py\nPLOT_SCRIPT=scripts/plot_counts.py\n\nBOOK_FILES=$(wildcard books/*.txt)\nCOUNT_FILES=$(patsubst books/%.txt,counts/%.tsv,$(BOOK_FILES))\nFIGURE_FILES=$(patsubst books/%.txt,figures/%.html,$(BOOK_FILES))\n\n.DEFAULT_GOAL := help\n\n## Show available targets\n.PHONY : help\nhelp:\n    @echo \"Available rules:\"\n    @grep -E '^## |^[a-zA-Z0-9_.\\/%\\-]+ *:' $(MAKEFILE_LIST) | \\\n    awk 'BEGIN {FS = \" *:.*\"} \\\n    /^## / {desc = substr($$0, 4); next} \\\n    /^[a-zA-Z0-9_.\\/%\\-]+ *:/ {printf \"%-22s %s\\n\", $$1, desc}'\n\n## Build figures for all books\n.PHONY : all\nall : $(FIGURE_FILES)\n\n## Build count tables for all books\ncounts : $(COUNT_FILES)\n\ncounts/%.tsv : books/%.txt $(COUNT_SCRIPT)\n    $(PYTHON) $(COUNT_SCRIPT) $&lt; $@\n\nfigures/%.html : counts/%.tsv $(PLOT_SCRIPT)\n    $(PYTHON) $(PLOT_SCRIPT) $&lt; $@\n\n## Remove generated counts and figures\n.PHONY : clean\nclean :\n    rm -f counts/*.tsv figures/*.html\nThis Makefile captures the real project workflow:\n\ntext files in books/ are inputs\ncount tables in counts/ are intermediate outputs\nplots in figures/ are final outputs\nthe Python scripts in scripts/ are part of the dependency graph\n\nMost importantly, the Makefile is no longer hard coded to Dracula. Add another .txt file to books/, and the workflow can pick it up automatically."
-  },
-  {
-    "objectID": "lessons/automation.html#final-words",
-    "href": "lessons/automation.html#final-words",
-    "title": "Automation",
-    "section": "Final words",
-    "text": "Final words\nmake is useful when your work produces files from other files. Instead of rerunning commands by hand, we describe the dependency structure once and let make handle the ordering and incremental rebuilds.\nIn this project, the key ideas are:\n\nA rule has a target, dependencies, and a recipe.\nmake models the workflow as a DAG, a dependency graph with no cycles.\n.PHONY is for targets like all, clean, and help that are not real files.\nAutomatic variables such as $@ and $&lt; reduce duplication.\nVariables, automatic variables, and pattern rules help us keep the Makefile DRY.\nPattern rules such as counts/%.tsv : books/%.txt generalize the workflow across many books.\nFunctions such as wildcard and patsubst let us build dynamic file lists from the real project structure.\n\nPixi remains useful for managing the environment. make adds the missing piece: a reusable, dependency-aware way to automate the actual analysis pipeline."
-  },
-  {
-    "objectID": "lessons/virtual-environments.html",
-    "href": "lessons/virtual-environments.html",
-    "title": "Virtual Environments",
+    "objectID": "lessons/setting-up.html",
+    "href": "lessons/setting-up.html",
+    "title": "Setting Up",
     "section": "",
-    "text": "This lesson is adapted from Reproducible Machine Learning Workflows for Scientists by the Carpentries Incubator and rewritten to use uv.",
+    "text": "This section will equip your computer with all necessary tools for this course. The motivation behind each tool will be explained in the later sessions. For now, just follow the instructions and prepare to awe (and, at times, get frustrated) with power of computing.\nAlthough the course advertises itself as programming language agnostic, Python will be used to provide ‘meat’ for coding examples. See a Justin Bois’s note on “superiority” of one programming language over another below.",
     "crumbs": [
-      "Virtual Environments"
+      "Setting Up"
     ]
   },
   {
-    "objectID": "lessons/virtual-environments.html#what-is-a-virtual-environment",
-    "href": "lessons/virtual-environments.html#what-is-a-virtual-environment",
-    "title": "Virtual Environments",
-    "section": "What is a virtual environment?",
-    "text": "What is a virtual environment?\nA virtual environment is a self-contained directory that contains a Python installation and all the packages required for a specific project. It lets us keep different projects separate, even when they need different package versions.\nThis separation is a key part of reproducible research. If we record exactly which Python version and packages a project uses, then other people can rebuild the same environment on their own machines.",
+    "objectID": "lessons/setting-up.html#wsl-windows-users-only",
+    "href": "lessons/setting-up.html#wsl-windows-users-only",
+    "title": "Setting Up",
+    "section": "WSL (Windows users only)",
+    "text": "WSL (Windows users only)\nBeing a popular operating system doesn’t make Windows easy to use for software development. Windows Subsystem for Linux (WSL) circumvents this problem by creating a separate environment on your computer to run Linux, a free UNIX-like OS. We will install Linux with a particular flavour called Ubuntu. Right now, we will not go into details. All you need to know is that by the end of this installation you will be free to use a vast majority of scientific software available on the web.\n\nInstallation\nThere are two ways to install WSL with Ubuntu: graphical and terminal. The graphical method uses the Microsoft Store and should be straightforward. The terminal method uses PowerShell and is less user-friendly but more robust to errors. Choose whichever suits you best.\n\n\n\n\n\n\nNoteTroubleshooting WSL\n\n\n\n\n\nIf you’re experiencing some troubles with installation, it is worth:\n\nUpdating your Windows version. Open Windows Settings, go to ‘Updates and Security’ and hit ‘Check for Updates’.\nEnable WSL on your Windows manually.\n\nClick on the Start Menu and search for “Turn Windows features on or off”.\nOpen the result. A new window will appear with a list of Windows features.\nScroll down and check the following two boxes:\n\n‘Windows Subsystem for Linux’ ✅\n‘Virtual Machine Platform’ ✅\n\nClick OK. Windows will apply the changes and may ask you to restart your computer.\nAfter restarting, WSL will be enabled on your system.\n\n\n\n\n\n\nOpen the Start Menu, and search for “PowerShell”.\nRight-click and choose “Run as administrator”.\nEnter the following command to install WSL and hit Enter:\nwsl --install\n\n\n\n\n\n\n\n\nYou need to restart your computer after installing WSL.\n\n\n\n\nOnce restarted, open PowerShell again in the administartive mode and type:\nwsl --install\nBy default, Ubuntu will be installed as the main Linux distribution.\n\n\n\nCreating a Default UNIX User Account\nNow, that you have Ubuntu installed, you need to create an account in order to start using it. Generally it is called a “UNIX User Account” but a “Ubuntu account” would do as well.\n\n\n\n\n\n\nBefore you set a username on your computer, sign up for a GitHub account (see Section 4.1) and check if that username is available. This unity in names will make it easier for you to orient your files and folder,as well establish a virtual nickname that you can use consistently in the future projects.\n\n\n\n\n\n\n\n\n\n\nTipUsername and password suggestions\n\n\n\n\n\nFor a username: - Use only lower-case letters and numbers. - Start with a letter. - Be short and descriptive.\nIf your name is John Derek Smith you can try: jsmith, jdsmith, or johnsmith. Any other imaginary name is permissible as long as it meets the criteria above. D&D, MTG, LoL, and WoW nicknames, if that’s is publically appropriate.\nFor a password, you can set the same one you have for your OIST account to make it easier to remember. It will be used for login and authentication but, more importantly, commands like sudo that grant administrative priviledges. If not sure what makes a strong password consult XKCD.\n\n\n\n\nLaunch Ubuntu terminal.\n\n\n\nYou will be prompted to enter a username.\n\n\nEnter your chosen username and hit Enter. If you make a mistake in typing your username, you can close the window and open it again. In this example, tunkert is the username.\n\n\n\n\n\n\nIf you closed the terminal window or made a mistake while typying your username or password do not worry. Ubuntu is already installed on your computer and you can open it from the Command Promt application.\n\n\n\n\n\nChoose a password. You will not see it as you type due to default UNIX security reasons. If not sure what you entered is correct, hold Backspace for a couple of seconds or hit Ctrl+U. That will erase everything you have written. After making sure you have entered the correct password, hit Enter. If unsure, write the password down.\n\n\n\nRe-type the chosen password and hit Enter.\n\n\n\nOnce both username and password are entered, you will see a welcome message from Ubuntu.\n\n\n\n\n\n\n\n\nThe typing line takes the new form of tunkert@LAPTOP-JU9CGB60:~$. Can you guess what the name after @ means? We will talk about what each symbol means in the terminal section.\n\n\n\n\nTo ensure that Ubuntu is up-to-date, type the following and press Enter:\n\nsudo apt update && sudo apt upgrade -y\n\n\n\n\n\n\nWe will understand the logic behind this command later in the next section as well.\n\n\n\n\n\nYou will be prompted to enter the password (Do you remember?). Enter the password—you will not see it—and press Enter.\n\n\n\nThe update will begin. In the end, you will have an empty typing line with the latest Ubuntu.\n\n\n\n\n\n\n\n\nTipDefault Command Prompt settings\n\n\n\nI suggest you make Ubuntu your Default profile. Command Promt &gt; Settings &gt; Start-up &gt; Default profile, choose Ubuntu and press Save.\n\n\nYou are now set and ready to install all the wonderful programming tools that have been developed over the past 50 or so years by the developer’s community. As you might guess, there are hundreds of thousands of programs out there, and ideally, we would like to keep track of what we install. That will be our next installation.",
     "crumbs": [
-      "Virtual Environments"
+      "Setting Up"
     ]
   },
   {
-    "objectID": "lessons/virtual-environments.html#package-managers",
-    "href": "lessons/virtual-environments.html#package-managers",
-    "title": "Virtual Environments",
-    "section": "Package managers",
-    "text": "Package managers\nPython ships with venv and pip, and those tools still work. However, modern projects often need more than a manually managed virtual environment. We usually also want:\n\na clear project file that records dependencies\na lock file with exact resolved versions\na simple way to run commands inside the project environment\na convenient way to keep the environment reproducible\n\nThere are several tools for this job, including Conda, Mamba, Poetry, and uv. In this course we will use uv.\n\nWhy uv?\n\n\n\nuv by Astral\n\n\nuv is a blazingly fast Python package and project manager. If you have used Conda or Poetry before, you will feel the difference. It has a few advantages that make it a good fit for this course:\n\nFast: dependency resolution and installation are much faster than with older Python tooling.\nProject-local: each project gets its own .venv, which keeps dependencies isolated.\nPython-aware: uv can use an existing Python installation or download a managed one when needed.\nReproducible: it creates a uv.lock lock file with exact resolved package versions.\nConvenient: it lets us run project commands without manually activating the environment every time.\n\nYou can read more in the official documentation.",
+    "objectID": "lessons/setting-up.html#visual-studio-code",
+    "href": "lessons/setting-up.html#visual-studio-code",
+    "title": "Setting Up",
+    "section": "Visual Studio Code",
+    "text": "Visual Studio Code\nVisual Studio Code, aka VS Code, has the following useful features:\n\na way to run your code interactively (line-by-line) or all at once\na way to debug (look for errors) in your code\na quick way to access helpful information about commonly used software packages\nautomatic code formatting, so that your code follows best practice guidelines\nauto-completion of your code when you hit TAB\nautomatic code checking for basic errors\ncoloring your brackets in pairs so you can keep track of the logical order of execution of your code!\n\n\n\nInstallation\nInstall VS Code from the official website (it will determine which version of the installer to use) or download installer manually here.\n\n\n\n\n\n\n\nNoteVS Code WSL extension\n\n\n\n\n\nWindows users will be promted to install the VS Code WSL extension. Agree and see Section 2.1.2.1.\n\n\n\n\n\nExtensions\nThe biggest power of VS Code lies in its extensions. They are ubiquitous allowing you to boost your IDE simply by installing what others have solved for you. You can browse them by clicking on the four cube icon on the side bar or by pressing Cmd/Ctrl+Shift+X.\n\nThere are certain basic extensions that almost every VS Code user will have installed but it can be cumbersome to manually select all those one by one. That’s how VS Code Profiles have been created.\n\nWSL Extenison (Windows users only)\nWindows user will need one more step before they can start using VS Code at its full potential. Right now, you open VS Code and all files and computation is done in Windows environment. We want VS Code to use Ubuntu that lives in WSL. Using the Visual Studio Code WSL extension VS Code will integrate Ubuntu into its environment.\nOnce the extension is installed you need to open VS Code with Ubuntu as the main environment. To do that, locate a button in the left-bottom corner of the VS Code window consisting of two stacked arrow symbols ‘&gt;’ and ‘&lt;’. Click on it.\n\nAfter clicking on this button, a promt line will appear on the top of the window. Select WSL: New WSL Window and press Enter.\n\nA new window will open. This time, notice that the corner button has changed. Now, we are running on Ubuntu.\n\nWindows users will use this environment for the course.\n\n\n\nProfiles\n\nProfiles can be used to customize VS Code for students to ease the use in a classroom setting. Profiles allow educators to quickly share a customized VS Code setup with students.\nVS Code manual\n\n\nYou can access the Profiles editor in either of the following ways: - From the Code &gt; Settings &gt; Profiles menu item\n\nFrom the Manage gear button in the bottom of the Activity Bar.\n\n\nYou will see that the Default profile is in use. We will import the GECS profile for this course. The profile file is stored on GitHub (one of its nice features). That code is shown below.\n\nHowever, you don’t need to copy it, only need the link.\nhttps://gist.github.com/igorsdub/04f6a1191dde8e09091a1099fe87d5be\nImport the GECS profile from the Profiles editor by selecting the Import Profile… button in the dropdown actions of the New Profile button.\n\nWhen you select Import Profile…, you are prompted for the URL of a GitHub gist or the file location of a profile via an Import Profile dialog. Paste the link above and click Create button below.\n\nAccept any installations or suggestions offered by extensions. Now, you are ready to go!",
     "crumbs": [
-      "Virtual Environments"
+      "Setting Up"
     ]
   },
   {
-    "objectID": "lessons/virtual-environments.html#installing-uv",
-    "href": "lessons/virtual-environments.html#installing-uv",
-    "title": "Virtual Environments",
-    "section": "Installing uv",
-    "text": "Installing uv\nIf you did not install uv during setup, do that first. On macOS, Linux, and Ubuntu under WSL, run:\ncurl -LsSf https://astral.sh/uv/install.sh | sh\nAfter installation, restart the terminal. You can also reload your shell manually.\nUbuntu users:\nsource ~/.bashrc\nmacOS users:\nsource ~/.zshrc\nTo verify that uv is available, run either:\nuv --version\nor\nwhich uv\nYou should see the installed version or the path to the uv executable.",
+    "objectID": "lessons/setting-up.html#uv",
+    "href": "lessons/setting-up.html#uv",
+    "title": "Setting Up",
+    "section": "uv",
+    "text": "uv\nuv is a modern Python package and project manager. It helps us create isolated environments, install dependencies, lock exact package versions, and even manage Python itself when needed.\nHere we will use the terminal because uv is typically installed from the command line rather than through a graphical installer.\n\n\n\n\n\n\nThat’s the reason we went to such lengths to install Ubuntu on Windows. Now, you are able to access a much larger range of applications which are inaccessible to graphical user interface (GUI) users.\n\n\n\nWe will use the VS Code terminal to do the installation. To open the terminal select View &gt; Terminal from the menu bar, or press the Ctrl/Cmd+` keyboard shortcut. A terminal window will open at the bottom.\n\nTo install uv, run the following command in your terminal:\ncurl -LsSf https://astral.sh/uv/install.sh | sh\nTo verify that uv got installed successfully, restart the terminal. An easy way is to close it and open a new one. Another way is to type the following for Ubuntu users:\nsource ~/.bashrc\nmacOS users need to type:\nsource ~/.zshrc\nOK, now that the terminal is reset, type:\nwhich uv\nYou will see a path to the uv executable, often something like /Users/username/.local/bin/uv, where username is your chosen username.",
     "crumbs": [
-      "Virtual Environments"
+      "Setting Up"
     ]
   },
   {
-    "objectID": "lessons/virtual-environments.html#project-based-workflows",
-    "href": "lessons/virtual-environments.html#project-based-workflows",
-    "title": "Virtual Environments",
-    "section": "Project-based workflows",
-    "text": "Project-based workflows\nuv works well with a project-based workflow. That means the project’s dependencies, Python requirements, and virtual environment all live alongside the project files.\nPros\n\nEach project is isolated and does not interfere with software used by other projects.\nThe project can be recreated from a small set of tracked files, especially pyproject.toml and uv.lock.\nEditors like VS Code can easily discover the project’s .venv.\n\nCons\n\nEach project keeps its own environment, so repeated packages may use more disk space than a fully shared setup.\nYou still need to think carefully about which dependencies belong in the project.\nIt only supports Python projects.",
+    "objectID": "lessons/setting-up.html#sec-github",
+    "href": "lessons/setting-up.html#sec-github",
+    "title": "Setting Up",
+    "section": "GitHub",
+    "text": "GitHub\nGitHub is a widely used platform to store, manage, share, and collaborate with others on software projects. An account is free and you can upgrade to Pro for free as a student (see the tip below). Sign up here.\n\n\n\n\n\n\nTipGitHub Education\n\n\n\n\n\nAs a student, you can get a free GitHub Pro account as part of GitHub Education alongside other perks. Once you have a basic account, follow this link.\nYou can use a photo of your student ID card (both-sides) or other eligible documents listed on here.\n\n\n\n\nMulti-factor Authentication\nSince 2023, GitHub requires all accounts to have multi-factor authentication (2FA) for extra security. Here are the recommended options:\nRecommended: Passkeys\nPasskeys are the most secure and convenient option. They work on most devices and browsers without requiring a separate app.\nOther 2FA Options:\n\nAuthenticator App (e.g., Google Authenticator, Duo Mobile) - Install on your smartphone and add GitHub\nText Message (SMS) - Receive authentication codes via text (check if your country is supported)\nHardware Security Key - Use devices like YubiKey or Google Titan\n\nFor detailed setup instructions, see GitHub’s 2FA configuration guide.",
     "crumbs": [
-      "Virtual Environments"
+      "Setting Up"
     ]
   },
   {
-    "objectID": "lessons/virtual-environments.html#starting-a-project-with-uv-init",
-    "href": "lessons/virtual-environments.html#starting-a-project-with-uv-init",
-    "title": "Virtual Environments",
-    "section": "Starting a project with uv init",
-    "text": "Starting a project with uv init\nThe word init shows up in many developer tools. You already saw it in git init. It usually means “set up the basic files needed to start here.”\nWith uv, init can do two related things:\n\ncreate a brand new project directory for you\ninitialize a project in a directory that already exists\n\nLet’s start by creating a new project directory:\nuv init gecs-uv\nInitialized project `gecs-uv` at &lt;working-directory&gt;/gecs-uv\nThis creates the directory gecs-uv for you.\n\n\n\n\n\n\nNoteuv init flags\n\n\n\n\n\nIf you already had a project folder and wanted to initialize it in place, you could first cd into it and then run:\nuv init .\n\n\n\nIf you are curious about the other project templates and flags that uv supports, take a look at:\nuv init --help\nNow move into the new project directory and inspect its contents:\ncd gecs-uv\nls -a\n./\n../\n.git/\n.gitignore\n.python-version\nREADME.md\nmain.py\npyproject.toml\nuv init also initializes a Git repository by default, so you do not need to run git init yourself afterward.\nAt this point there is still no .venv and no uv.lock. Those appear when uv actually has to resolve and install an environment.\nuv also created a .python-version file for us. That file pins the default Python version for this project.",
+    "objectID": "lessons/setting-up.html#starship",
+    "href": "lessons/setting-up.html#starship",
+    "title": "Setting Up",
+    "section": "Starship",
+    "text": "Starship\nStarship is by far the most widely used shell prompt. It is a customizable prompt that controls how your terminal looks when you type a command. It is pretty and versatile.\n\nTo install Starship open VS Code terminal by selecting View &gt; Terminal from the menu bar, or by pressing the Ctrl/Cmd+` keyboard shortcut. A terminal window will open at the bottom. Then type:\ncurl -sS https://starship.rs/install.sh | sh\nNext, you will need to tell the terminal to start Starship every time you open a new terminal. This is similar to how Windows or macOS asks you if you want to run a program every time you start your computer.\nWindows/Ubuntu users must execute in their terminal the following:\necho 'eval \"$(starship init bash)\"' &gt;&gt; ~/.bashrc\nmacOS users have a very similar command:\necho 'eval \"$(starship init zsh)\"' &gt;&gt; ~/.zshrc\nAfter you restart the terminal, close it and open a new one, you should see the change in how it looks like. You can explore all the different looks you can access with Starship here.",
     "crumbs": [
-      "Virtual Environments"
+      "Setting Up"
     ]
   },
   {
-    "objectID": "lessons/virtual-environments.html#the-project-manifest",
-    "href": "lessons/virtual-environments.html#the-project-manifest",
-    "title": "Virtual Environments",
-    "section": "The project manifest",
-    "text": "The project manifest\nLet’s inspect the main project file:\ncat pyproject.toml\n[project]\nname = \"gecs-uv\"\nversion = \"0.1.0\"\ndescription = \"Add your description here\"\nreadme = \"README.md\"\nrequires-python = \"&gt;=3.13\"\ndependencies = []\nAnd if you inspect .python-version:\ncat .python-version\n3.13\nThe most important fields here are:\n\n[project]: metadata about the project as a whole\nrequires-python: which Python versions the project supports\ndependencies: which Python packages belong in the project\n.python-version: the default Python version uv should use for this project\n\n\n\n\n\n\n\nNoteTOML files\n\n\n\n\n\npyproject.toml uses the TOML format. The name stands for Tom’s Obvious, Minimal Language, after Tom Preston-Werner, one of the creators of the format.\nTOML became popular because it is much easier for humans to read and edit than many older configuration formats. Python’s packaging ecosystem now uses it heavily, so you will keep seeing .toml files in modern projects.",
+    "objectID": "lessons/setting-up.html#setup-and-installation-guides",
+    "href": "lessons/setting-up.html#setup-and-installation-guides",
+    "title": "Setting Up",
+    "section": "Setup and installation guides",
+    "text": "Setup and installation guides\n\nHow to Install Ubuntu on Windows (Step-by-Step Guide for Beginners) by Subha Mondal\nWindows Subsystem for Linux Documentation",
     "crumbs": [
-      "Virtual Environments"
+      "Setting Up"
     ]
   },
   {
-    "objectID": "lessons/virtual-environments.html#edit-the-description",
-    "href": "lessons/virtual-environments.html#edit-the-description",
-    "title": "Virtual Environments",
-    "section": "Edit the description",
-    "text": "Edit the description\nRight now the project description is still the placeholder text. Let’s fix that.\nOpen the file in VS Code:\ncode pyproject.toml\nIf the code command is not available in your terminal, you can also open pyproject.toml directly from the VS Code Explorer.\nReplace the description line with something meaningful, for example:\ndescription = \"A small reproducible project managed with uv\"\nYour pyproject.toml should now look like this:\n[project]\nname = \"gecs-uv\"\nversion = \"0.1.0\"\ndescription = \"A small reproducible project managed with uv\"\nreadme = \"README.md\"\nrequires-python = \"&gt;=3.13\"\ndependencies = []",
+    "objectID": "lessons/setting-up.html#tools-and-platforms",
+    "href": "lessons/setting-up.html#tools-and-platforms",
+    "title": "Setting Up",
+    "section": "Tools and platforms",
+    "text": "Tools and platforms\n\nVisual Studio Code\n\nVisual Studio Code Official Website\nVS Code WSL Extension Guide\nVS Code Remote WSL Documentation\nVS Code Terminal Getting Started\n\n\n\nPackage Managers\n\nuv Documentation\nuv Installation Guide\n\n\n\nShell Customization\n\nStarship Shell Prompt\nStarship Presets",
     "crumbs": [
-      "Virtual Environments"
+      "Setting Up"
     ]
   },
   {
-    "objectID": "lessons/virtual-environments.html#version-control-from-the-start",
-    "href": "lessons/virtual-environments.html#version-control-from-the-start",
-    "title": "Virtual Environments",
-    "section": "Version control from the start",
-    "text": "Version control from the start\nBecause uv init already initialized Git for us, we can start tracking changes immediately:\ngit status --short\nYou should see the newly created files as untracked. Add them and make the first commit:\ngit add .\ngit commit -m \"Initialize uv project\"\nThis is a good habit. Instead of waiting until the very end, we will keep committing as the environment changes.",
-    "crumbs": [
-      "Virtual Environments"
-    ]
-  },
-  {
-    "objectID": "lessons/virtual-environments.html#create-the-environment",
-    "href": "lessons/virtual-environments.html#create-the-environment",
-    "title": "Virtual Environments",
-    "section": "Create the environment",
-    "text": "Create the environment\nNow let’s ask uv to create the environment explicitly:\nuv sync\nThis command resolves the project’s dependencies, creates the virtual environment, and makes sure the installed packages match the lock file.\nCheck the directory again:\nls -a\n./\n../\n.git/\n.gitignore\n.python-version\n.venv/\nREADME.md\nmain.py\npyproject.toml\nuv.lock\nTwo important things appeared:\n\n.venv/: this is the virtual environment itself. It contains the Python executable, installed package files, and all the other moving parts that make the environment run. This is the meat of the environment.\nuv.lock: this is the lock file. It is like taking a snapshot of your environment’s package versions at this moment in time.\n\nWhen someone else clones your repository and runs uv sync, uv uses that snapshot to rebuild the environment as closely as possible.\nLet’s also confirm that the starter program runs:\nuv run main.py\nHello from gecs-uv!\nSince uv.lock is now part of the project state, commit that change too:\ngit add uv.lock\ngit commit -m \"lock initial environment\"",
-    "crumbs": [
-      "Virtual Environments"
-    ]
-  },
-  {
-    "objectID": "lessons/virtual-environments.html#activate-the-environment",
-    "href": "lessons/virtual-environments.html#activate-the-environment",
-    "title": "Virtual Environments",
-    "section": "Activate the environment",
-    "text": "Activate the environment\nSometimes it is still convenient to activate the environment directly, for example if you want to run several commands in a row without prefixing each one with uv run.\nFirst make sure the environment is up to date:\nuv sync\nThen activate it:\nsource .venv/bin/activate\nYour shell prompt will usually change and show something like (.venv) at the beginning. You can now run project tools directly:\npython\nTo leave the environment, run:\ndeactivate",
-    "crumbs": [
-      "Virtual Environments"
-    ]
-  },
-  {
-    "objectID": "lessons/virtual-environments.html#add-packages",
-    "href": "lessons/virtual-environments.html#add-packages",
-    "title": "Virtual Environments",
-    "section": "Add packages",
-    "text": "Add packages\nBefore we move on to marimo, let’s install the packages we want available in this project:\nuv add numpy matplotlib\nuv updates both pyproject.toml and uv.lock, then installs the packages into .venv.\nCommit those dependency changes:\ngit add pyproject.toml uv.lock\ngit commit -m \"add plotting dependencies\"\nTo view the installed dependency tree, use:\nuv tree\nThis is often more helpful than a flat package list because it shows which packages depend on which other packages.\nIf you want to inspect the dependency graph in a platform-independent way, use:\nuv tree --universal\nThis is another reproducibility tool: one project manifest, one lock file, and one dependency graph that uv can recreate consistently across machines.\n\n\n\n\n\n\nTipPlatform-specific dependencies\n\n\n\n\n\nuv records a universal lock file and supports platform-specific dependencies through standard Python environment markers.\nFor example, if you needed a package only on Windows, you could write:\nuv add \"pywin32; sys_platform == 'win32'\"\nIf that changed your project’s dependency set, you would again commit the updated pyproject.toml and uv.lock.",
-    "crumbs": [
-      "Virtual Environments"
-    ]
-  },
-  {
-    "objectID": "lessons/virtual-environments.html#marimo",
-    "href": "lessons/virtual-environments.html#marimo",
-    "title": "Virtual Environments",
-    "section": "marimo",
-    "text": "marimo\n\n\n\nmarimo vs Jupyter\n\n\nFor data analysis, Jupyter notebooks have been the default for a long time. In this course, we will use marimo instead.\nFor this course, marimo has a few advantages:\n\nit is reactive, so dependent cells stay in sync\nit avoids a lot of hidden state problems that make notebooks hard to reproduce\nmarimo notebooks are stored as plain .py files, which makes them much friendlier to Git\n\nThat last point is especially important: you can use Git to track changes in a marimo notebook just like any other Python file.\nLet’s add marimo to the project:\nuv add marimo\nand check the dependency tree again:\nuv tree\nFinally, commit the changes to the project:\ngit add pyproject.toml uv.lock\ngit commit -m \"add marimo\"",
-    "crumbs": [
-      "Virtual Environments"
-    ]
-  },
-  {
-    "objectID": "lessons/virtual-environments.html#running-commands-without-activation",
-    "href": "lessons/virtual-environments.html#running-commands-without-activation",
-    "title": "Virtual Environments",
-    "section": "Running commands without activation",
-    "text": "Running commands without activation\nOne of the nicest parts of uv is that you usually do not need to activate the environment manually. Instead, run commands through uv run.\nFirst, activate the environment\nsource .venv/bin/activate\nNow, we can explore marimo’s built-in plotting tutorial:\nmarimo tutorial plots\nThis will open a browser window with the tutorial. To run the tutorial, press Play button in the bottom right corner or press Ctrl/Cmd+ Shift + R to run all cells.\nOnce you are done, you can exit the tutorial and deactivate the environment by presing Red cross button (Shutdown) in the top-right corner of the browser page or Ctrl/Cmd + C in the terminal.",
-    "crumbs": [
-      "Virtual Environments"
-    ]
-  },
-  {
-    "objectID": "lessons/virtual-environments.html#global-tools",
-    "href": "lessons/virtual-environments.html#global-tools",
-    "title": "Virtual Environments",
-    "section": "Global tools",
-    "text": "Global tools\nuv can also install command-line tools into isolated environments and expose them on your PATH.\nFor example, to install bat, a nicer version of cat, run:\nuv tool install bat\nIf this is the first tool you install, uv may suggest adding its tool directory to your PATH. If needed, follow that suggestion with:\nuv tool update-shell\nTo list globally installed tools:\nuv tool list\nTo remove the tool again:\nuv tool uninstall bat\nThese tools are isolated from your project environments, which keeps your system utilities separate from your project dependencies.",
-    "crumbs": [
-      "Virtual Environments"
-    ]
-  },
-  {
-    "objectID": "lessons/virtual-environments.html#sandbox-with-uvx",
-    "href": "lessons/virtual-environments.html#sandbox-with-uvx",
-    "title": "Virtual Environments",
-    "section": "Sandbox with uvx",
-    "text": "Sandbox with uvx\nSometimes you do not want to create or grow a full project environment. You might just want to try a tool quickly in an isolated sandbox.\nThat is what uvx is for. It runs a command from a package in a temporary environment without adding that package to your project’s dependencies.\nLet’s introduce another tool by Astral called Ruff. Ruff is a fast Python linter that can help you find and fix code issues. Linter are special tools that analyze your code for potential errors, style violations, and other issues. If you want to lint the current project with Ruff without installing Ruff into the project environment. You can run:\nuvx ruff check .\n\n\n\n\n\n\nTipNeed extra isolation?\n\n\n\n\n\nIf you want an extra-isolated throwaway environment that does not interact with already installed packages, you can also use:\nuvx --isolated ruff check .\n\n\n\nLess serious but more fun.\nuvx pycowsay hello\nor try some classic games from freegames pacakage:\nuvx freegames play snake\nThis command will download the freegames package, run the snake game, and then remove the package again when you exit the game.\nFor the list of available games, run:\nuvx freegames list\nor check the freegames documentation.\nThis is handy when you just want to explore a tool, run a one-off check, or try something quickly without making your project environment bigger.\nOnce you are done playing, to deactivate the lessson’s environment, run:\ndeactivate",
-    "crumbs": [
-      "Virtual Environments"
-    ]
-  },
-  {
-    "objectID": "lessons/virtual-environments.html#the-book-project",
-    "href": "lessons/virtual-environments.html#the-book-project",
-    "title": "Virtual Environments",
-    "section": "The book project",
-    "text": "The book project\nThroughout this lesson, we built a uv project from scratch. If you’d like to see a complete example project, you can access it on GitHub at https://github.com/igorsdub/gecs-venv.\nTo use this example project on your machine:\ncd ~\ngit clone https://github.com/igorsdub/gecs-venv.git\ncd gecs-venv\nThen follow the instructions in the README.md file to set up the project.",
-    "crumbs": [
-      "Virtual Environments"
-    ]
-  },
-  {
-    "objectID": "lessons/virtual-environments.html#your-turn",
-    "href": "lessons/virtual-environments.html#your-turn",
-    "title": "Virtual Environments",
-    "section": "Your turn",
-    "text": "Your turn\nNow it’s your turn! Create a new project with uv init, add some dependencies, and run a small Python program. Make sure to commit your changes as you go.\nThen publish your project to GitHub and share the link with your classmates and see if they can recreate your environment with uv sync.\nLet them to modify your code and create pull requests. You can then review their changes and merge them into your project.\nPull the changes from your classmates, run uv sync to update your environment with their changes, and see if everything still works as expected.",
-    "crumbs": [
-      "Virtual Environments"
-    ]
-  },
-  {
-    "objectID": "lessons/virtual-environments.html#recap",
-    "href": "lessons/virtual-environments.html#recap",
-    "title": "Virtual Environments",
-    "section": "Recap",
-    "text": "Recap\nIn this lesson, you:\n\ninstalled uv\nused uv init to start a project\nedited pyproject.toml\ncreated .venv and uv.lock with uv sync\nlearned that uv.lock is a snapshot of package versions\nadded marimo, numpy, and matplotlib\nran the marimo plotting tutorial\ncommitted the project in small steps as it evolved\n\nThat is already enough to build a small, reproducible Python project that others can recreate on their own machines.",
-    "crumbs": [
-      "Virtual Environments"
-    ]
-  },
-  {
-    "objectID": "lessons/virtual-environments.html#further-reading",
-    "href": "lessons/virtual-environments.html#further-reading",
-    "title": "Virtual Environments",
-    "section": "Further reading",
-    "text": "Further reading\n\nuv documentation\nInstallation guide\nCreating projects with uv\nmarimo gallery",
-    "crumbs": [
-      "Virtual Environments"
-    ]
-  },
-  {
-    "objectID": "lessons/vs-code.html",
-    "href": "lessons/vs-code.html",
-    "title": "VS Code",
+    "objectID": "lessons/project-structure.html",
+    "href": "lessons/project-structure.html",
+    "title": "Project Structure",
     "section": "",
-    "text": "In this tutorial you will get familiar with the functionality of VS Code. A powerful IDE as it is, VS Code has a lot of features. However, even if you know the basics it will get you a long way. This tutorial is heavily based on the official Tutorial: Get started with Visual Studio Code.\n\nStart Up\n\nOpen Visual Studio Code. Then open a folder with File &gt; Open Folder… or Cmd+O. On Linux/WSL users, you will first have to start a remote WSL session. With the WSL extension installed, you will see a new Status bar item at the far left.\n\nThe Remote Status bar item can quickly show you in which context VS Code is running (local or remote) and clicking on the item will bring up the WSL extension commands.\n\n\n\n\n\n\n\nAlternatively, WSL users can open their Linux terminal, create a directory in their Linux distribution file system, change their directory and open it in VS Code WSL remote with code .:\ncd\nmkdir vscode101\ncd vscode101\ncode .\nNote the . in front of code. You need to tell VS Code what you are opening. Later, we will see that you can open any file or directory with this command.\n\n\n\nSelect New Folder and create a new folder named vscode101. Then select Select Folder (Open on macOS) to open the folder in VS Code.\nOn the Workspace Trust dialog, select Yes, I trust the authors to enable all features in the workspace. If you do not see this dialog, then you probably have already opened this area before.\n\n\n\n\n\n\nWorkspace Trust lets you decide whether code in your project folder can be executed by VS Code. When you download code from the internet, you should first review it to make sure it’s safe to run. Get more info about Workspace Trust.\n\n\n\n\n\n\nYou should now see the Explorer view on the left, showing the name of the folder. Alongside terminal commands like ls, tree, and other commands, you can use the Explorer view to view and manage the files and folders in your workspace.\n\n\n\n\n\n\n\nWhen you open a folder in VS Code, VS Code can restore the UI state for that folder, such as the open files, the active view, and the layout of the editor. You can also configure settings that only apply to that folder, or define debug configurations. Get more info about workspaces.\n\n\n\n\nVS Code now considers the folder you’ve opened a workspace. You can also use code . in your terminal, especially for WSL users, to start a WSL remote session.\n\n\nInterface and Layout\n\nSidebar\nCode editor\nTerminal\n\n\n\nSettings\n\nAutosave\nWord wrap\nTheme customization\nGECS profile configuration\n\n\n\nSearching and Replacing\n\nSearch in a file\nSearch across files\n\n\n\nShortcuts\n\nLayout: Cmd+B for the Sidebar, Ctrl+` for the Terminal\nCode editor: Cmd+D for selecting the expression, Opt+Up/Down to move a line, Opt+Shift+F to format a document\nGeneral: Cmd+Shift+P for the Command Palette, Cmd+P for the File and Open Editors search bar\n\n\n\nReferences\n\nhttps://code.visualstudio.com/docs/getstarted/getting-started\nhttps://code.visualstudio.com/docs/remote/wsl-tutorial",
+    "text": "If you get hit by a bus today, will your colleagues be able to run your project tomorrow?\nThe Bus Factor\nSoftware projects can be messy. Imagine joining a lab and receiving a project folder left by a previous postdoc. It might look something like this:\nOK, probably not as extreme. Still, newcomers to data science often put everything into a single folder: data, scripts, figures, and tables. That can work if you only need to run an analysis once and no one else will ever need to repeat it, including yourself. That is rarely true in research, whether in academia or industry. In this lesson, we will look at practical ways to help colleagues—and your future self—understand and run a project. Let’s get organized.",
     "crumbs": [
-      "VS Code"
+      "Project Structure"
+    ]
+  },
+  {
+    "objectID": "lessons/project-structure.html#learning-objectives",
+    "href": "lessons/project-structure.html#learning-objectives",
+    "title": "Project Structure",
+    "section": "Learning objectives",
+    "text": "Learning objectives\nBy the end of this lesson, you should be able to:\n\nrecognize common problems in an unstructured project;\norganize files into meaningful directories;\napply consistent, portable naming conventions; and\ncreate a README that enables someone else to run the project.",
+    "crumbs": [
+      "Project Structure"
+    ]
+  },
+  {
+    "objectID": "lessons/project-structure.html#messy-project",
+    "href": "lessons/project-structure.html#messy-project",
+    "title": "Project Structure",
+    "section": "Messy project",
+    "text": "Messy project\n.\n├── analysis.sh\n├── book1.txt\n├── book102.txt\n├── book2.txt\n├── book3.txt\n├── book5.txt\n├── book55.txt\n├── book79.txt\n├── plot.sh\n└── summary.sh\nFirst, try to make sense of what the project is about and how to use it.\nOpen the messy project on GitHub\nYou can inspect the files directly on GitHub, or clone the repository if you want to run the scripts locally:\ngit clone https://github.com/igorsdub/gecs-messy-project.git\nOpen the cloned directory with VS Code (Cmd+O). Before reading the explanation below, inspect the files and try to answer these questions:\n\nWhat is this project trying to do?\nWhich files are inputs, scripts, and outputs?\nIn what order should the scripts be run?\nWhat would make this project difficult for a colleague to continue?",
+    "crumbs": [
+      "Project Structure"
+    ]
+  },
+  {
+    "objectID": "lessons/project-structure.html#structured-project",
+    "href": "lessons/project-structure.html#structured-project",
+    "title": "Project Structure",
+    "section": "Structured project",
+    "text": "Structured project\n.\n├── books                           &lt;-- Text files of books used for analysis\n│   ├── dracula.txt\n│   ├── frankenstein.txt\n│   ├── jane_eyre.txt\n│   ├── moby_dick.txt\n│   ├── README.md                   &lt;-- README for the book files\n│   ├── sense_and_sensibility.txt\n│   ├── sherlock_holmes.txt\n│   └── time_machine.txt\n├── counts                          &lt;-- Word count .tsv data\n├── figures                         &lt;-- Bar plots of word counts\n├── README.md                       &lt;-- README for the project\n└── scripts                         &lt;-- Scripts directory\n    ├── count_words.sh              &lt;-- Counts occurrences of a word in books\n    ├── get_summary.sh              &lt;-- Gets a book summary\n    └── plot_counts.sh              &lt;-- Plots count histogram in terminal window\nThis is the same project, but organized.\nOpen the structured project on GitHub\nCompare this repository with the messy version. Look for improvements in directory names, file names, documentation, and the separation of inputs, scripts, and generated outputs. If you cloned the messy project, clone this repository as well and open both directories in VS Code.",
+    "crumbs": [
+      "Project Structure"
+    ]
+  },
+  {
+    "objectID": "lessons/project-structure.html#directory-structure",
+    "href": "lessons/project-structure.html#directory-structure",
+    "title": "Project Structure",
+    "section": "Directory structure",
+    "text": "Directory structure\nHere is a minimal directory structure adapted from bvreede on GitHub. More elaborate structures exist, but this is a useful starting point for many projects.\nThe directory structure distinguishes three kinds of folders:\n\nRead-only (RO): not edited by either code or researcher. For example, raw_data should preserve the original data exactly as received.\nHuman-writeable (HW): edited by the researcher only, such as scripts and project documentation.\nProject-generated (PG): folders generated when running the code. These folders can be deleted or emptied and should be completely reconstituted when the project is run again.\n\n.\n├── README.md          &lt;- Description and how to run the project (HW)\n├── requirements.txt   &lt;- Python package requirements (HW)\n├── environment.yml    &lt;- Optional environment specification (HW)\n├── processed_data     &lt;- Processed data ready for analysis (PG)\n├── raw_data           &lt;- The original, immutable data dump (RO)\n├── scripts            &lt;- Scripts for this project (HW)\n└── results            &lt;- Project results: tables, figures, etc. (PG)",
+    "crumbs": [
+      "Project Structure"
+    ]
+  },
+  {
+    "objectID": "lessons/project-structure.html#naming-files-and-directories",
+    "href": "lessons/project-structure.html#naming-files-and-directories",
+    "title": "Project Structure",
+    "section": "Naming files and directories",
+    "text": "Naming files and directories\nJenny Bryan from The Carpentries has shared online slides showing how to name—and how not to name—files and directories. The presentation can be summarized as follows.\n\nKISS (Keep It Simple Stupid): use simple and consistent file names\n\nMachine readable\nHuman readable\nOrders well in a directory\n\nAvoid special characters and spaces where possible, especially if files will be used across different operating systems or tools.\nUse YYYY-MM-DD date format\nUse - to delimit words and _ to delimit sections\n\ni.e. 2019-01-19_my-data.csv\n\nLeft-pad numbers\n\ni.e. 01_my-data.csv vs 1_my-data.csv\nIf you don’t, file orders get messed up when you get to double-digits\n\n\nYou can use a variation of the above as long as you are consistent within a project.",
+    "crumbs": [
+      "Project Structure"
+    ]
+  },
+  {
+    "objectID": "lessons/project-structure.html#readme",
+    "href": "lessons/project-structure.html#readme",
+    "title": "Project Structure",
+    "section": "README",
+    "text": "README\nREADME, or README.md since Markdown is widely used for project documentation, is one of the most important files in your project. It enables new users—and your future self—to understand and run the project without a considerable struggle.\nA useful README should explain:\n\nthe purpose of the project;\nhow to install or activate the required environment;\nhow to run the analysis;\nwhat inputs the project expects;\nwhere it writes tables, figures, and other outputs; and\nwho created or maintains the project.\n\nMake a README does a great job in conveying this message in a single webpage. Check it out!",
+    "crumbs": [
+      "Project Structure"
+    ]
+  },
+  {
+    "objectID": "lessons/project-structure.html#project-template",
+    "href": "lessons/project-structure.html#project-template",
+    "title": "Project Structure",
+    "section": "Project template",
+    "text": "Project template\nInstead of creating project directory with all its supplementary files, software developers came up with a boilerplate structure that can be created in minutes. Cookie Cutter Data Science project is one of those. Although, the default template is aimed towards machine learning / data science researchers, you can find a simpler one shared by other researchers online. Another option, to create your own template that suits your needs.\n\nAlso, check out their Opinions page for project management tips. For reproducibility, record the software environment in a file such as requirements.txt, environment.yml, or a lockfile such as uv.lock or poetry.lock.",
+    "crumbs": [
+      "Project Structure"
+    ]
+  },
+  {
+    "objectID": "lessons/project-structure.html#project-organization-checklist",
+    "href": "lessons/project-structure.html#project-organization-checklist",
+    "title": "Project Structure",
+    "section": "Project organization checklist",
+    "text": "Project organization checklist\nBefore sharing a project, check that:\n\nthe README explains the purpose, setup, inputs, commands, and outputs;\nraw data is clearly separated from processed data and is not overwritten;\nscripts are grouped in one place and can be run in a clear order;\ngenerated results can be deleted and recreated; and\nfile and directory names are simple, descriptive, and consistent.",
+    "crumbs": [
+      "Project Structure"
     ]
   },
   {
@@ -944,10 +944,94 @@
     ]
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
+    "objectID": "lessons/testing.html",
+    "href": "lessons/testing.html",
+    "title": "Testing",
     "section": "",
-    "text": "flowchart LR\n  A[Data] --&gt; B[Clean] --&gt; C[Analysis] --&gt; D[Results] --&gt; E[Figures] --&gt; F[Paper]\n\n  subgraph GECS[GECS]\n    direction LR\n    B\n    C\n    D\n    E\n  end\n\n  style GECS fill:#eef,stroke:#66f,stroke-width:2px\n\n\n\n\n\n\n\n\n\n\n\n\nflowchart LR\n  subgraph GECS\n    direction TB\n    B1 --&gt; B2 --&gt; B3 --&gt; B1\n  end\n  A(Raw Data) --&gt; GECS --&gt; Z(Paper)"
+    "text": "Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.\nBrian W. Kernighan\nTesting gives us a way to check that code behaves as expected. In this lesson we will use pytest with the gecs-venv book-analysis project.\nThe basic development loop is:\n%%{init: {\"flowchart\": {\"curve\": \"basis\"}, \"theme\": \"base\", \"themeVariables\": {\"primaryColor\": \"#dbeafe\", \"primaryBorderColor\": \"#2563eb\", \"lineColor\": \"#64748b\", \"fontFamily\": \"Arial\"}}}%%\nflowchart LR\n    A(Write code):::step edge1@==&gt; B(Run tests):::step\n    edge1@{ animate: slow }\n    B edge2@==&gt; C(Read failures):::step\n    edge2@{ animate: slow }\n    C edge3@==&gt; D(Fix code):::step\n    edge3@{ animate: slow }\n    D edge4@==&gt; A\n    edge4@{ animate: slow }\n    classDef step fill:#cfe9e5,stroke:transparent,color:#000\nIt is a big expectation to adhere to this loop, but it is a good goal. Let’s start by writing a few tests for the existing code."
+  },
+  {
+    "objectID": "lessons/testing.html#work-on-a-branch",
+    "href": "lessons/testing.html#work-on-a-branch",
+    "title": "Testing",
+    "section": "Work on a branch",
+    "text": "Work on a branch\nBefore changing the project, create a new Git branch called testing. A branch gives you a separate line of work, so you can experiment without changing the existing code on main.\nFirst, clone the example repository and open it in VS Code:\ngit clone https://github.com/igorsdub/gecs-venv\ncd gecs-venv\ncode .\nIn VS Code:\n\nOpen the Source Control panel.\nSelect the current branch name, usually main, in the Source Control view or status bar.\nChoose Create new branch.\nEnter testing and press Enter.\n\nYou can also open the Command Palette with Cmd/Ctrl+Shift+P, type Git: Create Branch, and select that command. Enter testing when VS Code asks for the branch name.\n\n\n\n\n\n\nNoteThe terminal alternative\n\n\n\n\n\nFrom the gecs-venv directory, run:\ngit switch -c testing\ngit branch --show-current\nThe second command should print testing."
+  },
+  {
+    "objectID": "lessons/testing.html#set-up-the-project",
+    "href": "lessons/testing.html#set-up-the-project",
+    "title": "Testing",
+    "section": "Set up the project",
+    "text": "Set up the project\nThe project contains books, analysis scripts, and generated word-count files and plots:\nbooks/                         input novels\nscripts/count_words.py         extracts and counts words\nscripts/get_summary.py         prints book metadata\nscripts/plot_counts.py         creates plots\nscripts/run_book_analysis.py   combines the workflow\nThe project uses a virtual environment to isolate its dependencies. We will use the uv command from the gecs-venv project to manage the environment. If you have not intialized the environment yet, run:\nuv sync\nRight now, we only missing pytest for testing. Add pytest for development:\nuv add --dev pytest\nuv run runs commands inside the project environment:\nuv run pytest"
+  },
+  {
+    "objectID": "lessons/testing.html#unit-tests",
+    "href": "lessons/testing.html#unit-tests",
+    "title": "Testing",
+    "section": "Unit tests",
+    "text": "Unit tests\nA unit test checks one small piece of behavior on its own. Each script in this project contains one or more units, such as a function that extracts words or writes a count file. We can write several tests for each unit.\nThe first units we will test are:\n\nextract_words() in count_words.py;\ncount_word_frequencies() in count_words.py; and\nparse_counts_file() in plot_counts.py.\n\nThe relationship looks like this:\n\n\n\n\n\n%%{init: {\"flowchart\": {\"curve\": \"basis\"}, \"theme\": \"base\", \"themeVariables\": {\"primaryColor\": \"#ecfdf5\", \"primaryBorderColor\": \"#16a34a\", \"lineColor\": \"#64748b\", \"fontFamily\": \"Arial\"}}}%%\nflowchart LR\n    C[count_words.py]:::unit --&gt; T[tests/test_count_words.py]:::unit\n    P[plot_counts.py]:::unit --&gt; U[tests/test_plot_counts.py]:::unit\n    T --&gt; T1[lowercasing]:::unit\n    T --&gt; T2[punctuation]:::unit\n    T --&gt; T3[file output]:::unit\n    U --&gt; U1[count-file parsing]:::unit\n    classDef unit fill:#e6dff1,stroke:transparent,color:#000"
+  },
+  {
+    "objectID": "lessons/testing.html#test-driven-development",
+    "href": "lessons/testing.html#test-driven-development",
+    "title": "Testing",
+    "section": "Test-driven development",
+    "text": "Test-driven development\n\nSmash first, analyze later.\nDating advice from a CERN researcher\n\nThis is also a useful way to think about test-driven development, or TDD. Before writing the implementation, write a test that describes the behavior you want. The test should fail at first because the code does not do that thing yet. Then write the smallest amount of code needed to make the test pass.\nwrite a failing test → write code → run the test → improve the code\nFor example, the current regular expression does not support accented words. Write a test for the behavior we would like to add:\nfrom scripts.count_words import extract_words\n\n\ndef test_extract_words_handles_accented_words():\n    assert extract_words(\"café\") == [\"café\"]\nAdd this test to tests/test_count_words.py and run it. It should fail because the current pattern only matches ASCII letters and numbers. That failure is useful: it tells us what behavior to implement. After the test passes, we can improve the implementation while keeping the test as a safety net.\nNow return to the simpler tests below. They describe behavior that the current implementation already supports."
+  },
+  {
+    "objectID": "lessons/testing.html#write-a-first-test",
+    "href": "lessons/testing.html#write-a-first-test",
+    "title": "Testing",
+    "section": "Write a first test",
+    "text": "Write a first test\nThe extract_words() function turns text into lowercase words:\nimport re\n\n\ndef extract_words(text):\n    return re.findall(r\"\\b[a-z0-9]+\\b\", text.lower())\nCreate a tests directory and a file named tests/test_count_words.py:\nfrom scripts.count_words import extract_words\n\n\ndef test_extract_words_lowercases_text():\n    result = extract_words(\"The QUICK brown fox\")\n\n    assert result == [\"the\", \"quick\", \"brown\", \"fox\"]\nThe regular expression explains what the function accepts:\n\ntext.lower() makes matching case-insensitive;\n\\b identifies word boundaries; and\n[a-z0-9]+ matches one or more ASCII letters or numbers.\n\nBecause the pattern uses ASCII letters, it does not currently handle accented words such as café. That is a limitation we can document or fix later.\nThe assert statement compares the result with the behavior we expect. Pytest finds files named test_*.py and functions named test_* automatically.\nRun the test from the repository root:\nuv run pytest\nTry changing one expected word and run the test again. The failure report shows where the test failed and compares the actual and expected values. Restore the correct expectation afterward."
+  },
+  {
+    "objectID": "lessons/testing.html#test-file-output-safely",
+    "href": "lessons/testing.html#test-file-output-safely",
+    "title": "Testing",
+    "section": "Test file output safely",
+    "text": "Test file output safely\ncount_word_frequencies() reads a book and writes a count file. A test should not overwrite a real file in counts/. The pytest tmp_path fixture gives each test a fresh temporary directory.\nAdd this test to tests/test_count_words.py:\nfrom scripts.count_words import count_word_frequencies\n\n\ndef test_count_word_frequencies_writes_sorted_counts(tmp_path):\n    input_path = tmp_path / \"example.txt\"\n    output_path = tmp_path / \"example.tsv\"\n    input_path.write_text(\"Red blue red!\", encoding=\"utf-8\")\n\n    count_word_frequencies(input_path, output_path)\n\n    assert output_path.read_text(encoding=\"utf-8\") == (\n        \"      2 red\\n\"\n        \"      1 blue\\n\"\n    )\nThe test creates its own input file, runs the function, and checks the generated output. The temporary directory is removed after the test."
+  },
+  {
+    "objectID": "lessons/testing.html#test-several-examples",
+    "href": "lessons/testing.html#test-several-examples",
+    "title": "Testing",
+    "section": "Test several examples",
+    "text": "Test several examples\nSometimes one function should work for several different inputs. Instead of writing a separate test function for every example, give pytest a list of examples:\nimport pytest\n\nfrom scripts.count_words import extract_words\n\n\n@pytest.mark.parametrize(\n    (\"text\", \"expected\"),\n    [\n        (\"HELLO\", [\"hello\"]),\n        (\"one, two\", [\"one\", \"two\"]),\n        (\"version 3\", [\"version\", \"3\"]),\n    ],\n)\ndef test_extract_words_examples(text, expected):\n    assert extract_words(text) == expected\nPytest runs this test once for each row. If one example fails, pytest identifies that example in the failure report."
+  },
+  {
+    "objectID": "lessons/testing.html#test-another-unit",
+    "href": "lessons/testing.html#test-another-unit",
+    "title": "Testing",
+    "section": "Test another unit",
+    "text": "Test another unit\nThe plotting script has a parse_counts_file() function that reads a count file. It can be tested without opening a browser or creating a plot.\nCreate tests/test_plot_counts.py:\nfrom scripts.plot_counts import parse_counts_file\n\n\ndef test_parse_counts_file_reads_counts(tmp_path):\n    counts_path = tmp_path / \"counts.tsv\"\n    counts_path.write_text(\n        \"      4 the\\n\"\n        \"      2 book\\n\",\n        encoding=\"utf-8\",\n    )\n\n    words, counts = parse_counts_file(counts_path)\n\n    assert words == [\"the\", \"book\"]\n    assert counts == [4, 2]\nNow we have several tests for individual units. They are fast and help us find which part of the project has a problem."
+  },
+  {
+    "objectID": "lessons/testing.html#integration-testing",
+    "href": "lessons/testing.html#integration-testing",
+    "title": "Testing",
+    "section": "Integration testing",
+    "text": "Integration testing\nUnit tests check individual pieces. For example, count_word_frequencies() is tested as part of count_words.py, and parse_counts_file() is tested as part of plot_counts.py.\nAn integration test checks that the two scripts work together: the counting script creates a count file, and the plotting script uses that file to create a figure.\n\n\n\n\n\n%%{init: {\"flowchart\": {\"curve\": \"basis\"}, \"theme\": \"base\", \"themeVariables\": {\"primaryColor\": \"#fff7ed\", \"primaryBorderColor\": \"#ea580c\", \"lineColor\": \"#64748b\", \"fontFamily\": \"Arial\"}}}%%\nflowchart LR\n    U1[Unit test 1]:::part --&gt; S1\n    U2[Unit test 2]:::part --&gt; S2\n    U1 ~~~ U2\n    subgraph integration[Integration test]\n        S1[Script 1]:::part --&gt;|Script 1 output| S2[Script 2]:::part\n    end\n    classDef part fill:#f2d6c9,stroke:transparent,color:#000\n\n\n\n\n\n\n\n\n\n\n\n\nThe diagram is misaligning the unit tests but I could not fix it 😢.\n\n\n\nThe unit tests sit outside the Integration test box and check one script each. The Integration test evaluates both scripts together, with the output of Script 1 becoming the input to Script 2.\nCreate tests/test_workflow.py:\nfrom scripts.count_words import count_word_frequencies\nfrom scripts.plot_counts import plot_word_counts\n\n\ndef test_small_book_workflow(tmp_path):\n    book_path = tmp_path / \"mini_book.txt\"\n    counts_path = tmp_path / \"counts\" / \"mini_book.tsv\"\n    figure_path = tmp_path / \"figures\" / \"mini_book.html\"\n    book_path.write_text(\"The cat sat. The cat slept.\", encoding=\"utf-8\")\n    counts_path.parent.mkdir()\n    figure_path.parent.mkdir()\n\n    count_word_frequencies(book_path, counts_path)\n    plot_word_counts(counts_path, figure_path)\n\n    assert counts_path.exists()\n    assert figure_path.exists()\n    assert figure_path.with_suffix(\".png\").exists()\nThis test follows the same path as the real workflow: book → count file → plot. It calls plot_word_counts(), which uses Altair for the interactive HTML chart and vl-convert-python for PNG export, so it does not require a locally available browser."
+  },
+  {
+    "objectID": "lessons/testing.html#run-the-tests",
+    "href": "lessons/testing.html#run-the-tests",
+    "title": "Testing",
+    "section": "Run the tests",
+    "text": "Run the tests\nUse these commands from the repository root:\n# Run every test\nuv run pytest\n\n# Run one test file\nuv run pytest tests/test_count_words.py\n\n# Run tests with a matching name\nuv run pytest -k extract_words\n\n# Show each test name\nuv run pytest -v\nThe important habit is to run the tests whenever you change the code. Tests make the development loop visible and help protect the behavior of the analysis.\nWhen all tests pass, the testing branch is ready to be committed and reviewed."
+  },
+  {
+    "objectID": "lessons/testing.html#wrapping-up",
+    "href": "lessons/testing.html#wrapping-up",
+    "title": "Testing",
+    "section": "Wrapping up",
+    "text": "Wrapping up\nSave the work on the testing branch and ask for it to be reviewed before it becomes part of main.\nIn VS Code:\n\nOpen Source Control and review the changes.\nEnter a message such as Add pytest examples and select Commit.\nSelect Publish Branch or Sync Changes to push testing to GitHub.\nOpen the repository on GitHub and choose Compare & pull request.\nSet main as the base branch and testing as the compare branch.\nDescribe the lesson changes, then create the pull request.\n\nThe final shape of the work is:\n\n\n\n\n\n%%{init: {\"theme\": \"base\", \"themeVariables\": {\"git0\": \"#2563eb\", \"git1\": \"#db2777\", \"gitBranchLabel0\": \"#ffffff\", \"gitBranchLabel1\": \"#ffffff\", \"commitLabelColor\": \"#111827\", \"commitLabelBackground\": \"#f8fafc\"}}}%%\ngitGraph LR:\n    commit id: \"start\" tag: \"main\"\n    commit id: \"setup\"\n    branch testing\n    commit id: \"tests\"\n    commit id: \"fixes\" type: HIGHLIGHT\n    checkout main\n    commit id: \"main-work\"\n    merge testing\n\n\n\n\n\n\nThe pink testing branch contains the new work. The pull request reviews that work, and the merge commit brings it back into the blue main branch."
+  },
+  {
+    "objectID": "lessons/testing.html#summary",
+    "href": "lessons/testing.html#summary",
+    "title": "Testing",
+    "section": "Summary",
+    "text": "Summary\nPytest tests are ordinary Python functions with names beginning with test_. Assertions describe expected behavior, tmp_path provides safe temporary files, and one test can be run with several examples.\nFor this project, begin by testing individual functions. Then add an integration test to check that count_words.py creates the count-file output consumed by plot_counts.py."
   }
 ]
