@@ -245,65 +245,48 @@ Now we have several tests for individual units. They are fast and help us find w
 
 ## Integration testing
 
-Unit tests check individual pieces. An integration test checks that two or more pieces work together.
+Unit tests check individual pieces. For example, `count_word_frequencies()` is tested as part of `count_words.py`, and `parse_counts_file()` is tested as part of `plot_counts.py`.
 
-In this project, a small book is passed to `count_word_frequencies()`. That creates a count file, which is then read by `parse_counts_file()`:
+An integration test checks that the two scripts work together: the counting script creates a count file, and the plotting script uses that file to create a figure.
 
 ```{mermaid}
 %%{init: {"flowchart": {"curve": "basis"}, "theme": "base", "themeVariables": {"primaryColor": "#fff7ed", "primaryBorderColor": "#ea580c", "lineColor": "#64748b", "fontFamily": "Arial"}}}%%
 flowchart LR
-    subgraph units[Unit tests]
-        direction TB
-        U1["count_word_frequencies()"]:::part
-        U2["parse_counts_file()"]:::part
-    end
+    U1[Unit test 1]:::part --> S1
+    U2[Unit test 2]:::part --> S2
+    U1 ~~~ U2
     subgraph integration[Integration test]
-        direction TB
-        I[small-book workflow]:::part
-        R[combined result]:::part
-        I --> R
+        S1[Script 1]:::part -->|Script 1 output| S2[Script 2]:::part
     end
-    U1 --> I
-    U2 --> I
     classDef part fill:#f2d6c9,stroke:transparent,color:#000
 ```
 
-An integration test brings tested pieces together. Here, the integration test uses the two units `count_word_frequencies()` and `parse_counts_file()` and checks the combined result.
-
-In this project, a small book is passed to `count_word_frequencies()`. That creates a count file, which is then read by `parse_counts_file()`:
-
-```{mermaid}
-%%{init: {"flowchart": {"curve": "basis"}, "theme": "base", "themeVariables": {"primaryColor": "#fff7ed", "primaryBorderColor": "#ea580c", "lineColor": "#64748b", "fontFamily": "Arial"}}}%%
-flowchart TD
-    A[Mini book]:::step --> B["count_word_frequencies()"]:::step
-    B --> C[Count file]:::step
-    C --> D["parse_counts_file()"]:::step
-    D --> E[Words and counts]:::step
-    classDef step fill:#f2d6c9,stroke:transparent,color:#000
-```
+The unit tests sit outside the Integration test box and check one script each. The Integration test evaluates both scripts together, with the output of Script 1 becoming the input to Script 2.
 
 Create `tests/test_workflow.py`:
 
 ``` python
 from scripts.count_words import count_word_frequencies
-from scripts.plot_counts import parse_counts_file
+from scripts.plot_counts import plot_word_counts
 
 
 def test_small_book_workflow(tmp_path):
     book_path = tmp_path / "mini_book.txt"
     counts_path = tmp_path / "counts" / "mini_book.tsv"
+    figure_path = tmp_path / "figures" / "mini_book.html"
     book_path.write_text("The cat sat. The cat slept.", encoding="utf-8")
     counts_path.parent.mkdir()
+    figure_path.parent.mkdir()
 
     count_word_frequencies(book_path, counts_path)
-    words, counts = parse_counts_file(counts_path)
+    plot_word_counts(counts_path, figure_path)
 
     assert counts_path.exists()
-    assert words[:2] == ["cat", "the"]
-    assert counts[:2] == [2, 2]
+    assert figure_path.exists()
+    assert figure_path.with_suffix(".png").exists()
 ```
 
-The two words with a count of `2` are ordered alphabetically, so `cat` comes before `the`. This test does not call `plot_word_counts()`, because PNG export requires Selenium and a local browser. That browser-dependent step can be checked separately.
+This test follows the same path as the real workflow: book → count file → plot. It calls `plot_word_counts()`, so it requires Selenium and a locally available browser for PNG export.
 
 ## Test-driven development
 
