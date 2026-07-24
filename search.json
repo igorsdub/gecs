@@ -948,90 +948,129 @@
     "href": "lessons/testing.html",
     "title": "Testing",
     "section": "",
-    "text": "Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.\nBrian W. Kernighan\nTesting gives us a way to check that code behaves as expected. In this lesson we will use pytest with the gecs-venv book-analysis project.\nThe basic development loop is:\n%%{init: {\"flowchart\": {\"curve\": \"basis\"}, \"theme\": \"base\", \"themeVariables\": {\"primaryColor\": \"#dbeafe\", \"primaryBorderColor\": \"#2563eb\", \"lineColor\": \"#64748b\", \"fontFamily\": \"Arial\"}}}%%\nflowchart LR\n    A(Write code):::step edge1@==&gt; B(Run tests):::step\n    edge1@{ animate: slow }\n    B edge2@==&gt; C(Read failures):::step\n    edge2@{ animate: slow }\n    C edge3@==&gt; D(Fix code):::step\n    edge3@{ animate: slow }\n    D edge4@==&gt; A\n    edge4@{ animate: slow }\n    classDef step fill:#cfe9e5,stroke:transparent,color:#000\nIt is a big expectation to adhere to this loop, but it is a good goal. Let’s start by writing a few tests for the existing code."
+    "text": "Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.\nBrian W. Kernighan\nTesting gives us a way to check that code behaves as expected. In this lesson we will use pytest with the gecs-venv book-analysis project.\nThe basic development loop is:\n%%{init: {\"flowchart\": {\"curve\": \"basis\"}, \"theme\": \"base\", \"themeVariables\": {\"primaryColor\": \"#dbeafe\", \"primaryBorderColor\": \"#2563eb\", \"lineColor\": \"#64748b\", \"fontFamily\": \"Arial\"}}}%%\nflowchart LR\n    A(Write code):::step edge1@==&gt; B(Run tests):::step\n    edge1@{ animate: slow }\n    B edge2@==&gt; C(Read failures):::step\n    edge2@{ animate: slow }\n    C edge3@==&gt; D(Fix code):::step\n    edge3@{ animate: slow }\n    D edge4@==&gt; A\n    edge4@{ animate: slow }\n    classDef step fill:#cfe9e5,stroke:transparent,color:#000\nIt is a big expectation to adhere to this loop, but it is a good goal. Let’s start by writing a few tests for the existing code.",
+    "crumbs": [
+      "Testing"
+    ]
   },
   {
     "objectID": "lessons/testing.html#work-on-a-branch",
     "href": "lessons/testing.html#work-on-a-branch",
     "title": "Testing",
     "section": "Work on a branch",
-    "text": "Work on a branch\nBefore changing the project, create a new Git branch called testing. A branch gives you a separate line of work, so you can experiment without changing the existing code on main.\nFirst, clone the example repository and open it in VS Code:\ngit clone https://github.com/igorsdub/gecs-venv\ncd gecs-venv\ncode .\nIn VS Code:\n\nOpen the Source Control panel.\nSelect the current branch name, usually main, in the Source Control view or status bar.\nChoose Create new branch.\nEnter testing and press Enter.\n\nYou can also open the Command Palette with Cmd/Ctrl+Shift+P, type Git: Create Branch, and select that command. Enter testing when VS Code asks for the branch name.\n\n\n\n\n\n\nNoteThe terminal alternative\n\n\n\n\n\nFrom the gecs-venv directory, run:\ngit switch -c testing\ngit branch --show-current\nThe second command should print testing."
+    "text": "Work on a branch\nBefore changing the project, create a new Git branch called testing. A branch gives you a separate line of work, so you can experiment without changing the existing code on main.\nFirst, clone the example repository and open it in VS Code:\ngit clone https://github.com/igorsdub/gecs-venv\ncd gecs-venv\ncode .\nIn VS Code:\n\nOpen the Source Control panel.\nSelect the current branch name, usually main, in the Source Control view or status bar.\nChoose Create new branch.\nEnter testing and press Enter.\n\nYou can also open the Command Palette with Cmd/Ctrl+Shift+P, type Git: Create Branch, and select that command. Enter testing when VS Code asks for the branch name.\n\n\n\n\n\n\nNoteThe terminal alternative\n\n\n\n\n\nFrom the gecs-venv directory, run:\ngit switch -c testing\ngit branch --show-current\nThe second command should print testing.",
+    "crumbs": [
+      "Testing"
+    ]
   },
   {
     "objectID": "lessons/testing.html#set-up-the-project",
     "href": "lessons/testing.html#set-up-the-project",
     "title": "Testing",
     "section": "Set up the project",
-    "text": "Set up the project\nThe project contains books, analysis scripts, and generated word-count files and plots:\nbooks/                         input novels\nscripts/count_words.py         extracts and counts words\nscripts/get_summary.py         prints book metadata\nscripts/plot_counts.py         creates plots\nscripts/run_book_analysis.py   combines the workflow\nThe project uses a virtual environment to isolate its dependencies. We will use the uv command from the gecs-venv project to manage the environment. If you have not intialized the environment yet, run:\nuv sync\nRight now, we only missing pytest for testing. Add pytest for development:\nuv add --dev pytest\nuv run runs commands inside the project environment:\nuv run pytest"
+    "text": "Set up the project\nThe project contains books, analysis scripts, and generated word-count files and plots:\nbooks/                         input novels\nscripts/count_words.py         extracts and counts words\nscripts/get_summary.py         prints book metadata\nscripts/plot_counts.py         creates plots\nscripts/run_book_analysis.py   combines the workflow\nThe project uses a virtual environment to isolate its dependencies. We will use the uv command from the gecs-venv project to manage the environment. If you have not intialized the environment yet, run:\nuv sync\nRight now, we only missing pytest for testing. Add pytest for development:\nuv add --dev pytest\nuv run runs commands inside the project environment:\nuv run pytest",
+    "crumbs": [
+      "Testing"
+    ]
   },
   {
     "objectID": "lessons/testing.html#unit-tests",
     "href": "lessons/testing.html#unit-tests",
     "title": "Testing",
     "section": "Unit tests",
-    "text": "Unit tests\nA unit test checks one small piece of behavior on its own. Each script in this project contains one or more units, such as a function that extracts words or writes a count file. We can write several tests for each unit.\nThe first units we will test are:\n\nextract_words() in count_words.py;\ncount_word_frequencies() in count_words.py; and\nparse_counts_file() in plot_counts.py.\n\nThe relationship looks like this:\n\n\n\n\n\n%%{init: {\"flowchart\": {\"curve\": \"basis\"}, \"theme\": \"base\", \"themeVariables\": {\"primaryColor\": \"#ecfdf5\", \"primaryBorderColor\": \"#16a34a\", \"lineColor\": \"#64748b\", \"fontFamily\": \"Arial\"}}}%%\nflowchart LR\n    C[count_words.py]:::unit --&gt; T[tests/test_count_words.py]:::unit\n    P[plot_counts.py]:::unit --&gt; U[tests/test_plot_counts.py]:::unit\n    T --&gt; T1[lowercasing]:::unit\n    T --&gt; T2[punctuation]:::unit\n    T --&gt; T3[file output]:::unit\n    U --&gt; U1[count-file parsing]:::unit\n    classDef unit fill:#e6dff1,stroke:transparent,color:#000"
+    "text": "Unit tests\nA unit test checks one small piece of behavior on its own. Each script in this project contains one or more units, such as a function that extracts words or writes a count file. We can write several tests for each unit.\nThe first units we will test are:\n\nextract_words() in count_words.py;\ncount_word_frequencies() in count_words.py; and\nparse_counts_file() in plot_counts.py.\n\nThe relationship looks like this:\n\n\n\n\n\n%%{init: {\"flowchart\": {\"curve\": \"basis\"}, \"theme\": \"base\", \"themeVariables\": {\"primaryColor\": \"#ecfdf5\", \"primaryBorderColor\": \"#16a34a\", \"lineColor\": \"#64748b\", \"fontFamily\": \"Arial\"}}}%%\nflowchart LR\n    C[count_words.py]:::unit --&gt; T[tests/test_count_words.py]:::unit\n    P[plot_counts.py]:::unit --&gt; U[tests/test_plot_counts.py]:::unit\n    T --&gt; T1[lowercasing]:::unit\n    T --&gt; T2[punctuation]:::unit\n    T --&gt; T3[file output]:::unit\n    U --&gt; U1[count-file parsing]:::unit\n    classDef unit fill:#e6dff1,stroke:transparent,color:#000",
+    "crumbs": [
+      "Testing"
+    ]
   },
   {
     "objectID": "lessons/testing.html#test-driven-development",
     "href": "lessons/testing.html#test-driven-development",
     "title": "Testing",
     "section": "Test-driven development",
-    "text": "Test-driven development\n\nSmash first, analyze later.\nDating advice from a CERN researcher\n\nThis is also a useful way to think about test-driven development, or TDD. Before writing the implementation, write a test that describes the behavior you want. The test should fail at first because the code does not do that thing yet. Then write the smallest amount of code needed to make the test pass.\nwrite a failing test → write code → run the test → improve the code\nFor example, the current regular expression does not support accented words. Write a test for the behavior we would like to add:\nfrom scripts.count_words import extract_words\n\n\ndef test_extract_words_handles_accented_words():\n    assert extract_words(\"café\") == [\"café\"]\nAdd this test to tests/test_count_words.py and run it. It should fail because the current pattern only matches ASCII letters and numbers. That failure is useful: it tells us what behavior to implement. After the test passes, we can improve the implementation while keeping the test as a safety net.\nNow return to the simpler tests below. They describe behavior that the current implementation already supports."
+    "text": "Test-driven development\n\nSmash first, analyze later.\nDating advice from a CERN researcher\n\nThis is also a useful way to think about test-driven development, or TDD. Before writing the implementation, write a test that describes the behavior you want. The test should fail at first because the code does not do that thing yet. Then write the smallest amount of code needed to make the test pass.\nwrite a failing test → write code → run the test → improve the code\nFor example, the current regular expression does not support accented words. Write a test for the behavior we would like to add:\nfrom scripts.count_words import extract_words\n\n\ndef test_extract_words_handles_accented_words():\n    assert extract_words(\"café\") == [\"café\"]\nAdd this test to tests/test_count_words.py and run it. It should fail because the current pattern only matches ASCII letters and numbers. That failure is useful: it tells us what behavior to implement. After the test passes, we can improve the implementation while keeping the test as a safety net.\nNow return to the simpler tests below. They describe behavior that the current implementation already supports.",
+    "crumbs": [
+      "Testing"
+    ]
   },
   {
     "objectID": "lessons/testing.html#write-a-first-test",
     "href": "lessons/testing.html#write-a-first-test",
     "title": "Testing",
     "section": "Write a first test",
-    "text": "Write a first test\nThe extract_words() function turns text into lowercase words:\nimport re\n\n\ndef extract_words(text):\n    return re.findall(r\"\\b[a-z0-9]+\\b\", text.lower())\nCreate a tests directory and a file named tests/test_count_words.py:\nfrom scripts.count_words import extract_words\n\n\ndef test_extract_words_lowercases_text():\n    result = extract_words(\"The QUICK brown fox\")\n\n    assert result == [\"the\", \"quick\", \"brown\", \"fox\"]\nThe regular expression explains what the function accepts:\n\ntext.lower() makes matching case-insensitive;\n\\b identifies word boundaries; and\n[a-z0-9]+ matches one or more ASCII letters or numbers.\n\nBecause the pattern uses ASCII letters, it does not currently handle accented words such as café. That is a limitation we can document or fix later.\nThe assert statement compares the result with the behavior we expect. Pytest finds files named test_*.py and functions named test_* automatically.\nRun the test from the repository root:\nuv run pytest\nTry changing one expected word and run the test again. The failure report shows where the test failed and compares the actual and expected values. Restore the correct expectation afterward."
+    "text": "Write a first test\nThe extract_words() function turns text into lowercase words:\nimport re\n\n\ndef extract_words(text):\n    return re.findall(r\"\\b[a-z0-9]+\\b\", text.lower())\nCreate a tests directory and a file named tests/test_count_words.py:\nfrom scripts.count_words import extract_words\n\n\ndef test_extract_words_lowercases_text():\n    result = extract_words(\"The QUICK brown fox\")\n\n    assert result == [\"the\", \"quick\", \"brown\", \"fox\"]\nThe regular expression explains what the function accepts:\n\ntext.lower() makes matching case-insensitive;\n\\b identifies word boundaries; and\n[a-z0-9]+ matches one or more ASCII letters or numbers.\n\nBecause the pattern uses ASCII letters, it does not currently handle accented words such as café. That is a limitation we can document or fix later.\nThe assert statement compares the result with the behavior we expect. Pytest finds files named test_*.py and functions named test_* automatically.\nRun the test from the repository root:\nuv run pytest\nTry changing one expected word and run the test again. The failure report shows where the test failed and compares the actual and expected values. Restore the correct expectation afterward.",
+    "crumbs": [
+      "Testing"
+    ]
   },
   {
     "objectID": "lessons/testing.html#test-file-output-safely",
     "href": "lessons/testing.html#test-file-output-safely",
     "title": "Testing",
     "section": "Test file output safely",
-    "text": "Test file output safely\ncount_word_frequencies() reads a book and writes a count file. A test should not overwrite a real file in counts/. The pytest tmp_path fixture gives each test a fresh temporary directory.\nAdd this test to tests/test_count_words.py:\nfrom scripts.count_words import count_word_frequencies\n\n\ndef test_count_word_frequencies_writes_sorted_counts(tmp_path):\n    input_path = tmp_path / \"example.txt\"\n    output_path = tmp_path / \"example.tsv\"\n    input_path.write_text(\"Red blue red!\", encoding=\"utf-8\")\n\n    count_word_frequencies(input_path, output_path)\n\n    assert output_path.read_text(encoding=\"utf-8\") == (\n        \"      2 red\\n\"\n        \"      1 blue\\n\"\n    )\nThe test creates its own input file, runs the function, and checks the generated output. The temporary directory is removed after the test."
+    "text": "Test file output safely\ncount_word_frequencies() reads a book and writes a count file. A test should not overwrite a real file in counts/. The pytest tmp_path fixture gives each test a fresh temporary directory.\nAdd this test to tests/test_count_words.py:\nfrom scripts.count_words import count_word_frequencies\n\n\ndef test_count_word_frequencies_writes_sorted_counts(tmp_path):\n    input_path = tmp_path / \"example.txt\"\n    output_path = tmp_path / \"example.tsv\"\n    input_path.write_text(\"Red blue red!\", encoding=\"utf-8\")\n\n    count_word_frequencies(input_path, output_path)\n\n    assert output_path.read_text(encoding=\"utf-8\") == (\n        \"      2 red\\n\"\n        \"      1 blue\\n\"\n    )\nThe test creates its own input file, runs the function, and checks the generated output. The temporary directory is removed after the test.",
+    "crumbs": [
+      "Testing"
+    ]
   },
   {
     "objectID": "lessons/testing.html#test-several-examples",
     "href": "lessons/testing.html#test-several-examples",
     "title": "Testing",
     "section": "Test several examples",
-    "text": "Test several examples\nSometimes one function should work for several different inputs. Instead of writing a separate test function for every example, give pytest a list of examples:\nimport pytest\n\nfrom scripts.count_words import extract_words\n\n\n@pytest.mark.parametrize(\n    (\"text\", \"expected\"),\n    [\n        (\"HELLO\", [\"hello\"]),\n        (\"one, two\", [\"one\", \"two\"]),\n        (\"version 3\", [\"version\", \"3\"]),\n    ],\n)\ndef test_extract_words_examples(text, expected):\n    assert extract_words(text) == expected\nPytest runs this test once for each row. If one example fails, pytest identifies that example in the failure report."
+    "text": "Test several examples\nSometimes one function should work for several different inputs. Instead of writing a separate test function for every example, give pytest a list of examples:\nimport pytest\n\nfrom scripts.count_words import extract_words\n\n\n@pytest.mark.parametrize(\n    (\"text\", \"expected\"),\n    [\n        (\"HELLO\", [\"hello\"]),\n        (\"one, two\", [\"one\", \"two\"]),\n        (\"version 3\", [\"version\", \"3\"]),\n    ],\n)\ndef test_extract_words_examples(text, expected):\n    assert extract_words(text) == expected\nPytest runs this test once for each row. If one example fails, pytest identifies that example in the failure report.",
+    "crumbs": [
+      "Testing"
+    ]
   },
   {
     "objectID": "lessons/testing.html#test-another-unit",
     "href": "lessons/testing.html#test-another-unit",
     "title": "Testing",
     "section": "Test another unit",
-    "text": "Test another unit\nThe plotting script has a parse_counts_file() function that reads a count file. It can be tested without opening a browser or creating a plot.\nCreate tests/test_plot_counts.py:\nfrom scripts.plot_counts import parse_counts_file\n\n\ndef test_parse_counts_file_reads_counts(tmp_path):\n    counts_path = tmp_path / \"counts.tsv\"\n    counts_path.write_text(\n        \"      4 the\\n\"\n        \"      2 book\\n\",\n        encoding=\"utf-8\",\n    )\n\n    words, counts = parse_counts_file(counts_path)\n\n    assert words == [\"the\", \"book\"]\n    assert counts == [4, 2]\nNow we have several tests for individual units. They are fast and help us find which part of the project has a problem."
+    "text": "Test another unit\nThe plotting script has a parse_counts_file() function that reads a count file. It can be tested without opening a browser or creating a plot.\nCreate tests/test_plot_counts.py:\nfrom scripts.plot_counts import parse_counts_file\n\n\ndef test_parse_counts_file_reads_counts(tmp_path):\n    counts_path = tmp_path / \"counts.tsv\"\n    counts_path.write_text(\n        \"      4 the\\n\"\n        \"      2 book\\n\",\n        encoding=\"utf-8\",\n    )\n\n    words, counts = parse_counts_file(counts_path)\n\n    assert words == [\"the\", \"book\"]\n    assert counts == [4, 2]\nNow we have several tests for individual units. They are fast and help us find which part of the project has a problem.",
+    "crumbs": [
+      "Testing"
+    ]
   },
   {
     "objectID": "lessons/testing.html#integration-testing",
     "href": "lessons/testing.html#integration-testing",
     "title": "Testing",
     "section": "Integration testing",
-    "text": "Integration testing\nUnit tests check individual pieces. For example, count_word_frequencies() is tested as part of count_words.py, and parse_counts_file() is tested as part of plot_counts.py.\nAn integration test checks that the two scripts work together: the counting script creates a count file, and the plotting script uses that file to create a figure.\n\n\n\n\n\n%%{init: {\"flowchart\": {\"curve\": \"basis\"}, \"theme\": \"base\", \"themeVariables\": {\"primaryColor\": \"#fff7ed\", \"primaryBorderColor\": \"#ea580c\", \"lineColor\": \"#64748b\", \"fontFamily\": \"Arial\"}}}%%\nflowchart LR\n    U1[Unit test 1]:::part --&gt; S1\n    U2[Unit test 2]:::part --&gt; S2\n    U1 ~~~ U2\n    subgraph integration[Integration test]\n        S1[Script 1]:::part --&gt;|Script 1 output| S2[Script 2]:::part\n    end\n    classDef part fill:#f2d6c9,stroke:transparent,color:#000\n\n\n\n\n\n\n\n\n\n\n\n\nThe diagram is misaligning the unit tests but I could not fix it 😢.\n\n\n\nThe unit tests sit outside the Integration test box and check one script each. The Integration test evaluates both scripts together, with the output of Script 1 becoming the input to Script 2.\nCreate tests/test_workflow.py:\nfrom scripts.count_words import count_word_frequencies\nfrom scripts.plot_counts import plot_word_counts\n\n\ndef test_small_book_workflow(tmp_path):\n    book_path = tmp_path / \"mini_book.txt\"\n    counts_path = tmp_path / \"counts\" / \"mini_book.tsv\"\n    figure_path = tmp_path / \"figures\" / \"mini_book.html\"\n    book_path.write_text(\"The cat sat. The cat slept.\", encoding=\"utf-8\")\n    counts_path.parent.mkdir()\n    figure_path.parent.mkdir()\n\n    count_word_frequencies(book_path, counts_path)\n    plot_word_counts(counts_path, figure_path)\n\n    assert counts_path.exists()\n    assert figure_path.exists()\n    assert figure_path.with_suffix(\".png\").exists()\nThis test follows the same path as the real workflow: book → count file → plot. It calls plot_word_counts(), which uses Altair for the interactive HTML chart and vl-convert-python for PNG export, so it does not require a locally available browser."
+    "text": "Integration testing\nUnit tests check individual pieces. For example, count_word_frequencies() is tested as part of count_words.py, and parse_counts_file() is tested as part of plot_counts.py.\nAn integration test checks that the two scripts work together: the counting script creates a count file, and the plotting script uses that file to create a figure.\n\n\n\n\n\n%%{init: {\"flowchart\": {\"curve\": \"basis\"}, \"theme\": \"base\", \"themeVariables\": {\"primaryColor\": \"#fff7ed\", \"primaryBorderColor\": \"#ea580c\", \"lineColor\": \"#64748b\", \"fontFamily\": \"Arial\"}}}%%\nflowchart LR\n    U1[Unit test 1]:::part --&gt; S1\n    U2[Unit test 2]:::part --&gt; S2\n    U1 ~~~ U2\n    subgraph integration[Integration test]\n        S1[Script 1]:::part --&gt;|Script 1 output| S2[Script 2]:::part\n    end\n    classDef part fill:#f2d6c9,stroke:transparent,color:#000\n\n\n\n\n\n\n\n\n\n\n\n\nThe diagram is misaligning the unit tests but I could not fix it 😢.\n\n\n\nThe unit tests sit outside the Integration test box and check one script each. The Integration test evaluates both scripts together, with the output of Script 1 becoming the input to Script 2.\nCreate tests/test_workflow.py:\nfrom scripts.count_words import count_word_frequencies\nfrom scripts.plot_counts import plot_word_counts\n\n\ndef test_small_book_workflow(tmp_path):\n    book_path = tmp_path / \"mini_book.txt\"\n    counts_path = tmp_path / \"counts\" / \"mini_book.tsv\"\n    figure_path = tmp_path / \"figures\" / \"mini_book.html\"\n    book_path.write_text(\"The cat sat. The cat slept.\", encoding=\"utf-8\")\n    counts_path.parent.mkdir()\n    figure_path.parent.mkdir()\n\n    count_word_frequencies(book_path, counts_path)\n    plot_word_counts(counts_path, figure_path)\n\n    assert counts_path.exists()\n    assert figure_path.exists()\n    assert figure_path.with_suffix(\".png\").exists()\nThis test follows the same path as the real workflow: book → count file → plot. It calls plot_word_counts(), which uses Altair for the interactive HTML chart and vl-convert-python for PNG export, so it does not require a locally available browser.",
+    "crumbs": [
+      "Testing"
+    ]
   },
   {
     "objectID": "lessons/testing.html#run-the-tests",
     "href": "lessons/testing.html#run-the-tests",
     "title": "Testing",
     "section": "Run the tests",
-    "text": "Run the tests\nUse these commands from the repository root:\n# Run every test\nuv run pytest\n\n# Run one test file\nuv run pytest tests/test_count_words.py\n\n# Run tests with a matching name\nuv run pytest -k extract_words\n\n# Show each test name\nuv run pytest -v\nThe important habit is to run the tests whenever you change the code. Tests make the development loop visible and help protect the behavior of the analysis.\nWhen all tests pass, the testing branch is ready to be committed and reviewed."
+    "text": "Run the tests\nUse these commands from the repository root:\n# Run every test\nuv run pytest\n\n# Run one test file\nuv run pytest tests/test_count_words.py\n\n# Run tests with a matching name\nuv run pytest -k extract_words\n\n# Show each test name\nuv run pytest -v\nThe important habit is to run the tests whenever you change the code. Tests make the development loop visible and help protect the behavior of the analysis.\nWhen all tests pass, the testing branch is ready to be committed and reviewed.",
+    "crumbs": [
+      "Testing"
+    ]
   },
   {
     "objectID": "lessons/testing.html#wrapping-up",
     "href": "lessons/testing.html#wrapping-up",
     "title": "Testing",
     "section": "Wrapping up",
-    "text": "Wrapping up\nSave the work on the testing branch and ask for it to be reviewed before it becomes part of main.\nIn VS Code:\n\nOpen Source Control and review the changes.\nEnter a message such as Add pytest examples and select Commit.\nSelect Publish Branch or Sync Changes to push testing to GitHub.\nOpen the repository on GitHub and choose Compare & pull request.\nSet main as the base branch and testing as the compare branch.\nDescribe the lesson changes, then create the pull request.\n\nThe final shape of the work is:\n\n\n\n\n\n%%{init: {\"theme\": \"base\", \"themeVariables\": {\"git0\": \"#2563eb\", \"git1\": \"#db2777\", \"gitBranchLabel0\": \"#ffffff\", \"gitBranchLabel1\": \"#ffffff\", \"commitLabelColor\": \"#111827\", \"commitLabelBackground\": \"#f8fafc\"}}}%%\ngitGraph LR:\n    commit id: \"start\" tag: \"main\"\n    commit id: \"setup\"\n    branch testing\n    commit id: \"tests\"\n    commit id: \"fixes\" type: HIGHLIGHT\n    checkout main\n    commit id: \"main-work\"\n    merge testing\n\n\n\n\n\n\nThe pink testing branch contains the new work. The pull request reviews that work, and the merge commit brings it back into the blue main branch."
+    "text": "Wrapping up\nSave the work on the testing branch and ask for it to be reviewed before it becomes part of main.\nIn VS Code:\n\nOpen Source Control and review the changes.\nEnter a message such as Add pytest examples and select Commit.\nSelect Publish Branch or Sync Changes to push testing to GitHub.\nOpen the repository on GitHub and choose Compare & pull request.\nSet main as the base branch and testing as the compare branch.\nDescribe the lesson changes, then create the pull request.\n\nThe final shape of the work is:\n\n\n\n\n\n%%{init: {\"theme\": \"base\", \"themeVariables\": {\"git0\": \"#2563eb\", \"git1\": \"#db2777\", \"gitBranchLabel0\": \"#ffffff\", \"gitBranchLabel1\": \"#ffffff\", \"commitLabelColor\": \"#111827\", \"commitLabelBackground\": \"#f8fafc\"}}}%%\ngitGraph LR:\n    commit id: \"start\" tag: \"main\"\n    commit id: \"setup\"\n    branch testing\n    commit id: \"tests\"\n    commit id: \"fixes\" type: HIGHLIGHT\n    checkout main\n    commit id: \"main-work\"\n    merge testing\n\n\n\n\n\n\nThe pink testing branch contains the new work. The pull request reviews that work, and the merge commit brings it back into the blue main branch.",
+    "crumbs": [
+      "Testing"
+    ]
   },
   {
     "objectID": "lessons/testing.html#summary",
     "href": "lessons/testing.html#summary",
     "title": "Testing",
     "section": "Summary",
-    "text": "Summary\nPytest tests are ordinary Python functions with names beginning with test_. Assertions describe expected behavior, tmp_path provides safe temporary files, and one test can be run with several examples.\nFor this project, begin by testing individual functions. Then add an integration test to check that count_words.py creates the count-file output consumed by plot_counts.py."
+    "text": "Summary\nPytest tests are ordinary Python functions with names beginning with test_. Assertions describe expected behavior, tmp_path provides safe temporary files, and one test can be run with several examples.\nFor this project, begin by testing individual functions. Then add an integration test to check that count_words.py creates the count-file output consumed by plot_counts.py.",
+    "crumbs": [
+      "Testing"
+    ]
   }
 ]
