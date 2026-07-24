@@ -7,15 +7,24 @@ format: html
 >
 > [The Bus Factor](https://en.wikipedia.org/wiki/Bus_factor)
 
-Software projects can be messy. Imagine you join a lab and your supervisor hands a project folder left by a previous postdoc. It usually looks like this:
+Software projects can be messy. Imagine joining a lab and receiving a project folder left by a previous postdoc. It might look something like this:
 
 ![https://datacarpentry.github.io/rr-organization1/fig/files_messy_tidy.png](/images/paste-44.png)
 
-OK, probably not as extreme. Still, it is common for a newcomer to data science to put everything into a single folder: data, scripts, figures, tables. That can work if you only need to do analysis once and no one else will ever do it again, including yourself. That is far from truth in research be it academia or industry. In this tutorial we will see quick fixes you can do to help others and the future you to understand what does a project do. Let's get organized.
+OK, probably not as extreme. Still, newcomers to data science often put everything into a single folder: data, scripts, figures, and tables. That can work if you only need to run an analysis once and no one else will ever need to repeat it, including yourself. That is rarely true in research, whether in academia or industry. In this lesson, we will look at practical ways to help colleagues—and your future self—understand and run a project. Let’s get organized.
+
+## Learning objectives
+
+By the end of this lesson, you should be able to:
+
+- recognize common problems in an unstructured project;
+- organize files into meaningful directories;
+- apply consistent, portable naming conventions; and
+- create a README that enables someone else to run the project.
 
 # Lost Book Project
 
-We will look at two project structures: messy and structured - to see what works and what does not in short and long term projects.
+We will compare two versions of the same project—a messy version and a structured version—to see what works and what does not in the short and long term.
 
 ## Messy project
 
@@ -33,17 +42,22 @@ We will look at two project structures: messy and structured - to see what works
 └── summary.sh
 ```
 
-First, try to make sense what the project is about and how to use it.
+First, try to make sense of what the project is about and how to use it.
 
-[DOWNLOAD HERE](https://github.com/igorsdub/gecs-02-project_structure/archive/refs/heads/2025-02_messy-dir.zip)
+[Open the messy project on GitHub](https://github.com/igorsdub/gecs-messy-project)
 
-If you want to practice your terminal skills, you can unzip the file with `unzip` program:
+You can inspect the files directly on GitHub, or clone the repository if you want to run the scripts locally:
 
 ``` bash
-unzip gecs-02-project_structure-2025-02_messy-dir
+git clone https://github.com/igorsdub/gecs-messy-project.git
 ```
 
-Once unzipped, open the directory with VS Code (`Cmd+O`).
+Open the cloned directory with VS Code (`Cmd+O`). Before reading the explanation below, inspect the files and try to answer these questions:
+
+- What is this project trying to do?
+- Which files are inputs, scripts, and outputs?
+- In what order should the scripts be run?
+- What would make this project difficult for a colleague to continue?
 
 ## Structured project
 
@@ -62,35 +76,36 @@ Once unzipped, open the directory with VS Code (`Cmd+O`).
 ├── figures                         <-- Bar plots of word counts
 ├── README.md                       <-- README for the project
 └── scripts                         <-- Scripts directory
-    ├── count_words.sh              <-- Counts occurences of word in a books
+    ├── count_words.sh              <-- Counts occurrences of a word in books
     ├── get_summary.sh              <-- Gets a book summary
     └── plot_counts.sh              <-- Plots count histogram in terminal window
 ```
 
-This is the same project but organized.
+This is the same project, but organized.
 
-[DOWNLOAD HERE](https://github.com/igorsdub/gecs-02-project_structure/archive/refs/heads/main.zip)
+[Open the structured project on GitHub](https://github.com/igorsdub/gecs-project-structure)
 
-Once downloaded and unzipped, open the directory with VS Code.
+Compare this repository with the messy version. Look for improvements in directory names, file names, documentation, and the separation of inputs, scripts, and generated outputs. If you cloned the messy project, clone this repository as well and open both directories in VS Code.
 
 # Tips
 
 ## Directory structure
 
-Here is a minimal directory structure adapted from [bvreede on GitHub](https://github.com/bvreede/good-enough-project). There are larger.
+Here is a minimal directory structure adapted from [bvreede on GitHub](https://github.com/bvreede/good-enough-project). More elaborate structures exist, but this is a useful starting point for many projects.
 
 The directory structure distinguishes three kinds of folders:
 
--   Read-only (RO): not edited by either code or researcher
+-   Read-only (RO): not edited by either code or researcher. For example, `raw_data` should preserve the original data exactly as received.
 
--   Human-writeable (HW): edited by the researcher only.
+-   Human-writeable (HW): edited by the researcher only, such as scripts and project documentation.
 
--   Project-generated (PG): folders generated when running the code; these folders can be deleted or emptied and will be completely reconstituted as the project is run.
+-   Project-generated (PG): folders generated when running the code. These folders can be deleted or emptied and should be completely reconstituted when the project is run again.
 
 ``` text
 .
 ├── README.md          <- Description and how to run the project (HW)
-├── requirements.txt   <- System requirements for running the project (HW)
+├── requirements.txt   <- Python package requirements (HW)
+├── environment.yml    <- Optional environment specification (HW)
 ├── processed_data     <- Processed data ready for analysis (PG)
 ├── raw_data           <- The original, immutable data dump (RO)
 ├── scripts            <- Scripts for this project (HW)
@@ -99,7 +114,7 @@ The directory structure distinguishes three kinds of folders:
 
 ## Naming files and directories
 
-Jenny Bryan from The Carpentiries has shared [an online slides](https://speakerdeck.com/jennybc/how-to-name-files) to show how to and how to not name files and directories. The presentation can be summarized as follows.
+Jenny Bryan from [The Carpentries](https://carpentries.org/) has shared [online slides](https://speakerdeck.com/jennybc/how-to-name-files) showing how to name—and how not to name—files and directories. The presentation can be summarized as follows.
 
 -   KISS (*Keep It Simple Stupid*): use simple and consistent file names
 
@@ -109,7 +124,7 @@ Jenny Bryan from The Carpentiries has shared [an online slides](https://speakerd
 
     -   Orders well in a directory
 
--   No special characters and **no spaces**!
+-   Avoid special characters and spaces where possible, especially if files will be used across different operating systems or tools.
 
 -   Use YYYY-MM-DD date format
 
@@ -127,7 +142,16 @@ You can use a variation of the above as long as you are consistent within a proj
 
 ## README
 
-`README`, or `README.md` since [Markdown](https://en.wikipedia.org/wiki/Markdown) language is the standard now, is the most important file in your project. It grants the power to the new users to execute your project and, remember, your future self. Without it, almost no one will get through your project without a considerable struggle (again, including future you).
+`README`, or `README.md` since [Markdown](https://en.wikipedia.org/wiki/Markdown) is widely used for project documentation, is one of the most important files in your project. It enables new users—and your future self—to understand and run the project without a considerable struggle.
+
+A useful README should explain:
+
+- the purpose of the project;
+- how to install or activate the required environment;
+- how to run the analysis;
+- what inputs the project expects;
+- where it writes tables, figures, and other outputs; and
+- who created or maintains the project.
 
 [Make a README](https://www.makeareadme.com/) does a great job in conveying this message in a single webpage. Check it out!
 
@@ -137,7 +161,17 @@ Instead of creating project directory with all its supplementary files, software
 
 ![](/images/paste-2.gif)
 
-Also, check out their [Opinions page](https://cookiecutter-data-science.drivendata.org/opinions/) for project management tips.
+Also, check out their [Opinions page](https://cookiecutter-data-science.drivendata.org/opinions/) for project management tips. For reproducibility, record the software environment in a file such as `requirements.txt`, `environment.yml`, or a lockfile such as `uv.lock` or `poetry.lock`.
+
+## Project organization checklist
+
+Before sharing a project, check that:
+
+- the README explains the purpose, setup, inputs, commands, and outputs;
+- raw data is clearly separated from processed data and is not overwritten;
+- scripts are grouped in one place and can be run in a clear order;
+- generated results can be deleted and recreated; and
+- file and directory names are simple, descriptive, and consistent.
 
 # References
 
