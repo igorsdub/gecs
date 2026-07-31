@@ -29,8 +29,8 @@ website:
         href: lessons/virtual-environments.qmd
       - text: "Testing"
         href: lessons/testing.qmd
-      # - text: "Automation"
-      #   href: lessons/automation.qmd
+      - text: "Automation"
+        href: lessons/automation.qmd
       - text: "VS Code"
         href: lessons/vs-code.qmd
       # - text: "About"
@@ -47,4 +47,3 @@ format:
     mermaid:
       theme: neutral
     callout-appearance: simple
-
