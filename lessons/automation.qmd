@@ -27,7 +27,7 @@ We will first automate Dracula one file at a time. Only after that will we teach
 Clone the example project and install its locked dependencies:
 
 ```bash
-git clone https://github.com/igorsdub/gecs-make
+git clone https://github.com/igorsdub/gecs-make.git
 cd gecs-make
 uv sync
 ```
