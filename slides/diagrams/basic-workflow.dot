@@ -1,0 +1,11 @@
+digraph basic_workflow {
+  graph [rankdir=LR, bgcolor="transparent", pad="0.25", nodesep="0.8", ranksep="1.25"];
+  node [shape=box, style="rounded,filled", fontname="Arial", fontsize=22, margin="0.32,0.22", penwidth=2];
+  edge [color="#64748b", penwidth=2, arrowsize=0.9];
+
+  data [label="input data", fillcolor="#dbeafe", color="#2563eb"];
+  process [label="analysis step", fillcolor="#fef3c7", color="#b45309"];
+  result [label="saved result", fillcolor="#dcfce7", color="#16a34a"];
+
+  data -> process -> result;
+}

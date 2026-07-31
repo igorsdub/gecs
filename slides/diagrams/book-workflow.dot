@@ -1,0 +1,17 @@
+digraph book_workflow {
+  graph [rankdir=LR, bgcolor="transparent", pad="0.25", nodesep="0.8", ranksep="1.15"];
+  node [shape=box, style="rounded,filled", fontname="Arial", fontsize=20, margin="0.3,0.2", penwidth=2];
+  edge [color="#64748b", penwidth=2, arrowsize=0.85];
+
+  book [label="book .txt", fillcolor="#dbeafe", color="#2563eb"];
+  counts [label="count table .tsv", fillcolor="#dcfce7", color="#16a34a"];
+  figure [label="interactive figure .html", fillcolor="#dcfce7", color="#16a34a"];
+  count_script [label="count_words.py", fillcolor="#fef3c7", color="#b45309"];
+  plot_script [label="plot_counts.py", fillcolor="#fef3c7", color="#b45309"];
+
+  book -> counts -> figure;
+  counts -> count_script [style=dotted, dir=back, label="creates"];
+  figure -> plot_script [style=dotted, dir=back, label="creates"];
+  { rank=same; count_script; counts; }
+  { rank=same; plot_script; figure; }
+}

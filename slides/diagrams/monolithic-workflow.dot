@@ -1,0 +1,11 @@
+digraph monolithic_workflow {
+  graph [rankdir=LR, bgcolor="transparent", pad="0.25", nodesep="0.8", ranksep="1.1"];
+  node [shape=box, style="rounded,filled", fontname="Arial", fontsize=22, margin="0.32,0.22", penwidth=2];
+  edge [color="#64748b", penwidth=2, arrowsize=0.9];
+
+  data [label="initial data", fillcolor="#dbeafe", color="#2563eb"];
+  script [label="one big script: clean, preprocess, analyse, plot, save", fillcolor="#fef3c7", color="#b45309"];
+  result [label="final result", fillcolor="#dcfce7", color="#16a34a"];
+
+  data -> script -> result;
+}

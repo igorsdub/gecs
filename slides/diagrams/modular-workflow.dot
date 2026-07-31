@@ -1,0 +1,21 @@
+digraph modular_workflow {
+  graph [rankdir=LR, bgcolor="transparent", pad="0.25", nodesep="0.65", ranksep="1.0"];
+  node [shape=box, style="rounded,filled", fontname="Arial", fontsize=18, margin="0.28,0.18", penwidth=2];
+  edge [color="#64748b", penwidth=2, arrowsize=0.8];
+
+  raw [label="raw data", fillcolor="#dbeafe", color="#2563eb"];
+  cleaned [label="cleaned data", fillcolor="#dcfce7", color="#16a34a"];
+  analysis [label="analysis table", fillcolor="#dcfce7", color="#16a34a"];
+  plot [label="plot", fillcolor="#dcfce7", color="#16a34a"];
+  clean_script [label="clean.py", fillcolor="#fef3c7", color="#b45309"];
+  analyse_script [label="analyse.py", fillcolor="#fef3c7", color="#b45309"];
+  plot_script [label="plot.py", fillcolor="#fef3c7", color="#b45309"];
+
+  raw -> cleaned -> analysis -> plot;
+  cleaned -> clean_script [style=dotted, dir=back, label="creates"];
+  analysis -> analyse_script [style=dotted, dir=back, label="creates"];
+  plot -> plot_script [style=dotted, dir=back, label="creates"];
+  { rank=same; clean_script; cleaned; }
+  { rank=same; analyse_script; analysis; }
+  { rank=same; plot_script; plot; }
+}

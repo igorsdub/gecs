@@ -1,0 +1,13 @@
+digraph rebuild_plot {
+  graph [rankdir=LR, bgcolor="transparent", pad="0.25", nodesep="0.9", ranksep="1.25"];
+  node [shape=box, style="rounded,filled", fontname="Arial", fontsize=21, margin="0.3,0.2", penwidth=2];
+  edge [color="#64748b", penwidth=2, arrowsize=0.9];
+
+  counts [label="existing counts.tsv", fillcolor="#dbeafe", color="#2563eb"];
+  figure [label="rebuild figure.html", fillcolor="#fef3c7", color="#b45309"];
+  plot_script [label="plot_counts.py changed", fillcolor="#fee2e2", color="#dc2626"];
+
+  counts -> figure;
+  figure -> plot_script [style=dotted, dir=back, label="triggers"];
+  { rank=same; plot_script; figure; }
+}

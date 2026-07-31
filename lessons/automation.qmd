@@ -5,6 +5,8 @@ format: html
 
 > This tutorial was adapted from the [Automation and Make](https://swcarpentry.github.io/make-novice/) lesson by [The Software Carpentries](https://software-carpentry.org/) and reworked for `gecs-make`.
 
+Prefer a presentation first? [View the Automation slides](../slides/automation.qmd).
+
 Automation turns a one-off analysis into a workflow you can repeat. In this project, we start with books in `books/`, count their words in `counts/`, and create interactive plots in `figures/`.
 
 ```{mermaid}

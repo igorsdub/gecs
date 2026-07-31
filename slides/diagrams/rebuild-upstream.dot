@@ -1,0 +1,17 @@
+digraph rebuild_upstream {
+  graph [rankdir=LR, bgcolor="transparent", pad="0.25", nodesep="0.8", ranksep="1.1"];
+  node [shape=box, style="rounded,filled", fontname="Arial", fontsize=19, margin="0.3,0.2", penwidth=2];
+  edge [color="#64748b", penwidth=2, arrowsize=0.85];
+
+  book [label="book changed", fillcolor="#fee2e2", color="#dc2626"];
+  counts [label="rebuild counts.tsv", fillcolor="#fef3c7", color="#b45309"];
+  figure [label="rebuild figure.html", fillcolor="#fef3c7", color="#b45309"];
+  count_script [label="count_words.py changed", fillcolor="#fee2e2", color="#dc2626"];
+  plot_script [label="plot_counts.py", fillcolor="#dbeafe", color="#2563eb"];
+
+  book -> counts -> figure;
+  counts -> count_script [style=dotted, dir=back, label="triggers"];
+  figure -> plot_script [style=dotted, dir=back, label="creates"];
+  { rank=same; count_script; counts; }
+  { rank=same; plot_script; figure; }
+}
