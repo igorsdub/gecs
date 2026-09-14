@@ -2,29 +2,26 @@
 title: "About"
 ---
 
-```{mermaid}
-flowchart LR
-  A[Data] --> B[Clean] --> C[Analysis] --> D[Results] --> E[Figures] --> F[Paper]
+**Good Enough Coding in Science (GECS)** started as a mini-course for graduate students, postdocs, and researchers at the [Okinawa Institute of Science and Technology (OIST)](https://www.oist.jp/).
 
-  subgraph GECS[GECS]
-    direction LR
-    B
-    C
-    D
-    E
-  end
+## Philosophy
 
-  style GECS fill:#eef,stroke:#66f,stroke-width:2px
+The course is built on a simple premise: **less time for programming, more time for science**.
 
-```
+Most researchers are not trained software engineers, yet research increasingly depends on code. Without deliberate habits, computational projects often become fragile—scattered across unversioned directories, relying on undeclared dependencies, and undocumented.
 
-```{mermaid}
-flowchart LR
-  subgraph GECS
-    direction TB
-    B1 --> B2 --> B3 --> B1
-  end
-  A(Raw Data) --> GECS --> Z(Paper)
+GECS does not teach a specific programming language or advanced software architecture. Instead, it introduces "good enough" practices that make computational research reproducible, collaborative, and resilient to the [bus factor](https://en.wikipedia.org/wiki/Bus_factor):
 
-```
+- **Collaboration**: Propose, inspect, review, and merge changes using Git, GitHub, short-lived branches, and pull requests.
+- **Reproducible Environments**: Declare, pin, and lock project environments using `uv`, keeping code, raw data, and generated artifacts cleanly separated.
+- **Code Quality**: Catch bugs early with automated formatting and linting (Ruff), pre-commit hooks, docstrings, and Test-Driven Development (pytest).
+- **Automation and Publication**: Encode file dependencies into a Make Directed Acyclic Graph (DAG) and publish interactive results with GitHub Actions and GitHub Pages.
+
+## The Cumulative Project
+
+Participants learn these practices by building a discipline-neutral Project Gutenberg text analysis project from an initially empty repository into an automated, tested, and published web application.
+
+## Open Source & Community
+
+GECS is free and open-source under the MIT License. All source code, lesson materials, presentation slides, and exercises are developed publicly on [GitHub](https://github.com/oist/gecs).
 
