@@ -1,5 +1,5 @@
 ---
-title: "Collaborating with Git and GitHub"
+title: "Collaboration"
 format: html
 ---
 
