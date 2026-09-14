@@ -54,18 +54,14 @@ style Irreproducible fill:transparent,stroke-width:0px
 
 This course is for researchers who want to learn how to automate repetitive tasks in data analysis. Some prior programming experience is helpful but not required.
 
-# Schedule
+# Sessions
 
-**Time:** Friday 13:00-15:00 \
-**Location:** L3B700 (near-ish the GS counter)
+The course is organized into four cumulative sessions:
 
-| Date         | Session             |
-|--------------|---------------------|
-| September 11 | Version control     |
-| September 18 | Project structure   |
-| September 25 | Virtual environment |
-| October 2    | Automation          |
-| October 9    | Testing             |
+1. [**Collaboration**](sessions/collaborating.qmd): Propose, inspect, review, and merge changes using Git, GitHub, short-lived branches, and pull requests.
+2. [**Reproducible Environments**](sessions/virtual-environments.qmd): Declare, pin, and lock project environments using `uv`, keeping code, raw data, and generated artifacts cleanly separated.
+3. [**Code Quality**](sessions/testing.qmd): Catch bugs early with automated formatting and linting (Ruff), pre-commit hooks, docstrings, and Test-Driven Development (pytest).
+4. [**Automation and Publication**](sessions/automation.qmd): Encode file dependencies into a Make Directed Acyclic Graph (DAG) and publish interactive results with GitHub Actions and GitHub Pages.
 
 
 ## Getting Started
