@@ -2,328 +2,121 @@
 title: "Setting Up"
 ---
 
-This section will equip your computer with all necessary tools for this course. The motivation behind each tool will be explained in the later sessions. For now, just follow the instructions and prepare to awe (and, at times, get frustrated) with power of computing.
+This guide equips your computer with the essential software environment for Good Enough Coding in Science (GECS). Complete these setup steps before attending **Session 1: Collaborating with Git and GitHub**.
 
-Although the course advertises itself as programming language agnostic, Python will be used to provide 'meat' for coding examples. See a Justin Bois's note on "superiority" of one programming language over another below.
+For deeper background on our editor and terminal environments, explore our reference guides on [VS Code](vs-code.qmd) and the [Terminal](terminal.qmd).
 
-::: {.callout-note title="Why Python?" collapse="true"}
-There are plenty of programming languages that are widely used in data science and in scientific computing more generally. Some of these, in addition to Python, are Matlab/Octave, Mathematica, R, Julia, Java, JavaScript, Rust, and C++.
+# Readiness Checklist {#sec-readiness}
 
-I have chosen to use Python. I believe language wars are counterproductive and welcome anyone to port the code we use to any language of their choice, I nonetheless feel we should explain this choice.
+Before attending Session 1, verify that your computer meets the following four readiness gates:
 
-Python is a flexible programming language that is widely used in many applications. This is in contrast to more domain-specific languages like R and Julia. It is easily extendable, which is in many ways responsible for its breadth of use. We find that there is a decent Python-based tool for many applications we can dream up, certainly in data science. However, the Python-based tool is often not the very best for the particular task at hand, but it is almost always pretty good. Thus, knowing Python is like having a Swiss Army knife; you can wield it to effectively accomplish myriad tasks. Finally, we also find that it has a shallow learning curve with most students.
+| Gate | Requirement | Verification Check |
+|---|---|---|
+| **Gate 1: GitHub Account & 2FA** | Active GitHub account with 2FA or passkey enabled | Can sign in at [github.com](https://github.com) |
+| **Gate 2: VS Code & Profile** | Visual Studio Code installed with the GECS profile loaded | VS Code opens and displays your environment |
+| **Gate 3: Git Identity** | Git installed with your name and email configured | `git config user.name` outputs your identity |
+| **Gate 4: Terminal & uv** | Working shell with `uv` package manager installed | `uv --version` returns version number |
 
-by Justin Bois, [bootcamp 2025](https://justinbois.github.io/bootcamp/2025_wis/lessons/l00_configuring_your_computer.html#Why-Python?)
-:::
-
-# UNIX
-
-The motivation behind the use of terminal will be explained in [the next session](terminal.qmd)
-
-First, we need an efficient way to interact with your computer. UNIX is by far the most well supported and used operating system (OS) to do so. It allows Apple Mac users to sigh in relief since their computers are based on UNIX and can skip to the next section. Windows, however, is another story.
-
-## WSL (Windows users only)
-
-Being a popular operating system doesn't make Windows easy to use for software development. Windows Subsystem for Linux (WSL) circumvents this problem by creating a separate environment on your computer to run Linux, a free UNIX-like OS. We will install Linux with a particular flavour called Ubuntu. Right now, we will not go into details. All you need to know is that by the end of this installation you will be free to use a vast majority of scientific software available on the web.
-
-### Installation
-
-There are two ways to install WSL with Ubuntu: graphical and terminal. The graphical method uses the Microsoft Store and should be straightforward. The terminal method uses PowerShell and is less user-friendly but more robust to errors. Choose whichever suits you best.
-
-::: {.callout-note title="Troubleshooting WSL" collapse="true"}
-If you're experiencing some troubles with installation, it is worth:
-
-1.  Updating your Windows version. Open Windows Settings, go to ‘Updates and Security’ and hit ‘Check for Updates’.
-2.  Enable WSL on your Windows manually.
-    -   Click on the **Start Menu** and search for **“Turn Windows features on or off”**.
-
-    -   Open the result. A new window will appear with a list of Windows features.
-
-    -   Scroll down and check the following two boxes:
-
-        -   'Windows Subsystem for Linux' ✅
-
-        -   'Virtual Machine Platform' ✅
-
-    -   Click **OK**. Windows will apply the changes and may ask you to restart your computer.
-
-    -   After restarting, WSL will be enabled on your system.
-:::
-
-1.  Open the **Start Menu**, and search for **"PowerShell"**.
-
-2.  **Right-click** and choose **"Run as administrator"**.
-
-3.  Enter the following command to install WSL and hit **Enter**:
-
-    ``` bash
-    wsl --install
-    ```
-
-![](/images/paste-2.png)
-
-::: {.callout-important appearance="simple"}
-You need to restart your computer after installing WSL.
-:::
-4. Once restarted, open **PowerShell** again in the administartive mode and type:
-
-    ``` bash
-    wsl --install
-    ```
-
-    By default, Ubuntu will be installed as the main Linux distribution. 
-
-### Creating a Default UNIX User Account
-
-Now, that you have Ubuntu installed, you need to create an account in order to start using it. Generally it is called a "UNIX User Account" but a "Ubuntu account" would do as well.
-
-::: {.callout-important appearance="simple"}
-Before you set a username on your computer, sign up for a GitHub account (see @sec-github) and check if that username is available. This unity in names will make it easier for you to orient your files and folder,as well establish a virtual nickname that you can use consistently in the future projects.
-
-![](/images/paste-22.png)
-:::
-
-::: {.callout-tip title="Username and password suggestions" collapse="true"}
-For a username: - Use only lower-case letters and numbers. - Start with a letter. - Be short and descriptive.
-
-If your name is John Derek Smith you can try: `jsmith`, `jdsmith`, or `johnsmith`. Any other imaginary name is permissible as long as it meets the criteria above. D&D, MTG, LoL, and WoW nicknames, if that's is publically appropriate.
-
-For a password, you can set the same one you have for your OIST account to make it easier to remember. It will be used for login and authentication but, more importantly, commands like `sudo` that grant administrative priviledges. If not sure what makes a strong password [consult XKCD](https://xkcd.com/936/).
-:::
-
-1.  Launch Ubuntu terminal.
-
-![](/images/paste-11.png)
-
-2.  You will be prompted to enter a username.
-
-![](/images/paste-12.png)
-
-Enter your chosen username and hit **Enter**. If you make a mistake in typing your username, you can close the window and open it again. In this example, `tunkert` is the username.
-
-::: {.callout-tip appearance="simple"}
-If you closed the terminal window or made a mistake while typying your username or password do not worry. Ubuntu is already installed on your computer and you can open it from the **Command Promt** application.
-:::
-
-![](/images/paste-13.png)
-
-3.  Choose a password. You will not see it as you type due to default UNIX security reasons. If not sure what you entered is correct, hold **Backspace** for a couple of seconds or hit `Ctrl+U`. That will erase everything you have written. After making sure you have entered the correct password, hit **Enter**. If unsure, write the password down.
-
-![](/images/paste-14.png)
-
-4.  Re-type the chosen password and hit **Enter**.
-
-![](/images/paste-15.png)
-
-5.  Once both username and password are entered, you will see a welcome message from Ubuntu.
-
-![](/images/paste-16.png)
-
-::: {.callout-note appearance="simple"}
-The typing line takes the new form of `tunkert@LAPTOP-JU9CGB60:~$`. Can you guess what the name after `@` means? We will talk about what each symbol means in the terminal section.
-:::
-
-6.  To ensure that Ubuntu is up-to-date, type the following and press **Enter**:
-
-``` bash
-sudo apt update && sudo apt upgrade -y
-```
-
-::: {.callout-note appearance="simple"}
-We will understand the logic behind this command later in the next section as well.
-:::
-
-![](/images/paste-17.png)
-
-7.  You will be prompted to enter the password (Do you remember?). Enter the password—you will not see it—and press **Enter**.
-
-![](/images/paste-18.png)
-
-8.  The update will begin. In the end, you will have an empty typing line with the latest Ubuntu.
-
-![](/images/paste-21.png)
-
-::: {.callout-tip title="Default Command Prompt settings" appearance="simple"}
-I suggest you make Ubuntu your Default profile. **Command Promt** > **Settings** > **Start-up** > **Default profile**, choose Ubuntu and press **Save**.
-:::
-
-You are now set and ready to install all the wonderful programming tools that have been developed over the past 50 or so years by the developer's community. As you might guess, there are hundreds of thousands of programs out there, and ideally, we would like to keep track of what we install. That will be our next installation.
-
-# To IDE or not to IDE?
-
-An *integrated development environment* (IDE) is a software application that provides a few tools to make coding easier. The most important of these is a way to write the code itself! IDEs are not the only way to program, but they are perhaps the most useful. Note that the language and the place you write the language (the IDE) are separate things: the language is a way of processing your instructions, the IDE is where you write those instructions. There are a lot of IDEs out there. 
-
-Nowadays, you can vibe code with Large Language Model (LLM) IDEs, like [Cursor](https://cursor.com/). LLMs are out of scope of this course. In this course we will use Microsoft’s *Visual Studio Code*, which works on all major operating systems and is one of the most popular IDEs. Just to note, Visual Studio Code does have an LLM coding feature support.
-
-Adapted from Arthur Turell, [P4DS](https://aeturrell.github.io/python4DS/prerequisites.html#integrated-development-environment-or-ide).
-
-## Visual Studio Code
-
-[Visual Studio Code](https://code.visualstudio.com/), aka VS Code, has the following useful features:
-
--   a way to run your code interactively (line-by-line) or all at once
-
--   a way to debug (look for errors) in your code
-
--   a quick way to access helpful information about commonly used software packages
-
--   automatic code formatting, so that your code follows best practice guidelines
-
--   auto-completion of your code when you hit TAB
-
--   automatic code checking for basic errors
-
--   coloring your brackets in pairs so you can keep track of the logical order of execution of your code!
-
-![](/images/paste-25.png)
-
-### Installation
-
-Install VS Code from [the official website](https://code.visualstudio.com/) (it will determine which version of the installer to use) or download installer manually [here](https://code.visualstudio.com/Download).
-
-![](/images/paste-23.png)
-
-::: {.callout-note title="VS Code WSL extension" collapse="false"}
-Windows users will be promted to install the VS Code WSL extension. Agree and see @sec-vscode-wsl-extension.
-:::
-
-### Extensions
-
-The biggest power of VS Code lies in its [extensions](https://code.visualstudio.com/docs/configure/extensions/extension-marketplace). They are ubiquitous allowing you to boost your IDE simply by installing what others have solved for you. You can browse them by clicking on the four cube icon on the side bar or by pressing `Cmd/Ctrl+Shift+X`.
-
-![](/images/paste-26.png)
-
-There are certain basic extensions that almost every VS Code user will have installed but it can be cumbersome to manually select all those one by one. That's how VS Code Profiles have been created.
-
-#### WSL Extenison (Windows users only) {#sec-vscode-wsl-extension}
-
-Windows user will need one more step before they can start using VS Code at its full potential. Right now, you open VS Code and all files and computation is done in Windows environment. We want VS Code to use Ubuntu that lives in WSL. Using the [Visual Studio Code WSL extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl) VS Code will integrate Ubuntu into its environment.
-
-Once the extension is installed you need to open VS Code with Ubuntu as the main environment. To do that, locate a button in the left-bottom corner of the VS Code window consisting of two stacked arrow symbols '\>' and '\<'. **Click** on it.
-
-![](/images/paste-32.png)
-
-After clicking on this button, a promt line will appear on the top of the window. Select **WSL: New WSL Window** and press **Enter**.
-
-![](/images/paste-34.png)
-
-A new window will open. This time, notice that the corner button has changed. Now, we are running on Ubuntu.
-
-![](/images/paste-35.png)
-
-Windows users will use this environment for the course.
-
-### Profiles
-
-> Profiles can be used to customize VS Code for students to ease the use in a classroom setting. Profiles allow educators to quickly share a customized VS Code setup with students.
->
-> [VS Code manual](https://code.visualstudio.com/docs/configure/profiles#_education)
-
--   You can access the Profiles editor in either of the following ways: - From the **Code** \> **Settings** \> **Profiles** menu item\
-    ![](/images/paste-27.png)
-
--   From the **Manage** gear button in the bottom of the Activity Bar.\
-    ![](/images/paste-28.png)
-
-You will see that the Default profile is in use. We will import the GECS profile for this course. The profile file is stored on GitHub (one of its nice features). That code is shown below.
-
-```{=html}
-<script src="https://gist.github.com/igorsdub/04f6a1191dde8e09091a1099fe87d5be.js"></script>
-```
-
-However, you don't need to copy it, only need the link.
+::: {.callout-tip title="Pre-Flight Clinic Check" appearance="simple"}
+To rapidly verify your local environment (Gates 3 & 4), open the integrated terminal in VS Code and run:
 
 ```bash
-https://gist.github.com/igorsdub/04f6a1191dde8e09091a1099fe87d5be
+echo "--- Git Identity ---" && git config user.name && git config user.email
+echo "--- Tools ---" && code -v && uv --version
 ```
 
-Import the GECS profile from the **Profiles editor** by selecting the **Import Profile...** button in the dropdown actions of the **New Profile** button.
+If both commands print your details and version numbers without error, you are ready for Session 1!
+:::
 
-![](/images/paste-29.png)
+---
 
-When you select **Import Profile...**, you are prompted for the URL of a GitHub gist or the file location of a profile via an **Import Profile** dialog. Paste the link above and click **Create** button below.
+# Step 1: GitHub Account & Authentication {#sec-github}
 
-![](/images/paste-31.png)
+GitHub hosts our course repositories and enables collaborative pull-request workflows.
 
-Accept any installations or suggestions offered by extensions. Now, you are ready to go!
+1. **Sign Up**: If you do not have an account, create one at [github.com/signup](https://github.com/signup).
+2. **Enable Multi-Factor Authentication (2FA)**: GitHub requires 2FA for all accounts. We recommend registering a **Passkey** (Touch ID, Face ID, or Windows Hello) via your GitHub **Settings > Password and authentication**. Alternatively, use an authenticator app (e.g., Google Authenticator, 1Password).
 
-# Package Manager
+::: {.callout-note title="GitHub Education for Students & Researchers" collapse="true"}
+Students and academic researchers can receive free GitHub Pro access through [GitHub Education](https://github.com/education/). After signing up, apply at [github.com/settings/education/benefits](https://github.com/settings/education/benefits) using your institutional email address or proof of affiliation.
+:::
 
-An out-of-box UNIX-based OS has limited amount of tools. For this course we will use various open-source tools which need to be downloaded, installed, updated and kept track of. A package manager is a tool that helps with that. For this course we will use [`uv`](https://docs.astral.sh/uv/), and we will dive deeper into it in [the Virtual Environments session](virtual-environments.qmd).
+---
 
-## uv
+# Step 2: Platform Installation {#sec-platform}
 
-[`uv`](https://docs.astral.sh/uv/) is a modern Python package and project manager. It helps us create isolated environments, install dependencies, lock exact package versions, and even manage Python itself when needed.
+Select your operating system below to configure your development environment:
 
-Here we will use the terminal because `uv` is typically installed from the command line rather than through a graphical installer.
+::: {.panel-tabset}
+
+## macOS
+
+### 1. Terminal & Homebrew
+
+macOS provides a UNIX terminal out of the box (`Terminal.app` in `Applications > Utilities`) running Zsh. 
+
+To manage scientific tools and ensure an up-to-date version of Git, install [Homebrew](https://brew.sh/), the de-facto package manager for macOS:
+
+1. Open `Terminal.app`.
+2. Run the Homebrew installation command:
+   ```bash
+   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+   ```
+3. Follow the on-screen instructions. If prompted to add Homebrew to your `PATH`, copy and run the suggested commands.
+4. Install Git:
+   ```bash
+   brew install git
+   ```
 
 ::: {.callout-note appearance="simple"}
-That's the reason we went to such lengths to install Ubuntu on Windows. Now, you are able to access a much larger range of applications which are inaccessible to graphical user interface (GUI) users.
+*Alternative*: If running `git --version` in Terminal prompts you to install the Apple "Command Line Developer Tools", you can click **Install** to obtain Apple's system Git (`xcode-select --install`).
 :::
 
-We will use the VS Code terminal to do the installation. To open the terminal select **View** \> **Terminal** from the menu bar, or press the `` Ctrl/Cmd+` `` keyboard shortcut. A terminal window will open at the bottom.
+### 2. Visual Studio Code
 
-![](/images/paste-36.png)
+1. Download Visual Studio Code for macOS from [code.visualstudio.com](https://code.visualstudio.com/).
+2. Open the downloaded `.zip` file and drag `Visual Studio Code.app` into your `/Applications` folder.
+3. Launch VS Code. Open the Command Palette (`Cmd+Shift+P`), type `Shell Command: Install 'code' command in PATH`, and press **Enter**. This enables launching VS Code from the terminal.
 
-To install `uv`, run the following command in your terminal:
+#### Import the GECS Profile
 
-``` bash
-curl -LsSf https://astral.sh/uv/install.sh | sh
-```
+VS Code profiles quickly bundle recommended settings and extensions for this course.
 
-To verify that `uv` got installed successfully, restart the terminal. An easy way is to close it and open a new one. Another way is to type the following for Ubuntu users:
+1. In VS Code, click the **Manage** gear icon in the lower-left corner and select **Profiles > Import Profile...**.
+2. Paste the following URL and click **Create**:
+   ```text
+   https://gist.github.com/igorsdub/04f6a1191dde8e09091a1099fe87d5be
+   ```
+3. Accept any suggested extension installations.
 
-```bash
-source ~/.bashrc
-```
-
-macOS users need to type:
-
-```zsh
-source ~/.zshrc
-```
-
-OK, now that the terminal is reset, type:
-
-``` bash
-which uv
-```
-
-You will see a path to the `uv` executable, often something like `/Users/username/.local/bin/uv`, where `username` is your chosen username.
-
-# Developer Platform
-
-Your code needs to live somewhere besides your computer. Otherwise, if you lose your computer, will you be able to access your projects? For this purpose, we will use GitHub which will take a central role alongside Git during [Collaborating with Git and GitHub](collaborating.qmd).
-
-## GitHub {#sec-github}
-
-GitHub is a widely used platform to store, manage, share, and collaborate with others on software projects. An account is free and you can upgrade to Pro for free as a student (see the tip below). Sign up [here](https://github.com/signup).
-
-::: {.callout-tip title="GitHub Education" collapse="true"}
-As a student, you can get a **free** GitHub Pro account as part of [GitHub Education](https://github.com/education/) alongside other perks. Once you have a basic account, follow this [link](https://github.com/settings/education/benefits).
-
-You can use a photo of your student ID card (both-sides) or other eligible documents listed on [here](https://docs.github.com/en/education/about-github-education/github-education-for-students/apply-to-github-education-as-a-student).
+::: {.callout-note title="Profile Import Fallback" collapse="true"}
+If you encounter network issues importing the profile, open the Extensions view (`Cmd+Shift+X`) and manually install:
+- **Python** (Microsoft)
+- **Data Science Extension Pack** (Microsoft)
+- **Ruff** (Astral Software)
 :::
 
-### Multi-factor Authentication
+### 3. Package Manager: uv
 
-Since 2023, GitHub requires all accounts to have [multi-factor authentication (2FA)](https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/about-two-factor-authentication) for extra security. Here are the recommended options:
+We use [`uv`](https://docs.astral.sh/uv/) to manage Python versions and environments reproducibly.
 
-**Recommended: Passkeys**
+1. Open the integrated terminal in VS Code (`View > Terminal` or ``Ctrl+` ``).
+2. Install `uv`:
+   ```bash
+   curl -LsSf https://astral.sh/uv/install.sh | sh
+   ```
+3. Reload your shell environment:
+   ```zsh
+   source ~/.zshrc
+   ```
+4. Verify the installation:
+   ```bash
+   uv --version
+   ```
 
-[Passkeys](https://docs.github.com/en/authentication/authenticating-with-a-passkey/signing-in-with-a-passkey) are the most secure and convenient option. They work on most devices and browsers without requiring a separate app.
+### 4. Git Identity Configuration
 
-**Other 2FA Options:**
-
-1. **Authenticator App** (e.g., Google Authenticator, Duo Mobile) - Install on your smartphone and add GitHub
-2. **Text Message (SMS)** - Receive authentication codes via text ([check if your country is supported](https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/countries-where-sms-authentication-is-supported))
-3. **Hardware Security Key** - Use devices like [YubiKey](https://www.yubico.com/products/yubikey-5-overview/) or [Google Titan](https://store.google.com/us/product/titan_security_key?hl=en-US&pli=1)
-
-For detailed setup instructions, see [GitHub's 2FA configuration guide](https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication).
-
-### Git Identity Configuration
-
-Before creating commits, Git needs to know who you are. Open your terminal in VS Code and set your name and email address:
+Configure Git with your name and the email address associated with your GitHub account:
 
 ```bash
 git config --global user.name "Your Name"
@@ -331,78 +124,174 @@ git config --global user.email "your.email@oist.jp"
 git config --global init.defaultBranch main
 ```
 
-::: {.callout-note appearance="simple"}
-Make sure to use the email address associated with your GitHub account so that your commits are correctly linked to your GitHub profile.
+## Ubuntu / Linux
+
+### 1. System Packages & Git
+
+Open your terminal application (`Ctrl+Alt+T`) and ensure Git and curl are installed:
+
+```bash
+sudo apt update && sudo apt install -y git curl build-essential
+```
+
+### 2. Visual Studio Code
+
+1. Download the `.deb` installer from [code.visualstudio.com](https://code.visualstudio.com/) and install it, or install via your distribution's package manager.
+2. Launch VS Code.
+
+#### Import the GECS Profile
+
+1. Click the **Manage** gear icon in the lower-left corner and select **Profiles > Import Profile...**.
+2. Paste the following URL and click **Create**:
+   ```text
+   https://gist.github.com/igorsdub/04f6a1191dde8e09091a1099fe87d5be
+   ```
+3. Accept any suggested extension installations.
+
+::: {.callout-note title="Profile Import Fallback" collapse="true"}
+If profile import fails, open the Extensions view (`Ctrl+Shift+X`) and install:
+- **Python** (Microsoft)
+- **Data Science Extension Pack** (Microsoft)
+- **Ruff** (Astral Software)
 :::
 
-## Pre-flight Verification Check
+### 3. Package Manager: uv
 
-Before attending Session 1, verify that your local Git and GitHub authentication work together with a disposable repository check:
+1. Open the integrated terminal in VS Code (`View > Terminal` or ``Ctrl+` ``).
+2. Install `uv`:
+   ```bash
+   curl -LsSf https://astral.sh/uv/install.sh | sh
+   ```
+3. Reload your shell configuration:
+   ```bash
+   source ~/.bashrc
+   ```
+4. Verify the installation:
+   ```bash
+   uv --version
+   ```
 
-1. In your browser on GitHub, create a new temporary public repository named `gecs-check`.
-2. In VS Code, open the Command Palette (`Cmd+Shift+P` on macOS, `Ctrl+Shift+P` on Linux/WSL) and run **Git: Clone**.
-3. Paste the URL of your new repository and select a local folder to save it.
-4. When prompted by VS Code, sign in with your GitHub account to authorize Git.
-5. In VS Code Explorer, open the cloned folder, create a new file named `test.txt`, stage it, and commit with message `test: check git setup`.
-6. Click **Sync Changes** (or **Push**) to push the commit to GitHub.
-7. Confirm that the commit appears on GitHub. Once confirmed, you can safely delete the `gecs-check` repository on GitHub and your local folder.
+### 4. Git Identity Configuration
 
-::: {.callout-tip appearance="simple"}
-If your push succeeds, your environment is 100% ready for Session 1! If you encounter authentication or permission issues, bring them to the pre-course setup clinic.
+Configure Git with your name and GitHub-associated email address:
+
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "your.email@oist.jp"
+git config --global init.defaultBranch main
+```
+
+## Windows (WSL)
+
+Windows users will run Linux via the **Windows Subsystem for Linux (WSL)** with an **Ubuntu** distribution. All course development happens inside this UNIX environment.
+
+### 1. Install WSL and Ubuntu
+
+1. Open the Windows **Start Menu**, search for **PowerShell**, right-click it, and select **Run as administrator**.
+2. Run the WSL installation command:
+   ```powershell
+   wsl --install
+   ```
+3. **Restart your computer** when prompted.
+4. After restarting, a terminal window will open to complete the Ubuntu setup. When prompted, enter a UNIX username and password.
+
+::: {.callout-tip title="Username and Password Tips" collapse="true"}
+- Use lowercase letters and numbers for your username (e.g., `jsmith`).
+- When typing your password in the UNIX terminal, no characters or asterisks will appear on screen. Type your password and press Enter.
 :::
 
-# Shell Prompt (Optional)
+::: {.callout-note title="Troubleshooting WSL Installation" collapse="true"}
+If WSL fails to install:
+1. Ensure Windows 10/11 is updated.
+2. In the Start Menu, open **Turn Windows features on or off**.
+3. Check both **Windows Subsystem for Linux** and **Virtual Machine Platform**, click OK, and restart.
+4. If an error mentions hardware virtualization (VT-x or AMD-V), enable virtualization in your computer's BIOS/UEFI settings.
+:::
 
-## Starship
+### 2. Install VS Code & WSL Extension
 
-Starship is by far the most widely used shell prompt. It is a customizable prompt that controls how your terminal looks when you type a command. It is pretty and versatile.
+1. Download and install [Visual Studio Code for Windows](https://code.visualstudio.com/).
+2. Launch VS Code, open the Extensions view (`Ctrl+Shift+X`), and install the [WSL extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl) (`ms-vscode-remote.remote-wsl`).
 
-![](/images/paste-1.gif)
+### 3. Connect VS Code to WSL
 
-To install Starship open VS Code terminal by selecting **View** \> **Terminal** from the menu bar, or by pressing the `` Ctrl/Cmd+` `` keyboard shortcut. A terminal window will open at the bottom. Then type:
+To ensure all coding and terminal commands run inside Ubuntu rather than Windows:
 
-``` bash
-curl -sS https://starship.rs/install.sh | sh
+1. Click the remote indicator button in the bottom-left corner of VS Code (the `><` icon), or press `Ctrl+Shift+P`.
+2. Select **WSL: New WSL Window**.
+3. A new window will open. Confirm that the bottom-left indicator now displays **WSL: Ubuntu**.
+
+::: {.callout-important appearance="simple"}
+Always verify that your VS Code window displays **WSL: Ubuntu** in the bottom-left corner. All subsequent steps and course exercises must be run within this connected WSL environment.
+:::
+
+### 4. Update Ubuntu Packages & Install uv
+
+Open the integrated terminal in your WSL-connected VS Code (`View > Terminal` or ``Ctrl+` ``).
+
+1. Update packages:
+   ```bash
+   sudo apt update && sudo apt upgrade -y
+   ```
+2. Install `uv`:
+   ```bash
+   curl -LsSf https://astral.sh/uv/install.sh | sh
+   ```
+3. Reload your shell configuration:
+   ```bash
+   source ~/.bashrc
+   ```
+4. Verify the installation:
+   ```bash
+   uv --version
+   ```
+
+### 5. Import the GECS Profile
+
+1. In VS Code, click the **Manage** gear icon in the lower-left corner and select **Profiles > Import Profile...**.
+2. Paste the following URL and click **Create**:
+   ```text
+   https://gist.github.com/igorsdub/04f6a1191dde8e09091a1099fe87d5be
+   ```
+3. Accept any suggested extension installations.
+
+::: {.callout-note title="Profile Import Fallback" collapse="true"}
+If profile import fails, open Extensions (`Ctrl+Shift+X`) in your WSL window and install:
+- **Python** (Microsoft)
+- **Data Science Extension Pack** (Microsoft)
+- **Ruff** (Astral Software)
+:::
+
+### 6. Git Identity Configuration
+
+In the VS Code WSL terminal, configure Git:
+
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "your.email@oist.jp"
+git config --global init.defaultBranch main
 ```
 
-Next, you will need to tell the terminal to start Starship every time you open a new terminal. This is similar to how Windows or macOS asks you if you want to run a program every time you start your computer.
+:::
 
-Windows/Ubuntu users must execute in their terminal the following:
+---
 
-``` bash
-echo 'eval "$(starship init bash)"' >> ~/.bashrc
-```
+# Pre-Course Setup Clinic & Troubleshooting {#sec-troubleshooting}
 
-macOS users have a very similar command:
+If you encounter difficulties during installation:
 
-``` zsh
-echo 'eval "$(starship init zsh)"' >> ~/.zshrc
-```
+- **Setup Clinic**: Join the informal pre-course setup clinic to troubleshoot environment issues with instructors.
+- **BIOS Virtualization on Windows**: If WSL reports that virtualization is disabled, enter your PC BIOS/UEFI settings on startup and enable **Intel VT-x** or **AMD-V**.
+- **macOS PATH issues**: If running `code` in the terminal returns `command not found`, open VS Code, press `Cmd+Shift+P`, run `Shell Command: Install 'code' command in PATH`, and restart your terminal.
+- **GitHub 2FA Backup**: Always save your GitHub recovery codes in a secure location (such as a password manager) so you never lose access to your account.
 
-After you restart the terminal, close it and open a new one, you should see the change in how it looks like. You can explore all the different looks you can access with Starship [here](https://starship.rs/presets/).
+---
 
-# References
+# References {#sec-references}
 
-## Setup and installation guides
-
--   [How to Install Ubuntu on Windows (Step-by-Step Guide for Beginners)](https://dev.to/devsubha/how-to-install-ubuntu-on-windows-step-by-step-guide-for-beginners-2hjn) by Subha Mondal
--   [Windows Subsystem for Linux Documentation](https://www.virtualizationhowto.com/2022/11/windows-subsystem-for-linux-microsoft-store-ga-and-now-default-wsl/)
-
-## Tools and platforms
-
-### Visual Studio Code
-
--   [Visual Studio Code Official Website](https://code.visualstudio.com/)
--   [VS Code WSL Extension Guide](https://code.visualstudio.com/docs/remote/wsl-tutorial)
--   [VS Code Remote WSL Documentation](https://code.visualstudio.com/docs/remote/wsl)
--   [VS Code Terminal Getting Started](https://code.visualstudio.com/docs/terminal/getting-started)
-
-### Package Managers
-
--   [uv Documentation](https://docs.astral.sh/uv/)
--   [uv Installation Guide](https://docs.astral.sh/uv/getting-started/installation/)
-
-### Shell Customization
-
--   [Starship Shell Prompt](https://starship.rs/)
--   [Starship Presets](https://starship.rs/presets/)
+- [VS Code Reference Guide](vs-code.qmd)
+- [Terminal Reference Guide](terminal.qmd)
+- [Visual Studio Code Documentation](https://code.visualstudio.com/docs)
+- [Windows Subsystem for Linux (WSL) Documentation](https://learn.microsoft.com/en-us/windows/wsl/)
+- [uv: Python Packaging Documentation](https://docs.astral.sh/uv/)
+- [GitHub 2FA Documentation](https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa)
