@@ -57,9 +57,9 @@ support does not determine how participants are paired.
 _Avoid_: Native Windows, PowerShell
 
 **bookstats**:
-The small reusable Python package that transforms raw books into analysis-ready
-statistics for the course project.
-_Avoid_: BookStats, GECS package, Gutenberg package
+The participant-owned course repository and reusable Python package that
+transforms raw books into analysis-ready statistics.
+_Avoid_: gutenberg-analysis, BookStats, GECS package, Gutenberg package
 
 **Visualization notebook**:
 The Marimo notebook that presents processed BookStats results as an interactive
