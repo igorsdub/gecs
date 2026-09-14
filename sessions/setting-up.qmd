@@ -8,14 +8,14 @@ For deeper background on our editor and terminal environments, explore our refer
 
 # Readiness Checklist {#sec-readiness}
 
-Before attending Session 1, verify that your computer meets the following four readiness gates:
+Before attending Session 1, verify that your computer meets the following points:
 
-| Gate | Requirement | Verification Check |
-|---|---|---|
-| **Gate 1: GitHub Account & 2FA** | Active GitHub account with 2FA or passkey enabled | Can sign in at [github.com](https://github.com) |
-| **Gate 2: VS Code & Profile** | Visual Studio Code installed with the GECS profile loaded | VS Code opens and displays your environment |
-| **Gate 3: Git Identity** | Git installed with your name and email configured | `git config user.name` outputs your identity |
-| **Gate 4: Terminal & uv** | Working shell with `uv` package manager installed | `uv --version` returns version number |
+|   Requirement | Verification Check |
+|---|---|
+| **1. GitHub Account & 2FA** Active GitHub account with 2FA or passkey enabled | Can sign in at [github.com](https://github.com) |
+| **2. VS Code & Profile** Visual Studio Code installed with the GECS profile loaded | VS Code opens and displays your environment |
+| **3. Git Identity** Git installed with your name and email configured | `git config user.name` outputs your identity |
+| **4. Terminal & uv**  Working shell with `uv` package manager installed | `uv --version` returns version number |
 
 ::: {.callout-tip title="Pre-Flight Clinic Check" appearance="simple"}
 To rapidly verify your local environment (Gates 3 & 4), open the integrated terminal in VS Code and run:
@@ -276,13 +276,13 @@ git config --global init.defaultBranch main
 
 ---
 
-# Pre-Course Setup Clinic & Troubleshooting {#sec-troubleshooting}
+# Troubleshooting {#sec-troubleshooting}
 
 If you encounter difficulties during installation:
 
 - **Setup Clinic**: Join the informal pre-course setup clinic to troubleshoot environment issues with instructors.
-- **BIOS Virtualization on Windows**: If WSL reports that virtualization is disabled, enter your PC BIOS/UEFI settings on startup and enable **Intel VT-x** or **AMD-V**.
-- **macOS PATH issues**: If running `code` in the terminal returns `command not found`, open VS Code, press `Cmd+Shift+P`, run `Shell Command: Install 'code' command in PATH`, and restart your terminal.
+- **BIOS Virtualization on Windows**: If WSL reports that virtualization is disabled, enter your PC BIOS/UEFI settings on startup and enable **Intel VT-x** or **AMD-V** depending on your CPU.
+- **macOS `PATH` issues**: If running `code` in the terminal returns `command not found`, open VS Code, press `Cmd+Shift+P`, run `Shell Command: Install 'code' command in PATH`, and restart your terminal.
 - **GitHub 2FA Backup**: Always save your GitHub recovery codes in a secure location (such as a password manager) so you never lose access to your account.
 
 ---
