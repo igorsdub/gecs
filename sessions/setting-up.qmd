@@ -6,16 +6,16 @@ This guide equips your computer with the essential software environment for Good
 
 For deeper background on our editor and terminal environments, explore our reference guides on [VS Code](vs-code.qmd) and the [Terminal](terminal.qmd).
 
-# Readiness Checklist {#sec-readiness}
+# Checklist {#sec-checklist}
 
-Before attending Session 1, verify that your computer meets the following points:
+Before attending Session 1, verify that your computer meets the following requirements:
 
-|   Requirement | Verification Check |
+| Requirement | Verification |
 |---|---|
-| **1. GitHub Account & 2FA** Active GitHub account with 2FA or passkey enabled | Can sign in at [github.com](https://github.com) |
-| **2. VS Code & Profile** Visual Studio Code installed with the GECS profile loaded | VS Code opens and displays your environment |
-| **3. Git Identity** Git installed with your name and email configured | `git config user.name` outputs your identity |
-| **4. Terminal & uv**  Working shell with `uv` package manager installed | `uv --version` returns version number |
+| Active GitHub account with 2FA or passkey enabled | Can sign in at [github.com](https://github.com) |
+| Visual Studio Code installed with the GECS profile loaded | VS Code opens and displays your environment |
+| Git installed with your name and email configured | `git config user.name` outputs your identity |
+| Working shell with `uv` package manager installed | `uv --version` returns version number |
 
 ::: {.callout-tip title="Pre-Flight Clinic Check" appearance="simple"}
 To rapidly verify your local environment (Gates 3 & 4), open the integrated terminal in VS Code and run:
@@ -30,13 +30,17 @@ If both commands print your details and version numbers without error, you are r
 
 ---
 
-# Step 1: GitHub Account, Authentication & Privacy {#sec-github}
+# GitHub Account, Authentication & Privacy {#sec-github}
 
 GitHub hosts our course repositories and enables collaborative pull-request workflows.
 
 1. **Sign Up**: If you do not have an account, create one at [github.com/signup](https://github.com/signup).
-2. **Enable Multi-Factor Authentication (2FA) & Passkeys**: GitHub requires 2FA for all accounts. We recommend registering a **Passkey** via your GitHub **Settings > Password and authentication**.
-   - *What is a passkey?* A passkey is a modern, phishing-resistant credential tied directly to your physical device (using Touch ID, Face ID, Windows Hello, or a security key like YubiKey). Instead of typing passwords and one-time authenticator codes, your device authenticates you with a biometric touch or device PIN. Alternatively, you can use an authenticator app (such as Google Authenticator or 1Password).
+2. **Enable Multi-Factor Authentication (2FA) & Passkeys**: GitHub requires 2FA for all accounts. We recommend registering a **Passkey** via your GitHub **Settings > Password and authentication**. Alternatively, use an authenticator app (such as Google Authenticator or 1Password).
+
+   ::: {.callout-tip title="What is a passkey?" collapse="true"}
+   A passkey is a modern, phishing-resistant credential tied directly to your physical device (using Touch ID, Face ID, Windows Hello, or a security key like YubiKey). Instead of typing passwords and one-time authenticator codes, your device authenticates you with a biometric touch or device PIN.
+   :::
+
 3. **Hide Your Email Address on GitHub (Recommended)**: By default, the email address configured in your local Git client is permanently embedded into every commit you create, making it visible to anyone inspecting public repositories. GitHub provides an email privacy option to protect your address from web scrapers and spam:
    - Navigate to GitHub **Settings > Emails** ([github.com/settings/emails](https://github.com/settings/emails)).
    - Check **Keep my email addresses private**. GitHub will generate a private `no-reply` email address for your account (in the format `12345678+username@users.noreply.github.com` or `username@users.noreply.github.com`).
@@ -49,7 +53,7 @@ Students and academic researchers can receive free GitHub Pro access through [Gi
 
 ---
 
-# Step 2: Platform Installation {#sec-platform}
+# Platform Installation {#sec-platform}
 
 Select your operating system below to configure your development environment:
 
