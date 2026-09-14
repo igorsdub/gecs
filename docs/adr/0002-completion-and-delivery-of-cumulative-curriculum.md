@@ -36,16 +36,20 @@ However, to finish the implementation and deliver a production-ready, publishabl
 ### 1. Information Architecture & Legacy File Deprecation
 
 1. **Retire `sessions/project-structure.qmd`**:
-   - In the legacy 5-lesson curriculum, "Project Structure" was a standalone session. In the 4-session architecture (ADR 0001), project structure (separating `data/raw/`, `data/intermediate/`, `src/bookstats/`, `output/`) is taught organically as part of **Session 2: Reproducible Projects**.
-   - `sessions/project-structure.qmd` will be moved to `docs/archive/` or converted into an optional reference appendix, removing it completely from the active Quarto website navigation.
-2. **Update Course Landing Page (`index.qmd`)**:
-   - Update the course schedule table on `index.qmd` to list the four sessions:
-     1. Collaboration with Git and GitHub
-     2. Reproducible Projects
-     3. Code Quality and Testing
-     4. Automation and Publication
-   - Retain the one-time "Setting Up" pre-course clinic announcement.
-   - Synchronize date and semester metadata.
+   - In the legacy 5-lesson curriculum, "Project Structure" was a standalone session. In the 4-session architecture (ADR 0001), project structure (separating `data/raw/`, `data/intermediate/`, `src/bookstats/`, `output/`) is taught organically as part of **Session 2: Reproducible Environments**.
+   - `sessions/project-structure.qmd` is retired to `docs/archive/project-structure.qmd`, completely removing it from the active Quarto website build.
+2. **Concise Session Taxonomy**:
+   - Standardize the 4-session cumulative sequence across navigation (`_quarto.yml`), document titles, and landing page:
+     1. **Collaboration** (`sessions/collaborating.qmd`)
+     2. **Reproducible Environments** (`sessions/virtual-environments.qmd`)
+     3. **Code Quality** (`sessions/testing.qmd`)
+     4. **Automation and Publication** (`sessions/automation.qmd`)
+3. **Evergreen Landing Page (`index.qmd`)**:
+   - Replace the legacy 5-session date-based schedule table on `index.qmd` with an evergreen overview of the 4 cumulative sessions with direct links, eliminating brittle semester date maintenance.
+   - Retain the "Getting Started" pre-course setup clinic notice.
+4. **Institutional Context (`about.qmd`)**:
+   - Formalize `about.qmd` under the "Reference" section in `_quarto.yml`.
+   - Articulate GECS's origin as an OIST mini-course for graduate researchers ("less time for programming, more time for science") and replace scratch Mermaid diagrams with clear course philosophy and repository links.
 
 ### 2. Slide Decks Modernization
 
@@ -95,8 +99,8 @@ However, to finish the implementation and deliver a production-ready, publishabl
 
 ## Implementation Checklist
 
-- [ ] **Archive Legacy Session**: Move `sessions/project-structure.qmd` out of the website build.
-- [ ] **Update Schedule (`index.qmd`)**: Reflect the 4-session sequence and confirm room/time placeholders.
+- [x] **Archive Legacy Session**: Move `sessions/project-structure.qmd` out of the website build to `docs/archive/`.
+- [x] **Update Schedule & Taxonomy (`index.qmd`, `_quarto.yml`, session files)**: Reflect the 4 concise sessions (Collaboration, Reproducible Environments, Code Quality, Automation and Publication), add evergreen overview on `index.qmd`, and formalize `about.qmd` under Reference.
 - [ ] **Revise Automation Slides (`slides/automation.qmd`)**: Update to `bookstats` package and Makefile targets.
 - [ ] **Create Slide Decks for Sessions 1–3**:
   - [ ] `slides/version-control.qmd`

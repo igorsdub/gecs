@@ -1,5 +1,5 @@
 ---
-title: "Reproducible Projects"
+title: "Reproducible Environments"
 format: html
 ---
 
