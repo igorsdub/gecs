@@ -6,16 +6,16 @@ This guide equips your computer with the essential software environment for Good
 
 For deeper background on our editor and terminal environments, explore our reference guides on [VS Code](vs-code.qmd) and the [Terminal](terminal.qmd).
 
-# Readiness Checklist {#sec-readiness}
+# Checklist {#sec-checklist}
 
-Before attending Session 1, verify that your computer meets the following four readiness gates:
+Before attending Session 1, verify that your computer meets the following requirements:
 
-| Gate | Requirement | Verification Check |
-|---|---|---|
-| **Gate 1: GitHub Account & 2FA** | Active GitHub account with 2FA or passkey enabled | Can sign in at [github.com](https://github.com) |
-| **Gate 2: VS Code & Profile** | Visual Studio Code installed with the GECS profile loaded | VS Code opens and displays your environment |
-| **Gate 3: Git Identity** | Git installed with your name and email configured | `git config user.name` outputs your identity |
-| **Gate 4: Terminal & uv** | Working shell with `uv` package manager installed | `uv --version` returns version number |
+| Requirement | Verification |
+|---|---|
+| Active GitHub account with 2FA or passkey enabled | Can sign in at [github.com](https://github.com) |
+| Visual Studio Code installed with the GECS profile loaded | VS Code opens and displays your environment |
+| Git installed with your name and email configured | `git config user.name` outputs your identity |
+| Working shell with `uv` package manager installed | `uv --version` returns version number |
 
 ::: {.callout-tip title="Pre-Flight Clinic Check" appearance="simple"}
 To rapidly verify your local environment (Gates 3 & 4), open the integrated terminal in VS Code and run:
@@ -30,12 +30,22 @@ If both commands print your details and version numbers without error, you are r
 
 ---
 
-# Step 1: GitHub Account & Authentication {#sec-github}
+# GitHub Account, Authentication & Privacy {#sec-github}
 
 GitHub hosts our course repositories and enables collaborative pull-request workflows.
 
 1. **Sign Up**: If you do not have an account, create one at [github.com/signup](https://github.com/signup).
-2. **Enable Multi-Factor Authentication (2FA)**: GitHub requires 2FA for all accounts. We recommend registering a **Passkey** (Touch ID, Face ID, or Windows Hello) via your GitHub **Settings > Password and authentication**. Alternatively, use an authenticator app (e.g., Google Authenticator, 1Password).
+2. **Enable Multi-Factor Authentication (2FA) & Passkeys**: GitHub requires 2FA for all accounts. We recommend registering a **Passkey** via your GitHub **Settings > Password and authentication**. Alternatively, use an authenticator app (such as Google Authenticator or 1Password).
+
+   ::: {.callout-tip title="What is a passkey?" collapse="true"}
+   A passkey is a modern, phishing-resistant credential tied directly to your physical device (using Touch ID, Face ID, Windows Hello, or a security key like YubiKey). Instead of typing passwords and one-time authenticator codes, your device authenticates you with a biometric touch or device PIN.
+   :::
+
+3. **Hide Your Email Address on GitHub (Recommended)**: By default, the email address configured in your local Git client is permanently embedded into every commit you create, making it visible to anyone inspecting public repositories. GitHub provides an email privacy option to protect your address from web scrapers and spam:
+   - Navigate to GitHub **Settings > Emails** ([github.com/settings/emails](https://github.com/settings/emails)).
+   - Check **Keep my email addresses private**. GitHub will generate a private `no-reply` email address for your account (in the format `12345678+username@users.noreply.github.com` or `username@users.noreply.github.com`).
+   - Check **Block command line pushes that expose my email**. This protects you from accidentally pushing commits with a private or institutional address.
+   - Copy your generated `...users.noreply.github.com` address—you will use it when configuring your local Git identity in Step 2!
 
 ::: {.callout-note title="GitHub Education for Students & Researchers" collapse="true"}
 Students and academic researchers can receive free GitHub Pro access through [GitHub Education](https://github.com/education/). After signing up, apply at [github.com/settings/education/benefits](https://github.com/settings/education/benefits) using your institutional email address or proof of affiliation.
@@ -43,7 +53,7 @@ Students and academic researchers can receive free GitHub Pro access through [Gi
 
 ---
 
-# Step 2: Platform Installation {#sec-platform}
+# Platform Installation {#sec-platform}
 
 Select your operating system below to configure your development environment:
 
@@ -116,13 +126,18 @@ We use [`uv`](https://docs.astral.sh/uv/) to manage Python versions and environm
 
 ### 4. Git Identity Configuration
 
-Configure Git with your name and the email address associated with your GitHub account:
+Configure Git with your name and email address. If you enabled email privacy in Step 1, use your GitHub-generated `no-reply` email address:
 
 ```bash
 git config --global user.name "Your Name"
+# Use your institutional email, or your private GitHub no-reply address:
 git config --global user.email "your.email@oist.jp"
 git config --global init.defaultBranch main
 ```
+
+::: {.callout-tip title="Using your private GitHub email" collapse="true"}
+If you enabled **Keep my email addresses private** on GitHub, replace `"your.email@oist.jp"` with your private address (e.g. `"12345678+username@users.noreply.github.com"`). Your commits will still show your GitHub avatar and profile without exposing your real email.
+:::
 
 ## Ubuntu / Linux
 
@@ -173,13 +188,18 @@ If profile import fails, open the Extensions view (`Ctrl+Shift+X`) and install:
 
 ### 4. Git Identity Configuration
 
-Configure Git with your name and GitHub-associated email address:
+Configure Git with your name and email address. If you enabled email privacy in Step 1, use your GitHub-generated `no-reply` email address:
 
 ```bash
 git config --global user.name "Your Name"
+# Use your institutional email, or your private GitHub no-reply address:
 git config --global user.email "your.email@oist.jp"
 git config --global init.defaultBranch main
 ```
+
+::: {.callout-tip title="Using your private GitHub email" collapse="true"}
+If you enabled **Keep my email addresses private** on GitHub, replace `"your.email@oist.jp"` with your private address (e.g. `"12345678+username@users.noreply.github.com"`).
+:::
 
 ## Windows (WSL)
 
@@ -264,25 +284,30 @@ If profile import fails, open Extensions (`Ctrl+Shift+X`) in your WSL window and
 
 ### 6. Git Identity Configuration
 
-In the VS Code WSL terminal, configure Git:
+In the VS Code WSL terminal, configure Git. If you enabled email privacy in Step 1, use your GitHub-generated `no-reply` email address:
 
 ```bash
 git config --global user.name "Your Name"
+# Use your institutional email, or your private GitHub no-reply address:
 git config --global user.email "your.email@oist.jp"
 git config --global init.defaultBranch main
 ```
+
+::: {.callout-tip title="Using your private GitHub email" collapse="true"}
+If you enabled **Keep my email addresses private** on GitHub, replace `"your.email@oist.jp"` with your private address (e.g. `"12345678+username@users.noreply.github.com"`).
+:::
 
 :::
 
 ---
 
-# Pre-Course Setup Clinic & Troubleshooting {#sec-troubleshooting}
+# Troubleshooting {#sec-troubleshooting}
 
 If you encounter difficulties during installation:
 
 - **Setup Clinic**: Join the informal pre-course setup clinic to troubleshoot environment issues with instructors.
-- **BIOS Virtualization on Windows**: If WSL reports that virtualization is disabled, enter your PC BIOS/UEFI settings on startup and enable **Intel VT-x** or **AMD-V**.
-- **macOS PATH issues**: If running `code` in the terminal returns `command not found`, open VS Code, press `Cmd+Shift+P`, run `Shell Command: Install 'code' command in PATH`, and restart your terminal.
+- **BIOS Virtualization on Windows**: If WSL reports that virtualization is disabled, enter your PC BIOS/UEFI settings on startup and enable **Intel VT-x** or **AMD-V** depending on your CPU.
+- **macOS `PATH` issues**: If running `code` in the terminal returns `command not found`, open VS Code, press `Cmd+Shift+P`, run `Shell Command: Install 'code' command in PATH`, and restart your terminal.
 - **GitHub 2FA Backup**: Always save your GitHub recovery codes in a secure location (such as a password manager) so you never lose access to your account.
 
 ---
@@ -295,3 +320,4 @@ If you encounter difficulties during installation:
 - [Windows Subsystem for Linux (WSL) Documentation](https://learn.microsoft.com/en-us/windows/wsl/)
 - [uv: Python Packaging Documentation](https://docs.astral.sh/uv/)
 - [GitHub 2FA Documentation](https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa)
+- [GitHub Email Privacy Documentation](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-email-preferences/setting-your-commit-email-address)

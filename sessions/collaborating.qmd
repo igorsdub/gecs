@@ -38,7 +38,7 @@ By the end of this two-hour session, you will be able to:
 ## The course project
 
 Each participant owns a separate public course repository named
-`gutenberg-analysis`. Throughout GECS, that repository grows from a README and
+`bookstats`. Throughout GECS, that repository grows from a README and
 plain-text books into a tested, automated, published analysis.
 
 We use books from [Project Gutenberg](https://www.gutenberg.org/) because the
@@ -48,7 +48,7 @@ large, sensitive, or restricted to commit to Git.
 Your project begins empty:
 
 ```text
-gutenberg-analysis/
+bookstats/
 ```
 
 ## Collaborate with your future self
@@ -61,7 +61,7 @@ make the project understandable before anyone else joins it.
 
 1. Launch VS Code.
 2. Select **File > Open Folder...**.
-3. Create and open a folder named `gutenberg-analysis`.
+3. Create and open a folder named `bookstats`.
 4. Open **Source Control** in the Activity Bar.
 5. Select **Initialize Repository**.
 
@@ -74,8 +74,8 @@ track. VS Code creates a hidden `.git/` directory to store that history.
 
 ::: {.callout-tip title="Bash/Zsh equivalent" collapse="true"}
 ```bash
-mkdir gutenberg-analysis
-cd gutenberg-analysis
+mkdir bookstats
+cd bookstats
 git init -b main
 ```
 :::
@@ -85,7 +85,7 @@ git init -b main
 Create `README.md` in the repository root and adapt the author name:
 
 ```markdown
-# gutenberg-analysis
+# bookstats
 
 A cumulative project analyzing word frequencies in books from Project Gutenberg.
 
@@ -181,7 +181,7 @@ If you published your repository as private, you can change it on GitHub:
 :::
 
 ::: {.callout-important title="Before your first push"}
-The destination should be `<your-handle>/gutenberg-analysis` on GitHub. VS Code
+The destination should be `<your-handle>/bookstats` on GitHub. VS Code
 names this remote repository `origin`.
 :::
 
@@ -191,7 +191,7 @@ names this remote repository `origin`.
 Using GitHub CLI:
 
 ```bash
-gh repo create gutenberg-analysis --public --source=. --remote=origin --push
+gh repo create bookstats --public --source=. --remote=origin --push
 ```
 :::
 
@@ -250,7 +250,7 @@ collaborator needs to understand it. A focused commit does not mean one file per
 commit.
 
 ::: {.callout-important title="Where will this commit go?"}
-Check that the open folder is your own `gutenberg-analysis` repository and the
+Check that the open folder is your own `bookstats` repository and the
 current branch is `add-frankenstein`.
 :::
 
@@ -288,8 +288,8 @@ gitGraph
 Both sides belong to your repository:
 
 ```text
-base:    <your-handle>/gutenberg-analysis  main
-compare: <your-handle>/gutenberg-analysis  add-frankenstein
+base:    <your-handle>/bookstats  main
+compare: <your-handle>/bookstats  add-frankenstein
 ```
 :::
 
@@ -404,11 +404,11 @@ contribution workflows, we use the fork model.
 ![The Fork button located in the upper-right toolbar on GitHub.](/images/version-control_github_fork-button.png)
 
 3. GitHub opens the **Create a new fork** page. Because Collaborator B already has
-   their own repository named `gutenberg-analysis`, GitHub flags a name conflict:
+   their own repository named `bookstats`, GitHub flags a name conflict:
    *"The repository already exists in your account."*
    - In the **Repository name** field, add Collaborator A's GitHub handle:
      ```text
-     gutenberg-analysis-<collaborator-a-handle>
+     bookstats-<collaborator-a-handle>
      ```
    - Keep **Copy the main branch only** checked (the default). For this course,
      we only need `main`. Note that in other open-source projects, you might uncheck
@@ -417,7 +417,7 @@ contribution workflows, we use the fork model.
    - Select **Create fork**.
 4. In VS Code, run **Git: Clone** from the Command Palette.
 5. Paste the URL of Collaborator B's fork:
-   `https://github.com/<collaborator-b>/gutenberg-analysis-<collaborator-a>.git`.
+   `https://github.com/<collaborator-b>/bookstats-<collaborator-a>.git`.
 6. To keep the two local repositories distinct, create or select a parent
    directory named after Collaborator A's GitHub handle before cloning.
 7. Open the cloned repository in a new VS Code window.
@@ -457,7 +457,7 @@ A's original repository as `upstream`:
 
 ::: {.callout-tip title="Bash/Zsh equivalent" collapse="true"}
 ```bash
-git remote add upstream https://github.com/<collaborator-a>/gutenberg-analysis.git
+git remote add upstream https://github.com/<collaborator-a>/bookstats.git
 git remote -v
 ```
 :::
@@ -497,8 +497,8 @@ README table instead.
 3. Confirm the destinations:
 
    ```text
-   base:    <collaborator-a>/gutenberg-analysis                   main
-   compare: <collaborator-b>/gutenberg-analysis-<collaborator-a>  add-dracula
+   base:    <collaborator-a>/bookstats                   main
+   compare: <collaborator-b>/bookstats-<collaborator-a>  add-dracula
    ```
 
 4. Title the pull request `Add Dracula to the book analysis`.
@@ -567,7 +567,7 @@ Finish the collaboration before swapping roles.
 
 **Collaborator A — repository owner**
 
-1. Open their own local `gutenberg-analysis` repository in VS Code.
+1. Open their own local `bookstats` repository in VS Code.
 2. Switch to `main` if necessary.
 3. Select **Pull** from `origin/main`.
 4. Confirm that the collaborator's book is present.
@@ -646,7 +646,7 @@ Session 1 is complete when you can check every item:
 Your course repository now contains a README and at least two sourced books:
 
 ```text
-gutenberg-analysis/
+bookstats/
 ├── README.md
 ├── 00084_frankenstein.txt
 └── <collaborator-book>.txt

@@ -100,7 +100,7 @@ A **virtual environment** is an isolated folder (conventionally named `.venv/`) 
 ### Create the Feature Branch
 
 In VS Code:
-1. Open your `gutenberg-analysis` repository.
+1. Open your `bookstats` repository.
 2. Click the branch indicator in the bottom-left Status Bar (or open the Source Control panel).
 3. Select **Create Branch...** and name it `set-up-venv`.
 
@@ -129,7 +129,7 @@ uv init --bare
 ```
 
 ```output
-Initialized project `gutenberg-analysis`
+Initialized project `bookstats`
 ```
 
 ::: {.callout-note title="Why --bare?"}
@@ -146,7 +146,7 @@ Open `pyproject.toml` in VS Code. It will look like this:
 
 ```toml
 [project]
-name = "gutenberg-analysis"
+name = "bookstats"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
@@ -191,7 +191,7 @@ uv sync
 Resolved 1 package in 2ms
 Prepared 1 package in 1ms
 Installed 1 package in 1ms
- + gutenberg-analysis==0.1.0 (from file://...)
+ + bookstats==0.1.0 (from file://...)
 ```
 
 Notice two new items:
@@ -204,14 +204,14 @@ Let's activate and deactivate the environment once in your terminal to understan
 source .venv/bin/activate
 ```
 
-Notice the prompt prefix changes: `(gutenberg-analysis) $`. You can check which Python executable is currently active:
+Notice the prompt prefix changes: `(bookstats) $`. You can check which Python executable is currently active:
 
 ```bash
 which python
 ```
 
 ```output
-.../gutenberg-analysis/.venv/bin/python
+.../bookstats/.venv/bin/python
 ```
 
 Now deactivate it:
@@ -220,7 +220,7 @@ Now deactivate it:
 deactivate
 ```
 
-The `(gutenberg-analysis)` prefix disappears. With `uv`, you will rarely need to activate environments manually because `uv run` handles execution transparently.
+The `(bookstats)` prefix disappears. With `uv`, you will rarely need to activate environments manually because `uv run` handles execution transparently.
 
 ### Configure VS Code's Python Interpreter
 
@@ -445,7 +445,7 @@ git restore 00084_frankenstein.txt
 To prevent accidents and clarify data provenance, scientific software adheres to strict folder conventions:
 
 ```text
-gutenberg-analysis/
+bookstats/
 ├── data/
 │   ├── raw/           # READ-ONLY original source data (never edited or overwritten)
 │   └── intermediate/  # Generated data tables (can be deleted and reproduced anytime)
@@ -512,7 +512,7 @@ data/processed/
 In VS Code Explorer, expand the folders. Your project structure now looks like:
 
 ```text
-gutenberg-analysis/
+bookstats/
 ├── .gitignore
 ├── .python-version
 ├── pyproject.toml
@@ -780,9 +780,22 @@ uv run python -m bookstats.counts --combine data/intermediate/*.csv -o data/proc
 Combined 2 books into data/processed/book-counts.csv
 ```
 
+### The Headless Automation Contract
+
+Notice how our data flow is strictly decoupled:
+1. `uv run python -m bookstats.counts <raw-book> <intermediate-csv>` runs headlessly from the command line to generate per-book counts.
+2. `uv run python -m bookstats.counts --combine ... -o data/processed/book-counts.csv` aggregates them into an analysis-ready dataset.
+3. The visualization notebook does **not** process raw text or duplicate counting logic—it reads the pre-computed `data/processed/book-counts.csv` table.
+
+::: {.callout-note title="This analysis an automate would make"}
+In research software engineering, interactive notebooks that embed heavy preprocessing often fail to reproduce because they require humans to click cells in arbitrary order.
+
+By keeping `bookstats.counts` as an unassisted command-line engine, the analysis pipeline can be executed start-to-finish without human interaction. This is the exact analysis that an automation tool (such as **GNU Make** in Session 4) will orchestrate incrementally, and that **GitHub Actions** will execute on remote virtual machines to build and publish an interactive GitHub website!
+:::
+
 ### Interactive Visualization with Marimo
 
-Now that our package produces structured count data, let's explore it interactively!
+Now that our package produces structured, aggregated count data, let's explore it interactively!
 
 ![marimo vs Jupyter](/images/virtual-environments_marimoVsJupyter.png)
 
@@ -794,17 +807,123 @@ Add `marimo` and `altair` to your project dependencies:
 uv add marimo altair
 ```
 
-Create a directory named `notebooks` and add `notebooks/visualize.py`:
+Create a directory named `notebooks`:
 
 ```bash
 mkdir -p notebooks
 ```
 
-Download the course visualization notebook into `notebooks/visualize.py`:
+Create `notebooks/visualize.py` in VS Code and add the initial interactive visualization:
+
+```python
+import marimo
+
+__generated_with = "0.11.0"
+app = marimo.App(width="medium")
+
+
+@app.cell
+def __():
+    from pathlib import Path
+    import altair as alt
+    import marimo as mo
+    import polars as pl
+
+    return mo, alt, pl, Path
+
+
+@app.cell
+def __(mo):
+    mo.md(
+        r"""
+        # Book Word Frequency Analysis
+
+        An interactive visualization of word frequency distributions across Project Gutenberg books.
+        """
+    )
+    return
+
+
+@app.cell
+def __(Path, pl):
+    # Load processed book counts
+    processed_path = Path("data/processed/book-counts.csv")
+    if processed_path.exists():
+        counts_df = pl.read_csv(processed_path)
+    else:
+        # Fallback to intermediate counts if processed is not yet generated
+        intermediate_dir = Path("data/intermediate")
+        csv_files = list(intermediate_dir.glob("*.csv"))
+        if csv_files:
+            frames = []
+            for p in csv_files:
+                d = pl.read_csv(p).with_columns(pl.lit(p.stem).alias("book"))
+                frames.append(d.select(["book", "word", "count"]))
+            counts_df = pl.concat(frames)
+        else:
+            counts_df = pl.DataFrame(
+                {"book": [], "word": [], "count": []},
+                schema={"book": pl.String, "word": pl.String, "count": pl.UInt32},
+            )
+    return counts_df, processed_path
+
+
+@app.cell
+def __(counts_df, mo):
+    books = (
+        sorted(counts_df["book"].unique().to_list())
+        if len(counts_df) > 0
+        else ["None"]
+    )
+    book_selector = mo.ui.dropdown(
+        options=books,
+        value=books[0] if books else "None",
+        label="Select a book:",
+    )
+    book_selector
+    return book_selector, books
+
+
+@app.cell
+def __(alt, book_selector, counts_df, mo, pl):
+    mo.stop(book_selector.value == "None", mo.md("No books available."))
+
+    selected_df = (
+        counts_df.filter(pl.col("book") == book_selector.value)
+        .sort("count", descending=True)
+        .head(30)
+    )
+
+    chart = (
+        alt.Chart(selected_df)
+        .mark_bar()
+        .encode(
+            x=alt.X("count:Q", title="Frequency Count"),
+            y=alt.Y("word:N", sort="-x", title="Word"),
+            tooltip=["word", "count"],
+        )
+        .properties(
+            title=f"Top 30 Most Frequent Words: {book_selector.value}",
+            width=600,
+            height=500,
+        )
+    )
+
+    mo.ui.altair_chart(chart)
+    return chart, selected_df
+
+
+if __name__ == "__main__":
+    app.run()
+```
+
+::: {.callout-tip title="Terminal download fallback" collapse="true"}
+You can also download this starter visualization script directly from the course assets:
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/oist/bookstats/main/notebooks/visualize.py -o notebooks/visualize.py
+curl -sSL https://raw.githubusercontent.com/oist/gecs/main/assets/notebooks/visualize.py -o notebooks/visualize.py
 ```
+:::
 
 Launch the interactive notebook server:
 
@@ -814,8 +933,8 @@ uv run marimo edit notebooks/visualize.py
 
 Marimo will open an interactive interface in your browser:
 - You can select any analyzed book from the dropdown menu.
-- Summary metrics (Total Words, Unique Vocabulary) update instantly.
-- An interactive Altair scatter plot displays the word frequencies against rank.
+- An interactive Altair bar chart displays the Top 30 most frequent words for that book.
+- In Session 3, we will extend this notebook using Test-Driven Development (TDD) to compute descriptive Zipf power-law fits and overlay regression lines.
 
 Press `Ctrl+C` in your terminal when you are ready to shut down the Marimo server.
 
@@ -824,7 +943,7 @@ Press `Ctrl+C` in your terminal when you are ready to shut down the Marimo serve
 Update your repository's `README.md` to reflect the new structure and provide exact instructions so anyone can reproduce your environment and run your analysis:
 
 ```markdown
-# gutenberg-analysis
+# bookstats
 
 A cumulative research project analyzing word frequency distributions across classic literature from Project Gutenberg.
 
@@ -912,7 +1031,7 @@ In Session 4, we will automate our Python project with Make and GitHub Actions; 
 At the conclusion of Session 2, your repository has evolved from a flat folder into a professional, reproducible research project:
 
 ```text
-gutenberg-analysis/
+bookstats/
 ├── .gitignore
 ├── .python-version
 ├── pyproject.toml
