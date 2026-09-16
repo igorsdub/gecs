@@ -38,40 +38,6 @@ By the end of this two-hour session, you will be able to:
 
 ---
 
-## The Branch and Pull-Request Workflow
-
-Just as in Session 1, every major enhancement in this session is developed on a short-lived feature branch, committed atomically, reviewed via a pull request, merged into `main` with a merge commit, and deleted:
-
-```{mermaid}
-gitGraph
-   commit id: "data-added (Session 1)"
-   branch set-up-venv
-   checkout set-up-venv
-   commit id: "chore: pin python 3.12 and init uv"
-   commit id: "chore: ignore .venv"
-   checkout main
-   merge set-up-venv id: "Merge PR #2: set-up-venv"
-   branch add-word-counting
-   checkout add-word-counting
-   commit id: "feat: add count_words script"
-   commit id: "build: add polars dependency"
-   checkout main
-   merge add-word-counting id: "Merge PR #3: add-word-counting"
-   branch separate-data
-   checkout separate-data
-   commit id: "refactor: separate data into raw and intermediate"
-   checkout main
-   merge separate-data id: "Merge PR #4: separate-data"
-   branch create-package
-   checkout create-package
-   commit id: "feat: package counting logic in src/bookstats"
-   commit id: "feat: add marimo visualization notebook"
-   checkout main
-   merge create-package id: "Merge PR #5: create-package"
-```
-
-If you are working with a partner, swap review duties on each pull request. If working solo, review your own pull request diff on GitHub before merging.
-
 ::: {.callout-tip}
 **Choose Any Project Gutenberg Books**:
 In the examples below, we demonstrate commands using Mary Shelley's *Frankenstein* (`00084_frankenstein.txt`) and Bram Stoker's *Dracula* (`00345_dracula.txt`). Feel free to analyze those or replace them with any books you and your partner selected in Session 1!
@@ -98,6 +64,16 @@ A **virtual environment** is an isolated folder (conventionally named `.venv/`) 
 - Automatically handles virtual environment creation and execution without requiring constant manual shell activation.
 
 ### Create the Feature Branch
+
+```{mermaid}
+gitGraph
+   commit id: "data-added"
+   branch set-up-venv
+   checkout set-up-venv
+   commit id: "chore: pin python 3.12 and init uv"
+   checkout main
+   merge set-up-venv id: "Merge PR: set-up-venv"
+```
 
 In VS Code:
 1. Open your `bookstats` repository.
@@ -263,6 +239,16 @@ Let's experience this failure firsthand.
 
 ### Create the Feature Branch
 
+```{mermaid}
+gitGraph
+   commit id: "venv-declared"
+   branch add-word-counting
+   checkout add-word-counting
+   commit id: "feat: add count_words script"
+   checkout main
+   merge add-word-counting id: "Merge PR: add-word-counting"
+```
+
 In VS Code:
 1. Create and switch to branch `add-word-counting`:
    ```bash
@@ -271,14 +257,10 @@ In VS Code:
 
 ### Add the Word Counting Script
 
-Download or copy the starter script [`count_words.py`](https://github.com/oist/gecs/raw/main/assets/scripts/count_words.py) into your repository root:
+1. In VS Code, create a new file named `count_words.py` in the root of your `bookstats` repository.
+2. Open [`count_words.py`](https://github.com/oist/gecs/blob/main/assets/scripts/count_words.py) on GitHub to copy the code, or expand the box below and click the **Copy** icon:
 
-```bash
-curl -sSL https://raw.githubusercontent.com/oist/gecs/main/assets/scripts/count_words.py -o count_words.py
-```
-
-Open `count_words.py` in VS Code and inspect its docstring and structure:
-
+::: {.callout-note title="Expand to view and copy count_words.py" collapse="true"}
 ```python
 """Count word frequencies in a plain-text book and save results to CSV.
 
@@ -293,10 +275,64 @@ import re
 import sys
 from pathlib import Path
 import polars as pl
-...
-```
 
-Notice line 13: `import polars as pl`.
+
+def strip_gutenberg_headers(text: str) -> str:
+    """Strip Project Gutenberg header and footer licenses from text if present."""
+    start_match = re.search(r"\*\*\* START OF THE PROJECT GUTENBERG EBOOK[^\n]*\*\*\*", text)
+    if start_match:
+        text = text[start_match.end():]
+    end_match = re.search(r"\*\*\* END OF THE PROJECT GUTENBERG EBOOK", text)
+    if end_match:
+        text = text[:end_match.start()]
+    return text
+
+
+def extract_words(text: str) -> list[str]:
+    """Extract and normalize lowercase words from a text string."""
+    cleaned = strip_gutenberg_headers(text)
+    return re.findall(r"\b[a-zA-Z]+\b", cleaned.lower())
+
+
+def count_words(words: list[str]) -> pl.DataFrame:
+    """Count occurrences of each word and sort by frequency descending."""
+    if not words:
+        return pl.DataFrame({"word": [], "count": []}, schema={"word": pl.String, "count": pl.UInt32})
+    df = pl.DataFrame({"word": words})
+    return (
+        df.group_by("word")
+        .agg(pl.len().alias("count"))
+        .sort("count", descending=True)
+    )
+
+
+def main():
+    if len(sys.argv) != 3:
+        print(__doc__)
+        sys.exit(1)
+
+    input_path = Path(sys.argv[1])
+    output_path = Path(sys.argv[2])
+
+    if not input_path.exists():
+        print(f"Error: Input file '{input_path}' not found.", file=sys.stderr)
+        sys.exit(1)
+
+    text = input_path.read_text(encoding="utf-8")
+    words = extract_words(text)
+    counts = count_words(words)
+
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    counts.write_csv(output_path)
+    print(f"Wrote {len(counts)} unique word counts to {output_path}")
+
+
+if __name__ == "__main__":
+    main()
+```
+:::
+
+Paste the code into `count_words.py` and save the file. Notice line 13: `import polars as pl`.
 
 ### Experience the Intentional Failure
 
@@ -454,6 +490,20 @@ bookstats/
 
 ### Create the Feature Branch
 
+```{mermaid}
+gitGraph
+   commit id: "word-counting"
+   branch separate-data
+   checkout separate-data
+   commit id: "refactor: separate data into raw and intermediate"
+   checkout main
+   merge separate-data id: "Merge PR: separate-data"
+```
+
+In VS Code:
+1. Open the Source Control panel (or bottom-left branch indicator).
+2. Create and switch to branch `separate-data`:
+
 ```bash
 git checkout -b separate-data
 ```
@@ -561,9 +611,34 @@ In professional software development, reusable logic lives in a **package** unde
 
 ### Create the Feature Branch
 
+```{mermaid}
+gitGraph
+   commit id: "data-separated"
+   branch create-package
+   checkout create-package
+   commit id: "feat: package counting logic in src/bookstats"
+   commit id: "feat: add marimo visualization notebook"
+   checkout main
+   merge create-package id: "Merge PR: create-package"
+```
+
+In VS Code:
+1. Open the Source Control panel (or bottom-left branch indicator).
+2. Create and switch to branch `create-package`:
+
 ```bash
 git checkout -b create-package
 ```
+
+### Moving from Scripts to a Package
+
+Before creating files, let's understand why we are refactoring `scripts/count_words.py` into a package module `src/bookstats/counts.py`:
+
+| Feature | Standalone Script (`scripts/count_words.py`) | Package Module (`src/bookstats/counts.py`) | Architectural Benefit |
+|---|---|---|---|
+| **Interface** | Tightly coupled to command-line arguments (`sys.argv`) | Pure, decoupled functions (`extract_words`, `count_words`, `process_book_file`) | Reusable in notebooks, automated test suites (Session 3), and automation pipelines (Session 4). |
+| **Documentation** | Minimal one-line docstrings | Structured NumPy-style docstrings (`Parameters`, `Returns`) | Enables autocomplete, type inference, and automated linting compliance. |
+| **Data Flow** | Single-file processing only | Added `--combine` mode for aggregation | Merges multiple book count CSVs into a unified table (`data/processed/book-counts.csv`). |
 
 ### Build the `src/` Package Structure
 
@@ -574,12 +649,14 @@ mkdir -p src/bookstats
 ```
 
 Create two files inside `src/bookstats/`:
-1. `src/bookstats/__init__.py`
-2. `src/bookstats/counts.py`
+1. `src/bookstats/counts.py`
+2. `src/bookstats/__init__.py`
 
 #### 1. `src/bookstats/counts.py`
-Move the core extraction and counting logic into this file, adding a CLI `main()` that can process single books or combine multiple CSVs:
 
+In VS Code, create a new file named `src/bookstats/counts.py`. Open [`counts.py`](https://github.com/oist/gecs/blob/main/assets/src/bookstats/counts.py) on GitHub to copy the code, or expand the box below and click the **Copy** icon:
+
+::: {.callout-note title="Expand to view and copy src/bookstats/counts.py" collapse="true"}
 ```python
 """Word extraction and frequency counting functions."""
 
@@ -594,7 +671,18 @@ import polars as pl
 
 
 def strip_gutenberg_headers(text: str) -> str:
-    """Strip Project Gutenberg header and footer licenses from text."""
+    """Strip Project Gutenberg header and footer licenses from text.
+
+    Parameters
+    ----------
+    text : str
+        Raw text content of a Project Gutenberg book.
+
+    Returns
+    -------
+    str
+        Text content with license headers and footers removed.
+    """
     start_match = re.search(
         r"\*\*\* START OF THE PROJECT GUTENBERG EBOOK[^\n]*\*\*\*", text
     )
@@ -607,13 +695,36 @@ def strip_gutenberg_headers(text: str) -> str:
 
 
 def extract_words(text: str) -> list[str]:
-    """Extract and normalize lowercase words from text."""
+    """Extract and normalize lowercase words from text.
+
+    Parameters
+    ----------
+    text : str
+        Input text to extract words from.
+
+    Returns
+    -------
+    list of str
+        List of lowercased word tokens with punctuation removed.
+    """
     cleaned = strip_gutenberg_headers(text)
     return re.findall(r"\b[a-zA-Z]+\b", cleaned.lower())
 
 
 def count_words(words: list[str]) -> pl.DataFrame:
-    """Count occurrences of each word and sort by frequency descending."""
+    """Count occurrences of each word and sort by frequency descending.
+
+    Parameters
+    ----------
+    words : list of str
+        List of normalized words.
+
+    Returns
+    -------
+    polars.DataFrame
+        DataFrame with columns 'word' and 'count', ordered from most
+        frequent to least frequent.
+    """
     if not words:
         return pl.DataFrame(
             {"word": [], "count": []},
@@ -626,7 +737,20 @@ def count_words(words: list[str]) -> pl.DataFrame:
 
 
 def process_book_file(input_path: Path | str, output_path: Path | str) -> pl.DataFrame:
-    """Process a single book text file and save word counts to CSV."""
+    """Process a single book text file and save word counts to CSV.
+
+    Parameters
+    ----------
+    input_path : Path or str
+        Path to the raw text input file.
+    output_path : Path or str
+        Destination path for the intermediate count CSV.
+
+    Returns
+    -------
+    polars.DataFrame
+        DataFrame of word counts that was written to disk.
+    """
     in_p = Path(input_path)
     out_p = Path(output_path)
     text = in_p.read_text(encoding="utf-8")
@@ -640,7 +764,20 @@ def process_book_file(input_path: Path | str, output_path: Path | str) -> pl.Dat
 def combine_word_counts(
     input_paths: list[Path | str], output_path: Path | str
 ) -> pl.DataFrame:
-    """Combine multiple per-book count CSV files into a single dataset."""
+    """Combine multiple per-book count CSV files into a single dataset.
+
+    Parameters
+    ----------
+    input_paths : list of (Path or str)
+        Paths to the per-book intermediate count CSV files.
+    output_path : Path or str
+        Destination path for the processed combined CSV.
+
+    Returns
+    -------
+    polars.DataFrame
+        Combined DataFrame containing 'book', 'word', and 'count' columns.
+    """
     frames = []
     for p in input_paths:
         path = Path(p)
@@ -690,7 +827,10 @@ def main() -> None:
 
     if args.combine:
         if not args.output:
-            print("Error: --output is required when using --combine.", file=sys.stderr)
+            print(
+                "Error: --output is required when using --combine.",
+                file=sys.stderr,
+            )
             sys.exit(1)
         combine_word_counts(args.inputs, args.output)
         print(f"Combined {len(args.inputs)} books into {args.output}")
@@ -700,7 +840,10 @@ def main() -> None:
         elif len(args.inputs) == 1 and args.output:
             in_file, out_file = args.inputs[0], args.output
         else:
-            print("Usage: python -m bookstats.counts INPUT OUTPUT", file=sys.stderr)
+            print(
+                "Usage: python -m bookstats.counts INPUT OUTPUT",
+                file=sys.stderr,
+            )
             sys.exit(1)
         process_book_file(in_file, out_file)
         print(f"Processed {in_file} -> {out_file}")
@@ -709,9 +852,13 @@ def main() -> None:
 if __name__ == "__main__":
     main()
 ```
+:::
+
+Paste the code into `src/bookstats/counts.py` and save the file.
 
 #### 2. `src/bookstats/__init__.py`
-Export the public API of your package:
+
+In VS Code, create a new file named `src/bookstats/__init__.py`. This file exports the public API of your package:
 
 ```python
 """bookstats: A reproducible analysis package for Gutenberg word frequencies."""
@@ -732,6 +879,21 @@ __all__ = [
     "combine_word_counts",
 ]
 ```
+
+::: {.callout-note title="What is a Package API and Why Does __init__.py Define It?"}
+In software development, an **Application Programming Interface (API)** is the formal contract defining how external programs communicate with your package.
+
+In Python, a package folder can contain dozens of internal helper files, variables, and private functions. Without an explicit boundary, users of your library would have to import directly from deep implementation files (`from bookstats.counts import count_words`), tightly coupling their code to your internal folder structure.
+
+By defining `__all__` inside `src/bookstats/__init__.py`:
+1. **Public vs. Internal Seam**: You explicitly declare which functions constitute your supported public API (`extract_words`, `count_words`, `combine_word_counts`).
+2. **Simplified Imports**: Collaborators can simply write `from bookstats import count_words` without needing to know or care which internal module contains the logic.
+3. **Stability Guarantee**: If you later reorganize internal files (e.g. splitting counting algorithms into separate submodules), external scripts, tests (Session 3), and Make workflows (Session 4) will continue to work without changing their import statements.
+
+::: {.callout-tip title="Advanced: Lazy Imports" collapse="true"}
+In very large scientific libraries (like SciPy or Polars), importing everything immediately in `__init__.py` can slow down startup times. Advanced packages sometimes use Python 3.7+ module-level `__getattr__` to dynamically load submodules only when accessed. For our package, explicit imports provide the clearest, most readable foundation.
+:::
+:::
 
 ### Configure `pyproject.toml` for the `src/` Layout
 
@@ -801,11 +963,17 @@ Now that our package produces structured, aggregated count data, let's explore i
 
 Instead of traditional Jupyter notebooks (which save binary outputs, execution counts, and JSON diffs that pollute Git), we use [Marimo](https://marimo.io/). Marimo notebooks are stored as **pure Python scripts**, making them 100% Git-friendly, reproducible, and reactive.
 
-Add `marimo` and `altair` to your project dependencies:
+We set up and launch our interactive visualization in three simple steps:
+
+#### Step 1: Install Marimo and Altair
+
+Add `marimo` and `altair` to your project dependencies using `uv`:
 
 ```bash
 uv add marimo altair
 ```
+
+#### Step 2: Create `notebooks/visualize.py`
 
 Create a directory named `notebooks`:
 
@@ -813,8 +981,9 @@ Create a directory named `notebooks`:
 mkdir -p notebooks
 ```
 
-Create `notebooks/visualize.py` in VS Code and add the initial interactive visualization:
+In VS Code, create a new file named `notebooks/visualize.py`. Open [`visualize.py`](https://github.com/oist/gecs/blob/main/assets/notebooks/visualize.py) on GitHub to copy the code, or expand the box below and click the **Copy** icon:
 
+::: {.callout-note title="Expand to view and copy notebooks/visualize.py" collapse="true"}
 ```python
 import marimo
 
@@ -916,24 +1085,59 @@ def __(alt, book_selector, counts_df, mo, pl):
 if __name__ == "__main__":
     app.run()
 ```
-
-::: {.callout-tip title="Terminal download fallback" collapse="true"}
-You can also download this starter visualization script directly from the course assets:
-
-```bash
-curl -sSL https://raw.githubusercontent.com/oist/gecs/main/assets/notebooks/visualize.py -o notebooks/visualize.py
-```
 :::
 
-Launch the interactive notebook server:
+Paste the code into `notebooks/visualize.py` and save the file.
+
+##### How the Notebook Works: 3 Reactive Building Blocks
+
+Notice how Marimo structures the interactive script:
+
+1. **Cell Dependencies and Returns**:
+   ```python
+   @app.cell
+   def __():
+       from pathlib import Path
+       import altair as alt
+       import marimo as mo
+       import polars as pl
+       return mo, alt, pl, Path
+   ```
+   Each cell is a pure function. Marimo parses variable definitions and returns, constructing a Directed Acyclic Graph (DAG) of cell dependencies—just like formulas in a spreadsheet!
+
+2. **Interactive UI Widgets (`mo.ui`)**:
+   ```python
+   book_selector = mo.ui.dropdown(
+       options=books,
+       value=books[0] if books else "None",
+       label="Select a book:",
+   )
+   book_selector
+   ```
+   Displaying `book_selector` renders a dropdown element directly in your browser. Whenever a user chooses a different book, Marimo automatically triggers downstream cells that reference `book_selector.value`.
+
+3. **Reactive Chart Rendering (`altair`)**:
+   ```python
+   selected_df = counts_df.filter(pl.col("book") == book_selector.value).head(30)
+   chart = alt.Chart(selected_df).mark_bar().encode(
+       x=alt.X("count:Q", title="Frequency Count"),
+       y=alt.Y("word:N", sort="-x", title="Word"),
+   )
+   mo.ui.altair_chart(chart)
+   ```
+   When the dropdown changes, only this visualization cell re-renders, updating the Top 30 word frequencies without recalculating data from disk.
+
+#### Step 3: Launch the Interactive Server
+
+Start the Marimo notebook server from your terminal:
 
 ```bash
 uv run marimo edit notebooks/visualize.py
 ```
 
-Marimo will open an interactive interface in your browser:
-- You can select any analyzed book from the dropdown menu.
-- An interactive Altair bar chart displays the Top 30 most frequent words for that book.
+Marimo will open an interactive interface in your default browser:
+- Select any analyzed book from the dropdown menu to inspect its word frequencies.
+- Hover over the interactive Altair bar chart to see exact counts.
 - In Session 3, we will extend this notebook using Test-Driven Development (TDD) to compute descriptive Zipf power-law fits and overlay regression lines.
 
 Press `Ctrl+C` in your terminal when you are ready to shut down the Marimo server.
