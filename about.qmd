@@ -23,5 +23,5 @@ Participants learn these practices by building a discipline-neutral Project Gute
 
 ## Open Source & Community
 
-GECS is free and open-source under the MIT License. All source code, lesson materials, presentation slides, and exercises are developed publicly on [GitHub](https://github.com/oist/gecs).
+GECS is free and open-source under the MIT License. All source code, lesson materials, presentation slides, and exercises are developed publicly on [GitHub](https://github.com/igorsdub/gecs).
 
