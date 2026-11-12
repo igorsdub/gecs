@@ -258,7 +258,7 @@ In VS Code:
 ### Add the Word Counting Script
 
 1. In VS Code, create a new file named `count_words.py` in the root of your `bookstats` repository.
-2. Open [`count_words.py`](https://github.com/oist/gecs/blob/main/assets/scripts/count_words.py) on GitHub to copy the code, or expand the box below and click the **Copy** icon:
+2. Open [`count_words.py`](https://github.com/igorsdub/gecs/blob/main/assets/scripts/count_words.py) on GitHub to copy the code, or expand the box below and click the **Copy** icon:
 
 ::: {.callout-note title="Expand to view and copy count_words.py" collapse="true"}
 ```python
@@ -654,7 +654,7 @@ Create two files inside `src/bookstats/`:
 
 #### 1. `src/bookstats/counts.py`
 
-In VS Code, create a new file named `src/bookstats/counts.py`. Open [`counts.py`](https://github.com/oist/gecs/blob/main/assets/src/bookstats/counts.py) on GitHub to copy the code, or expand the box below and click the **Copy** icon:
+In VS Code, create a new file named `src/bookstats/counts.py`. Open [`counts.py`](https://github.com/igorsdub/gecs/blob/main/assets/src/bookstats/counts.py) on GitHub to copy the code, or expand the box below and click the **Copy** icon:
 
 ::: {.callout-note title="Expand to view and copy src/bookstats/counts.py" collapse="true"}
 ```python
@@ -981,7 +981,7 @@ Create a directory named `notebooks`:
 mkdir -p notebooks
 ```
 
-In VS Code, create a new file named `notebooks/visualize.py`. Open [`visualize.py`](https://github.com/oist/gecs/blob/main/assets/notebooks/visualize.py) on GitHub to copy the code, or expand the box below and click the **Copy** icon:
+In VS Code, create a new file named `notebooks/visualize.py`. Open [`visualize.py`](https://github.com/igorsdub/gecs/blob/main/assets/notebooks/visualize.py) on GitHub to copy the code, or expand the box below and click the **Copy** icon:
 
 ::: {.callout-note title="Expand to view and copy notebooks/visualize.py" collapse="true"}
 ```python

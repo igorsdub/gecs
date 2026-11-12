@@ -6,7 +6,7 @@ GECS (pron. "geeks") introduces software development into scientific research pr
 
 ## Website
 
-[https://oist.github.io/gecs](https://oist.github.io/gecs)
+[https://igorsdub.github.io/gecs](https://igorsdub.github.io/gecs)
 Built with [Quarto](https://quarto.org/docs/websites/) and hosted with [GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site).
 
 ### Deployment
